@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="{{DESCRIPTION}}" />
+    <meta name="color-scheme" content="dark" />
+    <title>{{TITLE}}</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script src="app.js" defer></script>
+  </head>
+  <body>
+    <div class="page-glow" aria-hidden="true"></div>
+    <header class="site-header shell">
+      <a class="brand" href="./" aria-label="{{TITLE}} 首页">
+        <span class="brand-mark">08·30</span>
+        <span>RESEARCH LAB</span>
+      </a>
+      <nav aria-label="主要导航">
+        <a href="{{REPOSITORY_URL}}#readme">研究索引</a>
+        <a class="nav-cta" href="{{REPOSITORY_URL}}">GitHub 仓库</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero shell">
+        <div class="hero-copy">
+          <p class="eyebrow"><span></span> BUILD · TEST · DOCUMENT</p>
+          <h1>让每一次探索<br />都留下<span>可验证的证据。</span></h1>
+          <p class="hero-description">{{DESCRIPTION}}这里汇集研究问题、实验过程、阶段结论与可运行成果。</p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="#projects">浏览研究</a>
+            <a class="text-link" href="{{REPOSITORY_URL}}/tree/main/templates/research-project">使用项目模板 <span>↗</span></a>
+          </div>
+        </div>
+        <dl class="metrics" aria-label="研究统计">
+          <div><dt>{{PROJECT_COUNT}}</dt><dd>研究总数</dd></div>
+          <div><dt>{{ACTIVE_COUNT}}</dt><dd>正在进行</dd></div>
+          <div><dt>{{COMPLETE_COUNT}}</dt><dd>形成结论</dd></div>
+        </dl>
+      </section>
+
+      <section class="project-section shell" id="projects">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">RESEARCH INDEX</p>
+            <h2>项目与实验</h2>
+          </div>
+          <label class="search">
+            <span class="sr-only">搜索研究项目</span>
+            <svg aria-hidden="true" viewBox="0 0 24 24"><path d="m21 21-4.35-4.35m2.35-5.65a8 8 0 1 1-16 0 8 8 0 0 1 16 0Z" /></svg>
+            <input id="project-search" type="search" placeholder="搜索标题、摘要或标签" autocomplete="off" />
+          </label>
+        </div>
+
+        <div class="filters" role="group" aria-label="按状态筛选">
+          <button class="filter is-active" type="button" data-filter="all">全部</button>
+          <button class="filter" type="button" data-filter="active">进行中</button>
+          <button class="filter" type="button" data-filter="idea">构想</button>
+          <button class="filter" type="button" data-filter="complete">已完成</button>
+          <button class="filter" type="button" data-filter="paused">暂停</button>
+        </div>
+
+        <div class="project-grid" id="project-grid">
+          {{PROJECT_CARDS}}
+        </div>
+        {{EMPTY_STATE}}
+        <p class="no-results" id="no-results" hidden>没有匹配的研究项目。</p>
+      </section>
+
+      <section class="principles shell">
+        <p class="eyebrow">OPERATING PRINCIPLES</p>
+        <div class="principle-grid">
+          <article><span>01</span><h2>问题先行</h2><p>从能够被证伪的问题出发，让实现服务于判断。</p></article>
+          <article><span>02</span><h2>过程可复现</h2><p>记录环境、输入、命令和决策，让证据可以复查。</p></article>
+          <article><span>03</span><h2>结论有边界</h2><p>同时呈现发现、失败尝试、适用条件和未知问题。</p></article>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer shell">
+      <p>{{TITLE}} · Generated {{GENERATED_AT}}</p>
+      <a href="{{REPOSITORY_URL}}">Source on GitHub ↗</a>
+    </footer>
+  </body>
+</html>
+

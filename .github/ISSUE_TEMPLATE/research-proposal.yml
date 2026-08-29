@@ -1,0 +1,36 @@
+name: 研究提案
+description: 提议一项新的、可验证的研究
+title: "[Research]: "
+labels:
+  - research
+body:
+  - type: markdown
+    attributes:
+      value: 请尽量把想法收敛为能够被实验否证或支持的问题。
+  - type: textarea
+    id: question
+    attributes:
+      label: 研究问题
+      description: 要验证的具体问题是什么？
+    validations:
+      required: true
+  - type: textarea
+    id: value
+    attributes:
+      label: 研究价值
+      description: 为什么值得研究？结论会影响什么决策？
+    validations:
+      required: true
+  - type: textarea
+    id: method
+    attributes:
+      label: 最小实验
+      description: 最小可验证方法、输入、对照和指标是什么？
+    validations:
+      required: true
+  - type: textarea
+    id: risks
+    attributes:
+      label: 已知风险与依赖
+      description: 包括数据、许可、成本、隐私和技术依赖。
+
