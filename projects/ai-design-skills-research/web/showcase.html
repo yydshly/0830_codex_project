@@ -1,0 +1,218 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="上线哨兵特色场景演示：浮动岛式导航、逐词滚动点亮与可操作的发布审核状态。"
+    />
+    <meta name="color-scheme" content="dark" />
+    <title>上线哨兵｜特色场景演示</title>
+    <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="./showcase.css" />
+    <script src="./showcase.js" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">跳到主要内容</a>
+
+    <header class="island-nav" aria-label="产品导航">
+      <a class="brand" href="#top" aria-label="上线哨兵首页">
+        <span class="brand-mark" aria-hidden="true">S</span>
+        <span>上线哨兵</span>
+      </a>
+      <a class="nav-cta" href="#review-demo">运行样例审核</a>
+      <button
+        class="menu-toggle"
+        id="menu-toggle"
+        type="button"
+        aria-label="打开导航菜单"
+        aria-expanded="false"
+        aria-controls="menu-overlay"
+      >
+        <span></span>
+        <span></span>
+      </button>
+    </header>
+
+    <div class="menu-overlay" id="menu-overlay" aria-hidden="true" hidden>
+      <nav aria-label="展开导航">
+        <a href="#top" style="--delay: 80ms">首页 <span>01</span></a>
+        <a href="#benefits" style="--delay: 130ms">为什么需要 <span>02</span></a>
+        <a href="#review-demo" style="--delay: 180ms">样例审核 <span>03</span></a>
+        <a href="#faq" style="--delay: 230ms">常见问题 <span>04</span></a>
+        <a href="./index.html" style="--delay: 280ms">返回能力研究 <span>↗</span></a>
+      </nav>
+      <p>这是一个本地演示页，不连接代码仓库，也不上传任何数据。</p>
+    </div>
+
+    <main id="main">
+      <section class="hero shell" id="top" aria-labelledby="hero-title">
+        <div class="hero-copy reveal">
+          <p class="eyebrow"><span></span> Release readiness, made explicit</p>
+          <h1 id="hero-title">让上线前的判断，<br /><span>从聊天记录变成可追溯结论。</span></h1>
+          <p class="hero-lede">
+            上线哨兵面向小型软件团队，把风险、负责人、证据和回滚条件放进同一张发布审核页。
+          </p>
+          <div class="hero-actions">
+            <a class="primary-button" href="#review-demo">运行样例审核</a>
+            <a class="secondary-link" href="#how-it-works">查看三步流程 <span aria-hidden="true">↓</span></a>
+          </div>
+          <p class="proof-line">研究演示 · 基于 `landing-page-design` 固定提交 1c1e97c 构建</p>
+        </div>
+
+        <div class="hero-product reveal" aria-label="上线审核页面预览">
+          <div class="product-topbar">
+            <div><span class="live-dot"></span> Release gate</div>
+            <span>DEMO / RG 042</span>
+          </div>
+          <div class="decision-score">
+            <div>
+              <span class="micro-label">当前结论</span>
+              <strong>有条件继续</strong>
+              <p>需要补充权限缓存的回滚证据。</p>
+            </div>
+            <div class="score-orbit" aria-hidden="true">
+              <span></span><span></span><b>2 / 3</b>
+            </div>
+          </div>
+          <ul class="decision-list">
+            <li><span>支付回调重试</span><em>已确认</em></li>
+            <li><span>移动端结算入口</span><em>已确认</em></li>
+            <li><span>权限缓存回滚</span><em class="needs-proof">待证据</em></li>
+          </ul>
+          <div class="product-footer">
+            <span>负责人：林澈</span>
+            <span>草案未提交</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="signal-strip" aria-label="产品原则">
+        <span>一个发布目标</span>
+        <span>一个责任结论</span>
+        <span>一条可恢复路径</span>
+        <span>证据不完整就明确标记</span>
+      </section>
+
+      <section
+        class="tagline-section shell"
+        aria-labelledby="tagline-heading"
+        data-tagline="让 每一次 发布 都 不再 依赖 散落 在 聊天 里的 临场 判断"
+      >
+        <p class="eyebrow">The signature effect</p>
+        <h2 id="tagline-heading" class="tagline-text" aria-label="让每一次发布，都不再依赖散落在聊天里的临场判断。"></h2>
+        <p class="effect-note">向下滚动时，每个词按照阅读顺序从低对比度进入完整文字色。这是原 Skill 强制要求的标语揭示效果。</p>
+      </section>
+
+      <section class="benefits shell section-space" id="benefits" aria-labelledby="benefits-title">
+        <div class="section-intro reveal">
+          <p class="eyebrow">Benefits before features</p>
+          <h2 id="benefits-title">发布讨论仍然灵活，最终判断必须清楚。</h2>
+        </div>
+        <div class="benefit-rows">
+          <article class="reveal">
+            <span>01</span>
+            <div><h3>风险不再失散</h3><p>把影响范围、证据和未决问题放在同一张审核页，避免关键判断被埋在消息流里。</p></div>
+          </article>
+          <article class="reveal">
+            <span>02</span>
+            <div><h3>责任不再模糊</h3><p>每项条件都有负责人和当前状态，团队知道谁补证据、谁给最终结论。</p></div>
+          </article>
+          <article class="reveal">
+            <span>03</span>
+            <div><h3>失败可以恢复</h3><p>上线前同时确认回滚条件，不把恢复路径留到事故发生后临时讨论。</p></div>
+          </article>
+        </div>
+      </section>
+
+      <section class="how-section" id="how-it-works" aria-labelledby="how-title">
+        <div class="shell">
+          <div class="section-intro reveal">
+            <p class="eyebrow">How it works</p>
+            <h2 id="how-title">三个步骤，形成一条可审核的发布判断。</h2>
+          </div>
+          <ol class="steps">
+            <li class="reveal"><span>01</span><h3>写下变更</h3><p>说明影响范围、负责人和目标发布窗口。</p></li>
+            <li class="reveal"><span>02</span><h3>补齐证据</h3><p>记录验证结果、已知风险与回滚条件。</p></li>
+            <li class="reveal"><span>03</span><h3>给出结论</h3><p>明确继续、等待或停止，并保留判断上下文。</p></li>
+          </ol>
+        </div>
+      </section>
+
+      <section class="review-section shell section-space" id="review-demo" aria-labelledby="review-title">
+        <div class="section-intro split reveal">
+          <div>
+            <p class="eyebrow">Interactive state set</p>
+            <h2 id="review-title">亲手运行一次样例审核。</h2>
+          </div>
+          <p>这个交互同时演示默认、加载和结果状态。内容完全本地生成，不读取真实代码。</p>
+        </div>
+
+        <div class="review-workbench reveal">
+          <div class="workbench-sidebar">
+            <span class="micro-label">变更草案</span>
+            <h3>权限缓存策略调整</h3>
+            <p>演示输入 · 不代表真实项目</p>
+            <dl>
+              <div><dt>负责人</dt><dd>周弈</dd></div>
+              <div><dt>影响面</dt><dd>管理端权限</dd></div>
+              <div><dt>回滚</dt><dd>等待证据</dd></div>
+            </dl>
+            <button class="run-button" id="run-review" type="button">运行样例审核</button>
+          </div>
+          <div class="workbench-main" id="review-output" aria-live="polite" aria-busy="false">
+            <div class="review-empty">
+              <span class="empty-mark" aria-hidden="true">↗</span>
+              <h3>审核尚未运行</h3>
+              <p>运行后会依次检查变更范围、验证证据与回滚条件。</p>
+            </div>
+          </div>
+          <aside class="workbench-log" aria-label="审核活动">
+            <span class="micro-label">Activity</span>
+            <ol id="review-log"><li>等待运行样例</li></ol>
+          </aside>
+        </div>
+      </section>
+
+      <section class="faq-section shell section-space" id="faq" aria-labelledby="faq-title">
+        <div class="section-intro reveal">
+          <p class="eyebrow">Objection handling</p>
+          <h2 id="faq-title">开始之前，先回答最常见的顾虑。</h2>
+        </div>
+        <div class="faq-list reveal">
+          <details>
+            <summary>这个演示会读取我的代码吗？<span aria-hidden="true">＋</span></summary>
+            <p>不会。当前页面没有后端和真实仓库连接，审核内容是预先写好的本地演示数据。</p>
+          </details>
+          <details>
+            <summary>为什么页面没有客户数字和评价？<span aria-hidden="true">＋</span></summary>
+            <p>因为没有可核验来源。这个场景刻意展示更安全的做法：证据缺失就明确标注，而不是制造可信度。</p>
+          </details>
+          <details>
+            <summary>这些动效就是原仓库直接提供的吗？<span aria-hidden="true">＋</span></summary>
+            <p>不是。HTML、CSS 和 JavaScript 都由模型为本演示编写；即使不加载原仓库，通过清晰描述也能实现同类效果。</p>
+          </details>
+          <details>
+            <summary>减少动态偏好下还能使用吗？<span aria-hidden="true">＋</span></summary>
+            <p>可以。系统开启 reduced motion 后，逐词标语直接显示完整内容，菜单和滚动入场不再依赖位移动画。</p>
+          </details>
+        </div>
+      </section>
+
+      <section class="final-cta" aria-labelledby="final-title">
+        <div class="shell reveal">
+          <p class="eyebrow">One primary action</p>
+          <h2 id="final-title">这是模型能力，不是仓库自带效果。</h2>
+          <p>原仓库只提供通用约束和检查清单，没有为强模型增加新的前端实现能力。</p>
+          <a class="primary-button light" href="./index.html">返回能力观察台</a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer shell">
+      <div><strong>上线哨兵</strong><p>模型实现能力的受控场景演示</p></div>
+      <div><a href="./index.html">能力研究</a><a href="https://github.com/yydshly/0830_codex_project/blob/main/projects/ai-design-skills-research/docs/%E7%A0%94%E7%A9%B6%E6%8A%A5%E5%91%8A.md">研究报告</a><a href="#top">回到顶部</a></div>
+    </footer>
+  </body>
+</html>

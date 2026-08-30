@@ -1,0 +1,309 @@
+<!doctype html>
+<html lang="zh-CN" data-theme="light">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="通过可操作样例理解 ai-design-skills 如何约束 AI 的落地页策略、文案、视觉、状态和交付。"
+    />
+    <meta name="color-scheme" content="light dark" />
+    <title>AI Design Skills 最终研究结论</title>
+    <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="./styles.css" />
+    <script src="./app.js" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">跳到主要内容</a>
+
+    <header class="site-header" aria-label="主导航">
+      <a class="wordmark" href="#top" aria-label="返回顶部">
+        <span class="wordmark-mark" aria-hidden="true">A/D</span>
+        <span>Skill Observatory</span>
+      </a>
+      <nav class="top-nav" aria-label="页面章节">
+        <a href="./showcase.html">特色场景</a>
+        <a href="#lab">能力样例</a>
+        <a href="#scenarios">使用场景</a>
+        <a href="#extensions">扩展方向</a>
+      </nav>
+      <button class="icon-button" id="theme-toggle" type="button" aria-label="切换到深色主题" title="切换主题">
+        <span aria-hidden="true" id="theme-icon">◐</span>
+      </button>
+    </header>
+
+    <main id="main">
+      <section class="hero section-shell" id="top" aria-labelledby="hero-title">
+        <div class="hero-copy">
+          <p class="eyebrow">能力观察台 · 上游快照 1c1e97c</p>
+          <h1 id="hero-title">它没有给模型新能力，<br /><span>只是收紧 AI 的网页输出。</span></h1>
+          <p class="hero-lede">
+            `ai-design-skills` 当前是一份通用落地页提示词与检查清单。强模型不加载它也能实现同类页面；它的主要作用是统一流程、减少遗漏，而不是提供独有组件或高级前端效果。
+          </p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="./showcase.html">查看模型实现的场景</a>
+            <a class="text-link" href="#lab">进入能力实验 <span aria-hidden="true">↓</span></a>
+            <a class="text-link" href="https://github.com/yydshly/0830_codex_project/blob/main/projects/ai-design-skills-research/docs/%E7%A0%94%E7%A9%B6%E6%8A%A5%E5%91%8A.md">阅读完整研究 <span aria-hidden="true">↗</span></a>
+          </div>
+        </div>
+
+        <aside class="hero-model" aria-label="能力工作链">
+          <p class="model-label">不是组件导入，而是上下文条件化</p>
+          <ol class="model-flow">
+            <li>
+              <span>01</span>
+              <div><strong>产品 Brief</strong><small>受众、Offer、异议、目标动作</small></div>
+            </li>
+            <li>
+              <span>02</span>
+              <div><strong>Skill 规则</strong><small>流程、Token、禁止项、检查表</small></div>
+            </li>
+            <li>
+              <span>03</span>
+              <div><strong>代理实现</strong><small>HTML、CSS、React、动效与测试</small></div>
+            </li>
+          </ol>
+          <div class="model-result">
+            <span class="status-dot" aria-hidden="true"></span>
+            <p><strong>结果：</strong>输出可能更一致，但模型能力上限没有改变。</p>
+          </div>
+        </aside>
+      </section>
+
+      <section class="facts" aria-label="仓库事实">
+        <div><strong>1</strong><span>当前 Skill</span></div>
+        <div><strong>403</strong><span>核心规则行数</span></div>
+        <div><strong>0</strong><span>可执行脚本</span></div>
+        <div><strong>MIT</strong><span>许可证</span></div>
+      </section>
+
+      <section class="section-shell section-block" id="lab" aria-labelledby="lab-title">
+        <div class="section-heading">
+          <p class="eyebrow">01 / Capability lab</p>
+          <h2 id="lab-title">从六个角度观察它改变了什么</h2>
+          <p>选择一个视角。右侧不是抽象总结，而是同一条规则在样例任务中的输入、决策、可见结果和边界。</p>
+        </div>
+
+        <div class="lab-layout">
+          <div class="angle-tabs" role="tablist" aria-label="能力视角">
+            <button role="tab" aria-selected="true" aria-controls="angle-panel" id="angle-strategy" data-angle="strategy" tabindex="0">
+              <span>01</span>策略
+            </button>
+            <button role="tab" aria-selected="false" aria-controls="angle-panel" id="angle-copy" data-angle="copy" tabindex="-1">
+              <span>02</span>文案
+            </button>
+            <button role="tab" aria-selected="false" aria-controls="angle-panel" id="angle-visual" data-angle="visual" tabindex="-1">
+              <span>03</span>视觉
+            </button>
+            <button role="tab" aria-selected="false" aria-controls="angle-panel" id="angle-state" data-angle="state" tabindex="-1">
+              <span>04</span>状态
+            </button>
+            <button role="tab" aria-selected="false" aria-controls="angle-panel" id="angle-ship" data-angle="ship" tabindex="-1">
+              <span>05</span>交付
+            </button>
+            <button role="tab" aria-selected="false" aria-controls="angle-panel" id="angle-boundary" data-angle="boundary" tabindex="-1">
+              <span>06</span>边界
+            </button>
+          </div>
+
+          <article class="angle-panel" id="angle-panel" role="tabpanel" aria-labelledby="angle-strategy" aria-live="polite">
+            <div class="angle-header">
+              <div>
+                <p class="angle-kicker" id="angle-kicker">Strategy</p>
+                <h3 id="angle-title">先收紧目标，再安排页面</h3>
+              </div>
+              <span class="angle-badge" id="angle-badge">决策能力</span>
+            </div>
+            <p class="angle-summary" id="angle-summary"></p>
+            <div class="angle-grid">
+              <div>
+                <span class="field-label">样例输入</span>
+                <div class="field-content" id="angle-input"></div>
+              </div>
+              <div>
+                <span class="field-label">Skill 介入</span>
+                <div class="field-content field-rule" id="angle-rule"></div>
+              </div>
+              <div>
+                <span class="field-label">可见输出</span>
+                <div class="field-content" id="angle-output"></div>
+              </div>
+              <div>
+                <span class="field-label">能力边界</span>
+                <div class="field-content field-boundary" id="angle-limit"></div>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="comparison-section" aria-labelledby="comparison-title">
+        <div class="section-shell">
+          <div class="section-heading compact">
+            <p class="eyebrow">02 / Controlled sample</p>
+            <h2 id="comparison-title">同一个 Brief，观察有无 Skill 的差异</h2>
+            <p>样例产品“上线哨兵”为虚构演示，只证明模型能按规则实现页面，不证明该 Skill 给强模型增加了新能力。</p>
+          </div>
+
+          <div class="sample-brief" aria-label="样例产品 Brief">
+            <span>受众：5–30 人软件团队</span>
+            <span>Offer：上线前风险审核页</span>
+            <span>主动作：查看样例审核</span>
+            <span>异议：数据安全、噪声、接入成本</span>
+          </div>
+
+          <div class="comparison-controls" role="tablist" aria-label="对照维度">
+            <button role="tab" aria-selected="true" id="compare-copy" aria-controls="comparison-panel" data-compare="copy">看文案</button>
+            <button role="tab" aria-selected="false" id="compare-structure" aria-controls="comparison-panel" data-compare="structure" tabindex="-1">看结构</button>
+            <button role="tab" aria-selected="false" id="compare-visual" aria-controls="comparison-panel" data-compare="visual" tabindex="-1">看视觉规则</button>
+          </div>
+
+          <div class="comparison-grid" id="comparison-panel" role="tabpanel" aria-labelledby="compare-copy">
+            <article class="comparison-card baseline-card">
+              <div class="card-heading"><span>无 Skill</span><small>通用生成倾向</small></div>
+              <div class="mini-page baseline-preview" id="baseline-preview"></div>
+              <p class="comparison-note" id="baseline-note"></p>
+            </article>
+
+            <article class="comparison-card guided-card">
+              <div class="card-heading"><span>加载 Skill</span><small>规则约束后的候选</small></div>
+              <div class="mini-page guided-preview" id="guided-preview"></div>
+              <p class="comparison-note" id="guided-note"></p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section-shell section-block" aria-labelledby="state-title">
+        <div class="section-heading split-heading">
+          <div>
+            <p class="eyebrow">03 / State simulator</p>
+            <h2 id="state-title">“页面做完了”不等于只有默认状态</h2>
+          </div>
+          <p>上游要求 Hover、Active、Focus、Loading、Empty、Error。这里用一个审核列表样例展示内容状态，不把检查表停留在文字里。</p>
+        </div>
+
+        <div class="state-workbench">
+          <div class="state-controls" role="tablist" aria-label="审核列表示例状态">
+            <button role="tab" aria-selected="true" data-state="success">有结果</button>
+            <button role="tab" aria-selected="false" data-state="loading" tabindex="-1">加载中</button>
+            <button role="tab" aria-selected="false" data-state="empty" tabindex="-1">空状态</button>
+            <button role="tab" aria-selected="false" data-state="error" tabindex="-1">错误</button>
+          </div>
+          <div class="state-screen" id="state-screen" role="tabpanel" aria-live="polite"></div>
+          <aside class="state-explanation">
+            <span class="field-label">这项能力解决什么</span>
+            <p id="state-explanation">用真实内容和明确下一步，替代“页面突然空白”或只有一个转圈图标。</p>
+          </aside>
+        </div>
+      </section>
+
+      <section class="scenario-section" id="scenarios" aria-labelledby="scenario-title">
+        <div class="section-shell">
+          <div class="section-heading">
+            <p class="eyebrow">04 / Scenario fit</p>
+            <h2 id="scenario-title">不是所有网页都应该套这套规则</h2>
+            <p>选择一个项目类型，查看适配程度、可借用部分和需要避开的误用。</p>
+          </div>
+
+          <div class="scenario-layout">
+            <div class="scenario-list" role="tablist" aria-label="使用场景">
+              <button role="tab" aria-selected="true" data-scenario="saas">SaaS 发布页 <span>高适配</span></button>
+              <button role="tab" aria-selected="false" data-scenario="waitlist" tabindex="-1">候补名单页 <span>高适配</span></button>
+              <button role="tab" aria-selected="false" data-scenario="campaign" tabindex="-1">广告活动页 <span>高适配</span></button>
+              <button role="tab" aria-selected="false" data-scenario="redesign" tabindex="-1">已有网站升级 <span>需搭配</span></button>
+              <button role="tab" aria-selected="false" data-scenario="dashboard" tabindex="-1">业务后台 <span>部分适配</span></button>
+              <button role="tab" aria-selected="false" data-scenario="webgl" tabindex="-1">沉浸式 WebGL <span>低适配</span></button>
+            </div>
+
+            <article class="scenario-detail" role="tabpanel" aria-live="polite">
+              <div class="fit-meter" aria-label="适配度">
+                <span>适配度</span>
+                <div class="meter-track"><span id="fit-bar"></span></div>
+                <strong id="fit-label"></strong>
+              </div>
+              <h3 id="scenario-name"></h3>
+              <p id="scenario-why"></p>
+              <div class="scenario-columns">
+                <div><span class="field-label">建议借用</span><ul id="scenario-use"></ul></div>
+                <div><span class="field-label">不要照搬</span><ul id="scenario-avoid"></ul></div>
+              </div>
+              <div class="prompt-sample">
+                <span class="field-label">调用样例</span>
+                <code id="scenario-prompt"></code>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section-shell section-block" id="extensions" aria-labelledby="extension-title">
+        <div class="section-heading split-heading">
+          <div>
+            <p class="eyebrow">05 / Extension studio</p>
+            <h2 id="extension-title">从一段规则，扩展成可验证的网页生产系统</h2>
+          </div>
+          <p>点击四个层级，观察扩展重点如何从“告诉 AI 怎么做”逐步转向“用程序证明它做到了”。</p>
+        </div>
+
+        <div class="extension-stack">
+          <div class="extension-steps" role="tablist" aria-label="扩展层级">
+            <button role="tab" aria-selected="true" data-extension="knowledge">
+              <span>01</span><strong>知识层</strong><small>当前仓库</small>
+            </button>
+            <button role="tab" aria-selected="false" data-extension="config" tabindex="-1">
+              <span>02</span><strong>配置层</strong><small>品牌化</small>
+            </button>
+            <button role="tab" aria-selected="false" data-extension="verify" tabindex="-1">
+              <span>03</span><strong>验证层</strong><small>确定性</small>
+            </button>
+            <button role="tab" aria-selected="false" data-extension="product" tabindex="-1">
+              <span>04</span><strong>产品层</strong><small>真实闭环</small>
+            </button>
+          </div>
+          <article class="extension-detail" role="tabpanel" aria-live="polite">
+            <p class="angle-kicker" id="extension-kicker"></p>
+            <h3 id="extension-name"></h3>
+            <p id="extension-summary"></p>
+            <div class="extension-evidence">
+              <div><span class="field-label">新增资产</span><ul id="extension-assets"></ul></div>
+              <div><span class="field-label">证明方式</span><ul id="extension-proof"></ul></div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="boundary-section" aria-labelledby="boundary-title">
+        <div class="section-shell boundary-grid">
+          <div>
+            <p class="eyebrow">06 / Final reading</p>
+            <h2 id="boundary-title">最终结论：保留封装方法，不再深挖普通网页规则。</h2>
+          </div>
+          <div class="method-chain" aria-label="可迁移方法链">
+            <span>收集必要输入</span><span aria-hidden="true">→</span>
+            <span>显式选择</span><span aria-hidden="true">→</span>
+            <span>收紧可选值</span><span aria-hidden="true">→</span>
+            <span>固定输出契约</span><span aria-hidden="true">→</span>
+            <span>自动验证</span>
+          </div>
+          <div class="boundary-callout">
+            <strong>研究结项</strong>
+            <p>它适合作为 Skill 封装和团队约束的简单案例，不是高级 UI 技术或效果库。后续应投入私有设计系统、可复用动效/3D 资产，以及生成—浏览器验证—自动修改闭环。</p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div>
+        <strong>AI Design Skills 最终研究结论</strong>
+        <p>基于固定提交 1c1e97c 的独立研究演示。</p>
+      </div>
+      <div class="footer-links">
+        <a href="https://github.com/elayadesign/ai-design-skills">上游仓库 ↗</a>
+        <a href="https://github.com/yydshly/0830_codex_project/blob/main/projects/ai-design-skills-research/docs/%E7%A0%94%E7%A9%B6%E6%8A%A5%E5%91%8A.md">研究报告</a>
+        <a href="#top">回到顶部 ↑</a>
+      </div>
+    </footer>
+  </body>
+</html>

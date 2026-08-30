@@ -1,0 +1,17 @@
+{
+  "slug": "ai-design-skills-research",
+  "title": "ai-design-skills 能力与原理研究",
+  "summary": "结论：这是给大模型使用的通用落地页约束与检查清单，不提供独有组件或高级效果，对当前强模型的能力增量有限；保留 Skill 封装方法，研究结项。",
+  "status": "complete",
+  "tags": [
+    "ai-skill",
+    "web-design",
+    "landing-page",
+    "prompt-engineering",
+    "design-system"
+  ],
+  "started_at": "2026-08-31",
+  "updated_at": "2026-08-31",
+  "demo_url": "https://yydshly.github.io/0830_codex_project/demos/ai-design-skills-research/",
+  "upstream_url": "https://github.com/elayadesign/ai-design-skills"
+}
