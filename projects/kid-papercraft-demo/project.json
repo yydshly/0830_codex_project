@@ -1,0 +1,17 @@
+{
+  "slug": "kid-papercraft-demo",
+  "title": "Kid Papercraft 情绪价值内容方法研究",
+  "summary": "从儿童纸艺 Prompt Skill 出发，验证人物一致性与图生视频边界，并沉淀为面向亲子、伴侣、长辈、宠物与自我的个性化情绪价值内容方法。",
+  "status": "complete",
+  "tags": [
+    "ai-skill",
+    "emotional-value",
+    "relationship-content",
+    "personalized-media",
+    "prompt-engineering",
+    "creative-method"
+  ],
+  "started_at": "2026-08-30",
+  "updated_at": "2026-08-30",
+  "demo_url": "https://yydshly.github.io/0830_codex_project/demos/kid-papercraft-demo/"
+}

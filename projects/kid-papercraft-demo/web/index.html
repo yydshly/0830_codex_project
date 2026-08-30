@@ -1,0 +1,1733 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="从 Kid Papercraft 出发，研究如何把人物、关系与愿望转译为可观看、可保存、可赠送的个性化情绪价值内容，并复盘真实人物一致性与图生视频边界。">
+    <meta name="theme-color" content="#f7f1e7">
+    <title>Kid Papercraft｜情绪价值内容方法研究</title>
+    <link rel="stylesheet" href="./styles.css">
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">跳到主要内容</a>
+
+    <header class="site-header">
+      <nav class="nav-shell" aria-label="主导航">
+        <a class="brand" href="#top" aria-label="Kid Papercraft 首页">
+          <span class="brand-mark" aria-hidden="true">K</span>
+          <span>
+            <strong>Kid Papercraft</strong>
+            <small>情绪价值内容方法研究</small>
+          </span>
+        </a>
+        <div class="nav-links">
+          <a href="#value-system">价值</a>
+          <a href="#real-test">实测</a>
+          <a href="#example">样例</a>
+          <a href="#directions">方向</a>
+          <a href="#styles">风格</a>
+          <a href="#creative">创意</a>
+          <a href="#derivatives">衍生</a>
+          <a href="#boundary">边界</a>
+        </div>
+        <a class="nav-source" href="https://github.com/kaomei/kid-papercraft" target="_blank" rel="noreferrer">
+          查看上游源码
+          <span aria-hidden="true">↗</span>
+        </a>
+      </nav>
+    </header>
+
+    <main id="main-content">
+      <section class="hero" id="top">
+        <div class="hero-copy">
+          <p class="eyebrow"><span class="eyebrow-dot"></span> Emotional Value Content Method · 从 Prompt 到关系表达</p>
+          <h1>把难说出口的在意，变成<span>可观看的陪伴作品</span></h1>
+          <p class="hero-lead">
+            上游库从“儿童折纸生日视频”这一窄入口出发；本研究进一步验证出，它更值得沉淀为一种方法：理解一个人想对谁表达什么，再把这种主观意愿转译成图像、短片、纪念册或互动礼物。
+          </p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="#value-system">查看价值方法</a>
+            <a class="button button-secondary" href="#real-test">查看真实测试</a>
+          </div>
+          <dl class="hero-facts" aria-label="核心事实">
+            <div>
+              <dt>3</dt>
+              <dd>价值目标</dd>
+            </div>
+            <div>
+              <dt>8</dt>
+              <dd>对象类型</dd>
+            </div>
+            <div>
+              <dt>384</dt>
+              <dd>组合方向</dd>
+            </div>
+          </dl>
+        </div>
+
+        <div class="hero-art" aria-label="三幕 Prompt 生成流程示意">
+          <div class="paper-stage">
+            <div class="stage-topline">
+              <span>上游原型 · 30 秒生日短片</span>
+              <span class="stage-status"><i></i> Prompt ready</span>
+            </div>
+            <div class="clip-stack">
+              <article class="clip-card clip-card-one">
+                <span class="clip-index">01</span>
+                <div>
+                  <small>0–10s</small>
+                  <h2>创意出场</h2>
+                  <p>角色破纸而出，建立折纸世界</p>
+                </div>
+                <span class="clip-symbol" aria-hidden="true">✦</span>
+              </article>
+              <article class="clip-card clip-card-two">
+                <span class="clip-index">02</span>
+                <div>
+                  <small>10–20s</small>
+                  <h2>生日祝福</h2>
+                  <p>姓名、年龄与孩子形象进入画面</p>
+                </div>
+                <span class="clip-symbol" aria-hidden="true">🎂</span>
+              </article>
+              <article class="clip-card clip-card-three">
+                <span class="clip-index">03</span>
+                <div>
+                  <small>20–30s</small>
+                  <h2>暖心叮嘱</h2>
+                  <p>刷牙、睡觉、吃饭的快剪蒙太奇</p>
+                </div>
+                <span class="clip-symbol" aria-hidden="true">☾</span>
+              </article>
+            </div>
+            <div class="stage-footer">
+              <span>输出：Prompt × 3</span>
+              <span>配音建议 × 3</span>
+            </div>
+          </div>
+          <div class="paper-swatch swatch-coral" aria-hidden="true"></div>
+          <div class="paper-swatch swatch-mint" aria-hidden="true"></div>
+        </div>
+      </section>
+
+      <section class="truth-strip" aria-label="能力定位">
+        <p><strong>用户提供：</strong>人物、关系与愿望</p>
+        <span aria-hidden="true">→</span>
+        <p><strong>方法负责：</strong>转译情绪、创意与 Prompt</p>
+        <span aria-hidden="true">→</span>
+        <p><strong>生产系统负责：</strong>生成、合成与交付</p>
+      </section>
+
+      <section class="section value-system-section" id="value-system">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">00 · 最终价值判断</p>
+            <h2>本质不是“给小孩做纸艺片”，而是让一个对象被认真看见</h2>
+          </div>
+          <p>产品目标不是堆更多风格，而是把表达者的主观意愿，变成接收者能感知、能参与、能留下来的关系证据。</p>
+        </div>
+
+        <div class="value-thesis">
+          <article class="value-formula-card">
+            <span class="value-kicker">CREATIVE OPERATING MODEL</span>
+            <h3>个性化情绪价值内容</h3>
+            <p>把用户难以直接表达的情感，转译成可观看、可保存、可赠送的个性化内容。</p>
+            <div class="value-formula" aria-label="创作公式">
+              <span>人物 / 对象</span><i>+</i><span>关系 / 愿望</span><i>+</i><span>目标情绪</span><i>+</i><span>陪伴者</span><i>+</i><span>场景与媒介</span>
+            </div>
+            <small>纸艺、动画和视频只是媒介；真正不可替换的是“谁想让谁感到什么”。</small>
+          </article>
+
+          <div class="value-goal-grid" aria-label="三类价值目标">
+            <article>
+              <span>01</span>
+              <h3>情绪价值</h3>
+              <p>让对方感到被陪伴、被鼓励、被理解或被认可。</p>
+              <small>回答：此刻希望他感受到什么？</small>
+            </article>
+            <article>
+              <span>02</span>
+              <h3>关系价值</h3>
+              <p>把亲子、伴侣、朋友、宠物或代际关系中的在意变成证据。</p>
+              <small>回答：我们之间什么值得被看见？</small>
+            </article>
+            <article>
+              <span>03</span>
+              <h3>仪式价值</h3>
+              <p>为生日、纪念日、毕业、成长、重逢和告别留下可再次进入的节点。</p>
+              <small>回答：这个时刻最终留下什么？</small>
+            </article>
+          </div>
+        </div>
+
+        <div class="value-example-intro">
+          <div>
+            <p class="eyebrow">示例特点</p>
+            <h3>不是换一个主角，而是换一套关系逻辑</h3>
+          </div>
+          <p>每个方向同时写清对象、主观意愿、产品目标和表达媒介，才能从“有氛围的图”走向有意义的产品。</p>
+        </div>
+
+        <div class="value-example-grid">
+          <article>
+            <div class="value-example-top"><span>亲子</span><small>英雄陪伴短片</small></div>
+            <h3>孩子 × 喜欢的奥特曼</h3>
+            <blockquote>“我希望你在害怕时，也记得有人愿意牵着你往前跑。”</blockquote>
+            <dl><div><dt>目标</dt><dd>把喜欢的角色转成勇气与安全感</dd></div><div><dt>特点</dt><dd>英雄要牵手、回望、并肩行动，而不是站在孩子旁边合影</dd></div></dl>
+          </article>
+          <article>
+            <div class="value-example-top"><span>长辈</span><small>声音家书</small></div>
+            <h3>长辈 × 远方家人</h3>
+            <blockquote>“我希望你知道，我们仍在认真听你讲那些旧故事。”</blockquote>
+            <dl><div><dt>目标</dt><dd>创造团聚感并保存家庭记忆</dd></div><div><dt>特点</dt><dd>用声音、旧物和可回信机制替代泛化煽情</dd></div></dl>
+          </article>
+          <article>
+            <div class="value-example-top"><span>伴侣</span><small>纪念日档案</small></div>
+            <h3>伴侣 × 共同生活证据</h3>
+            <blockquote>“我希望你知道，那些普通日子我一直记得。”</blockquote>
+            <dl><div><dt>目标</dt><dd>确认持续关注与共同承诺</dd></div><div><dt>特点</dt><dd>以路线、物件和习惯为证据，而不是只做浪漫滤镜</dd></div></dl>
+          </article>
+          <article>
+            <div class="value-example-top"><span>宠物</span><small>陪伴纪念册</small></div>
+            <h3>宠物 × 主人</h3>
+            <blockquote>“我希望这段无条件的陪伴，有一处可以被好好保存。”</blockquote>
+            <dl><div><dt>目标</dt><dd>表达治愈、珍惜或温柔告别</dd></div><div><dt>特点</dt><dd>保留真实日常动作，避免把宠物人格化成空洞台词</dd></div></dl>
+          </article>
+          <article>
+            <div class="value-example-top"><span>自己</span><small>未来回信</small></div>
+            <h3>现在的自己 × 未来的自己</h3>
+            <blockquote>“我希望你先被此刻的自己接住，再重新出发。”</blockquote>
+            <dl><div><dt>目标</dt><dd>提供自我确认和阶段性鼓励</dd></div><div><dt>特点</dt><dd>让两个时间版本发生具体对话，形成可重访的承诺</dd></div></dl>
+          </article>
+          <article>
+            <div class="value-example-top"><span>成长</span><small>毕业影像册</small></div>
+            <h3>毕业生 × 老师与同伴</h3>
+            <blockquote>“我希望你看见，成长从来不是一个人完成的。”</blockquote>
+            <dl><div><dt>目标</dt><dd>同时承载感谢、告别和下一程期待</dd></div><div><dt>特点</dt><dd>用共同任务和场所串联关系，而不是简单照片轮播</dd></div></dl>
+          </article>
+        </div>
+
+        <div class="value-media-rail" aria-label="可扩展媒介">
+          <strong>可扩展媒介</strong>
+          <span>电影感实拍</span><span>绘本 / 漫画</span><span>复古家庭录像</span><span>梦境短片</span><span>音乐影像</span><span>会说话的照片</span><span>未来来信</span><span>互动纪念册</span>
+        </div>
+      </section>
+
+      <section class="section real-test-section" id="real-test">
+        <div class="section-heading section-heading-light">
+          <div>
+            <p class="eyebrow">真实测试复盘</p>
+            <h2>奥特曼陪伴感成立，不等于孩子身份和动态已经成立</h2>
+          </div>
+          <p>这组测试把最容易被忽略的生产问题暴露出来：好的入口素材是必要条件，但 Prompt 里的“保持一致”不是身份锁。</p>
+        </div>
+
+        <div class="test-evidence-grid">
+          <article class="test-evidence-card">
+            <figure>
+              <img src="./assets/real-tests/ultraman-rb-family-companionship-v1.png" alt="孩子与罗索、布鲁和格丽乔形成家庭陪伴氛围的概念图，但孩子不是用户照片中的同一身份" loading="lazy" decoding="async">
+              <figcaption><span class="test-state test-state-partial">氛围部分成立</span><small>身份未通过</small></figcaption>
+            </figure>
+            <h3>家庭关系有了，孩子却换了一个人</h3>
+            <p>具名奥特曼、亲密站位和照顾动作能表达“像家人”；但单张斜侧照片缺少正脸与全身几何，模型在重画全身时生成了新的孩子。</p>
+          </article>
+          <article class="test-evidence-card">
+            <figure>
+              <img src="./assets/real-tests/ultraman-rb-running-motion-composition-test-v1.png" alt="孩子与罗索、布鲁和格丽乔向镜头奔跑的动态构图测试，孩子身份仍未获批准" loading="lazy" decoding="async">
+              <figcaption><span class="test-state test-state-partial">动作方向成立</span><small>不可作为最终首帧</small></figcaption>
+            </figure>
+            <h3>跑起来改善氛围，却放大身份误差</h3>
+            <p>牵手、回望、跟拍比坐姿更有陪伴感；但动作越大，模型需要补画的脸部和身体越多。身份错误的关键帧一旦动画化，只会把偏差扩散到每一帧。</p>
+          </article>
+          <article class="test-evidence-card test-evidence-card-method">
+            <div class="test-method-images">
+              <img src="./assets/real-tests/identity-reference-input-board-sample-v1.png" alt="虚构儿童的正面、四十五度、侧面和全身身份参考板示例" loading="lazy" decoding="async">
+              <img src="./assets/real-tests/multi-view-identity-to-ultraman-action-sample-v1.png" alt="使用虚构儿童多视角参考板生成的奥特曼陪伴跑步方法样例" loading="lazy" decoding="async">
+            </div>
+            <div class="test-method-label"><span class="test-state test-state-method">方法示意</span><small>全部为虚构儿童，不代表用户家的孩子</small></div>
+            <h3>多视角身份包，比一句“保持人物一致”更有效</h3>
+            <p>正面、45°、侧面和全身照共同提供脸部几何、体型与服装证据；先审批一张身份正确的动作关键帧，再进入图生视频。</p>
+          </article>
+        </div>
+
+        <div class="video-audit-card">
+          <div>
+            <p class="eyebrow">用户测试片检查</p>
+            <h3>“动起来”只是过了一个门槛</h3>
+          </div>
+          <p>本轮检查的测试片约 10.0 秒、1280×720、24 fps。跟拍和奔跑成立，但竖屏要求未保持，首帧约束和经典战衣细节发生漂移，第三位英雄后段才出现，并带有水印。因此静态图只是审批层，不能直接等同于最终效果。</p>
+          <ul>
+            <li><span>PASS</span>镜头能跟随，画面不再是静态合影</li>
+            <li><span>FAIL</span>人物身份、角色数量和经典造型未全程锁定</li>
+            <li><span>FAIL</span>画幅、首帧与无水印交付条件未满足</li>
+          </ul>
+        </div>
+
+        <div class="production-route">
+          <div class="production-route-heading">
+            <p class="eyebrow">从素材到最终效果</p>
+            <h3>真人优先用视频保身份，照片方案必须增加审批门</h3>
+          </div>
+          <div class="route-lanes">
+            <article>
+              <span class="route-badge">推荐</span>
+              <h4>真实人物短视频入口</h4>
+              <ol>
+                <li><strong>实拍 5–10 秒</strong><small>走路、转身或跑动，保留真实脸、身形和动作</small></li>
+                <li><strong>加入陪伴角色</strong><small>通过合成或受控生成添加英雄、幻想伙伴或场景</small></li>
+                <li><strong>分镜生成与剪辑</strong><small>逐镜头校验，再完成声音、字幕、节奏与导出</small></li>
+              </ol>
+            </article>
+            <article>
+              <span class="route-badge route-badge-alt">照片备选</span>
+              <h4>多角度照片入口</h4>
+              <ol>
+                <li><strong>建立身份包</strong><small>正面、45°、侧面、全身和目标服装</small></li>
+                <li><strong>审批动作首帧</strong><small>脸、年龄、体型、服装、角色数量全部通过才继续</small></li>
+                <li><strong>短镜头图生视频</strong><small>每段单独约束并做身份、动作和角色连续性复核</small></li>
+              </ol>
+            </article>
+          </div>
+          <p class="route-conclusion"><strong>结论：</strong>“合理、清晰的入口人物素材”是必要条件，但不是充分保证。模型、参考控制、关键帧审批、逐镜头复核和后期合成共同决定最终一致性。</p>
+        </div>
+      </section>
+
+      <section class="section section-capabilities" id="capabilities">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">01 · 能力</p>
+            <h2>它把“会写 Prompt”变成一条固定流程</h2>
+          </div>
+          <p>核心不是生成模型，而是把这个领域的创作经验写进一个可触发、可复用的 <code>SKILL.md</code>。</p>
+        </div>
+
+        <div class="capability-grid">
+          <article class="capability-card capability-card-wide">
+            <span class="card-number">A</span>
+            <h3>结构化采集</h3>
+            <p>依次确认画幅、动画主题、姓名、年龄、孩子外貌和配音需求，避免遗漏关键生成条件。</p>
+            <div class="field-cloud" aria-label="采集字段示意">
+              <span>9:16</span><span>哆啦A梦</span><span>安安</span><span>6 岁</span><span>折纸小人</span>
+            </div>
+          </article>
+          <article class="capability-card">
+            <span class="card-number">B</span>
+            <h3>主题路由</h3>
+            <p>在汪汪队、小猪佩奇、奥特曼、海绵宝宝和哆啦A梦五套场景模板之间选择。</p>
+          </article>
+          <article class="capability-card">
+            <span class="card-number">C</span>
+            <h3>变量个性化</h3>
+            <p>把姓名、年龄和外貌描述填入生日蛋糕、横幅、孩子纸偶等关键画面元素。</p>
+          </article>
+          <article class="capability-card capability-card-wide">
+            <span class="card-number">D</span>
+            <h3>风格锁定</h3>
+            <p>三段 Prompt 共用纸张触感、柔和灯光、轻缓运镜和温暖氛围等视觉锚点，降低片段间的随机漂移。</p>
+            <blockquote>Warm organic lighting · tactile paper textures · soft pastel color palette</blockquote>
+          </article>
+        </div>
+      </section>
+
+      <section class="section workflow-section" id="workflow">
+        <div class="section-heading section-heading-light">
+          <div>
+            <p class="eyebrow">02 · 原理</p>
+            <h2>确定性编排，概率性生成</h2>
+          </div>
+          <p>Skill 决定故事结构与提示词约束；Gemini Omni Flash 等外部模型决定最终像素、动作和声音。</p>
+        </div>
+
+        <ol class="workflow-list">
+          <li>
+            <span>01</span>
+            <div><strong>输入槽位</strong><small>画幅 · IP · 姓名 · 年龄 · 外貌</small></div>
+          </li>
+          <li>
+            <span>02</span>
+            <div><strong>选择模板</strong><small>角色 · 场景 · 动作 · 台词</small></div>
+          </li>
+          <li>
+            <span>03</span>
+            <div><strong>填充变量</strong><small>{NAME} · {AGE} · {CHILD}</small></div>
+          </li>
+          <li>
+            <span>04</span>
+            <div><strong>输出 Prompt 包</strong><small>Clip 1 + Clip 2 + Clip 3</small></div>
+          </li>
+        </ol>
+
+        <p class="formula" aria-label="工作原理公式">
+          <span>用户信息</span><b>＋</b><span>领域模板</span><b>＋</b><span>风格锚点</span><b>＝</b><strong>三幕 Prompt 套件</strong>
+        </p>
+      </section>
+
+      <section class="section example-section" id="example">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">03 · 样例</p>
+            <h2>从一组虚构输入，到三段可复制 Prompt</h2>
+          </div>
+          <p>以下示例严格按照上游 Skill 模板生成，不使用真实儿童照片。点击标签查看每一幕，复制后即可交给视频模型。</p>
+        </div>
+
+        <div class="example-layout">
+          <aside class="request-card" aria-labelledby="request-title">
+            <div class="request-card-header">
+              <span class="request-icon" aria-hidden="true">✂</span>
+              <div>
+                <p>Demo request</p>
+                <h3 id="request-title">安安的 6 岁生日</h3>
+              </div>
+            </div>
+            <dl class="request-list">
+              <div><dt>画幅</dt><dd>9:16 竖屏</dd></div>
+              <div><dt>主题</dt><dd>哆啦A梦</dd></div>
+              <div><dt>姓名</dt><dd>安安 / Anan</dd></div>
+              <div><dt>年龄</dt><dd>6 岁</dd></div>
+              <div><dt>孩子形象</dt><dd>圆脸、黑色短发、红色发卡、薄荷绿卫衣、牛仔背带裤</dd></div>
+              <div><dt>照片</dt><dd>不上传，完全虚构</dd></div>
+            </dl>
+            <p class="request-note"><span aria-hidden="true">●</span> 隐私安全演示，不对应真实儿童</p>
+          </aside>
+
+          <div class="prompt-lab">
+            <div class="prompt-tabs" role="tablist" aria-label="选择分镜 Prompt">
+              <button id="tab-clip-1" role="tab" aria-selected="true" aria-controls="panel-clip-1" tabindex="0" data-tab="clip-1">
+                <span>Clip 1</span><small>创意出场</small>
+              </button>
+              <button id="tab-clip-2" role="tab" aria-selected="false" aria-controls="panel-clip-2" tabindex="-1" data-tab="clip-2">
+                <span>Clip 2</span><small>生日祝福</small>
+              </button>
+              <button id="tab-clip-3" role="tab" aria-selected="false" aria-controls="panel-clip-3" tabindex="-1" data-tab="clip-3">
+                <span>Clip 3</span><small>暖心叮嘱</small>
+              </button>
+            </div>
+
+            <article class="prompt-panel" id="panel-clip-1" role="tabpanel" aria-labelledby="tab-clip-1" data-panel="clip-1">
+              <div class="prompt-meta">
+                <div><span>0–10s</span><strong>角色从折纸抽屉登场</strong></div>
+                <button class="copy-button" type="button" data-copy="prompt-clip-1">复制 Prompt</button>
+              </div>
+              <pre><code id="prompt-clip-1">Charming stop-motion animation in a cozy origami room. Beautifully textured colored paper cutouts of a round blue origami robotic cat resembling Doraemon popping out of an origami desk drawer, spinning around and pulling out a sparkling paper gadget from his front pocket, presenting it with a big smile. A paper cutout boy resembling Nobita claps excitedly beside him. Warm organic lighting, tactile paper textures, gentle camera pan, soft pastel color palette, whimsical and cozy atmosphere.</code></pre>
+              <p class="voice-line"><span>配音参考</span>“大雄快看！我从未来带来了一个特别惊喜！”</p>
+            </article>
+
+            <article class="prompt-panel" id="panel-clip-2" role="tabpanel" aria-labelledby="tab-clip-2" data-panel="clip-2" hidden>
+              <div class="prompt-meta">
+                <div><span>10–20s</span><strong>姓名、年龄和孩子形象进入画面</strong></div>
+                <button class="copy-button" type="button" data-copy="prompt-clip-2">复制 Prompt</button>
+              </div>
+              <pre><code id="prompt-clip-2">Charming stop-motion animation in a magical origami room filled with floating paper gadgets and twinkling paper stars. Beautifully textured colored paper cutouts of a round blue origami robotic cat resembling Doraemon holding a magical glowing paper gift box, standing together with a cute small origami paper child (a cheerful six-year-old girl with a round face, short black bob, a red paper hair clip, a mint-green hoodie, and denim overalls), all gathered around a large origami birthday cake with 6 paper candles glowing softly. The characters hold up a folding paper banner that reads "Happy Birthday Anan!". Paper confetti and tiny origami stars fall gently from above. Warm organic lighting, tactile paper textures, gentle camera pan, soft pastel color palette, whimsical and cozy atmosphere.</code></pre>
+              <p class="voice-line"><span>配音参考</span>“安安，祝你 6 岁生日快乐！愿你的每一天都充满好奇和快乐！”</p>
+            </article>
+
+            <article class="prompt-panel" id="panel-clip-3" role="tabpanel" aria-labelledby="tab-clip-3" data-panel="clip-3" hidden>
+              <div class="prompt-meta">
+                <div><span>20–30s</span><strong>生活习惯的纸艺快剪</strong></div>
+                <button class="copy-button" type="button" data-copy="prompt-clip-3">复制 Prompt</button>
+              </div>
+              <pre><code id="prompt-clip-3">Charming stop-motion animation montage in Nobita's cozy origami bedroom. Beautifully textured colored paper cutouts showing three quick adorable scenes: First, the round blue origami cat Doraemon cheerfully brushing teeth with a tiny origami toothbrush, with sparkles of paper glitter around the smile. Then, the round blue origami cat Doraemon yawning cutely and tucking into a cozy origami paper bed with a paper star nightlight. Finally, the round blue origami cat Doraemon happily eating from a colorful origami paper plate with tiny paper vegetables and rice. Each scene transitions with a gentle paper fold wipe. Warm organic lighting, tactile paper textures, gentle camera pan, soft pastel color palette, whimsical and cozy atmosphere.</code></pre>
+              <p class="voice-line"><span>配音参考</span>“安安已经 6 岁啦！新的一岁，要好好刷牙、按时睡觉、乖乖吃饭哦！”</p>
+            </article>
+            <p class="copy-status" role="status" aria-live="polite" id="copy-status">选择一个片段即可查看和复制完整提示词。</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section directions-section" id="directions">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">04 · 可扩展方向</p>
+            <h2>先用生图验证方向，再决定哪些值得做成视频</h2>
+          </div>
+          <p>生日祝福只是一个入口。真正可复用的是“儿童信息采集＋领域模板＋统一视觉锚点”这套方法，它可以扩展到原创角色、成长记录、习惯教育与家庭仪式。</p>
+        </div>
+
+        <div class="concept-disclaimer" role="note">
+          <span aria-hidden="true">Still / 4:3</span>
+          <p><strong>以下是本研究页生成的 AI 概念静帧。</strong>它们用于验证视觉与产品方向，不是视频，也不是上游仓库直接生成的结果。</p>
+        </div>
+
+        <div class="concept-grid">
+          <figure class="concept-card concept-card-hero">
+            <div class="concept-visual">
+              <img src="./assets/concepts/original-hero-world.webp" width="1448" height="1086" loading="lazy" decoding="async" alt="原创女孩、纸艺狐狸和小龙穿过折纸星形入口的概念静帧">
+              <span class="concept-badge">原创资产优先</span>
+            </div>
+            <figcaption>
+              <div class="concept-kicker"><span>01</span> Original character system</div>
+              <h3>原创主角与角色宇宙</h3>
+              <p>用原创孩子纸偶、家庭吉祥物和世界观替代第三方动画 IP，沉淀角色设定图、表情表与可复用场景资产。</p>
+              <ul class="concept-tags" aria-label="方向价值">
+                <li>角色一致性基础</li>
+                <li>品牌可持续</li>
+                <li>降低版权风险</li>
+              </ul>
+            </figcaption>
+          </figure>
+
+          <figure class="concept-card concept-card-memory">
+            <div class="concept-visual">
+              <img src="./assets/concepts/growth-memory-book.webp" width="1448" height="1086" loading="lazy" decoding="async" alt="同一女孩在入学、骑车、换牙与家庭生日场景中的纸艺成长相册概念静帧">
+              <span class="concept-badge">同图角色复用</span>
+            </div>
+            <figcaption>
+              <div class="concept-kicker"><span>02</span> Growth archive</div>
+              <h3>成长记忆与家庭档案</h3>
+              <p>从一次生日延展到入学、第一次骑车、换牙、旅行与年度回顾，形成能逐年追加的儿童成长故事书。</p>
+              <ul class="concept-tags" aria-label="方向价值">
+                <li>年度复购</li>
+                <li>相册叙事</li>
+                <li>家庭共同创作</li>
+              </ul>
+            </figcaption>
+          </figure>
+
+          <figure class="concept-card concept-card-learning">
+            <div class="concept-visual">
+              <img src="./assets/concepts/habits-emotions-learning.webp" width="1448" height="1086" loading="lazy" decoding="async" alt="孩子刷牙、健康进餐并与纸艺狐狸识别情绪卡片的教育概念静帧">
+              <span class="concept-badge">任务型内容</span>
+            </div>
+            <figcaption>
+              <div class="concept-kicker"><span>03</span> Habits &amp; emotions</div>
+              <h3>习惯养成与情绪学习</h3>
+              <p>把刷牙、饮食、收纳、表达情绪与基础安全知识写成可互动的小故事，服务家庭陪伴与非医疗教育。</p>
+              <ul class="concept-tags" aria-label="方向价值">
+                <li>情境化学习</li>
+                <li>任务卡延展</li>
+                <li>亲子共读</li>
+              </ul>
+            </figcaption>
+          </figure>
+
+          <figure class="concept-card concept-card-festival">
+            <div class="concept-visual">
+              <img src="./assets/concepts/family-festival-ritual.webp" width="1448" height="1086" loading="lazy" decoding="async" alt="三代家庭在月色、灯笼与中式庭院中共度节日的纸艺概念静帧">
+              <span class="concept-badge">本地化叙事</span>
+            </div>
+            <figcaption>
+              <div class="concept-kicker"><span>04</span> Family rituals</div>
+              <h3>家庭与节日仪式</h3>
+              <p>覆盖春节、中秋、儿童节、毕业与家族纪念日，把不同代际、地域习俗和家庭物件写进专属纸艺场景。</p>
+              <ul class="concept-tags" aria-label="方向价值">
+                <li>节日模板库</li>
+                <li>地域本地化</li>
+                <li>多人家庭叙事</li>
+              </ul>
+            </figcaption>
+          </figure>
+        </div>
+
+        <div class="consistency-plan">
+          <div class="consistency-intro">
+            <p class="eyebrow">一致性生产链</p>
+            <h3>主角一致，不能只靠重复同一句 Prompt</h3>
+            <p>应先把主角变成一套可引用的视觉资产，再让每个镜头从已确认的关键帧出发。独立文生三段视频只能提供风格提示，不能提供身份保证。</p>
+          </div>
+          <ol class="consistency-chain">
+            <li><span>01</span><strong>角色圣经</strong><small>正侧背三视图、五官、发型、服装、纸张材质与禁改项</small></li>
+            <li><span>02</span><strong>关键帧先审</strong><small>先生成每幕静帧，用同一参考图或角色引用锁定主角</small></li>
+            <li><span>03</span><strong>图生视频</strong><small>以已确认静帧作为首帧，并复用模型、参数和参考资产</small></li>
+            <li><span>04</span><strong>连续衔接</strong><small>上一幕尾帧作为下一幕参考，减少服装、比例与光线跳变</small></li>
+            <li><span>05</span><strong>质检重生</strong><small>检查脸、服装、配色、文字和动作，失败镜头单独重做</small></li>
+          </ol>
+          <p class="consistency-proof"><strong>这四张图的证据边界：</strong>它们是四个独立概念方向；只有“成长记忆”静帧在同一张图内复用了同一女孩。页面不把它们当作跨视频身份一致性测试。</p>
+        </div>
+      </section>
+
+      <section class="section styles-section" id="styles">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">05 · 视觉风格</p>
+            <h2>纸艺只是一个视觉配方，不是这个方法的边界</h2>
+          </div>
+          <p>场景决定“讲什么”，风格决定“看起来像什么”。只要重写材质、动作物理、灯光和转场约束，同一套儿童内容结构就能扩展成手作、绘画、文化表达、游戏、三维与实景等不同路线。</p>
+        </div>
+
+        <div class="style-axis" aria-label="场景与风格是两条独立维度">
+          <div><small>内容轴 · What</small><strong>生日 / 成长 / 教育 / 节日</strong></div>
+          <span aria-hidden="true">×</span>
+          <div><small>风格轴 · How</small><strong>手作 / 绘画 / 文化 / 游戏 / 3D / 实景</strong></div>
+          <span aria-hidden="true">＝</span>
+          <div><small>最终结果</small><strong>可组合的儿童内容产品</strong></div>
+        </div>
+
+        <div class="style-disclaimer" role="note">
+          <span aria-hidden="true">Same cast</span>
+          <p><strong>十二张图都以同一张原创角色图为参考，只替换媒介风格。</strong>它们是静帧对照，不是视频效果，也不代表仅靠参考图就能完全锁定跨镜头身份。</p>
+        </div>
+
+        <div class="style-grid">
+          <figure class="style-card">
+            <div class="style-visual">
+              <img src="./assets/styles/clay-stop-motion.webp" width="1448" height="1086" loading="lazy" decoding="async" alt="同一原创女孩、橙色狐狸与薄荷小龙的黏土定格风格概念静帧">
+              <span>01</span>
+            </div>
+            <figcaption>
+              <p class="style-label">Clay stop-motion</p>
+              <h3>黏土定格</h3>
+              <p>有手工温度又比纸艺更圆润，适合生日故事、喜剧动作和低龄角色短片。</p>
+              <small><strong>取舍：</strong>材质可信度高；动作幅度大时更容易出现形体漂移。</small>
+            </figcaption>
+          </figure>
+
+          <figure class="style-card">
+            <div class="style-visual">
+              <img src="./assets/styles/felted-wool.webp" width="1448" height="1086" loading="lazy" decoding="async" alt="同一原创女孩、橙色狐狸与薄荷小龙的羊毛毡织物风格概念静帧">
+              <span>02</span>
+            </div>
+            <figcaption>
+              <p class="style-label">Felted wool</p>
+              <h3>羊毛毡与织物</h3>
+              <p>柔软、安静、亲近，适合睡前故事、情绪陪伴、婴幼儿内容与亲子品牌。</p>
+              <small><strong>取舍：</strong>亲和力最强；快速动作和复杂表情不如 3D 灵活。</small>
+            </figcaption>
+          </figure>
+
+          <figure class="style-card">
+            <div class="style-visual">
+              <img src="./assets/styles/wooden-toy-diorama.webp" width="1448" height="1086" loading="lazy" decoding="async" alt="同一原创女孩、橙色狐狸与薄荷小龙的木质玩具微缩风格概念静帧">
+              <span>03</span>
+            </div>
+            <figcaption>
+              <p class="style-label">Wooden toy diorama</p>
+              <h3>木偶与玩具微缩</h3>
+              <p>结构清楚、质感耐看，适合教育内容、积木式世界观和实体玩具联动。</p>
+              <small><strong>取舍：</strong>品牌资产感强；关节和面部表达需要专门设计。</small>
+            </figcaption>
+          </figure>
+
+          <figure class="style-card">
+            <div class="style-visual">
+              <img src="./assets/styles/watercolor-picture-book.webp" width="1448" height="1086" loading="lazy" decoding="async" alt="同一原创女孩、橙色狐狸与薄荷小龙的水彩绘本风格概念静帧">
+              <span>04</span>
+            </div>
+            <figcaption>
+              <p class="style-label">Watercolor picture book</p>
+              <h3>水彩与水粉绘本</h3>
+              <p>情绪细腻、留白自然，适合成长纪念、家庭故事、图书封面和旁白型短片。</p>
+              <small><strong>取舍：</strong>叙事气质好；做连续视频时需控制线条和笔触闪烁。</small>
+            </figcaption>
+          </figure>
+
+          <figure class="style-card">
+            <div class="style-visual">
+              <img src="./assets/styles/flat-2d-animation.webp" width="1448" height="1086" loading="lazy" decoding="async" alt="同一原创女孩、橙色狐狸与薄荷小龙的扁平二维动画风格概念静帧">
+              <span>05</span>
+            </div>
+            <figcaption>
+              <p class="style-label">Flat 2D animation</p>
+              <h3>扁平二维动画</h3>
+              <p>信息清晰、色彩统一，适合习惯教育、知识解释、系列栏目和多尺寸传播。</p>
+              <small><strong>取舍：</strong>生产与复用效率高；空间沉浸感和材质惊喜较弱。</small>
+            </figcaption>
+          </figure>
+
+          <figure class="style-card">
+            <div class="style-visual">
+              <img src="./assets/styles/soft-3d-cgi.webp" width="1448" height="1086" loading="lazy" decoding="async" alt="同一原创女孩、橙色狐狸与薄荷小龙的柔和三维动画风格概念静帧">
+              <span>06</span>
+            </div>
+            <figcaption>
+              <p class="style-label">Soft stylized 3D</p>
+              <h3>柔和三维动画</h3>
+              <p>镜头、动作和光照的表现上限最高，适合冒险剧情、角色 IP 和更完整的视频产品。</p>
+              <small><strong>取舍：</strong>视频潜力最大；身份控制、渲染一致性与制作成本也最高。</small>
+            </figcaption>
+          </figure>
+
+          <figure class="style-card">
+            <div class="style-visual">
+              <img src="./assets/styles/wax-crayon.webp" width="1448" height="1086" loading="lazy" decoding="async" alt="同一原创女孩、橙色狐狸与薄荷小龙的蜡笔儿童画风格概念静帧">
+              <span>07</span>
+            </div>
+            <figcaption>
+              <p class="style-label">Wax crayon</p>
+              <h3>蜡笔儿童画</h3>
+              <p>线条直接、色彩活泼，适合儿童共创、作品再创作、低龄栏目和亲子互动素材。</p>
+              <small><strong>取舍：</strong>童真辨识度强；复杂背景和连续动作容易显得杂乱。</small>
+            </figcaption>
+          </figure>
+
+          <figure class="style-card">
+            <div class="style-visual">
+              <img src="./assets/styles/oil-pastel.webp" width="1448" height="1086" loading="lazy" decoding="async" alt="同一原创女孩、橙色狐狸与薄荷小龙的油画棒绘本风格概念静帧">
+              <span>08</span>
+            </div>
+            <figcaption>
+              <p class="style-label">Oil pastel</p>
+              <h3>油画棒绘本</h3>
+              <p>比蜡笔更厚重柔和，适合家庭回忆、季节故事、情绪主题和高质感绘本延展。</p>
+              <small><strong>取舍：</strong>情绪与色彩表现好；细小五官和跨帧笔触更难稳定。</small>
+            </figcaption>
+          </figure>
+
+          <figure class="style-card">
+            <div class="style-visual">
+              <img src="./assets/styles/ink-wash-animation.webp" width="1448" height="1086" loading="lazy" decoding="async" alt="同一原创女孩、橙色狐狸与薄荷小龙的原创水墨动画风格概念静帧">
+              <span>09</span>
+            </div>
+            <figcaption>
+              <p class="style-label">Ink-wash animation</p>
+              <h3>水墨动画</h3>
+              <p>留白、墨韵和有限设色适合传统节日、诗意成长、自然观察与文化启蒙内容。</p>
+              <small><strong>取舍：</strong>文化气质突出；需防止角色轮廓被墨色变化冲淡。</small>
+            </figcaption>
+          </figure>
+
+          <figure class="style-card">
+            <div class="style-visual">
+              <img src="./assets/styles/shadow-puppet.webp" width="1448" height="1086" loading="lazy" decoding="async" alt="同一原创女孩、橙色狐狸与薄荷小龙的原创皮影戏风格概念静帧">
+              <span>10</span>
+            </div>
+            <figcaption>
+              <p class="style-label">Shadow-puppet theatre</p>
+              <h3>皮影与剪影剧场</h3>
+              <p>轮廓叙事强、舞台感鲜明，适合民间故事、节庆开场、音乐节奏与线下展演联动。</p>
+              <small><strong>取舍：</strong>运动语言独特；五官信息少，身份主要依赖轮廓和配色。</small>
+            </figcaption>
+          </figure>
+
+          <figure class="style-card">
+            <div class="style-visual">
+              <img src="./assets/styles/pixel-art-game-q95.webp" width="1448" height="1086" loading="lazy" decoding="async" alt="同一原创女孩、橙色狐狸与薄荷小龙的像素冒险游戏风格概念静帧">
+              <span>11</span>
+            </div>
+            <figcaption>
+              <p class="style-label">Pixel-art game</p>
+              <h3>像素冒险游戏</h3>
+              <p>天然适合任务、收集、地图和成长系统，可把祝福内容扩展成轻互动网页或亲子小游戏。</p>
+              <small><strong>取舍：</strong>玩法延展强；低分辨率会牺牲脸部细节和材质表现。</small>
+            </figcaption>
+          </figure>
+
+          <figure class="style-card">
+            <div class="style-visual">
+              <img src="./assets/styles/live-action-miniature.webp" width="1448" height="1086" loading="lazy" decoding="async" alt="虚构原创女孩、橙色狐狸与薄荷小龙的电影实景微缩合成概念静帧">
+              <span>12</span>
+            </div>
+            <figcaption>
+              <p class="style-label">Live-action miniature</p>
+              <h3>实景微缩与电影合成</h3>
+              <p>真实服装、自然光和微缩布景带来最强临场感，适合品牌短片、家庭纪念与高端定制。</p>
+              <small><strong>取舍：</strong>情感真实度高；儿童隐私、身份授权和镜头一致性要求最高。</small>
+            </figcaption>
+          </figure>
+        </div>
+
+        <div class="style-system-note">
+          <div>
+            <p class="eyebrow">不是替换一个形容词</p>
+            <h3>从纸艺切到其他风格，需要一起重写三层约束</h3>
+          </div>
+          <ol>
+            <li><span>01</span><div><strong>材质语言</strong><small>纸张折痕改为黏土指纹、羊毛纤维、木纹、笔触或 PBR 材质。</small></div></li>
+            <li><span>02</span><div><strong>动作与转场</strong><small>折纸展开、纸张擦除要改为挤压变形、缝线揭幕、木偶关节、笔触溶解或镜头运动。</small></div></li>
+            <li><span>03</span><div><strong>一致性资产</strong><small>为选定媒介建立角色参考、色板、材质表和禁改项，再进入关键帧与图生视频。</small></div></li>
+          </ol>
+        </div>
+
+        <div class="style-route-map">
+          <div class="style-route-heading">
+            <div>
+              <p class="eyebrow">方向性选型</p>
+              <h3>根据产品目标选风格，不根据新奇程度选</h3>
+            </div>
+            <p><strong>研究边界：</strong>下面是基于媒介特征的先验判断，用于缩小试验范围；不是对具体模型做过同预算、同帧数的量化基准测试。</p>
+          </div>
+          <div class="style-route-grid">
+            <article>
+              <p>家庭纪念</p>
+              <h4>水彩 · 羊毛毡 · 油画棒</h4>
+              <p>优先情绪、温度和长期保存感，适合成长册、节日与睡前故事。</p>
+              <dl><div><dt>动态潜力</dt><dd>中</dd></div><div><dt>生产复杂度</dt><dd>中低</dd></div><div><dt>一致性难度</dt><dd>中</dd></div></dl>
+            </article>
+            <article>
+              <p>教育与游戏</p>
+              <h4>扁平 2D · 木偶 · 像素</h4>
+              <p>优先信息可读、模块复用和任务反馈，适合课程栏目与轻互动产品。</p>
+              <dl><div><dt>动态潜力</dt><dd>中高</dd></div><div><dt>生产复杂度</dt><dd>中</dd></div><div><dt>一致性难度</dt><dd>中低</dd></div></dl>
+            </article>
+            <article>
+              <p>文化与节庆</p>
+              <h4>水墨 · 皮影 · 水彩</h4>
+              <p>优先地域气质、仪式感和形式辨识度，适合传统故事与节庆传播。</p>
+              <dl><div><dt>动态潜力</dt><dd>中</dd></div><div><dt>生产复杂度</dt><dd>中</dd></div><div><dt>一致性难度</dt><dd>中高</dd></div></dl>
+            </article>
+            <article>
+              <p>角色视频产品</p>
+              <h4>柔和 3D · 黏土 · 实景合成</h4>
+              <p>优先镜头表现、角色表演和商业质感，适合连续剧情与品牌级短片。</p>
+              <dl><div><dt>动态潜力</dt><dd>高</dd></div><div><dt>生产复杂度</dt><dd>高</dd></div><div><dt>一致性难度</dt><dd>高</dd></div></dl>
+            </article>
+          </div>
+        </div>
+
+        <p class="style-more"><strong>后续仍可研究：</strong><span>赛璐璐动画</span><span>低多边形 3D</span><span>版画</span><span>摄影拼贴</span><span>霓虹舞台</span><span>AR 实景叠加</span></p>
+      </section>
+
+      <section class="section creative-section" id="creative">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">06 · 创意方法</p>
+            <h2>不是继续堆模板，而是建立一套可组合的创意语法</h2>
+          </div>
+          <p>创意不必从空白开始。把一个儿童故事拆成七个可以替换的维度，再围绕一个清楚的情绪核心组合，就能持续产生不同方向，同时保留方法上的一致性。</p>
+        </div>
+
+        <div class="creative-formula" aria-label="创意组合公式">
+          <span><small>01</small><strong>主题</strong></span>
+          <b aria-hidden="true">×</b>
+          <span><small>02</small><strong>关系</strong></span>
+          <b aria-hidden="true">×</b>
+          <span><small>03</small><strong>世界</strong></span>
+          <b aria-hidden="true">×</b>
+          <span><small>04</small><strong>叙事机制</strong></span>
+          <b aria-hidden="true">×</b>
+          <span><small>05</small><strong>情绪</strong></span>
+          <b aria-hidden="true">×</b>
+          <span><small>06</small><strong>风格</strong></span>
+          <b aria-hidden="true">×</b>
+          <span><small>07</small><strong>表达形态</strong></span>
+        </div>
+
+        <div class="creative-dimensions">
+          <article>
+            <span>01</span>
+            <h3>主题：在谈论什么</h3>
+            <p>生日、成长、习惯、家庭、节日、文化、自然、梦想与冒险。</p>
+          </article>
+          <article>
+            <span>02</span>
+            <h3>关系：谁陪主角经历</h3>
+            <p>独自探索、动物伙伴、未来的自己、父母祖辈、朋友小队或想象守护者。</p>
+          </article>
+          <article>
+            <span>03</span>
+            <h3>世界：故事在哪里发生</h3>
+            <p>家中微缩城、秘密花园、星星邮局、时间图书馆、海底小镇或梦境工坊。</p>
+          </article>
+          <article>
+            <span>04</span>
+            <h3>机制：故事如何前进</h3>
+            <p>祝福、任务、收集、变形、修复、时间旅行、共同建造或完成仪式。</p>
+          </article>
+          <article>
+            <span>05</span>
+            <h3>情绪：最后想留下什么</h3>
+            <p>惊喜、勇气、安全感、好奇、归属、自豪、感谢与温柔告别。</p>
+          </article>
+          <article>
+            <span>06</span>
+            <h3>风格：用什么视觉语言</h3>
+            <p>纸艺、黏土、织物、木偶、绘本、二维、三维、水墨、皮影、像素或实景。</p>
+          </article>
+          <article>
+            <span>07</span>
+            <h3>形态：创意最终变成什么</h3>
+            <p>单张静帧、三联画、故事书、系列短片、互动卡片、小游戏或线下手作。</p>
+          </article>
+        </div>
+
+        <div class="creative-method">
+          <div class="creative-method-intro">
+            <p class="eyebrow">五步生成法</p>
+            <h3>先确定情感，再让风格为故事服务</h3>
+            <p>好的组合不是把七个词随机拼起来，而是让每个选择都围绕同一个核心感受。</p>
+          </div>
+          <ol>
+            <li><span>01</span><div><strong>从情绪出发</strong><small>先决定希望孩子感到惊喜、勇敢、安心、好奇还是被理解。</small></div></li>
+            <li><span>02</span><div><strong>放入个人锚点</strong><small>选择一个真实而轻量的记忆：口头禅、旧玩具、家庭食物、一次尝试或一个愿望。</small></div></li>
+            <li><span>03</span><div><strong>建立陪伴关系</strong><small>决定谁与主角同行，以及这个关系如何帮助情绪发生变化。</small></div></li>
+            <li><span>04</span><div><strong>只选一个叙事机制</strong><small>任务、收集、变形、修复或时间旅行选其一，让故事保持清楚。</small></div></li>
+            <li><span>05</span><div><strong>最后选择风格与形态</strong><small>视觉语言和表达载体负责放大感受，不负责替代故事本身。</small></div></li>
+          </ol>
+        </div>
+
+        <div class="idea-heading">
+          <div>
+            <p class="eyebrow">16 个灵感种子</p>
+            <h3>每个方向都可以继续生长，但先只保留一个清楚钩子</h3>
+          </div>
+          <p>以下不是完整脚本，也不是 Prompt，而是用于讨论、筛选和二次组合的创意起点。</p>
+        </div>
+
+        <div class="idea-groups">
+          <article class="idea-group">
+            <div class="idea-group-title"><span>A</span><div><p>Celebration &amp; memory</p><h3>庆祝与记忆</h3></div></div>
+            <ul>
+              <li><h4>星星邮局</h4><p>动物伙伴替孩子把生日愿望送到天空，每颗星星回寄一份祝福。</p><small>生日 × 伙伴 × 任务 × 惊喜</small></li>
+              <li><h4>未来寄来的生日卡</h4><p>长大后的自己从时间图书馆寄回一张卡，感谢今天勇敢尝试的孩子。</p><small>成长 × 未来自我 × 时间旅行 × 自豪</small></li>
+              <li><h4>四季身高树</h4><p>一棵树收藏每一年的身高、声音和愿望，四季翻动就是成长。</p><small>成长 × 家庭 × 收集 × 温柔</small></li>
+              <li><h4>消失的玩具车站</h4><p>旧玩具在秘密车站重新相遇，带孩子找回被遗忘的小小记忆。</p><small>回忆 × 旧玩具 × 寻回 × 珍惜</small></li>
+            </ul>
+          </article>
+
+          <article class="idea-group">
+            <div class="idea-group-title"><span>B</span><div><p>Growth &amp; emotion</p><h3>成长与情绪</h3></div></div>
+            <ul>
+              <li><h4>情绪天气台</h4><p>开心、担心和生气变成天气，孩子学习观察它们，而不是赶走它们。</p><small>情绪 × 守护者 × 观察 × 安全感</small></li>
+              <li><h4>勇气徽章地图</h4><p>每次完成一件有点害怕的小事，地图上就亮起一枚属于自己的徽章。</p><small>成长 × 伙伴 × 收集 × 勇气</small></li>
+              <li><h4>梦境维修铺</h4><p>睡不着时，孩子和毛绒守护者一起修补漏光、打结和迷路的梦。</p><small>睡眠 × 守护者 × 修复 × 安心</small></li>
+              <li><h4>城市小小修复师</h4><p>孩子发现社区里需要帮助的小角落，用一次次小行动让城市重新发光。</p><small>责任 × 邻里 × 修复 × 能动感</small></li>
+            </ul>
+          </article>
+
+          <article class="idea-group">
+            <div class="idea-group-title"><span>C</span><div><p>Family &amp; culture</p><h3>家庭与文化</h3></div></div>
+            <ul>
+              <li><h4>家庭味道博物馆</h4><p>每一道家庭食物都打开一间记忆展厅，连接不同代际的生活片段。</p><small>家庭 × 祖辈 × 收藏 × 归属</small></li>
+              <li><h4>月亮下的家书</h4><p>节日夜晚，家书化作小灯笼跨越城市，把没能见面的人带回同一张桌边。</p><small>节日 × 家书 × 传递 × 感谢</small></li>
+              <li><h4>影子里的祖传故事</h4><p>孩子的影子走进旧故事，与家人共同改写一个属于今天的新结局。</p><small>文化 × 家庭 × 穿越 × 传承</small></li>
+              <li><h4>会说话的老照片</h4><p>老照片里的人不讲大道理，只邀请孩子一起完成当年没做完的小愿望。</p><small>家史 × 祖辈 × 共同行动 × 连接</small></li>
+            </ul>
+          </article>
+
+          <article class="idea-group">
+            <div class="idea-group-title"><span>D</span><div><p>Adventure &amp; co-creation</p><h3>冒险与共创</h3></div></div>
+            <ul>
+              <li><h4>海底声音收藏家</h4><p>孩子寻找不同颜色的声音，最后发现最珍贵的是伙伴一起笑的声音。</p><small>自然 × 伙伴 × 收集 × 好奇</small></li>
+              <li><h4>云朵职业体验营</h4><p>每朵云都是一种未来角色，孩子不是选择答案，而是体验不同可能。</p><small>梦想 × 未来自我 × 变形 × 开放</small></li>
+              <li><h4>秘密花园共创赛</h4><p>朋友们拥有不同能力，只有把各自不完美的部分拼在一起，花园才会开放。</p><small>友谊 × 小队 × 共建 × 合作</small></li>
+              <li><h4>我是故事导演</h4><p>主角发现自己可以暂停、换场和邀请家人入镜，故事由观看变成共同创作。</p><small>自我表达 × 家庭 × 元叙事 × 创造</small></li>
+            </ul>
+          </article>
+        </div>
+
+        <div class="creative-filter">
+          <div>
+            <p class="eyebrow">四问筛选</p>
+            <h3>创意不以复杂度取胜</h3>
+            <p>当一个方向同时回答下面四个问题，它才值得继续展开；否则先回到组合维度，而不是继续增加装饰。</p>
+          </div>
+          <dl>
+            <div><dt>01 · 是否属于这个孩子？</dt><dd>能否找到一个名字之外的个人锚点？</dd></div>
+            <div><dt>02 · 是否一眼可见？</dt><dd>核心隐喻能否变成一个清楚画面？</dd></div>
+            <div><dt>03 · 是否可以继续生长？</dt><dd>能否自然扩展成第二幕、下一年或另一种形态？</dd></div>
+            <div><dt>04 · 是否留下真实感受？</dt><dd>去掉风格之后，故事仍然有情绪价值吗？</dd></div>
+          </dl>
+        </div>
+      </section>
+
+      <section class="section derivative-section" id="derivatives">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">07 · 对象与情绪</p>
+            <h2>真正可迁移的不是“儿童”，而是“让一个对象被认真看见”</h2>
+          </div>
+          <p>生日只是关系表达的一种触发器。把孩子替换为伴侣、长辈、朋友、自己、宠物、团队、品牌或一座城市后，创意仍然成立，但必须重新寻找属于这个对象的关系证据与情绪缺口。</p>
+        </div>
+
+        <aside class="derivative-boundary" aria-label="衍生研究边界">
+          <span>METHOD TRANSFER</span>
+          <p><strong>这是方法迁移研究，不是上游仓库的开箱能力。</strong>上游现有模板仍然服务儿童生日折纸视频；以下方向需要新的人群字段、叙事模板、语气边界和内容审核。</p>
+        </aside>
+
+        <div class="derivative-formula" aria-label="对象迁移公式">
+          <span><small>01</small><strong>对象</strong></span>
+          <b aria-hidden="true">×</b>
+          <span><small>02</small><strong>关系时刻</strong></span>
+          <b aria-hidden="true">×</b>
+          <span><small>03</small><strong>情绪缺口</strong></span>
+          <b aria-hidden="true">×</b>
+          <span><small>04</small><strong>个人证据</strong></span>
+          <b aria-hidden="true">×</b>
+          <span><small>05</small><strong>核心隐喻</strong></span>
+          <b aria-hidden="true">×</b>
+          <span><small>06</small><strong>表达载体</strong></span>
+        </div>
+
+        <div class="derivative-subheading">
+          <div>
+            <p class="eyebrow">八类对象</p>
+            <h3>先问“谁需要被怎样对待”，再决定讲什么故事</h3>
+          </div>
+          <p>对象并不限于一个具体的人。关系、群体、地方、物件和文化记忆都可以成为情绪内容的主角。</p>
+        </div>
+
+        <div class="audience-grid">
+          <article><span>01</span><h3>伴侣</h3><p>纪念日、异地、道歉、共同生活与普通日子的感谢。</p><small>情绪入口：被选择 · 被记得</small></article>
+          <article><span>02</span><h3>父母与长辈</h3><p>退休、生日、家族记忆、未说出口的感谢与代际理解。</p><small>情绪入口：被感谢 · 被传承</small></article>
+          <article><span>03</span><h3>朋友</h3><p>毕业、搬离、重聚、低谷陪伴与共同经历的重新发现。</p><small>情绪入口：被理解 · 共同走过</small></article>
+          <article><span>04</span><h3>自己</h3><p>阶段复盘、低谷修复、愿望重启、身份确认与未来对话。</p><small>情绪入口：被肯定 · 重新开始</small></article>
+          <article><span>05</span><h3>宠物</h3><p>领养纪念、日常陪伴、生命记录与温柔告别。</p><small>情绪入口：无条件陪伴 · 珍惜</small></article>
+          <article><span>06</span><h3>团队与社群</h3><p>欢迎、项目收官、成员离开、志愿行动与共同成就。</p><small>情绪入口：有归属 · 贡献被看见</small></article>
+          <article><span>07</span><h3>品牌与客户</h3><p>会员纪念、客户故事、共同创造与长期关系表达。</p><small>情绪入口：被重视 · 价值认同</small></article>
+          <article><span>08</span><h3>城市、文化与物件</h3><p>老店、街区、家乡、旧物和传统技艺的记忆再叙述。</p><small>情绪入口：身份认同 · 留存传承</small></article>
+        </div>
+
+        <div class="emotion-map">
+          <div class="emotion-intro">
+            <p class="eyebrow">八种情绪价值</p>
+            <h3>情绪价值不是“煽情”，而是一种被对待的方式</h3>
+            <p>先找到关系里尚未被满足的感受，再选择画面和媒介。相同的对象，因为情绪缺口不同，会长出完全不同的故事。</p>
+          </div>
+          <div class="emotion-grid">
+            <article><span>01</span><div><h4>被看见</h4><p>用具体细节证明：我注意到了你的真实生活，而不只知道你的名字。</p></div></article>
+            <article><span>02</span><div><h4>被记住</h4><p>把容易消失的声音、习惯、地点和共同片段保存下来。</p></div></article>
+            <article><span>03</span><div><h4>被理解</h4><p>不急着给答案，先准确复述对方经历过的矛盾与感受。</p></div></article>
+            <article><span>04</span><div><h4>被肯定</h4><p>说清楚努力发生在哪里，而不是只给一句泛化的“你很棒”。</p></div></article>
+            <article><span>05</span><div><h4>被陪伴</h4><p>让内容表达“这段路不是你一个人走”，而不是替对方解决一切。</p></div></article>
+            <article><span>06</span><div><h4>有归属</h4><p>把个人经验连接到家庭、团队、社群、地方或文化共同体。</p></div></article>
+            <article><span>07</span><div><h4>有仪式感</h4><p>为普通但重要的时刻建立一个可进入、可参与、可保存的形式。</p></div></article>
+            <article><span>08</span><div><h4>能告别与重启</h4><p>承认失去与结束，同时为下一段生活留下一个温柔入口。</p></div></article>
+          </div>
+        </div>
+
+        <div class="emotion-taxonomy" aria-labelledby="emotion-taxonomy-title">
+          <div class="emotion-taxonomy-intro">
+            <div>
+              <p class="eyebrow">先纠正一个概念</p>
+              <h3 id="emotion-taxonomy-title">这些不全是“情绪”，而是一套四层情绪价值系统</h3>
+            </div>
+            <p><strong>喜悦、悲伤、焦虑</strong>才更接近当下的情绪状态；“被看见、被理解、被陪伴”是希望被怎样回应；“归属、仪式”是关系价值；“告别与重启”则是经历之后期待发生的转化。</p>
+          </div>
+          <div class="emotion-taxonomy-grid">
+            <article>
+              <span>01 · 此刻</span>
+              <h4>情绪状态</h4>
+              <p>这个人现在感到什么？它是内容的起点，不必被迅速修复。</p>
+              <ul aria-label="情绪状态例子"><li>喜悦</li><li>平静</li><li>悲伤</li><li>焦虑</li><li>愤怒</li><li>惊喜</li><li>思念</li><li>孤独</li></ul>
+            </article>
+            <article>
+              <span>02 · 回应</span>
+              <h4>情绪需求</h4>
+              <p>希望别人怎样对待我？原八项中的前五项主要落在这一层。</p>
+              <ul aria-label="情绪需求例子"><li>被看见</li><li>被记住</li><li>被理解</li><li>被肯定</li><li>被陪伴</li><li>被接纳</li></ul>
+            </article>
+            <article>
+              <span>03 · 关系</span>
+              <h4>关系价值</h4>
+              <p>一次表达之后，希望这段关系变成什么？它决定产品的长期意义。</p>
+              <ul aria-label="关系价值例子"><li>归属</li><li>信任</li><li>互惠</li><li>感谢</li><li>仪式</li><li>传承</li></ul>
+            </article>
+            <article>
+              <span>04 · 之后</span>
+              <h4>转化结果</h4>
+              <p>被回应之后，人能走向哪里？这里描述的是方向，不是效果保证。</p>
+              <ul aria-label="转化结果例子"><li>安心</li><li>勇气</li><li>和解</li><li>释然</li><li>希望</li><li>重启</li></ul>
+            </article>
+          </div>
+          <p class="emotion-taxonomy-note"><strong>创意用法：</strong>先选一个真实状态，再选一种回应方式，让它沉淀为关系价值，最后定义期待的转化。例如：<span>思念 → 被陪伴 → 信任 → 安心</span>。</p>
+        </div>
+
+        <div class="emotion-product-heading">
+          <div>
+            <p class="eyebrow">图片化产品推荐</p>
+            <h3>先看见关系，再读懂产品想传递的主观意愿</h3>
+          </div>
+          <p>每张图不是在展示某个已经上线的产品界面，而是在回答三个更早的问题：表达者希望对方被怎样对待、产品想促成什么、什么变化可以被观察？</p>
+        </div>
+
+        <aside class="emotion-product-disclaimer" aria-label="情绪产品概念图来源说明">
+          <span>CONCEPT STILL / 4:3</span>
+          <p>以下八张图由本研究页生成，用于把情绪价值和产品方向变得可见。它们不是上游仓库输出、真实产品截图或视频效果；人物与场景均为虚构。卡片内附的是<strong>本研究生成这些概念图时使用的图片 Prompt</strong>，不是上游 Skill 的视频 Prompt。</p>
+        </aside>
+
+        <div class="emotion-product-grid">
+          <figure class="emotion-product-card">
+            <div class="emotion-product-visual">
+              <img src="./assets/emotion-products/ordinary-days-archive.webp" width="1440" height="1080" loading="lazy" decoding="async" alt="虚构成年伴侣在由日常杯子、雨伞、钥匙和购物袋组成的私人展厅里相互凝视">
+              <span>01 · 被看见</span>
+            </div>
+            <figcaption>
+              <div class="emotion-product-meta"><span>对象：伴侣</span><span>形态：互动纪念册</span></div>
+              <h3>普通日子档案馆</h3>
+              <blockquote><span>主观意愿</span>“我希望你知道，我不只记得纪念日，也记得你每天的小习惯。”</blockquote>
+              <p>把杯子、钥匙、通勤路线和共同习惯变成可收藏展品，让“我注意到你”拥有具体证据。</p>
+              <dl class="emotion-product-outcomes">
+                <div><dt>产品目标</dt><dd>帮助亲密关系用具体生活证据表达长期关注。</dd></div>
+                <div><dt>可观察的预期效果</dt><dd>共同收集 8–12 个物件、路线或习惯，双方可补充注释并形成年度档案。</dd></div>
+              </dl>
+              <details class="emotion-product-prompt">
+                <summary><span>查看本图 Prompt</span><small>研究页 · 可复制</small></summary>
+                <div class="emotion-product-prompt-body">
+                  <p>用于生成上方概念静帧，不是上游 Skill 的视频提示词。</p>
+                  <pre><code id="emotion-prompt-1">Use case: stylized-concept
+Asset type: 4:3 website product concept card
+Primary request: visualize the emotional value “being truly seen” through a fictional product called the ordinary-days archive
+Scene/backdrop: an intimate gallery assembled from a couple’s overlooked daily objects—two mismatched mugs, a repaired umbrella, keys, grocery bag, transit card, plant clipping and a familiar scarf—displayed like meaningful museum artifacts
+Subject: two fictional East Asian adults in their early thirties quietly recognizing each other across the installation; natural expressions, no posed romance
+Style/medium: cinematic editorial conceptual illustration, realistic but gently stylized, tactile mixed-media surfaces, subtle paper and film grain
+Composition/framing: landscape 4:3, medium-wide, objects form the emotional focal point, layered depth
+Lighting/mood: warm late-afternoon window light, quiet tenderness, specific and personal rather than sentimental
+Constraints: adults only; original fictional people; no children; no logos; no brands; no text; no watermark
+Avoid: wedding imagery, generic heart symbols, exaggerated crying, fantasy spectacle, crowded composition</code></pre>
+                  <button class="emotion-copy-button" type="button" data-copy="emotion-prompt-1" data-copy-kind="image" data-copy-status="emotion-copy-status-1">复制图片 Prompt</button>
+                  <p class="emotion-copy-status" id="emotion-copy-status-1" role="status" aria-live="polite">Prompt 默认收起，展开后可按需复制。</p>
+                </div>
+              </details>
+            </figcaption>
+          </figure>
+
+          <figure class="emotion-product-card">
+            <div class="emotion-product-visual">
+              <img src="./assets/emotion-products/voice-post-office.webp" width="1440" height="1080" loading="lazy" decoding="async" alt="虚构老年女性对着麦克风讲述，成年女儿倾听，发光声波流向装有信件的记忆容器">
+              <span>02 · 被记住</span>
+            </div>
+            <figcaption>
+              <div class="emotion-product-meta"><span>对象：父母与长辈</span><span>形态：家庭声音档案</span></div>
+              <h3>祖辈声音邮局</h3>
+              <blockquote><span>主观意愿</span>“我希望你的声音、方言和口头禅，不会因为时间而从家里消失。”</blockquote>
+              <p>把讲述、家常叮嘱和声音纹理保存为可再次开启的家书，强调延续而不是怀旧表演。</p>
+              <dl class="emotion-product-outcomes">
+                <div><dt>产品目标</dt><dd>保存长辈的声音、方言、讲述与家庭语言。</dd></div>
+                <div><dt>可观察的预期效果</dt><dd>语音片段可按人物与主题浏览，代际成员能够继续收听、标注和回信。</dd></div>
+              </dl>
+              <details class="emotion-product-prompt">
+                <summary><span>查看本图 Prompt</span><small>研究页 · 可复制</small></summary>
+                <div class="emotion-product-prompt-body">
+                  <p>用于生成上方概念静帧，不是上游 Skill 的视频提示词。</p>
+                  <pre><code id="emotion-prompt-2">Use case: stylized-concept
+Asset type: 4:3 website product concept card
+Primary request: visualize the emotional value “being remembered” through a fictional voice-post-office product for an elderly family member
+Scene/backdrop: a small poetic recording room where an elderly woman’s voice becomes luminous ribbon-like sound waves that curl into paper envelopes and glass memory capsules
+Subject: one fictional elderly East Asian woman speaking naturally into a simple vintage microphone; an adult daughter listens nearby with calm affection
+Style/medium: cinematic editorial conceptual illustration, realistic but gently stylized, tactile mixed-media surfaces, subtle paper and film grain
+Composition/framing: landscape 4:3, medium shot, microphone and glowing voice ribbon create a clear visual path
+Lighting/mood: soft amber lamplight, dignity, continuity, warmth without nostalgia cliché
+Constraints: adults only; original fictional people; no children; no logos; no brands; no text; no watermark
+Avoid: funeral imagery, hospital setting, melodrama, fantasy excess, generic family portrait</code></pre>
+                  <button class="emotion-copy-button" type="button" data-copy="emotion-prompt-2" data-copy-kind="image" data-copy-status="emotion-copy-status-2">复制图片 Prompt</button>
+                  <p class="emotion-copy-status" id="emotion-copy-status-2" role="status" aria-live="polite">Prompt 默认收起，展开后可按需复制。</p>
+                </div>
+              </details>
+            </figcaption>
+          </figure>
+
+          <figure class="emotion-product-card">
+            <div class="emotion-product-visual">
+              <img src="./assets/emotion-products/low-point-reply.webp" width="1440" height="1080" loading="lazy" decoding="async" alt="同一虚构成年女性在两个年龄阶段并肩坐在黄昏公寓地板上，安静陪伴而不急于解决问题">
+              <span>03 · 被理解</span>
+            </div>
+            <figcaption>
+              <div class="emotion-product-meta"><span>对象：自己</span><span>形态：私人回信影像</span></div>
+              <h3>给低谷自己的回信</h3>
+              <blockquote><span>主观意愿</span>“我不催你立刻振作，我想先承认：那段时间真的很辛苦。”</blockquote>
+              <p>让现在的自己与过去的自己处在同一高度，通过陪坐和复述代替说教与英雄式拯救。</p>
+              <dl class="emotion-product-outcomes">
+                <div><dt>产品目标</dt><dd>提供一种不自我评判的私人复盘与自我回应方式。</dd></div>
+                <div><dt>可观察的预期效果</dt><dd>过去与现在被并置，回应被记录，并形成仅本人可见的回信影像或档案。</dd></div>
+              </dl>
+              <details class="emotion-product-prompt">
+                <summary><span>查看本图 Prompt</span><small>研究页 · 可复制</small></summary>
+                <div class="emotion-product-prompt-body">
+                  <p>用于生成上方概念静帧，不是上游 Skill 的视频提示词。</p>
+                  <pre><code id="emotion-prompt-3">Use case: stylized-concept
+Asset type: 4:3 website product concept card
+Primary request: visualize the emotional value “being understood” through a fictional product called a reply to my low-point self
+Scene/backdrop: a quiet apartment at blue hour after a difficult day, with a subtle doorway of light suggesting another time
+Subject: one fictional adult sitting on the floor beside an unopened bag and tired shoes; a slightly older version of the same person sits beside them at equal height, not fixing anything, simply sharing the silence
+Style/medium: cinematic editorial conceptual illustration, realistic but gently stylized, tactile mixed-media surfaces, subtle paper and film grain
+Composition/framing: landscape 4:3, intimate medium-wide, both versions share the same visual plane, generous calm negative space
+Lighting/mood: dusk blue mixed with one warm practical lamp, compassionate, restrained, emotionally honest
+Constraints: adult only; same fictional person at two ages; no children; no logos; no text; no watermark
+Avoid: therapy clinic, heroic rescue pose, exaggerated sadness, tears as focal point, surreal clutter</code></pre>
+                  <button class="emotion-copy-button" type="button" data-copy="emotion-prompt-3" data-copy-kind="image" data-copy-status="emotion-copy-status-3">复制图片 Prompt</button>
+                  <p class="emotion-copy-status" id="emotion-copy-status-3" role="status" aria-live="polite">Prompt 默认收起，展开后可按需复制。</p>
+                </div>
+              </details>
+            </figcaption>
+          </figure>
+
+          <figure class="emotion-product-card">
+            <div class="emotion-product-visual">
+              <img src="./assets/emotion-products/unseen-contributors-gallery.webp" width="1440" height="1080" loading="lazy" decoding="async" alt="虚构成人团队在展厅中注视一位幕后贡献者，维修工具、线缆和工作手套被灯光照亮">
+              <span>04 · 被肯定</span>
+            </div>
+            <figcaption>
+              <div class="emotion-product-meta"><span>对象：团队成员</span><span>形态：贡献年鉴与展厅</span></div>
+              <h3>无名贡献者展厅</h3>
+              <blockquote><span>主观意愿</span>“我希望那些没有写进奖杯的维护、倾听和补位，也拥有名字。”</blockquote>
+              <p>把容易被忽略的劳动放到视觉中心，肯定努力发生在哪里，而不是只表扬最终结果。</p>
+              <dl class="emotion-product-outcomes">
+                <div><dt>产品目标</dt><dd>让团队中的隐形劳动与支持行为获得具体承认。</dd></div>
+                <div><dt>可观察的预期效果</dt><dd>同伴证据按贡献类型被收集和呈现，形成可持续补充的周期性认可记录。</dd></div>
+              </dl>
+              <details class="emotion-product-prompt">
+                <summary><span>查看本图 Prompt</span><small>研究页 · 可复制</small></summary>
+                <div class="emotion-product-prompt-body">
+                  <p>用于生成上方概念静帧，不是上游 Skill 的视频提示词。</p>
+                  <pre><code id="emotion-prompt-4">Use case: stylized-concept
+Asset type: 4:3 website product concept card
+Primary request: visualize the emotional value “being affirmed” through a fictional product called the unseen-contributors gallery
+Scene/backdrop: a refined exhibition space built from behind-the-scenes work objects: repaired cables, organized tools, maintenance gloves, abstract notes and a spare chair placed back correctly
+Subject: a diverse fictional adult team while one usually overlooked contributor sees their quiet work illuminated as the central exhibit; colleagues look toward that person with sincere recognition
+Style/medium: cinematic editorial conceptual illustration, realistic but gently stylized, tactile mixed-media surfaces, subtle paper and film grain
+Composition/framing: landscape 4:3, wide group scene with one clear recipient of recognition
+Lighting/mood: controlled museum spotlights with warm ambient fill, dignified, collective, sincere
+Constraints: adults only; original fictional people; no children; no logos; no readable text; no badges; no watermark
+Avoid: trophy ceremony, corporate stock-photo poses, confetti, exaggerated applause, crowded signage</code></pre>
+                  <button class="emotion-copy-button" type="button" data-copy="emotion-prompt-4" data-copy-kind="image" data-copy-status="emotion-copy-status-4">复制图片 Prompt</button>
+                  <p class="emotion-copy-status" id="emotion-copy-status-4" role="status" aria-live="polite">Prompt 默认收起，展开后可按需复制。</p>
+                </div>
+              </details>
+            </figcaption>
+          </figure>
+
+          <figure class="emotion-product-card">
+            <div class="emotion-product-visual">
+              <img src="./assets/emotion-products/long-distance-star-map.webp" width="1440" height="1080" loading="lazy" decoding="async" alt="两位虚构成年人在不同城市的夜晚窗边同时准备热饮，暖色光点跨越城市连接彼此">
+              <span>05 · 被陪伴</span>
+            </div>
+            <figcaption>
+              <div class="emotion-product-meta"><span>对象：异地伴侣或朋友</span><span>形态：双城同步相册</span></div>
+              <h3>异地星图</h3>
+              <blockquote><span>主观意愿</span>“我希望你感到，即使不在同一座城市，我们仍然共享着同一天。”</blockquote>
+              <p>同步收藏两地的天气、声音和小事，让陪伴来自平行生活，而不只依赖视频通话。</p>
+              <dl class="emotion-product-outcomes">
+                <div><dt>产品目标</dt><dd>让远距离关系拥有持续、低压力的共同在场。</dd></div>
+                <div><dt>可观察的预期效果</dt><dd>两地日常片段在同一地图持续生长，形成平行生活档案而非一次性祝福。</dd></div>
+              </dl>
+              <details class="emotion-product-prompt">
+                <summary><span>查看本图 Prompt</span><small>研究页 · 可复制</small></summary>
+                <div class="emotion-product-prompt-body">
+                  <p>用于生成上方概念静帧，不是上游 Skill 的视频提示词。</p>
+                  <pre><code id="emotion-prompt-5">Use case: stylized-concept
+Asset type: 4:3 website product concept card
+Primary request: visualize the emotional value “being accompanied despite distance” through a fictional long-distance star-map product
+Scene/backdrop: one evening cityscape revealing two separate adult apartments in different cities, each window showing the same night sky; a delicate trail of warm points links their ordinary evening activities
+Subject: two fictional adults in their thirties, each calmly engaged in parallel routines such as making tea and watering a plant, connected without video-call screens
+Style/medium: cinematic editorial conceptual illustration, realistic but gently stylized, tactile mixed-media surfaces, subtle paper and film grain
+Composition/framing: landscape 4:3, balanced split-distance composition that reads as one image
+Lighting/mood: deep blue evening with warm window light, quiet companionship, hopeful and intimate
+Constraints: adults only; original fictional people; no children; no logos; no screens with UI; no text; no watermark
+Avoid: literal heart shapes, fantasy galaxy spectacle, sadness as focal point, video-call cliché</code></pre>
+                  <button class="emotion-copy-button" type="button" data-copy="emotion-prompt-5" data-copy-kind="image" data-copy-status="emotion-copy-status-5">复制图片 Prompt</button>
+                  <p class="emotion-copy-status" id="emotion-copy-status-5" role="status" aria-live="polite">Prompt 默认收起，展开后可按需复制。</p>
+                </div>
+              </details>
+            </figcaption>
+          </figure>
+
+          <figure class="emotion-product-card">
+            <div class="emotion-product-visual">
+              <img src="./assets/emotion-products/welcome-route.webp" width="1440" height="1080" loading="lazy" decoding="async" alt="虚构成年新成员站在社区工作室入口，个人物件形成路线并通向为她留出位置的共享桌">
+              <span>06 · 有归属</span>
+            </div>
+            <figcaption>
+              <div class="emotion-product-meta"><span>对象：团队与社群</span><span>形态：共创欢迎地图</span></div>
+              <h3>新成员欢迎航线</h3>
+              <blockquote><span>主观意愿</span>“我希望你不是被加入名单，而是真的在我们的故事里拥有位置。”</blockquote>
+              <p>由老成员留下第一天线索和个人物件，引导新人认识真实文化，并能继续添加自己的路径。</p>
+              <dl class="emotion-product-outcomes">
+                <div><dt>产品目标</dt><dd>帮助新成员理解真实文化，并尽早形成参与感。</dd></div>
+                <div><dt>可观察的预期效果</dt><dd>新人沿成员线索完成轻量探索，最后留下自己的节点供下一位继续使用。</dd></div>
+              </dl>
+              <details class="emotion-product-prompt">
+                <summary><span>查看本图 Prompt</span><small>研究页 · 可复制</small></summary>
+                <div class="emotion-product-prompt-body">
+                  <p>用于生成上方概念静帧，不是上游 Skill 的视频提示词。</p>
+                  <pre><code id="emotion-prompt-6">Use case: stylized-concept
+Asset type: 4:3 website product concept card
+Primary request: visualize the emotional value “belonging” through a fictional new-member welcome-route product
+Scene/backdrop: a warm community workshop with a path made from personal objects and traces left by existing members—an apron, handmade cup, plant cutting, tool and folded chair—guiding inward
+Subject: one fictional adult newcomer pauses at the entrance while a diverse group of adults make genuine room at a shared table
+Style/medium: cinematic editorial conceptual illustration, realistic but gently stylized, tactile mixed-media surfaces, subtle paper and film grain
+Composition/framing: landscape 4:3, medium-wide, the path leads from newcomer to an open place at the table
+Lighting/mood: soft morning light, welcoming, grounded, unforced
+Constraints: adults only; original fictional people; no children; no logos; no readable text; no badges; no watermark
+Avoid: corporate onboarding, handshake pose, cheering crowd, banners, staged stock-photo smiles</code></pre>
+                  <button class="emotion-copy-button" type="button" data-copy="emotion-prompt-6" data-copy-kind="image" data-copy-status="emotion-copy-status-6">复制图片 Prompt</button>
+                  <p class="emotion-copy-status" id="emotion-copy-status-6" role="status" aria-live="polite">Prompt 默认收起，展开后可按需复制。</p>
+                </div>
+              </details>
+            </figcaption>
+          </figure>
+
+          <figure class="emotion-product-card">
+            <div class="emotion-product-visual">
+              <img src="./assets/emotion-products/adoption-anniversary.webp" width="1440" height="1080" loading="lazy" decoding="async" alt="虚构成年女性与领养犬平视触碰额头，旧项圈、牵引绳、玩具和爪印纪念物围成温暖仪式">
+              <span>07 · 有仪式感</span>
+            </div>
+            <figcaption>
+              <div class="emotion-product-meta"><span>对象：宠物与照护者</span><span>形态：年度记忆仪式盒</span></div>
+              <h3>领养纪念日</h3>
+              <blockquote><span>主观意愿</span>“我想庆祝的不是拥有你，而是我们曾经互相选择、互相改变。”</blockquote>
+              <p>用第一条项圈、旧玩具和年度爪印建立可重复仪式，让普通陪伴成为共同生命节点。</p>
+              <dl class="emotion-product-outcomes">
+                <div><dt>产品目标</dt><dd>把宠物关系表达为双向陪伴，而不是单向所有权。</dd></div>
+                <div><dt>可观察的预期效果</dt><dd>仪式盒每年加入爪印、物件和记忆，逐步形成共同生命档案。</dd></div>
+              </dl>
+              <details class="emotion-product-prompt">
+                <summary><span>查看本图 Prompt</span><small>研究页 · 可复制</small></summary>
+                <div class="emotion-product-prompt-body">
+                  <p>用于生成上方概念静帧，不是上游 Skill 的视频提示词。</p>
+                  <pre><code id="emotion-prompt-7">Use case: stylized-concept
+Asset type: 4:3 website product concept card
+Primary request: visualize the emotional value “ritual and mutual choice” through a fictional pet adoption-anniversary product
+Scene/backdrop: a cozy adult home where a yearly ritual is arranged from the pet’s first collar, worn leash, favorite toy, paw-print clay token and a circle of warm lamps
+Subject: one fictional adult kneels at equal eye level with an adopted mixed-breed dog, gently touching foreheads; both lives chose and changed each other
+Style/medium: cinematic editorial conceptual illustration, realistic but gently stylized, tactile mixed-media surfaces, subtle paper and film grain
+Composition/framing: landscape 4:3, intimate medium-wide, adult and dog centered within meaningful objects
+Lighting/mood: warm early evening, gratitude, mutual trust, calm celebration
+Constraints: adult and pet only; no children; no logos; no readable text; no birthday cake; no watermark
+Avoid: costume on pet, balloons, exaggerated cuteness, ownership symbolism, commercial pet-ad aesthetic</code></pre>
+                  <button class="emotion-copy-button" type="button" data-copy="emotion-prompt-7" data-copy-kind="image" data-copy-status="emotion-copy-status-7">复制图片 Prompt</button>
+                  <p class="emotion-copy-status" id="emotion-copy-status-7" role="status" aria-live="polite">Prompt 默认收起，展开后可按需复制。</p>
+                </div>
+              </details>
+            </figcaption>
+          </figure>
+
+          <figure class="emotion-product-card">
+            <div class="emotion-product-visual">
+              <img src="./assets/emotion-products/retirement-first-stop.webp" width="1440" height="1080" loading="lazy" decoding="async" alt="虚构退休男性在晨光站台将工作钥匙放入纪念盒，提着旅行袋面向即将到站的列车">
+              <span>08 · 告别与重启</span>
+            </div>
+            <figcaption>
+              <div class="emotion-product-meta"><span>对象：退休者</span><span>形态：阶段告别影像册</span></div>
+              <h3>退休后的第一站</h3>
+              <blockquote><span>主观意愿</span>“我希望你知道，结束一份职业，并不等于结束新的可能。”</blockquote>
+              <p>先承认职业身份的结束，再把下一段生活变成可以自主选择站点的开放旅程。</p>
+              <dl class="emotion-product-outcomes">
+                <div><dt>产品目标</dt><dd>支持退休者完成身份告别，并主动设计下一阶段。</dd></div>
+                <div><dt>可观察的预期效果</dt><dd>形成职业收束档案与未来路线清单，由本人选择、修改并命名下一站。</dd></div>
+              </dl>
+              <details class="emotion-product-prompt">
+                <summary><span>查看本图 Prompt</span><small>研究页 · 可复制</small></summary>
+                <div class="emotion-product-prompt-body">
+                  <p>用于生成上方概念静帧，不是上游 Skill 的视频提示词。</p>
+                  <pre><code id="emotion-prompt-8">Use case: stylized-concept
+Asset type: 4:3 website product concept card
+Primary request: visualize the emotional value “a dignified goodbye and a hopeful restart” through a fictional product called the first stop after retirement
+Scene/backdrop: a quiet train platform at sunrise, one side holding traces of a completed working life—folded work jacket, keys and a plain desk object—and the open track leading toward a new landscape
+Subject: one fictional older adult in their early sixties with a modest travel bag, placing work keys into a memory box before turning toward the arriving train
+Style/medium: cinematic editorial conceptual illustration, realistic but gently stylized, tactile mixed-media surfaces, subtle paper and film grain
+Composition/framing: landscape 4:3, wide cinematic frame, past objects in foreground, person at transition point, open future space beyond
+Lighting/mood: cool dawn turning to warm sunrise, closure, possibility, quiet agency
+Constraints: adult only; original fictional person; no children; no logos; no readable station signs; no text; no watermark
+Avoid: luxury travel ad, celebratory confetti, heroic pose, funeral associations, crowded station</code></pre>
+                  <button class="emotion-copy-button" type="button" data-copy="emotion-prompt-8" data-copy-kind="image" data-copy-status="emotion-copy-status-8">复制图片 Prompt</button>
+                  <p class="emotion-copy-status" id="emotion-copy-status-8" role="status" aria-live="polite">Prompt 默认收起，展开后可按需复制。</p>
+                </div>
+              </details>
+            </figcaption>
+          </figure>
+        </div>
+
+        <section class="effect-preview" aria-labelledby="effect-preview-title">
+          <div class="effect-preview-heading">
+            <div>
+              <p class="eyebrow">产品效果预演台</p>
+              <h3 id="effect-preview-title">概念图之后，成品究竟会怎样呈现？</h3>
+            </div>
+            <p>下面不是再补一组氛围图，而是把八个概念翻译为八种不同的产品结果。切换项目，可以同时看到成品视图以及“输入什么、如何参与、最后留下什么”。</p>
+          </div>
+
+          <aside class="effect-preview-boundary" aria-label="产品效果预演边界">
+            <span>EXPERIENCE PROTOTYPE</span>
+            <p><strong>结构预演，不是真实产品截图。</strong>界面使用虚构示意数据，只表达信息关系、参与方式和预期产物；不代表已经开发、上线或验证了情绪效果。</p>
+          </aside>
+
+          <div class="effect-preview-shell">
+            <div class="effect-preview-tabs" role="group" aria-label="选择要预演的产品效果">
+              <button id="effect-tab-archive" type="button" class="effect-preview-tab" data-effect-tab="archive" aria-pressed="true" aria-controls="effect-panel-archive" tabindex="0"><span>01</span><strong>日子档案馆</strong><small>互动纪念册</small></button>
+              <button id="effect-tab-voice" type="button" class="effect-preview-tab" data-effect-tab="voice" aria-pressed="false" aria-controls="effect-panel-voice" tabindex="-1"><span>02</span><strong>声音邮局</strong><small>家庭声音档案</small></button>
+              <button id="effect-tab-reply" type="button" class="effect-preview-tab" data-effect-tab="reply" aria-pressed="false" aria-controls="effect-panel-reply" tabindex="-1"><span>03</span><strong>低谷回信</strong><small>私人回信影像</small></button>
+              <button id="effect-tab-gallery" type="button" class="effect-preview-tab" data-effect-tab="gallery" aria-pressed="false" aria-controls="effect-panel-gallery" tabindex="-1"><span>04</span><strong>贡献者展厅</strong><small>认可与年鉴</small></button>
+              <button id="effect-tab-distance" type="button" class="effect-preview-tab" data-effect-tab="distance" aria-pressed="false" aria-controls="effect-panel-distance" tabindex="-1"><span>05</span><strong>异地星图</strong><small>双城同步相册</small></button>
+              <button id="effect-tab-welcome" type="button" class="effect-preview-tab" data-effect-tab="welcome" aria-pressed="false" aria-controls="effect-panel-welcome" tabindex="-1"><span>06</span><strong>欢迎航线</strong><small>共创欢迎地图</small></button>
+              <button id="effect-tab-adoption" type="button" class="effect-preview-tab" data-effect-tab="adoption" aria-pressed="false" aria-controls="effect-panel-adoption" tabindex="-1"><span>07</span><strong>领养纪念日</strong><small>年度仪式盒</small></button>
+              <button id="effect-tab-retirement" type="button" class="effect-preview-tab" data-effect-tab="retirement" aria-pressed="false" aria-controls="effect-panel-retirement" tabindex="-1"><span>08</span><strong>退休第一站</strong><small>阶段路线册</small></button>
+            </div>
+
+            <div class="effect-preview-panels">
+              <article class="effect-preview-panel" id="effect-panel-archive" data-effect-panel="archive" role="region" aria-labelledby="effect-tab-archive">
+                <header><span>01 · 被看见</span><div><h4>普通日子档案馆</h4><p>把日常证据排成一场只属于两个人的年度展览。</p></div></header>
+                <div class="effect-mock effect-mock-archive" aria-label="普通日子档案馆成品示意">
+                  <div class="effect-mock-bar"><strong>OUR ORDINARY DAYS</strong><small>示意数据 · 12 件藏品</small></div>
+                  <div class="archive-artifacts">
+                    <article><span>01</span><b>雨天那把伞</b><small>修过三次，还在门边</small></article>
+                    <article><span>02</span><b>周三的杯子</b><small>总比另一个多半勺糖</small></article>
+                    <article><span>03</span><b>18:42 的路线</b><small>下班后固定绕去花店</small></article>
+                    <article><span>04</span><b>冰箱上的便签</b><small>一句话也成为生活证据</small></article>
+                  </div>
+                  <div class="archive-timeline"><span>春</span><i></i><span>夏</span><i></i><span>秋</span><i></i><span>冬</span></div>
+                </div>
+                <ol class="effect-journey">
+                  <li><span>输入</span><strong>生活证据</strong><p>物件、路线、照片、口头禅与共同习惯。</p></li>
+                  <li><span>参与</span><strong>共同注释</strong><p>两个人补充各自记得的细节与日期。</p></li>
+                  <li><span>留下</span><strong>年度私人展</strong><p>形成可继续增加、再次进入的关系档案。</p></li>
+                </ol>
+              </article>
+
+              <article class="effect-preview-panel" id="effect-panel-voice" data-effect-panel="voice" role="region" aria-labelledby="effect-tab-voice" hidden>
+                <header><span>02 · 被记住</span><div><h4>祖辈声音邮局</h4><p>声音不被压成一条录音，而是成为可以继续回信的家庭邮局。</p></div></header>
+                <div class="effect-mock effect-mock-voice" aria-label="祖辈声音邮局成品示意">
+                  <div class="effect-mock-bar"><strong>VOICE POST OFFICE</strong><small>家庭档案 · 示意数据</small></div>
+                  <div class="voice-player">
+                    <span class="voice-play" aria-hidden="true">▶</span>
+                    <div><b>“院子里的那棵桂花树”</b><small>外婆 · 02:18 · 方言讲述</small></div>
+                    <div class="voice-wave" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+                  </div>
+                  <div class="voice-capsules"><span>家常叮嘱 · 08</span><span>年轻时候 · 05</span><span>菜谱与味道 · 11</span></div>
+                  <p class="voice-reply">下一封回信：<strong>“我也记得那年桂花特别香。”</strong></p>
+                </div>
+                <ol class="effect-journey">
+                  <li><span>输入</span><strong>声音片段</strong><p>方言、故事、叮嘱、环境声和老照片。</p></li>
+                  <li><span>参与</span><strong>倾听与回信</strong><p>按人物或主题收听，晚辈继续留下回应。</p></li>
+                  <li><span>留下</span><strong>家庭声音谱</strong><p>声音与回信互相连接，形成代际档案。</p></li>
+                </ol>
+              </article>
+
+              <article class="effect-preview-panel" id="effect-panel-reply" data-effect-panel="reply" role="region" aria-labelledby="effect-tab-reply" hidden>
+                <header><span>03 · 被理解</span><div><h4>给低谷自己的回信</h4><p>不做情绪评分，让过去与现在在同一页平等相遇。</p></div></header>
+                <div class="effect-mock effect-mock-reply" aria-label="给低谷自己的回信成品示意">
+                  <div class="effect-mock-bar"><strong>A LETTER ACROSS TIME</strong><small>仅本人可见 · 示意数据</small></div>
+                  <div class="reply-diptych">
+                    <article><small>来自那时 · 2023.11</small><b>“我不知道还要撑多久。”</b><p>今天没有答案，只留下当时房间的声音与一张没有寄出的照片。</p></article>
+                    <span aria-hidden="true">→</span>
+                    <article><small>来自现在 · 2026.08</small><b>“你不需要证明那段难过值得。”</b><p>我会先坐在这里，承认那时已经尽力，再告诉你后来发生了什么。</p></article>
+                  </div>
+                  <div class="reply-seal"><span>不评判</span><span>不公开</span><span>由本人决定何时重读</span></div>
+                </div>
+                <ol class="effect-journey">
+                  <li><span>输入</span><strong>阶段切片</strong><p>当时的日记、声音、照片与未完成的话。</p></li>
+                  <li><span>参与</span><strong>同高度回应</strong><p>现在的自己只复述、承认并补充后来。</p></li>
+                  <li><span>留下</span><strong>私人时间回信</strong><p>形成仅本人控制开启时机的双时空档案。</p></li>
+                </ol>
+              </article>
+
+              <article class="effect-preview-panel" id="effect-panel-gallery" data-effect-panel="gallery" role="region" aria-labelledby="effect-tab-gallery" hidden>
+                <header><span>04 · 被肯定</span><div><h4>无名贡献者展厅</h4><p>奖杯之外，展示那些让团队得以继续运转的具体行动。</p></div></header>
+                <div class="effect-mock effect-mock-gallery" aria-label="无名贡献者展厅成品示意">
+                  <div class="effect-mock-bar"><strong>WORK BEHIND THE WORK</strong><small>本月展厅 · 示意数据</small></div>
+                  <div class="contribution-spotlight"><span>本月聚光</span><b>“她让每一次交接都有人接得住。”</b><small>来自 7 位同伴的具体证据</small></div>
+                  <div class="contribution-grid"><article><b>维护</b><span>13</span><small>修复与整理</small></article><article><b>倾听</b><span>08</span><small>情绪与协作</small></article><article><b>补位</b><span>11</span><small>无人看见的接手</small></article><article><b>传递</b><span>06</span><small>经验与方法</small></article></div>
+                </div>
+                <ol class="effect-journey">
+                  <li><span>输入</span><strong>同伴证据</strong><p>一句具体描述、一次行动、一个被维护的细节。</p></li>
+                  <li><span>参与</span><strong>分类与共证</strong><p>成员补充事实，而不是只发送泛化表扬。</p></li>
+                  <li><span>留下</span><strong>贡献年鉴</strong><p>隐形劳动被持续记录，并能被回看与引用。</p></li>
+                </ol>
+              </article>
+
+              <article class="effect-preview-panel" id="effect-panel-distance" data-effect-panel="distance" role="region" aria-labelledby="effect-tab-distance" hidden>
+                <header><span>05 · 被陪伴</span><div><h4>异地星图</h4><p>不要求即时在线，让两座城市的普通一天自己连成星座。</p></div></header>
+                <div class="effect-mock effect-mock-distance" aria-label="异地星图成品示意">
+                  <div class="effect-mock-bar"><strong>TWO CITIES, ONE DAY</strong><small>成都 ↔ 上海 · 示意数据</small></div>
+                  <div class="distance-cities"><article><small>成都 · 19:12</small><b>雨后 21°C</b><span>下班路上买了桂花</span></article><div class="distance-route" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div><article><small>上海 · 19:12</small><b>晚风 27°C</b><span>阳台的薄荷长高了</span></article></div>
+                  <div class="distance-routines"><span>07:40 · 同时出门</span><span>12:26 · 一份午餐</span><span>22:10 · 两段夜晚声音</span></div>
+                </div>
+                <ol class="effect-journey">
+                  <li><span>输入</span><strong>两地日常</strong><p>天气、声音、照片、路线和不必即时回复的小事。</p></li>
+                  <li><span>参与</span><strong>平行记录</strong><p>各自在方便的时刻留下一个生活节点。</p></li>
+                  <li><span>留下</span><strong>共同生活星图</strong><p>距离被日常证据连接，而不是被通话次数衡量。</p></li>
+                </ol>
+              </article>
+
+              <article class="effect-preview-panel" id="effect-panel-welcome" data-effect-panel="welcome" role="region" aria-labelledby="effect-tab-welcome" hidden>
+                <header><span>06 · 有归属</span><div><h4>新成员欢迎航线</h4><p>不是制度清单，而是一条由真实成员留下、又被新人继续改写的路线。</p></div></header>
+                <div class="effect-mock effect-mock-welcome" aria-label="新成员欢迎航线成品示意">
+                  <div class="effect-mock-bar"><strong>YOUR FIRST ROUTE</strong><small>社区工作室 · 示意数据</small></div>
+                  <div class="welcome-route">
+                    <article><span>01</span><b>找到那只蓝杯子</b><small>小林留下：这里的第一杯茶</small></article>
+                    <i aria-hidden="true"></i>
+                    <article><span>02</span><b>问一个真实问题</b><small>不用证明你已经懂了</small></article>
+                    <i aria-hidden="true"></i>
+                    <article class="is-open"><span>03</span><b>留下你的节点</b><small>给下一位新成员一条线索</small></article>
+                  </div>
+                  <p class="welcome-seat"><span>为你保留的位置</span><strong>你不只被加入名单，也能改变这条路线。</strong></p>
+                </div>
+                <ol class="effect-journey">
+                  <li><span>输入</span><strong>成员线索</strong><p>个人物件、真实习惯、空间故事与第一天建议。</p></li>
+                  <li><span>参与</span><strong>轻量探索</strong><p>新人沿路线认识人和文化，并留下自己的节点。</p></li>
+                  <li><span>留下</span><strong>生长的欢迎地图</strong><p>每一位新人都成为下一次欢迎的一部分。</p></li>
+                </ol>
+              </article>
+
+              <article class="effect-preview-panel" id="effect-panel-adoption" data-effect-panel="adoption" role="region" aria-labelledby="effect-tab-adoption" hidden>
+                <header><span>07 · 有仪式感</span><div><h4>领养纪念日</h4><p>每年重复同一个温柔动作，让共同生活形成时间纹理。</p></div></header>
+                <div class="effect-mock effect-mock-adoption" aria-label="领养纪念日成品示意">
+                  <div class="effect-mock-bar"><strong>WE CHOSE EACH OTHER</strong><small>第 4 年 · 示意数据</small></div>
+                  <div class="adoption-ritual">
+                    <div class="ritual-ring"><span>🐾</span><small>2026</small></div>
+                    <div class="ritual-items"><article><b>第一条项圈</b><small>被保存的起点</small></article><article><b>今年的爪印</b><small>重复一次共同仪式</small></article><article><b>最喜欢的路线</b><small>这一年新增的记忆</small></article></div>
+                  </div>
+                  <div class="ritual-years"><span>2023</span><i></i><span>2024</span><i></i><span>2025</span><i></i><span class="is-current">2026</span></div>
+                </div>
+                <ol class="effect-journey">
+                  <li><span>输入</span><strong>共同物件</strong><p>旧项圈、玩具、爪印、路线和照护者的声音。</p></li>
+                  <li><span>参与</span><strong>年度重复</strong><p>每年选择一个动作、一件旧物和一段新记忆。</p></li>
+                  <li><span>留下</span><strong>共同生命档案</strong><p>关系被表达为双向选择，而不是所有权记录。</p></li>
+                </ol>
+              </article>
+
+              <article class="effect-preview-panel" id="effect-panel-retirement" data-effect-panel="retirement" role="region" aria-labelledby="effect-tab-retirement" hidden>
+                <header><span>08 · 告别与重启</span><div><h4>退休后的第一站</h4><p>先为职业阶段收束，再由本人决定下一段生活的站名。</p></div></header>
+                <div class="effect-mock effect-mock-retirement" aria-label="退休后的第一站成品示意">
+                  <div class="effect-mock-bar"><strong>THE FIRST STOP AFTER</strong><small>路线由本人命名 · 示意数据</small></div>
+                  <div class="retirement-ticket"><div><small>完成的阶段</small><b>工作钥匙已存档</b><span>1989 — 2026</span></div><em>→</em><div><small>即将出发</small><b>第一站：重新学习</b><span>可随时改签</span></div></div>
+                  <div class="future-stops"><article><span>01</span><b>慢一点的早晨</b></article><article><span>02</span><b>第一次陶艺课</b></article><article><span>03</span><b>未命名的下一站</b></article></div>
+                </div>
+                <ol class="effect-journey">
+                  <li><span>输入</span><strong>阶段证据</strong><p>工作物件、同伴留言、重要节点与未完成愿望。</p></li>
+                  <li><span>参与</span><strong>本人命名路线</strong><p>退休者选择保留什么，并亲自修改未来站点。</p></li>
+                  <li><span>留下</span><strong>收束册与路线册</strong><p>过去被妥善保存，未来仍保持开放和可改写。</p></li>
+                </ol>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <section class="idea-composer" id="idea-composer" aria-labelledby="idea-composer-title">
+          <div class="idea-composer-heading">
+            <div>
+              <p class="eyebrow">创意组合器</p>
+              <h3 id="idea-composer-title">不只浏览案例，直接组合你的下一个方向</h3>
+            </div>
+            <p>从对象、情绪价值和产品母型各选一项。页面会把三者翻译为概念名、核心创意、推荐画面、产品目标和主观意愿，形成一份可以继续讨论或交给生图的创意简报。</p>
+          </div>
+
+          <aside class="idea-composer-boundary" aria-label="创意组合器边界">
+            <span>8 × 8 × 6 = 384</span>
+            <p><strong>这是规则组合工具，不是 AI 生成器。</strong>结果来自本页预设的创意映射，用于扩大讨论范围；它不会自动验证市场需求、情绪效果或商业可行性。</p>
+          </aside>
+
+          <div class="idea-composer-shell">
+            <div class="idea-composer-controls">
+              <section class="idea-option-group" aria-labelledby="idea-audience-label">
+                <header><span>01</span><div><h4 id="idea-audience-label">对象</h4><p>谁需要被认真对待？</p></div></header>
+                <div class="idea-option-list" role="group" aria-labelledby="idea-audience-label">
+                  <button type="button" data-idea-group="audience" data-idea-key="partner" aria-pressed="true" tabindex="0">伴侣</button>
+                  <button type="button" data-idea-group="audience" data-idea-key="elder" aria-pressed="false" tabindex="-1">父母长辈</button>
+                  <button type="button" data-idea-group="audience" data-idea-key="friend" aria-pressed="false" tabindex="-1">朋友</button>
+                  <button type="button" data-idea-group="audience" data-idea-key="self" aria-pressed="false" tabindex="-1">自己</button>
+                  <button type="button" data-idea-group="audience" data-idea-key="pet" aria-pressed="false" tabindex="-1">宠物</button>
+                  <button type="button" data-idea-group="audience" data-idea-key="team" aria-pressed="false" tabindex="-1">团队社群</button>
+                  <button type="button" data-idea-group="audience" data-idea-key="brand" aria-pressed="false" tabindex="-1">品牌客户</button>
+                  <button type="button" data-idea-group="audience" data-idea-key="place" aria-pressed="false" tabindex="-1">城市文化</button>
+                </div>
+              </section>
+
+              <section class="idea-option-group" aria-labelledby="idea-value-label">
+                <header><span>02</span><div><h4 id="idea-value-label">情绪价值</h4><p>希望对方被怎样回应？</p></div></header>
+                <div class="idea-option-list" role="group" aria-labelledby="idea-value-label">
+                  <button type="button" data-idea-group="value" data-idea-key="seen" aria-pressed="true" tabindex="0">被看见</button>
+                  <button type="button" data-idea-group="value" data-idea-key="remembered" aria-pressed="false" tabindex="-1">被记住</button>
+                  <button type="button" data-idea-group="value" data-idea-key="understood" aria-pressed="false" tabindex="-1">被理解</button>
+                  <button type="button" data-idea-group="value" data-idea-key="affirmed" aria-pressed="false" tabindex="-1">被肯定</button>
+                  <button type="button" data-idea-group="value" data-idea-key="accompanied" aria-pressed="false" tabindex="-1">被陪伴</button>
+                  <button type="button" data-idea-group="value" data-idea-key="belonging" aria-pressed="false" tabindex="-1">有归属</button>
+                  <button type="button" data-idea-group="value" data-idea-key="ritual" aria-pressed="false" tabindex="-1">有仪式感</button>
+                  <button type="button" data-idea-group="value" data-idea-key="restart" aria-pressed="false" tabindex="-1">告别重启</button>
+                </div>
+              </section>
+
+              <section class="idea-option-group" aria-labelledby="idea-archetype-label">
+                <header><span>03</span><div><h4 id="idea-archetype-label">产品母型</h4><p>用什么机制把价值变得可见？</p></div></header>
+                <div class="idea-option-list" role="group" aria-labelledby="idea-archetype-label">
+                  <button type="button" data-idea-group="archetype" data-idea-key="archive" aria-pressed="true" tabindex="0">证据档案</button>
+                  <button type="button" data-idea-group="archetype" data-idea-key="reply" aria-pressed="false" tabindex="-1">时间回信</button>
+                  <button type="button" data-idea-group="archetype" data-idea-key="map" aria-pressed="false" tabindex="-1">共创地图</button>
+                  <button type="button" data-idea-group="archetype" data-idea-key="ceremony" aria-pressed="false" tabindex="-1">重复仪式</button>
+                  <button type="button" data-idea-group="archetype" data-idea-key="route" aria-pressed="false" tabindex="-1">变化路线</button>
+                  <button type="button" data-idea-group="archetype" data-idea-key="ambient" aria-pressed="false" tabindex="-1">环境陪伴</button>
+                </div>
+              </section>
+            </div>
+
+            <article class="idea-composer-result" data-idea-value="seen">
+              <p class="visually-hidden" id="idea-live-status" role="status" aria-live="polite"></p>
+              <div class="idea-composer-result-topline"><span>COMPOSED CONCEPT</span><small id="idea-combination-count">方向 001 / 384</small></div>
+              <div class="idea-composer-diagram" aria-label="当前创意组合">
+                <span id="idea-node-audience">伴侣</span><i aria-hidden="true">×</i><span id="idea-node-value">被看见</span><i aria-hidden="true">×</i><span id="idea-node-archetype">证据档案</span>
+              </div>
+              <div class="idea-composer-concept">
+                <p>生成的概念方向</p>
+                <h4 id="idea-result-title">伴侣的日常证据档案</h4>
+                <p id="idea-result-summary">把共同生活里的物件、路线与习惯整理为可补充的私人展览，让“被看见”拥有具体证据。</p>
+              </div>
+              <dl class="idea-composer-brief-grid">
+                <div><dt>核心创意</dt><dd id="idea-result-core">收集两个人反复出现却容易被忽略的生活证据，并让双方补上各自记得的细节。</dd></div>
+                <div><dt>推荐画面</dt><dd id="idea-result-visual">一座由杯子、钥匙、通勤路线与便签组成的小型私人展厅，人物不是摆拍，而是在证据之间认出彼此。</dd></div>
+                <div><dt>产品目标</dt><dd id="idea-result-goal">用具体证据表达持续关注，让亲密关系拥有可以继续增加的共同档案。</dd></div>
+                <div><dt>主观意愿</dt><dd id="idea-result-intent">“我希望你知道，你的日常真的被我认真看见。”</dd></div>
+              </dl>
+              <pre id="idea-brief-text" hidden>创意方向：伴侣的日常证据档案</pre>
+              <div class="idea-composer-actions">
+                <button type="button" class="idea-shuffle-button" data-idea-shuffle>换一组组合</button>
+                <button type="button" class="idea-copy-button" data-copy="idea-brief-text" data-copy-kind="idea" data-copy-status="idea-copy-status">复制创意简报</button>
+              </div>
+              <p class="idea-copy-status" id="idea-copy-status" role="status" aria-live="polite">选择任意组合后，可以复制完整简报继续改写。</p>
+            </article>
+          </div>
+        </section>
+
+        <div class="derivative-subheading derivative-ideas-heading">
+          <div>
+            <p class="eyebrow">20 个衍生种子</p>
+            <h3>从“祝福视频”衍生成关系纪念、疗愈、传承与共同创作</h3>
+          </div>
+          <p>这些仍是概念种子，不是完成脚本。每个种子都从一种真实关系和一种情绪价值出发。</p>
+        </div>
+
+        <div class="derivative-idea-groups">
+          <article class="derivative-group">
+            <header><span>A</span><div><p>Love &amp; companionship</p><h3>爱与陪伴</h3></div></header>
+            <ul>
+              <li><h4>普通日子档案馆</h4><p>把两个人最不起眼的习惯变成展品，证明亲密藏在重复里。</p><small>伴侣 × 被看见 × 日常证据</small></li>
+              <li><h4>异地星图</h4><p>两座城市每天亮起一颗共同经历的星，距离最终连成一条回家航线。</p><small>伴侣 × 被陪伴 × 距离隐喻</small></li>
+              <li><h4>没说出口的谢谢</h4><p>朋友曾经做过的小事变成路标，重新走一遍才看见它们的重量。</p><small>朋友 × 被肯定 × 回看</small></li>
+              <li><h4>两个人的选择树</h4><p>每次共同选择长出一根枝条，不完美的决定也共同组成今天。</p><small>伴侣 × 归属 × 成长隐喻</small></li>
+            </ul>
+          </article>
+
+          <article class="derivative-group">
+            <header><span>B</span><div><p>Family &amp; legacy</p><h3>家庭与传承</h3></div></header>
+            <ul>
+              <li><h4>父母青春放映机</h4><p>不从“成为父母”开始，而是还原他们年轻时的朋友、梦想和第一次。</p><small>长辈 × 被理解 × 青春重现</small></li>
+              <li><h4>祖辈声音邮局</h4><p>口头禅、方言和家常叮嘱被寄往未来，成为后代可以再次打开的家书。</p><small>祖辈 × 被记住 × 声音档案</small></li>
+              <li><h4>家庭味道迁徙图</h4><p>一道菜随着家人搬家、离乡和团聚改变，味道成为家庭迁徙地图。</p><small>家庭 × 归属 × 食物记忆</small></li>
+              <li><h4>退休后的第一站</h4><p>不做职业总结，而是把退休视为一列刚刚出发、可以重新选站的车。</p><small>长辈 × 重新开始 × 新旅程</small></li>
+            </ul>
+          </article>
+
+          <article class="derivative-group">
+            <header><span>C</span><div><p>Self &amp; healing</p><h3>自我与疗愈</h3></div></header>
+            <ul>
+              <li><h4>给低谷自己的回信</h4><p>现在的自己不去教育过去，只告诉那时的自己：后来哪些事慢慢变好了。</p><small>自己 × 被陪伴 × 时间回信</small></li>
+              <li><h4>一年勇气账本</h4><p>不记录成绩，只收藏每一次“虽然害怕但还是做了”的微小证据。</p><small>自己 × 被肯定 × 证据收藏</small></li>
+              <li><h4>未完成愿望重启器</h4><p>旧愿望不被判定失败，而是被拆成可以用新身份再次启动的小部件。</p><small>自己 × 重启 × 修复隐喻</small></li>
+              <li><h4>和过去的自己散步</h4><p>不同年龄的自己共同走过一条路，交换各自当时最需要听见的话。</p><small>自己 × 被理解 × 多时态对话</small></li>
+            </ul>
+          </article>
+
+          <article class="derivative-group">
+            <header><span>D</span><div><p>Pets &amp; farewell</p><h3>宠物与告别</h3></div></header>
+            <ul>
+              <li><h4>宠物视角的一生</h4><p>从门口、饭碗和散步路线看家庭变化，让陪伴者成为故事讲述者。</p><small>宠物 × 被记住 × 视角转换</small></li>
+              <li><h4>领养纪念日</h4><p>不是庆祝“拥有”，而是回看两个生命如何互相选择并改变彼此。</p><small>宠物 × 归属 × 双向选择</small></li>
+              <li><h4>星球守护员</h4><p>离开的宠物住进一颗熟悉的小星球，继续保管家里的声音和习惯。</p><small>宠物 × 告别 × 守护隐喻</small></li>
+              <li><h4>最后一封散步邀请</h4><p>沿最熟悉的路线完成一次告别，把每个停留地点变成感谢。</p><small>宠物 × 仪式感 × 路线纪念</small></li>
+            </ul>
+          </article>
+
+          <article class="derivative-group">
+            <header><span>E</span><div><p>Team, community &amp; place</p><h3>团队、品牌与地方</h3></div></header>
+            <ul>
+              <li><h4>无名贡献者展厅</h4><p>把项目中没写在奖杯上的维护、倾听和补位变成真正的主展品。</p><small>团队 × 被看见 × 贡献档案</small></li>
+              <li><h4>新成员欢迎航线</h4><p>老成员留下自己的第一天线索，让新成员沿线认识团队的真实文化。</p><small>团队 × 归属 × 共同引导</small></li>
+              <li><h4>客户共同完成的产品年鉴</h4><p>不讲品牌自传，而是记录用户怎样参与改变产品和彼此的生活。</p><small>品牌 × 被重视 × 共创叙事</small></li>
+              <li><h4>城市小店记忆地图</h4><p>居民提交一句记忆，逐渐拼出一张由情感而不是地标组成的城市地图。</p><small>地方 × 身份认同 × 集体记忆</small></li>
+            </ul>
+          </article>
+        </div>
+
+        <div class="derivative-takeaway">
+          <p class="eyebrow">迁移原则</p>
+          <h3>不要只替换称呼，要替换关系逻辑</h3>
+          <p>从儿童生日迁移到其他对象时，至少要重新定义：为什么此刻要表达、对方真正缺少什么感受、哪些具体证据只属于这段关系，以及什么形式能让对方参与或保存。完成这些之后，风格才有意义。</p>
+        </div>
+      </section>
+
+      <section class="section result-section" id="result">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">08 · 生成效果</p>
+            <h2>上游公开样片：折纸材质与定格节奏</h2>
+          </div>
+          <p>这段视频由上游仓库发布，用来展示 Prompt 交给外部视频模型后的可能效果；它不是本网页实时生成的内容。</p>
+        </div>
+
+        <div class="result-layout">
+          <figure class="video-frame">
+            <div class="video-label"><span>Upstream sample</span><span>1280 × 720 · 20.1s</span></div>
+            <video controls preload="metadata" poster="https://raw.githubusercontent.com/kaomei/kid-papercraft/3ff307c51377b2ce8378106ac95782215130f3e0/assets/readme/hero-cover.png">
+              <source src="https://raw.githubusercontent.com/kaomei/kid-papercraft/3ff307c51377b2ce8378106ac95782215130f3e0/assets/readme/spongebob-birthday-demo.mp4" type="video/mp4">
+              当前浏览器无法播放该视频。请
+              <a href="https://github.com/kaomei/kid-papercraft/blob/main/assets/readme/spongebob-birthday-demo.mp4">在 GitHub 查看样片</a>。
+            </video>
+            <figcaption>
+              海绵宝宝主题折纸定格样片。来源：上游仓库固定提交 <code>3ff307c</code>。
+              <a href="https://github.com/kaomei/kid-papercraft/blob/3ff307c51377b2ce8378106ac95782215130f3e0/assets/readme/spongebob-birthday-demo.mp4" target="_blank" rel="noreferrer">打开原文件 ↗</a>
+            </figcaption>
+          </figure>
+
+          <div class="result-notes">
+            <article>
+              <span class="note-marker note-marker-coral" aria-hidden="true"></span>
+              <div><h3>能看见什么</h3><p>纸张边缘、折痕、微缩布景、柔和灯光和逐帧式角色动作共同形成“手工定格”的视觉识别。</p></div>
+            </article>
+            <article>
+              <span class="note-marker note-marker-mint" aria-hidden="true"></span>
+              <div><h3>不能证明什么</h3><p>单个上游样片不能证明每次生成都能稳定呈现正确文字、孩子脸部或跨片段一致性。</p></div>
+            </article>
+            <article>
+              <span class="note-marker note-marker-yellow" aria-hidden="true"></span>
+              <div><h3>与本次样例的关系</h3><p>网页中的“安安”Prompt 是新的演示输入；上方视频是上游海绵宝宝样片，两者不是同一次生成。</p></div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section boundary-section" id="boundary">
+        <div class="section-heading section-heading-light">
+          <div>
+            <p class="eyebrow">09 · 边界</p>
+            <h2>它交付创作指令，不交付视频文件</h2>
+          </div>
+          <p>判断这个仓库是否适合你，关键是把“Skill 的能力”和“外部模型的能力”分开。</p>
+        </div>
+
+        <div class="boundary-grid">
+          <article class="boundary-card boundary-yes">
+            <p class="boundary-label"><span aria-hidden="true">✓</span> 仓库直接提供</p>
+            <h3>结构化 Prompt 套件</h3>
+            <ul>
+              <li>引导式信息收集</li>
+              <li>五套动画主题模板</li>
+              <li>三幕剧情与英文 Prompt</li>
+              <li>中文配音和剪辑建议</li>
+              <li>统一的折纸风格锚点</li>
+            </ul>
+          </article>
+          <article class="boundary-card boundary-no">
+            <p class="boundary-label"><span aria-hidden="true">×</span> 仓库不直接提供</p>
+            <h3>视频生产与交付系统</h3>
+            <ul>
+              <li>Gemini API 调用与费用管理</li>
+              <li>MP4、配音或字幕文件</li>
+              <li>三段视频自动拼接</li>
+              <li>人物一致性和质量保证</li>
+              <li>第三方角色商业授权</li>
+            </ul>
+          </article>
+        </div>
+
+        <div class="risk-note">
+          <span aria-hidden="true">!</span>
+          <p><strong>儿童隐私与版权：</strong>真实儿童照片应取得监护人同意并最小化保存；MIT 许可证不等于获得哆啦A梦、海绵宝宝等第三方角色的商业使用权。</p>
+        </div>
+      </section>
+
+      <section class="closing-section">
+        <p class="eyebrow">最终判断</p>
+        <h2>上游是小型 Prompt Skill；我们真正沉淀的是一套“关系型情绪内容”方法。</h2>
+        <p>它把“我希望你感到……”翻译为具体人物、关系动作、个人证据、场景和媒介，再形成可观看、可保存、可赠送的作品。真正产品化仍需补齐身份控制、分镜生成、合成剪辑、声音、评估、隐私治理与角色授权。</p>
+        <div class="closing-actions">
+          <a class="button button-primary" href="#idea-composer">组合一个创意方向</a>
+          <a class="button button-secondary" href="https://github.com/yydshly/0830_codex_project/blob/main/projects/kid-papercraft-demo/README.md">查看研究总览与索引</a>
+        </div>
+        <div class="closing-index" aria-label="研究文档索引">
+          <a href="https://github.com/yydshly/0830_codex_project/blob/main/projects/kid-papercraft-demo/docs/research-synthesis.md">沟通与结论汇总</a>
+          <a href="https://github.com/yydshly/0830_codex_project/blob/main/projects/kid-papercraft-demo/docs/real-test-ultraman-motion-identity-review.md">人物一致性实测</a>
+          <a href="https://github.com/yydshly/0830_codex_project/blob/main/projects/kid-papercraft-demo/docs/emotion-product-image-prompts.md">情绪产品图片 Prompt</a>
+          <a href="https://github.com/yydshly/0830_codex_project/blob/main/projects/kid-papercraft-demo/docs/frontend-delivery.md">页面验收记录</a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p>研究演示页面 · 不隶属于任何动画 IP 官方</p>
+      <div>
+        <a href="https://github.com/kaomei/kid-papercraft" target="_blank" rel="noreferrer">上游仓库 ↗</a>
+        <a href="https://github.com/yydshly/0830_codex_project/tree/main/projects/kid-papercraft-demo">研究记录</a>
+      </div>
+    </footer>
+
+    <script src="./app.js" defer></script>
+  </body>
+</html>
