@@ -1,7 +1,7 @@
 {
   "slug": "genart-skill-research",
-  "title": "genart-skill 能力研究",
-  "summary": "研究 genart-skill 如何以知识、作品协议和 Playwright 工具，把模型编写的 Canvas/WebGL 生成器变成可复现、可批量验收的系统；通过玩家事件、六产品、六场景和品牌生产闭环验证，并转为项目内 Codex Skill。",
+  "title": "genart-skill 线条生成艺术演示与研究",
+  "summary": "用一个可操作的线条艺术网页，演示 genart-skill 怎样指导 AI 编写生成器：换 seed 生成不同画面、用同一 seed 还原同一画面，并批量预览、检查和导出。线条效果由本项目实现，原库提供的是方法和工具。",
   "status": "paused",
   "tags": [
     "ai-skill",

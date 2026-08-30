@@ -65,6 +65,9 @@ async function waitForApplication(page, id) {
 }
 
 const desktop = await openPage({ width: 1440, height: 1000 });
+assert.match(await desktop.page.locator("h1").textContent(), /线条艺术/, "hero should first explain the visible line-art result");
+assert.match(await desktop.page.locator(".hero-lead").textContent(), /教 AI 编写生成艺术代码/, "hero should explain the Skill in plain language");
+assert.match(await desktop.page.locator(".statement-band").textContent(), /我们实现的线条生成艺术/, "page should distinguish our generator from the upstream Skill");
 assert.equal(await desktop.page.locator("#case-study").getAttribute("data-stage"), "0", "complete case should start at the incident");
 assert.match(await desktop.page.locator("#case-route-status").textContent(), /BLOCKED/);
 assert.equal(await desktop.page.locator("#case-fix").isDisabled(), true, "fix should require deterministic replay first");

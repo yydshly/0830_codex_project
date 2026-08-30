@@ -3,9 +3,9 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="用完整玩家事件、六个角色视角、真实 Canvas、像素摘要和系列普查，交互演示 genart-skill 的能力、边界与团队价值。">
+    <meta name="description" content="用一个可操作的线条艺术网页，直观演示 genart-skill 怎样指导 AI 生成、重画、批量检查和导出程序化艺术。">
     <meta name="theme-color" content="#f4f0e8">
-    <title>Genart Lab｜生成艺术 Skill 能力实证</title>
+    <title>Genart Lab｜用 Skill 做可重复的线条艺术</title>
     <link rel="icon" href="./favicon.svg" type="image/svg+xml">
     <script>
       document.documentElement.dataset.theme = localStorage.getItem("genart-theme") || "light";
@@ -19,7 +19,7 @@
       <nav class="nav-shell" aria-label="主导航">
         <a class="brand" href="#top" aria-label="Genart Lab 首页">
           <span class="brand-glyph" aria-hidden="true">G/A</span>
-          <span><strong>GENART LAB</strong><small>能力实证 · 不是文生图</small></span>
+          <span><strong>GENART LAB</strong><small>线条生成艺术 · 可重复绘制</small></span>
         </a>
         <div class="nav-links">
           <a href="#ability">能力</a>
@@ -41,13 +41,13 @@
     <main id="main-content">
       <section class="hero section-shell" id="top">
         <div class="hero-copy">
-          <p class="eyebrow"><span></span> HASH → PRNG → FEATURES → ARTWORK</p>
-          <h1>同一个 hash，<em>永远回到同一件作品。</em></h1>
+          <p class="eyebrow"><span></span> 输入编号 → 生成线条 → 保存作品</p>
+          <h1>输入一个编号，<em>画出一张线条艺术。</em></h1>
           <p class="hero-lead">
-            genart-skill 不负责“替你画一张图”。它让编码代理知道怎样把一个生成算法做成可重放、可批量观察、可验证、可发行的完整系列。
+            在这个演示里，genart-skill 可以先理解成一份教 AI 编写生成艺术代码的 Skill。我们用它做了一个线条生成器：换编号得到新画面，同一个编号随时画回原图，还能批量预览、检查和导出。
           </p>
           <div class="hero-actions">
-            <a class="button button-primary" href="#proof">亲手破坏确定性</a>
+            <a class="button button-primary" href="#proof">看同一张图怎样重画</a>
             <a class="button button-secondary" href="#use">直接使用我们的版本</a>
           </div>
           <dl class="hero-facts" aria-label="本页真实能力">
@@ -55,7 +55,7 @@
             <div><dt>12</dt><dd>实时系列样本</dd></div>
             <div><dt>5,000</dt><dd>浏览器特征普查</dd></div>
           </dl>
-          <p class="truth-note">本页所有作品由浏览器实时绘制，不是预生成截图。</p>
+          <p class="truth-note">本页线条由我们编写的生成器实时绘制；Skill 提供制作方法和检查方法。</p>
         </div>
 
         <div class="live-studio" aria-label="实时确定性生成艺术工作台">
@@ -109,8 +109,8 @@
 
       <section class="statement-band" aria-label="核心定位">
         <div class="section-shell statement-grid">
-          <p>它不是</p><strong>文生图模型</strong>
-          <p>它是</p><strong>生成算法的技术导演 + 质检台</strong>
+          <p>当前看到的效果</p><strong>我们实现的线条生成艺术</strong>
+          <p>原库提供的能力</p><strong>教 AI 怎么制作、重画和检查</strong>
         </div>
       </section>
 
