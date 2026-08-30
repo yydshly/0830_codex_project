@@ -1,0 +1,134 @@
+{
+  "captured_at": "2026-08-30T03:15:00+08:00",
+  "upstream_commit": "5b6c85c3cb1bbf72b5f4ce91365a4cd61a9fad39",
+  "upstream_version": "0.1.0",
+  "brand": "mard",
+  "method": "原创 SVG 经 Pindo 上传裁切流程转为 PNG，再在真实浏览器中运行生成或识别；输出图仅裁取 Pindo Canvas 的实际渲染区域。",
+  "cases": [
+    {
+      "id": "portrait-modes",
+      "scenario": "头像定制接单",
+      "user": "小型定制商",
+      "job": "客户发来头像，当天确认拼豆方案",
+      "constraint": "35×35、最多 16 色、4 块 29×29 底板内",
+      "done_definition": "得到可报价初稿，再人工确认五官与肤色",
+      "input": "samples/inputs/portrait-gradient.svg",
+      "input_sha256": "b0b136dc7fc5032ac05c34d074e43981b621aa37a69aa63e3567ecfceee4e3fc",
+      "settings": {
+        "width": 35,
+        "height": 35,
+        "max_colors": 16,
+        "background": "white",
+        "dithering": "none"
+      },
+      "observations": {
+        "fine": {
+          "actual_colors": 15,
+          "total_cells": 1225,
+          "top_usage": ["M08×240", "P18×154", "B22×136", "F01×109", "H06×100"],
+          "output": "samples/outputs/portrait-fine-35.png",
+          "output_sha256": "28501d622e593c96cb8253bae887d7a1e2fd94a6f4b46caa38a471b3368865ed"
+        },
+        "rough": {
+          "actual_colors": 15,
+          "total_cells": 1225,
+          "top_usage": ["M08×218", "F01×197", "P18×158", "B22×155", "H16×148"],
+          "output": "samples/outputs/portrait-rough-35.png",
+          "output_sha256": "d948f1e04ec3d0389e1e3b59033bed681d9f5c2c3d2b2b3166d3284363aba5b5"
+        },
+        "simple": {
+          "actual_colors": 15,
+          "total_cells": 1225,
+          "top_usage": ["F01×209", "M08×207", "B22×154", "H16×148", "P18×121"],
+          "output": "samples/outputs/portrait-simple-35.png",
+          "output_sha256": "34704751a3914d98acc2b88ac6e7f1e86e12ce66ccfbfeb86e27d81cf8ffba2d"
+        }
+      },
+      "conclusion": "三种模式改变采样、降噪和轮廓分配，但在此参数下都用了 15 色；模式名称不应被理解为必然减少实际色数。"
+    },
+    {
+      "id": "pixel-mascot",
+      "scenario": "亲子一小时挂件",
+      "user": "家长与孩子",
+      "job": "周末一小时完成一个角色挂件",
+      "constraint": "16×16、最多 8 色、单块底板、少换色",
+      "done_definition": "6 色、256 颗，备齐材料后可直接照图制作",
+      "input": "samples/inputs/pixel-mascot.svg",
+      "input_sha256": "1eac944abace8c1b88709bac59dd2a88c6410b50671d165827b9f412e88f671b",
+      "settings": {
+        "mode": "simple",
+        "width": 16,
+        "height": 16,
+        "max_colors": 8,
+        "background": "white"
+      },
+      "observations": {
+        "actual_colors": 6,
+        "total_cells": 256,
+        "boards_29x29": 1,
+        "top_usage": ["C12×131", "H13×40", "P16×31", "A08×28", "P19×16", "A26×10"],
+        "output": "samples/outputs/pixel-mascot-simple-16.png",
+        "output_sha256": "1692871fceeba86bb3bb51b57266393a9f16496b704171c05cfc485d0a2b6046"
+      },
+      "conclusion": "硬边和主体轮廓可保留；即使输入是少色像素素材，仍要主动限制颜色数，避免重采样产生额外近似色。"
+    },
+    {
+      "id": "grid-recognition",
+      "scenario": "工作坊复刻旧图",
+      "user": "工作坊老师",
+      "job": "复刻纸质旧图，准备一组同款活动材料",
+      "constraint": "已知原图 12×12，拍照可能倾斜，尺寸不能猜",
+      "done_definition": "人工确认 12×12 后，才能相信用量并批量备料",
+      "inputs": [
+        {
+          "path": "samples/inputs/grid-heart.svg",
+          "sha256": "349894c54db45fe1d233d2420ae99d2132264c971a82d576665a6ba55338b81d",
+          "known_grid": "12x12"
+        },
+        {
+          "path": "samples/inputs/grid-heart-skewed.svg",
+          "sha256": "f2f35f1a064e69b7ec0c3179b4f0fc67dac2149f96aee8950a551de055d90743",
+          "known_grid": "12x12",
+          "rotation_degrees": 9
+        }
+      ],
+      "observations": {
+        "front_view": {
+          "grid_source": "auto",
+          "reported_size": "13x13",
+          "actual_colors": 4,
+          "total_cells": 169,
+          "output": "samples/outputs/grid-heart-auto-13.png",
+          "output_sha256": "54fbe75b3e9e3fe3d2e5f8144f6cd53eb1968199f1d9db4b8d0c11947d65380d"
+        },
+        "skewed_view": {
+          "grid_source": "manual-cropped",
+          "manual_size": "12x12",
+          "actual_colors": 5,
+          "total_cells": 144,
+          "output": "samples/outputs/grid-heart-skewed-manual-12.png",
+          "output_sha256": "d42b6ea31bb6c86fd8441d7d9d870092fc0180911085048aa83aa1e525f4b019"
+        }
+      },
+      "conclusion": "正视图能触发自动网格检测，但把已知 12x12 报成 13x13；旋转 9° 后退回裁边加手工宽高均分。自动识别结果必须人工核对尺寸。"
+    },
+    {
+      "id": "focus-integration",
+      "scenario": "大图分批续做",
+      "user": "分多天制作大图的玩家",
+      "job": "收工后再次打开项目，立刻知道从哪里继续",
+      "constraint": "当前只验证 12×12 夹具，主生成页没有入口与数据写入",
+      "done_definition": "夹具中一次完成背景 98 颗；真实项目续做尚未接通",
+      "source_observation": {
+        "consumer": "app/focus/page.tsx reads localStorage key pindo-focus-data",
+        "producer_search": "no writer or main-page route entry found in fixed commit"
+      },
+      "browser_observation": {
+        "direct_open_after_generation": "没有图纸数据，请先生成图纸",
+        "manual_fixture": "12x12, 3 colors, 144 cells",
+        "connected_region_click": "H18 background 98/98; total progress 98/144 (68%)"
+      },
+      "conclusion": "Focus 页的计时、颜色列表和四连通区域完成功能可运行，但固定提交中的主生成页没有写入所需数据，也没有进入入口，当前属于未接通的代码能力。"
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="480" height="480" viewBox="0 0 480 480" shape-rendering="crispEdges">
+  <defs>
+    <pattern id="grid" width="36" height="36" patternUnits="userSpaceOnUse">
+      <path d="M36 0H0V36" fill="none" stroke="#5a554d" stroke-width="2" />
+    </pattern>
+  </defs>
+  <rect width="480" height="480" fill="#f2ede2" />
+  <g transform="translate(24 24)">
+    <rect width="432" height="432" fill="#fffaf0" />
+    <g fill="#dc5b4d">
+      <rect x="72" y="72" width="108" height="36" />
+      <rect x="252" y="72" width="108" height="36" />
+      <rect x="36" y="108" width="360" height="72" />
+      <rect x="72" y="180" width="288" height="36" />
+      <rect x="108" y="216" width="216" height="36" />
+      <rect x="144" y="252" width="144" height="36" />
+      <rect x="180" y="288" width="72" height="36" />
+    </g>
+    <g fill="#f5b84b">
+      <rect x="108" y="108" width="36" height="36" />
+      <rect x="288" y="108" width="36" height="36" />
+      <rect x="180" y="180" width="72" height="36" />
+    </g>
+    <rect width="432" height="432" fill="url(#grid)" />
+    <rect x="0" y="0" width="432" height="432" fill="none" stroke="#5a554d" stroke-width="3" />
+  </g>
+</svg>

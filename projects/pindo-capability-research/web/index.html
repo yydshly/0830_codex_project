@@ -1,0 +1,1228 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="从零理解 Pindo 的真实能力，并体验一套记忆引擎如何形成单灯、九灯与自由星群三种氛围：让人物、照片、纪念物与短句在柔光中随机显影。">
+  <title>Pindo 能力研究｜先搞懂拼豆是什么</title>
+  <link rel="stylesheet" href="styles.css?rev=15">
+  <script src="app.js?rev=15" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">跳到主要内容</a>
+
+  <header class="topbar">
+    <a class="brand" href="../../" aria-label="返回 0830 Research Lab 首页">
+      <span class="brand-mark" aria-hidden="true"></span>
+      <span>0830 / FIELD NOTE 03</span>
+    </a>
+    <nav aria-label="页面导航">
+      <a href="#what">拼豆是什么</a>
+      <a href="#samples">场景样例</a>
+      <a href="#product-directions">产品方向</a>
+      <a href="#element-world">万物拼装</a>
+      <a href="#life-product-lines">生活产品</a>
+      <a href="#pindo">Pindo 做什么</a>
+      <a href="#evidence">实测证据</a>
+    </nav>
+    <a class="source-link" href="https://github.com/LunarXuan/Pindo">上游源码 ↗</a>
+  </header>
+
+  <main id="main">
+    <section class="hero" id="what">
+      <div class="hero-copy">
+        <p class="eyebrow"><span>01</span> FROM ZERO</p>
+        <h1>先别急着看算法：<br><em>拼豆</em>到底是什么？</h1>
+        <p class="lead">拼豆是一种像素手工。把一颗颗带孔的彩色塑料小圆珠，按图纸摆到钉板上，再隔着熨烫纸加热粘合。</p>
+
+        <div class="definition" aria-label="拼豆的组成">
+          <span><i class="mini-bead coral" aria-hidden="true"></i>彩色塑料珠</span>
+          <b>＋</b>
+          <span><i class="mini-board" aria-hidden="true"></i>带钉底板</span>
+          <b>＋</b>
+          <span><i class="mini-iron" aria-hidden="true">⌁</i>熨烫定型</span>
+        </div>
+
+        <div class="plain-answer">
+          <span class="answer-label">一句人话</span>
+          <p><strong>它就是“用塑料小珠子做实体像素画”。</strong>Pindo 的工作，是把普通图片变成你能照着摆的格子图，并告诉你每种珠子要买多少颗。</p>
+        </div>
+      </div>
+
+      <div class="lab-card" aria-labelledby="lab-title">
+        <div class="lab-heading">
+          <div>
+            <p class="micro-label">CONCEPT DEMO</p>
+            <h2 id="lab-title">亲手切一次，你就懂了</h2>
+          </div>
+          <span class="live-badge"><i aria-hidden="true"></i>本地演示</span>
+        </div>
+
+        <div class="control-block">
+          <span class="control-label">先选一张图</span>
+          <div class="segmented" role="group" aria-label="选择演示图案">
+            <button type="button" data-pattern="cat" aria-pressed="true">猫咪</button>
+            <button type="button" data-pattern="heart" aria-pressed="false">爱心</button>
+            <button type="button" data-pattern="flower" aria-pressed="false">小花</button>
+          </div>
+        </div>
+
+        <figure class="board-stage">
+          <div class="board-caption">
+            <span id="board-title">猫咪 · 写实模式</span>
+            <span>14 × 14 颗</span>
+          </div>
+          <div class="bead-board" id="bead-board" role="img" aria-label="14 乘 14 的猫咪拼豆图案"></div>
+          <figcaption>研究页自制概念演示，用来解释模式差异；不是 Pindo 截图或真实算法输出。</figcaption>
+        </figure>
+
+        <div class="control-block mode-control">
+          <span class="control-label">再看 Pindo 怎样取舍</span>
+          <div class="mode-tabs" role="group" aria-label="选择处理模式">
+            <button type="button" data-mode="source" aria-pressed="false"><span>原图</span><small>连续色彩</small></button>
+            <button type="button" data-mode="fine" aria-pressed="true"><span>写实</span><small>保留细节</small></button>
+            <button type="button" data-mode="rough" aria-pressed="false"><span>主色</span><small>减少杂色</small></button>
+            <button type="button" data-mode="simple" aria-pressed="false"><span>清晰</span><small>强调轮廓</small></button>
+          </div>
+        </div>
+
+        <div class="mode-result" aria-live="polite">
+          <div>
+            <span class="result-kicker">这一步发生了什么</span>
+            <p id="mode-note">每个格子取原图覆盖区域的平均色，再匹配最接近的品牌拼豆色号。</p>
+          </div>
+          <dl class="mini-stats">
+            <div><dt>颜色</dt><dd id="distinct-colors">0</dd></div>
+            <div><dt>颗数</dt><dd id="total-beads">196</dd></div>
+            <div><dt>底板</dt><dd>1</dd></div>
+          </dl>
+        </div>
+
+        <div class="usage-wrap">
+          <span class="control-label">Pindo 还会给你一张采购清单</span>
+          <div class="usage-list" id="usage-list"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="craft-section page-section" aria-labelledby="craft-title">
+      <div class="section-intro">
+        <p class="eyebrow"><span>02</span> THE PHYSICAL CRAFT</p>
+        <h2 id="craft-title">软件之外，真实世界还要走四步</h2>
+        <p>理解这四步，才能明白为什么 Pindo 不只做“像素化”，还要处理色号、数量、底板和制作进度。</p>
+      </div>
+
+      <ol class="craft-steps">
+        <li>
+          <span class="step-no">01</span>
+          <div class="step-visual paper-grid" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+          <h3>看图纸</h3>
+          <p>一格代表一颗珠子；格内色号对应某品牌的具体颜色。</p>
+        </li>
+        <li>
+          <span class="step-no">02</span>
+          <div class="step-visual peg-demo" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+          <h3>摆珠子</h3>
+          <p>把塑料珠逐颗套在底板钉柱上，像拼一张实体像素图。</p>
+        </li>
+        <li>
+          <span class="step-no">03</span>
+          <div class="step-visual heat-demo" aria-hidden="true"><i>≈</i><i>≈</i><strong>▰</strong></div>
+          <h3>隔纸熨烫</h3>
+          <p>加热让珠子边缘熔合。熨斗步骤应由成人处理或监督。</p>
+        </li>
+        <li>
+          <span class="step-no">04</span>
+          <div class="step-visual finish-demo" aria-hidden="true"><span>♥</span></div>
+          <h3>冷却取下</h3>
+          <p>从底板取下，就得到挂件、杯垫、摆件或装饰片。</p>
+        </li>
+      </ol>
+    </section>
+
+    <section class="samples-section page-section" id="samples" aria-labelledby="samples-title">
+      <div class="section-intro split-intro">
+        <div>
+          <p class="eyebrow"><span>03</span> USE-CASE LAB</p>
+          <h2 id="samples-title">四个真实任务，看 Pindo 到底能不能帮上忙</h2>
+        </div>
+        <p>同一套算法进入不同任务，判断标准完全不同。下面都使用真实上游输出，从角色、约束、完成标准和实际结果理解它。</p>
+      </div>
+
+      <div class="sample-tabs" role="tablist" aria-label="选择 Pindo 使用场景">
+        <button id="sample-tab-portrait" type="button" role="tab" data-sample-case="portrait" aria-selected="true" aria-controls="sample-panel">
+          <span>01</span><strong>头像定制接单</strong><small>当天给客户初稿</small>
+        </button>
+        <button id="sample-tab-pixel" type="button" role="tab" data-sample-case="pixel" aria-selected="false" aria-controls="sample-panel" tabindex="-1">
+          <span>02</span><strong>亲子一小时挂件</strong><small>少换色、单底板</small>
+        </button>
+        <button id="sample-tab-recognize" type="button" role="tab" data-sample-case="recognize" aria-selected="false" aria-controls="sample-panel" tabindex="-1">
+          <span>03</span><strong>工作坊复刻旧图</strong><small>先确认行列尺寸</small>
+        </button>
+        <button id="sample-tab-focus" type="button" role="tab" data-sample-case="focus" aria-selected="false" aria-controls="sample-panel" tabindex="-1">
+          <span>04</span><strong>大图分批续做</strong><small>主流程尚未接通</small>
+        </button>
+      </div>
+
+      <article class="sample-stage" id="sample-panel" role="tabpanel" aria-labelledby="sample-tab-portrait" data-active-sample="portrait">
+        <div class="sample-visual-column">
+          <div class="sample-proof-line">
+            <span class="sample-proof" id="sample-proof">上游实测 · 5b6c85c</span>
+            <span id="sample-run-note">MARD · 35×35 · 最多 16 色</span>
+          </div>
+
+          <ol class="scenario-journey" id="scenario-journey" aria-label="当前场景的任务链">
+            <li class="is-done"><span>01</span><strong>客户头像</strong><small>收到创作素材</small></li>
+            <li class="is-done"><span>02</span><strong>Pindo 初稿</strong><small>15 色 · 1,225 格</small></li>
+            <li class="is-boundary"><span>03</span><strong>人工校图</strong><small>确认五官与肤色</small></li>
+            <li class="is-ready"><span>04</span><strong>报价初稿</strong><small>4 块底板内</small></li>
+          </ol>
+
+          <div class="sample-comparison">
+            <figure class="sample-figure">
+              <figcaption><span>INPUT</span><strong id="sample-input-label">原创人物插画</strong></figcaption>
+              <div class="sample-image-shell input-shell">
+                <img id="sample-input-image" src="assets/samples/portrait-gradient.svg" alt="原创人物插画输入">
+              </div>
+            </figure>
+
+            <div class="sample-transform" aria-hidden="true"><span>→</span><small>PINDO</small></div>
+
+            <figure class="sample-figure output-figure">
+              <figcaption><span>OUTPUT</span><strong id="sample-output-label">写实模式图纸</strong></figcaption>
+              <div class="sample-image-shell output-shell" id="sample-output-shell">
+                <img id="sample-output-image" src="assets/samples/portrait-fine-35.png" alt="Pindo 写实模式生成的 35×35 拼豆图纸">
+                <div class="focus-progress-demo" id="focus-progress-demo" hidden aria-hidden="true">
+                  <div><span>总进度</span><strong>98 / 144</strong><b>68%</b></div>
+                  <i><span></span></i>
+                  <ul><li><em class="focus-swatch cream"></em>H18 <b>98/98</b></li><li><em class="focus-swatch red"></em>F25 <b>0/42</b></li><li><em class="focus-swatch yellow"></em>H19 <b>0/4</b></li></ul>
+                </div>
+              </div>
+            </figure>
+          </div>
+
+          <div class="sample-variant-block">
+            <span id="sample-variant-label">创作模式</span>
+            <div class="sample-variants" id="sample-variants" role="group" aria-label="切换人物插画创作模式">
+              <button type="button" data-sample-variant="fine" aria-pressed="true">写实</button>
+              <button type="button" data-sample-variant="rough" aria-pressed="false">主色</button>
+              <button type="button" data-sample-variant="simple" aria-pressed="false">清晰</button>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="sample-readout" aria-live="polite">
+          <p class="micro-label" id="sample-kicker">SCENE 01 · PRIVATE PORTRAIT</p>
+          <h3 id="sample-title">把人物插画变成可采购、可摆放的图纸</h3>
+          <p id="sample-description">适合家庭照片、头像插画和小规模定制。它不会“理解人物”，而是把肤色、头发、五官和背景压到有限网格与品牌色号。</p>
+
+          <dl class="scenario-brief" aria-label="当前使用场景任务卡">
+            <div><dt>谁在用</dt><dd id="scenario-user">小型定制商</dd></div>
+            <div><dt>要完成</dt><dd id="scenario-job">客户发来头像，当天确认拼豆方案</dd></div>
+            <div><dt>现实约束</dt><dd id="scenario-constraint">35×35、最多 16 色、4 块底板内</dd></div>
+            <div><dt>完成标准</dt><dd id="scenario-done">先得到可报价初稿，再人工确认五官与肤色</dd></div>
+          </dl>
+
+          <dl class="sample-metrics" id="sample-metrics">
+            <div><dt>尺寸</dt><dd id="sample-size">35×35</dd></div>
+            <div><dt>实际色数</dt><dd id="sample-colors">15</dd></div>
+            <div><dt>总格数</dt><dd id="sample-cells">1,225</dd></div>
+            <div><dt>29×29 底板</dt><dd id="sample-boards">4</dd></div>
+          </dl>
+
+          <div class="sample-usage-block">
+            <span>用量最多的色号</span>
+            <ul id="sample-usage"><li>M08 ×240</li><li>P18 ×154</li><li>B22 ×136</li><li>F01 ×109</li><li>H06 ×100</li></ul>
+          </div>
+
+          <div class="sample-judgment">
+            <span>适用判断</span>
+            <p id="sample-judgment">可以快速得到可制作初稿；肖像辨识度优先时应比较写实与清晰，而不是只看模式名字。</p>
+          </div>
+          <div class="sample-boundary">
+            <span>这次暴露的边界</span>
+            <p id="sample-boundary">三种模式在该参数下都实际使用 15 色；“主色”改变颜色分配，但不保证自动减少最终色数。</p>
+          </div>
+
+          <a class="sample-input-link" id="sample-input-link" href="assets/samples/portrait-gradient.svg">查看原创输入 ↗</a>
+        </div>
+      </article>
+
+      <noscript>
+        <div class="sample-noscript">场景包括：头像定制接单、亲子一小时挂件、工作坊旧图复刻和大图分批续做；效果来自人物插画三模式、16×16 像素素材、12×12 旧图识别与手工夹具 Focus 的真实上游输出。</div>
+      </noscript>
+    </section>
+
+    <section class="product-section page-section" id="product-directions" aria-labelledby="product-title">
+      <div class="section-intro split-intro product-intro">
+        <div>
+          <p class="eyebrow"><span>04</span> PRODUCT OPPORTUNITY</p>
+          <h2 id="product-title">效果不好，不该只继续调模式</h2>
+        </div>
+        <p>当前输出更像“自动初稿”。真正的产品机会，是让用户能把它修对、买齐、做完，再把图纸复用或交付。</p>
+      </div>
+
+      <div class="quality-lab" id="quality-lab" aria-labelledby="quality-lab-title">
+        <div class="quality-lab-heading">
+          <div>
+            <p class="micro-label">QUALITY OPTIMIZATION STUDIO</p>
+            <h3 id="quality-lab-title">效果差，先判断是哪一层出了问题</h3>
+            <p>不是所有问题都靠“再换一个模式”解决。结构、色板、网格和修正闭环，需要四套不同的增强能力。</p>
+          </div>
+          <span>能力方案 · 非当前实测</span>
+        </div>
+
+        <div class="quality-workbench">
+          <div class="quality-issues" role="tablist" aria-label="选择要优化的质量问题" aria-orientation="vertical">
+            <p>你遇到的症状是？</p>
+            <button id="quality-tab-structure" type="button" role="tab" data-quality-pass="structure" aria-selected="true" aria-controls="quality-panel">
+              <span>01 · P0</span><strong>脸不像、轮廓丢了</strong><small>结构与语义保护</small>
+            </button>
+            <button id="quality-tab-palette" type="button" role="tab" data-quality-pass="palette" aria-selected="false" aria-controls="quality-panel" tabindex="-1">
+              <span>02 · P1</span><strong>颜色太碎、豆子太多</strong><small>色板与库存约束</small>
+            </button>
+            <button id="quality-tab-grid" type="button" role="tab" data-quality-pass="grid" aria-selected="false" aria-controls="quality-panel" tabindex="-1">
+              <span>03 · P0</span><strong>旧图行列识别错</strong><small>几何校正与置信度</small>
+            </button>
+            <button id="quality-tab-repair" type="button" role="tab" data-quality-pass="repair" aria-selected="false" aria-controls="quality-panel" tabindex="-1">
+              <span>04 · P0</span><strong>不满意只能重生成</strong><small>编辑、版本与终稿</small>
+            </button>
+          </div>
+
+          <article class="quality-panel" id="quality-panel" role="tabpanel" aria-labelledby="quality-tab-structure" data-active-quality="structure">
+            <div class="quality-panel-top">
+              <div class="quality-copy">
+                <div class="quality-topline"><span id="quality-priority">P0 · STRUCTURE FIDELITY</span><span id="quality-scope">算法 + 人工确认</span></div>
+                <p class="micro-label" id="quality-kicker">QUALITY PASS 01 · KEEP WHAT MATTERS</p>
+                <h3 id="quality-title">关键结构保护</h3>
+                <p id="quality-symptom">像素化之后人物还在，但眼睛、嘴和脸型可能失去辨识度。</p>
+                <div class="quality-root"><span>根因</span><p id="quality-root">当前算法按颜色、明暗和局部对比采样，不知道哪些格子承载人物身份。</p></div>
+              </div>
+              <figure class="quality-proof">
+                <img id="quality-image" src="assets/samples/portrait-simple-35.png" alt="Pindo 清晰模式生成的 35×35 人物拼豆图纸">
+                <figcaption><span id="quality-proof-label">当前实测 · 35×35 人物图纸</span><strong id="quality-proof-value">三种模式均为 15 色，仍需人工比较</strong></figcaption>
+              </figure>
+            </div>
+
+            <div class="quality-delta" aria-label="当前表现与增强目标对比">
+              <div>
+                <span>当前实测</span>
+                <strong id="quality-now-title">模式只能更换采样策略</strong>
+                <p id="quality-now">写实、主色、清晰会改变颜色分配，但不能保证关键五官被保留。</p>
+              </div>
+              <div>
+                <span>增强后目标 · 待实现验证</span>
+                <strong id="quality-target-title">先标关键区域，再生成</strong>
+                <p id="quality-target">眼睛、嘴和脸部边界获得更高权重；低置信度区域必须由用户确认。</p>
+              </div>
+            </div>
+
+            <ol class="quality-stack" id="quality-stack" aria-label="质量增强能力链">
+              <li><span>01 · 算法增强</span><strong>主体分割 + 关键结构保护</strong><small>人脸、宠物或文字边缘按多尺度采样</small></li>
+              <li><span>02 · 用户控制</span><strong>原图叠加 + 关键区域锁定</strong><small>框选必须保留的眼睛、嘴和轮廓</small></li>
+              <li><span>03 · 质量门槛</span><strong>辨识度检查</strong><small>导出前展示关键区域差异与低置信度</small></li>
+            </ol>
+
+            <div class="quality-validation">
+              <div><span>怎么判断真的变好</span><strong id="quality-metric">首次方案接受率、关键区域改动次数</strong></div>
+              <div><span>对应产品落点</span><strong id="quality-product">P0 · 图纸修复工作台</strong></div>
+            </div>
+          </article>
+        </div>
+      </div>
+
+      <div class="material-world" id="element-world" aria-labelledby="material-world-title">
+        <div class="material-world-heading">
+          <div>
+            <p class="micro-label">FROM BEAD TO MATERIAL GRAMMAR</p>
+            <h3 id="material-world-title">世界很大：不只用豆豆，也能用万物作为“像素”</h3>
+            <p>关键不是把珠子图标换成花朵，而是让系统理解每种元素怎样排列、怎样固定、能保存多久，以及最后要交付什么。</p>
+          </div>
+          <span>跨材料方向概念 · 非当前 Pindo 实测</span>
+        </div>
+
+        <ol class="material-engine" aria-label="跨材料拼装引擎的共同流程">
+          <li><span>01</span><strong>读懂目标图</strong><small>轮廓、层次、关键区域</small></li>
+          <li><span>02</span><strong>载入元素目录</strong><small>颜色、尺寸、形状、成本</small></li>
+          <li><span>03</span><strong>求解材料约束</strong><small>碰撞、连接、寿命与安全</small></li>
+          <li><span>04</span><strong>输出施工方案</strong><small>排布图、BOM、步骤与进度</small></li>
+        </ol>
+
+        <div class="material-workbench">
+          <div class="material-tabs" role="tablist" aria-label="选择一种实体拼装元素">
+            <p>你想用什么拼出画面？</p>
+            <button id="material-tab-flower" type="button" role="tab" data-material-world="flower" aria-selected="true" aria-controls="material-panel">
+              <span>01 · 活体</span><strong>花朵</strong><small>婚礼花墙 / 快闪装置</small>
+            </button>
+            <button id="material-tab-fruit" type="button" role="tab" data-material-world="fruit" aria-selected="false" aria-controls="material-panel" tabindex="-1">
+              <span>02 · 可食</span><strong>水果</strong><small>宴会陈列 / 食物艺术</small>
+            </button>
+            <button id="material-tab-leaf" type="button" role="tab" data-material-world="leaf" aria-selected="false" aria-controls="material-panel" tabindex="-1">
+              <span>03 · 自然</span><strong>叶片与种子</strong><small>生态课堂 / 季节装置</small>
+            </button>
+            <button id="material-tab-tile" type="button" role="tab" data-material-world="tile" aria-selected="false" aria-controls="material-panel" tabindex="-1">
+              <span>04 · 耐久</span><strong>瓷砖与木片</strong><small>壁画 / 空间饰面</small>
+            </button>
+            <button id="material-tab-light" type="button" role="tab" data-material-world="light" aria-selected="false" aria-controls="material-panel" tabindex="-1">
+              <span>05 · 动态</span><strong>灯光像素</strong><small>互动墙 / 舞台装置</small>
+            </button>
+            <button id="material-tab-button" type="button" role="tab" data-material-world="button" aria-selected="false" aria-controls="material-panel" tabindex="-1">
+              <span>06 · 触觉</span><strong>纽扣与布片</strong><small>穿戴 / 无障碍触图</small>
+            </button>
+          </div>
+
+          <article class="material-panel" id="material-panel" role="tabpanel" aria-labelledby="material-tab-flower" data-active-material="flower">
+            <div class="material-hero">
+              <figure class="material-visual">
+                <img id="material-image" src="assets/materials/flower-mosaic.webp" alt="由真实花朵排列成侧脸轮廓的跨材料方向概念照">
+                <figcaption><span id="material-visual-label">方向概念 · 鲜花头像装置</span><strong id="material-visual-state">元素会生长、萎蔫，也会替换</strong></figcaption>
+              </figure>
+              <div class="material-copy">
+                <div class="material-topline"><span id="material-category">LIVING MATERIAL · 活体材料</span><span id="material-horizon">产品跨度 · 近场</span></div>
+                <p class="micro-label" id="material-kicker">WORLD 01 · FLOWER MOSAIC</p>
+                <h3 id="material-title">花朵不是圆形像素，而是会呼吸的单元</h3>
+                <p id="material-description">花头大小不一、朝向不同，还会随时间变化。系统需要先选择花材，再根据轮廓、密度和观赏时长生成插花网格。</p>
+
+                <dl class="material-rules" aria-label="当前元素的材料语法">
+                  <div><dt>基本单元</dt><dd id="material-unit">2–6 cm 花头 / 枝材</dd></div>
+                  <div><dt>排列方式</dt><dd id="material-layout">簇状、放射、层叠</dd></div>
+                  <div><dt>连接方式</dt><dd id="material-join">花泥、网架、花艺铁丝</dd></div>
+                  <div><dt>生命周期</dt><dd id="material-life">鲜花 6–24h；干花数周</dd></div>
+                </dl>
+
+                <div class="material-risk"><span>这类材料新增的难题</span><p id="material-risk">同一颜色会受季节、批次和萎蔫影响；方案必须提供替代花材与现场补花策略。</p></div>
+              </div>
+            </div>
+
+            <div class="material-outcomes">
+              <div><span>适合的使用场景</span><strong id="material-scenes">婚礼花墙、品牌快闪、纪念仪式、橱窗陈列</strong></div>
+              <div><span>系统最终交付</span><strong id="material-output">花材桶数、替代花清单、分区插花图与保鲜时间表</strong></div>
+              <div><span>判断是否有价值</span><strong id="material-metric">现场安装时间、替代率、24 小时观赏完整度</strong></div>
+            </div>
+
+            <ol class="material-capabilities" id="material-capabilities" aria-label="当前材料需要新增的产品能力">
+              <li><span>01 · 元素目录</span><strong>花径、枝长、季节与新鲜度</strong><small>同色花材也不是可直接互换的色块</small></li>
+              <li><span>02 · 约束求解</span><strong>碰撞、朝向与密度规划</strong><small>让轮廓成立，同时保留花头呼吸空间</small></li>
+              <li><span>03 · 施工交付</span><strong>分区插花图与补花节奏</strong><small>按现场顺序而不是按屏幕像素输出</small></li>
+            </ol>
+
+            <p class="material-verdict"><span>对应产品方向</span><strong id="material-product">鲜花装置设计器 + 花材采购与施工单</strong></p>
+          </article>
+        </div>
+
+        <div class="material-more" aria-label="还可以扩展的其他实体元素">
+          <span>同一引擎还能接入</span>
+          <ul><li>积木</li><li>糖果</li><li>贝壳</li><li>瓶盖</li><li>种子</li><li>石子</li><li>纸片</li><li>金属片</li></ul>
+          <p>真正可复用的是“元素目录 + 约束求解 + 制作执行”，不是某一种材料的贴图。</p>
+        </div>
+      </div>
+
+      <div class="platform-matrix" id="product-matrix" aria-labelledby="product-matrix-title">
+        <div class="platform-heading">
+          <div>
+            <p class="micro-label">PRODUCT EXPANSION · WHO PAYS FOR WHAT</p>
+            <h3 id="product-matrix-title">创意扩展看“做什么”，<br>产品扩展看“卖给谁”。</h3>
+            <p>上面的材料实验回答还能用什么创作；这里换一个视角：客户是谁、购买什么产品、谁来付费、通过什么渠道成交，以及哪项指标证明这条产品线成立。</p>
+          </div>
+          <span>第 8 版产品组合提案 · 非当前上游能力</span>
+        </div>
+
+        <ol class="platform-layers business-questions" aria-label="产品扩展需要回答的四个问题">
+          <li><span>01 · CUSTOMER</span><strong>服务谁</strong><small>个人、商家、机构、项目团队或开发者</small></li>
+          <li><span>02 · OFFER</span><strong>交付什么</strong><small>工具、交易系统、SaaS、解决方案或平台能力</small></li>
+          <li><span>03 · REVENUE</span><strong>谁来付费</strong><small>订阅、交易抽成、席位授权、项目费或 API 用量</small></li>
+          <li><span>04 · GROWTH</span><strong>如何增长</strong><small>内容获客、商家渠道、机构销售、伙伴生态</small></li>
+        </ol>
+
+        <div class="product-line-lab business-product-lab">
+          <div class="product-line-tabs business-product-tabs" role="tablist" aria-label="比较五条产品扩展方向">
+            <p>选择一种产品形态</p>
+            <button id="line-tab-creator" type="button" role="tab" data-product-line="creator" aria-selected="true" aria-controls="product-line-panel">
+              <span>P1 · B2C</span><strong>Pindo Creator</strong><small>个人创作工具</small>
+            </button>
+            <button id="line-tab-merchant" type="button" role="tab" data-product-line="merchant" aria-selected="false" aria-controls="product-line-panel" tabindex="-1">
+              <span>P2 · B2B2C</span><strong>Pindo Merchant</strong><small>商家交易系统</small>
+            </button>
+            <button id="line-tab-workshop" type="button" role="tab" data-product-line="workshop" aria-selected="false" aria-controls="product-line-panel" tabindex="-1">
+              <span>P2 · B2B</span><strong>Pindo Workshop</strong><small>机构课程 SaaS</small>
+            </button>
+            <button id="line-tab-projects" type="button" role="tab" data-product-line="projects" aria-selected="false" aria-controls="product-line-panel" tabindex="-1">
+              <span>P3 · PRO</span><strong>Pindo Projects</strong><small>专业项目解决方案</small>
+            </button>
+            <button id="line-tab-platform" type="button" role="tab" data-product-line="platform" aria-selected="false" aria-controls="product-line-panel" tabindex="-1">
+              <span>P3 · ECOSYSTEM</span><strong>Pindo Platform</strong><small>开放平台与市场</small>
+            </button>
+          </div>
+
+          <article class="product-line-panel business-product-panel" id="product-line-panel" role="tabpanel" aria-labelledby="line-tab-creator" data-active-line="creator">
+            <div class="business-product-head">
+              <div class="product-line-topline"><span id="product-line-priority">P1 · 最先验证</span><span id="product-line-horizon">个人用户 / 小型卖家</span></div>
+              <p class="micro-label" id="product-line-kicker">PRODUCT 01 · CREATOR TOOL</p>
+              <h3 id="product-line-title">Pindo Creator</h3>
+              <p class="product-line-promise" id="product-line-promise">一款能把图片修成可制作图纸，并持续管理作品、材料与进度的个人创作工具。</p>
+            </div>
+
+            <dl class="business-product-brief" aria-label="当前产品线的客户与付费定义">
+              <div><dt>目标客户</dt><dd id="product-line-user">手作爱好者、定制卖家、重度创作者</dd></div>
+              <div><dt>付费方</dt><dd id="product-line-payer">个人用户或小型工作室</dd></div>
+              <div><dt>核心任务</dt><dd id="product-line-job">更快得到可制作终稿，并减少返工和缺料</dd></div>
+              <div><dt>当前替代</dt><dd id="product-line-alternative">手工描格、Excel、通用像素软件与纸笔清单</dd></div>
+            </dl>
+
+            <ol class="product-line-loop" id="product-line-loop" aria-label="当前产品线的使用闭环">
+              <li><span>01</span><strong>生成初稿</strong><small>图片进入确定性图纸</small></li>
+              <li><span>02</span><strong>修成终稿</strong><small>逐格编辑与版本确认</small></li>
+              <li><span>03</span><strong>准备材料</strong><small>库存、缺料与成本</small></li>
+              <li><span>04</span><strong>完成作品</strong><small>进度、导出与项目归档</small></li>
+            </ol>
+
+            <div class="product-line-details">
+              <div class="product-line-modules">
+                <span>客户真正购买的产品</span>
+                <ul id="product-line-modules"><li>可编辑图纸与原图对照</li><li>个人材料库存与缺料提醒</li><li>制作进度、断点续做与项目库</li><li>高清图纸、PDF 与专业导出</li></ul>
+              </div>
+              <dl class="product-line-economics">
+                <div><dt>收费方式</dt><dd id="product-line-business">免费基础版 + Pro 订阅 / 买断</dd></div>
+                <div><dt>获客渠道</dt><dd id="product-line-channel">模板搜索、教程内容、创作者分享、材料品牌联运</dd></div>
+                <div><dt>第一指标</dt><dd id="product-line-metric">每周完成作品数与免费到付费转化率</dd></div>
+                <div><dt>进入门槛</dt><dd id="product-line-dependency">P0 可编辑图纸、稳定项目格式、库存与 Focus 接通</dd></div>
+              </dl>
+            </div>
+
+            <p class="product-line-verdict"><span>产品判断</span><strong id="product-line-verdict">这是最小入口产品：单个用户不依赖供应链或机构采购，就能验证“愿不愿意为完成作品付费”。</strong></p>
+          </article>
+        </div>
+
+        <div class="business-ladder-map" aria-labelledby="business-ladder-title">
+          <div class="portfolio-heading">
+            <p class="micro-label">REVENUE LADDER</p>
+            <h4 id="business-ladder-title">产品扩展，本质是收入模式逐层变厚</h4>
+            <p>不要五条线同时开工。先让工具产生真实终稿和使用数据，再进入交易、机构、项目与平台收入。</p>
+          </div>
+          <ol class="business-ladder" aria-label="Pindo 的五层收入模式">
+            <li data-revenue-stage="tool" aria-current="step"><span>01</span><strong>工具收入</strong><small>订阅 / 买断</small><b>Creator</b></li>
+            <li data-revenue-stage="commerce"><span>02</span><strong>交易收入</strong><small>服务费 / 毛利 / 抽成</small><b>Merchant</b></li>
+            <li data-revenue-stage="saas"><span>03</span><strong>SaaS 收入</strong><small>席位 / 场地 / 年费</small><b>Workshop</b></li>
+            <li data-revenue-stage="solution"><span>04</span><strong>解决方案收入</strong><small>项目许可 / 实施服务</small><b>Projects</b></li>
+            <li data-revenue-stage="platform"><span>05</span><strong>平台收入</strong><small>API 用量 / 认证 / 市场抽成</small><b>Platform</b></li>
+          </ol>
+        </div>
+
+        <div class="matrix-roadmap business-roadmap" aria-labelledby="matrix-roadmap-title">
+          <div>
+            <p class="micro-label">PRODUCT ROUTE</p>
+            <h4 id="matrix-roadmap-title">先做单用户价值，再做组织和生态</h4>
+          </div>
+          <ol>
+            <li><span>P0</span><strong>产品底座</strong><small>可编辑图纸、项目格式、BOM、库存、Focus</small></li>
+            <li><span>P1</span><strong>Creator</strong><small>验证完成作品的频率、留存和个人付费</small></li>
+            <li><span>P2</span><strong>Merchant + Workshop</strong><small>验证交易收入与机构年度复用</small></li>
+            <li><span>P3</span><strong>Projects + Platform</strong><small>专业交付稳定后再开放 API、市场和伙伴生态</small></li>
+          </ol>
+          <p class="material-priority product-wedge"><span>建议切入口</span><strong>Creator Pro</strong><i>+</i><strong>Workshop Lite</strong><small>共用编辑、BOM 和进度底座；一个验证个人付费，一个验证批量复用，避免过早承担真实履约和开放平台成本。</small></p>
+        </div>
+      </div>
+
+      <section class="emotion-products" id="emotion-products" aria-labelledby="emotion-products-title">
+        <div class="emotion-heading">
+          <div>
+            <p class="micro-label">EMOTIONAL VALUE · DAILY LIFE</p>
+            <h3 id="emotion-products-title">不是再做一件手工，<br>而是让情绪进入每天。</h3>
+            <p>这里把情绪价值拆成四种日常任务：认识自己、感受陪伴、获得安抚、保存记忆。Pindo 的角色，是把照片、心情、关系与习惯转译成色彩、图案、触感和光，再交付成真正会被反复使用的物件。</p>
+          </div>
+          <span>写实概念产品效果图 · 非在售商品 / 非当前 Pindo 实现</span>
+        </div>
+
+        <ol class="emotion-engine" aria-label="情绪价值产品的四步转译机制">
+          <li><span>01 · INPUT</span><strong>捕捉生活</strong><small>照片、心情、关系、习惯与旧物</small></li>
+          <li><span>02 · TRANSLATE</span><strong>转成设计语言</strong><small>色彩、图案、触感、光与材料组合</small></li>
+          <li><span>03 · OBJECT</span><strong>成为日常物件</strong><small>成品优先，模块化参与，DIY 只是可选</small></li>
+          <li><span>04 · RETURN</span><strong>形成持续互动</strong><small>记录、陪伴、表达、赠送与再购买</small></li>
+        </ol>
+
+        <div class="emotion-lab">
+          <div class="emotion-tabs" role="tablist" aria-label="选择一种日常情绪任务">
+            <button id="emotion-tab-ritual" type="button" role="tab" data-emotion-group="ritual" aria-selected="true" aria-controls="emotion-panel">
+              <span>01 · DAILY RITUAL</span><strong>自我与仪式</strong><small>把每天的感受变得可见</small>
+            </button>
+            <button id="emotion-tab-together" type="button" role="tab" data-emotion-group="together" aria-selected="false" aria-controls="emotion-panel" tabindex="-1">
+              <span>02 · TOGETHER</span><strong>关系与陪伴</strong><small>让“有人想着我”被感知</small>
+            </button>
+            <button id="emotion-tab-comfort" type="button" role="tab" data-emotion-group="comfort" aria-selected="false" aria-controls="emotion-panel" tabindex="-1">
+              <span>03 · COMFORT</span><strong>安抚与表达</strong><small>把说不清的情绪交给触感</small>
+            </button>
+            <button id="emotion-tab-memory" type="button" role="tab" data-emotion-group="memory" aria-selected="false" aria-controls="emotion-panel" tabindex="-1">
+              <span>04 · MEMORY</span><strong>记忆与再生</strong><small>让重要的人与旧物继续陪伴</small>
+            </button>
+          </div>
+
+          <article class="emotion-panel" id="emotion-panel" role="tabpanel" aria-labelledby="emotion-tab-ritual" data-active-emotion="ritual">
+            <figure class="emotion-visual">
+              <img id="emotion-image" src="assets/emotion-products/daily-ritual.webp" alt="桌面上的磁吸情绪日历与每日成长拼图写实概念产品">
+              <figcaption><span>写实概念产品效果图</span><strong id="emotion-image-caption">情绪日历 + 成长拼图</strong><small>非在售商品 / 非当前 Pindo 实现</small></figcaption>
+            </figure>
+
+            <div class="emotion-content">
+              <div class="emotion-topline"><span id="emotion-priority">P0 · 最高频入口</span><span id="emotion-moment">晨间选择 · 睡前回看</span></div>
+              <p class="micro-label" id="emotion-kicker">EMOTIONAL JOB 01 · NOTICE MYSELF</p>
+              <h3 id="emotion-title">把“今天怎么样”放在看得见的地方。</h3>
+              <p class="emotion-intro" id="emotion-intro">不要求写长日记，也不把用户困在 App 里。每天只移动一块颜色，几秒完成记录；一个月后，情绪与成长自然形成可回看的图案。</p>
+
+              <dl class="emotion-summary" aria-label="当前情绪任务的使用定义">
+                <div><dt>日常触点</dt><dd id="emotion-touchpoint">起床、早餐、下班回家与睡前</dd></div>
+                <div><dt>情绪任务</dt><dd id="emotion-job">降低表达门槛，让人看见自己的变化而不被评分</dd></div>
+              </dl>
+
+              <div class="emotion-product-cards" id="emotion-product-cards" aria-label="当前情绪任务的两款产品">
+                <article class="emotion-product-card" data-emotion-product="mood-calendar">
+                  <div><span>PRODUCT 01</span><strong>情绪日历</strong><small>成品 + 可替换主题块</small></div>
+                  <p>每天选一块颜色记录心情，周末或月末得到一张属于自己的情绪图谱。</p>
+                  <dl><div><dt>转译机制</dt><dd>心情 → 色彩与位置</dd></div><div><dt>收费方式</dt><dd>桌面硬件 + 季度主题包</dd></div><div><dt>验证指标</dt><dd>30 天记录完成率</dd></div></dl>
+                </article>
+                <article class="emotion-product-card" data-emotion-product="growth-mosaic">
+                  <div><span>PRODUCT 02</span><strong>成长拼图</strong><small>成品底板 + 年度补充包</small></div>
+                  <p>阅读、睡眠或运动每完成一天就增加一块，抽象图案随着习惯慢慢长出来。</p>
+                  <dl><div><dt>转译机制</dt><dd>习惯数据 → 每日一块</dd></div><div><dt>收费方式</dt><dd>底板成品 + 年度补充包</dd></div><div><dt>验证指标</dt><dd>连续 8 周完成率</dd></div></dl>
+                </article>
+              </div>
+
+              <p class="emotion-verdict"><span>产品判断</span><strong id="emotion-verdict">这是最适合先做的方向：使用频率高、无需复杂供应链，也最容易验证“情绪可视化是否真的帮助用户坚持”。</strong></p>
+            </div>
+          </article>
+        </div>
+
+        <div class="emotion-index" aria-labelledby="emotion-index-title">
+          <div><p class="micro-label">8 PRODUCT DIRECTIONS</p><h4 id="emotion-index-title">八个方向，围绕四种生活里的情绪任务</h4></div>
+          <ol>
+            <li><span>01</span><strong>情绪日历</strong><small>每天 3 秒看见自己</small></li>
+            <li><span>02</span><strong>成长拼图</strong><small>让习惯留下可见痕迹</small></li>
+            <li><span>03</span><strong>情绪氛围灯</strong><small>回家就感到有人陪伴</small></li>
+            <li><span>04</span><strong>关系留言板</strong><small>异地也能共同留下颜色</small></li>
+            <li><span>05</span><strong>触觉减压物</strong><small>焦虑时有一个可握住的反馈</small></li>
+            <li><span>06</span><strong>情绪徽章与挂件</strong><small>不解释也能表达状态</small></li>
+            <li><span>07</span><strong>记忆相框</strong><small>让照片成为会陪伴的物件</small></li>
+            <li><span>08</span><strong>记忆再生产品</strong><small>旧衣旧物变成可赠送的纪念品</small></li>
+          </ol>
+        </div>
+
+        <div class="emotion-roadmap" aria-labelledby="emotion-roadmap-title">
+          <div><p class="micro-label">VALIDATION ROUTE</p><h4 id="emotion-roadmap-title">先验证每天会不会用，再扩展陪伴与纪念。</h4></div>
+          <ol>
+            <li><span>P0</span><strong>情绪日历</strong><small>最高频、最轻量；先验证 30 天留存和主题包复购。</small></li>
+            <li><span>P1</span><strong>陪伴灯 + 关系留言板</strong><small>验证双人互动、硬件使用频率与家庭账户价值。</small></li>
+            <li><span>P2</span><strong>触觉、饰品、记忆与再生</strong><small>扩展材料、个性化生产、礼赠和定制服务能力。</small></li>
+          </ol>
+        </div>
+
+        <section class="life-product-lines" id="life-product-lines" aria-labelledby="life-product-lines-title">
+          <div class="life-lines-heading">
+            <div>
+              <p class="micro-label">PINDO MEMORY LIGHT · ONE ENGINE / THREE ATMOSPHERES</p>
+              <h4 id="life-product-lines-title">同一组记忆，<br>可以是一盏、九盏，也可以长成星群。</h4>
+              <p>九段关系不再等于九个固定灯块，而是一组可以持续增加的内容池。所有灯窗保持基础光，人物、宠物、物品与名字再按不同空间节奏随机显影。</p>
+            </div>
+            <span>同一内容引擎 · 三种情绪距离<br>实体硬件为产品提案 / 非当前实现</span>
+          </div>
+
+          <section class="memory-lamp-lab" aria-labelledby="memory-lamp-title">
+            <section class="memory-atmosphere-family" aria-labelledby="memory-lamp-title">
+              <header class="memory-atmosphere-heading">
+                <div>
+                  <p class="micro-label">PRODUCT FAMILY · NOT GOOD / BETTER / BEST</p>
+                  <h3 id="memory-lamp-title">不是三个档位，<br>而是三种情绪距离。</h3>
+                </div>
+                <p>一个人被安静看见，九段记忆共同在场，或者让记忆延展成整个空间。变化的是灯进入生活的方式，不是另做三套内容。</p>
+              </header>
+
+              <div class="memory-atmosphere-tabs" role="tablist" aria-label="选择一种记忆灯氛围">
+                <button id="memory-atmosphere-tab-single" type="button" role="tab" data-memory-atmosphere="single" aria-selected="false" aria-controls="memory-atmosphere-panel" tabindex="-1" aria-label="Pindo One 一盏私语：一盏暖色灯在柔光中显出双人合照">
+                  <img src="assets/memory-lamp/memory-atmosphere-single.webp" width="1200" height="800" alt="一盏圆角磨砂记忆灯在夜间桌面发出暖光，灯面柔和显出一对年轻人的合照" loading="lazy" decoding="async">
+                  <span>01 · CLOSE</span><strong>Pindo One · 一盏私语</strong><small>1 个灯窗 · 床头与桌面</small>
+                </button>
+                <button id="memory-atmosphere-tab-nine" type="button" role="tab" data-memory-atmosphere="nine" aria-selected="true" aria-controls="memory-atmosphere-panel" aria-label="Pindo Nine 九盏共鸣：九盏同时发光，其中三盏显出不同双人合照">
+                  <img src="assets/memory-lamp/memory-atmosphere-nine.webp" width="1200" height="800" alt="九盏圆角磨砂记忆灯组成三乘三阵列，九灯同时发光，其中三盏柔和显出同一对年轻人的不同合照" loading="lazy" decoding="async">
+                  <span>02 · SHARED</span><strong>Pindo Nine · 九盏共鸣</strong><small>9 个灯窗 · 共同生活空间</small>
+                </button>
+                <button id="memory-atmosphere-tab-constellation" type="button" role="tab" data-memory-atmosphere="constellation" aria-selected="false" aria-controls="memory-atmosphere-panel" tabindex="-1" aria-label="Pindo Constellation 自由星群：八个墙面与桌面节点全部发光，两处显出双人照片">
+                  <img src="assets/memory-lamp/memory-atmosphere-constellation.webp" width="1200" height="800" alt="八盏大小不同的圆角磨砂记忆灯沿深色轨道分布在夜间客厅墙面与桌面，全部发光，其中两盏显出双人照片" loading="lazy" decoding="async">
+                  <span>03 · SPATIAL</span><strong>Pindo Constellation · 自由星群</strong><small>3–24 个节点 · 墙面与空间</small>
+                </button>
+              </div>
+
+              <article class="memory-atmosphere-panel" id="memory-atmosphere-panel" role="tabpanel" aria-labelledby="memory-atmosphere-tab-nine" tabindex="0" data-active-memory-atmosphere="nine">
+                <div class="memory-atmosphere-topline"><span id="memory-atmosphere-kicker">PINDO NINE · SHARED MEMORY</span><span id="memory-atmosphere-complexity">实现复杂度 · 中</span></div>
+                <h4 id="memory-atmosphere-title">九盏一起亮，记忆错峰出现。</h4>
+                <p id="memory-atmosphere-promise">不是九张照片一起跳，而是九盏灯始终构成一个光场；每次只有 1–3 个灯窗显出人物或物件，随后再安静换到别处。</p>
+                <dl aria-label="当前记忆灯氛围的产品规则">
+                  <div><dt>灯窗规则</dt><dd id="memory-atmosphere-windows">固定 3 × 3，九盏全部保持基础光。</dd></div>
+                  <div><dt>内容节奏</dt><dd id="memory-atmosphere-rhythm">每次错峰更新 1–3 窗，避免整面同步换屏。</dd></div>
+                  <div><dt>适合空间</dt><dd id="memory-atmosphere-space">客厅边柜、共享卧室、玄关与家庭餐区。</dd></div>
+                  <div><dt>产品角色</dt><dd id="memory-atmosphere-role">品牌标志款，也是家庭关系的核心形态。</dd></div>
+                </dl>
+                <p class="memory-atmosphere-truth"><span>共同原则</span><strong>灯窗数量与记忆数量解耦：三种形态共享内容池、随机规则和隐私边界，硬件结构则分别实现。</strong></p>
+              </article>
+            </section>
+
+            <div class="memory-lamp-concept">
+              <figure class="memory-lamp-hero">
+                <img src="assets/memory-lamp/nine-memory-lamp-content.webp" alt="九颗圆角柔光记忆豆按三乘三排列，其中触碰后的豆在灯光中显出双人照片、名字、雨伞纪念物和一句话" loading="lazy" decoding="async">
+                <figcaption><span>NINE 内容显影机制 · 早期概念图</span><strong>灯一直亮着，内容只在需要时短暂清晰。</strong><small>非在售商品 / 非当前 Pindo 实现</small></figcaption>
+              </figure>
+
+              <div class="memory-lamp-thesis">
+                <p class="micro-label">THE SHARED CONTENT ENGINE</p>
+                <h3>灯窗数量可变，<br>记忆池保持同一套。</h3>
+                <p>当前原型先用相遇、日常、感谢、支持、和好、成长、想念、约定和未来九段关系来验证写入意愿。One 把它们轮流放进一盏灯，Nine 让 1–3 段错峰显影，Constellation 再把稀疏内容带进整个空间。</p>
+                <blockquote><span>用户动作</span><strong>写入共同记忆 → 选择手动、顺序或随机 → 设定停留时间 → 随时触碰暂停。</strong></blockquote>
+                <dl>
+                  <div><dt>内容池是什么</dt><dd>人物、宠物、物品、名字、短句与纯色情绪</dd></div>
+                  <div><dt>灯窗是什么</dt><dd>可承接任意记忆帧的柔光显示面，不绑定固定内容</dd></div>
+                  <div><dt>随机如何发生</dt><dd>不连续重复、错峰显影、始终保留环境基础光</dd></div>
+                  <div><dt>隐私如何控制</dt><dd>内容保存在底座或手机；概念切换不触碰真实记录</dd></div>
+                </dl>
+              </div>
+            </div>
+
+            <div class="memory-lamp-workbench" id="memory-lamp-workbench">
+              <div class="memory-lamp-board-shell">
+                <div class="memory-lamp-board-heading">
+                  <div><span>PINDO NINE · CONTENT ENGINE LAB</span><strong>九段关系的错峰显影实验台</strong></div>
+                  <p><span id="memory-lamp-count">0 / 9</span><small>段记忆</small></p>
+                </div>
+
+                <div class="memory-bean-grid" id="memory-bean-grid" role="group" aria-label="选择一段关系记忆">
+                  <button type="button" data-memory-bean="0" aria-pressed="true"><span>01</span><strong>相遇</strong><em>柔光</em><small>等待写入</small></button>
+                  <button type="button" data-memory-bean="1" aria-pressed="false"><span>02</span><strong>日常</strong><em>柔光</em><small>等待写入</small></button>
+                  <button type="button" data-memory-bean="2" aria-pressed="false"><span>03</span><strong>感谢</strong><em>柔光</em><small>等待写入</small></button>
+                  <button type="button" data-memory-bean="3" aria-pressed="false"><span>04</span><strong>支持</strong><em>柔光</em><small>等待写入</small></button>
+                  <button type="button" data-memory-bean="4" aria-pressed="false"><span>05</span><strong>和好</strong><em>柔光</em><small>等待写入</small></button>
+                  <button type="button" data-memory-bean="5" aria-pressed="false"><span>06</span><strong>成长</strong><em>柔光</em><small>等待写入</small></button>
+                  <button type="button" data-memory-bean="6" aria-pressed="false"><span>07</span><strong>想念</strong><em>柔光</em><small>等待写入</small></button>
+                  <button type="button" data-memory-bean="7" aria-pressed="false"><span>08</span><strong>约定</strong><em>柔光</em><small>等待写入</small></button>
+                  <button type="button" data-memory-bean="8" aria-pressed="false"><span>09</span><strong>未来</strong><em>柔光</em><small>等待写入</small></button>
+                </div>
+
+                <div class="memory-lamp-state" aria-live="polite">
+                  <div class="memory-lamp-state-label"><span>当前灯语</span><b id="memory-cycle-phase-label">手动查看</b></div>
+                  <strong id="memory-lamp-state-title">还没有记忆被写入。</strong>
+                  <p id="memory-lamp-state-note">选择一颗豆，先写下两个人共同记得的一件小事。</p>
+                </div>
+
+                <section class="memory-cycle-controller" aria-labelledby="memory-cycle-title">
+                  <div class="memory-cycle-heading">
+                    <div><span>AUTO EMOTION</span><strong id="memory-cycle-title">让记忆自己流动</strong></div>
+                    <span id="memory-cycle-status" role="status" aria-live="polite">已暂停 · 手动查看</span>
+                  </div>
+
+                  <div class="memory-cycle-settings">
+                    <div class="memory-cycle-modes" role="group" aria-label="选择情绪循环方式">
+                      <button type="button" data-memory-cycle-mode="sequence" aria-pressed="true"><span>顺序</span><small>01 → 09</small></button>
+                      <button type="button" data-memory-cycle-mode="random" aria-pressed="false"><span>随机</span><small>避免连续重复</small></button>
+                    </div>
+                    <label class="memory-cycle-speed"><span>每段停留</span><select id="memory-cycle-interval"><option value="5000">5 秒</option><option value="8000" selected>8 秒</option><option value="15000">15 秒</option></select></label>
+                  </div>
+
+                  <div class="memory-cycle-actions">
+                    <button type="button" id="memory-cycle-toggle" aria-pressed="false" aria-controls="memory-bean-grid">开始循环</button>
+                    <button type="button" id="memory-cycle-next">下一颗</button>
+                    <small>日常循环只显影当前记忆；Nine 的 30 秒演示会错峰显影 1–3 个灯窗。</small>
+                  </div>
+                </section>
+
+                <div class="memory-board-actions">
+                  <button type="button" id="memory-run-showcase" aria-pressed="false" aria-controls="memory-bean-grid">直接演示 Nine 30 秒</button>
+                  <button type="button" id="memory-load-demo">载入两人示例</button>
+                  <button type="button" id="memory-clear-all">清空全部记忆</button>
+                </div>
+              </div>
+
+              <form class="memory-write-panel" id="memory-bean-form">
+                <div class="memory-write-heading">
+                  <div><span id="memory-bean-number">MEMORY BEAN 01</span><strong id="memory-bean-role">相遇 · 我们从哪里开始</strong></div>
+                  <i id="memory-bean-color" aria-hidden="true"></i>
+                </div>
+
+                <div class="memory-showcase-lock" id="memory-showcase-lock" role="status" hidden>
+                  <strong>Nine 30 秒错峰展演中</strong><span>九灯保持基础光，1–3 个灯窗随机显影；临时示例不会覆盖你的内容。</span>
+                </div>
+
+                <div class="memory-form-grid">
+                  <label><span>灯内呈现方式</span><select id="memory-bean-content-type" name="contentType"><option value="emotion">情绪柔光</option><option value="names">两个人的名字</option><option value="photo">两个人的照片</option><option value="object">有意义的物品</option><option value="phrase">一句留给彼此的话</option></select></label>
+                  <label><span>灯内显示内容</span><input id="memory-bean-display-text" name="displayText" type="text" maxlength="18" placeholder="例如：阿琳 · 阿宇"></label>
+                  <label><span>这段记忆叫什么</span><input id="memory-bean-title" name="title" type="text" maxlength="24" placeholder="例如：雨天第一次见面" required></label>
+                  <label><span>发生日期</span><input id="memory-bean-date" name="date" type="date"></label>
+                  <label><span>谁写下的</span><select id="memory-bean-author" name="author"><option value="我">我</option><option value="对方">对方</option><option value="共同">我们共同</option></select></label>
+                  <label><span>照片或声音</span><input id="memory-bean-attachment" name="attachment" type="file" accept="image/*,audio/*"><small id="memory-bean-attachment-name">文件不会上传，只记录名称</small></label>
+                </div>
+
+                <p class="memory-display-hint" id="memory-display-hint">待机时只显示柔光；触碰后再显示记忆内容，避免它一直像一块屏幕。</p>
+
+                <label class="memory-note-field"><span>想留给彼此的话</span><textarea id="memory-bean-note" name="note" rows="4" maxlength="120" placeholder="不用写完整故事，一句话就够。" required></textarea></label>
+
+                <div class="memory-write-actions">
+                  <button class="memory-save" type="submit">写入这颗豆</button>
+                  <button class="memory-clear" id="memory-clear-current" type="button">清空当前豆</button>
+                  <span id="memory-bean-status" role="status">内容只保存在当前浏览器</span>
+                </div>
+              </form>
+            </div>
+
+            <div class="memory-lamp-architecture" aria-label="三种记忆灯形态的实现边界">
+              <article><span>01 · PINDO ONE</span><strong>一个显示面承接整个内容池</strong><p>单块低亮显示层配一个磨砂柔光窗，结构最简单；适合先验证用户是否愿意长期观看随机记忆。</p></article>
+              <article><span>02 · PINDO NINE</span><strong>一块共用屏切成九个柔光窗</strong><p>共用 LCD / OLED 藏在 3 × 3 遮光格后面，九窗同时有基础光，1–3 窗错峰显影，不使用九块独立小屏。</p></article>
+              <article><span>03 · CONSTELLATION</span><strong>独立可寻址节点组成空间星群</strong><p>每个节点需要供电、通信和独立显示能力，沿墙面轨道组成 3–24 个节点；它是后续空间硬件，不复用 Nine 的单屏 BOM。</p></article>
+            </div>
+
+            <ol class="memory-lamp-build-route" aria-label="从网页原型到联网产品的实现路线">
+              <li><span>V0 · 现在</span><strong>浏览器内容引擎</strong><small>验证用户是否愿意写入关系记忆，以及随机显影是否带来陪伴而不是打扰。</small></li>
+              <li><span>V1 · 先做 One</span><strong>旧平板 / 单块屏 + 一个柔光窗</strong><small>用最低硬件复杂度验证照片、名字与物品在灯中的可读性、频率与付费意愿。</small></li>
+              <li><span>V2 · 再做 Nine</span><strong>共用屏 + 九格遮光与错峰显示</strong><small>当单灯成立后，再验证九窗同时在场的家庭价值；星群留到分布式供电与通信成熟后。</small></li>
+            </ol>
+
+            <p class="memory-lamp-boundary"><span>最重要的实现判断</span><strong>三种氛围共享内容与随机规则，但不共享一套硬件：One 是单显示面，Nine 是一块屏切九格，Constellation 是独立可寻址节点。先验证最小的 One，再决定是否承担 Nine 与空间星群的制造复杂度。</strong></p>
+          </section>
+
+          <ol class="demand-truths" aria-label="从市场事实到产品验证的三层证据">
+            <li><span>01 · MARKET FACT</span><strong>类目需求已经发生</strong><small>个性化礼物、旧物再生和低打扰关系设备，都已有真实成交与规模产品。</small></li>
+            <li><span>02 · PINDO HYPOTHESIS</span><strong>实体像素能否更动人</strong><small>Pindo 的差异是把照片、旧物与共同动作变成可参与、可制造的马赛克作品。</small></li>
+            <li><span>03 · PAID TEST</span><strong>只用付费验证结论</strong><small>点赞和“挺有意思”不算；必须观察预览后的订金、交付满意度与转介绍。</small></li>
+          </ol>
+
+          <div class="demand-target-showcase">
+            <div class="demand-target-tabs" role="tablist" aria-label="选择一个可验证的产品目标">
+              <button id="demand-target-tab-memory-gift" type="button" role="tab" data-demand-target="memory-gift" aria-selected="true" aria-controls="demand-target-panel">
+                <span>P0 · 先验证成交</span><strong>记忆马赛克礼物</strong><small>照片 → 可送出的成品或材料包</small>
+              </button>
+              <button id="demand-target-tab-memory-reuse" type="button" role="tab" data-demand-target="memory-reuse" aria-selected="false" aria-controls="demand-target-panel" tabindex="-1">
+                <span>P1 · 服务验证</span><strong>旧物记忆再生</strong><small>舍不得丢的衣物 → 日常可见作品</small>
+              </button>
+              <button id="demand-target-tab-together" type="button" role="tab" data-demand-target="together" aria-selected="false" aria-controls="demand-target-panel" tabindex="-1">
+                <span>P1 · 行为验证</span><strong>双人共同拼图</strong><small>每天一个信号 → 30 天共同作品</small>
+              </button>
+            </div>
+
+            <article class="demand-target-panel" id="demand-target-panel" role="tabpanel" aria-labelledby="demand-target-tab-memory-gift" data-active-demand-target="memory-gift">
+              <figure class="demand-target-visual">
+                <img id="demand-target-image" src="assets/product-lines/emotional-gift.webp" alt="由有意义照片生成的实体像素纪念画与礼盒概念效果图" loading="lazy" decoding="async">
+                <figcaption><span>产品目标概念效果图</span><strong id="demand-target-caption">一张有意义的照片，变成可以送出的实体作品</strong><small>非在售商品 / 非当前 Pindo 实现</small></figcaption>
+              </figure>
+
+              <div class="demand-target-content">
+                <div class="demand-target-topline"><span id="demand-target-priority">P0 · 最接近当前能力</span><span id="demand-target-window">7–21 天明确送礼期限</span></div>
+                <p class="micro-label" id="demand-target-kicker">TARGET 01 · MEMORY MOSAIC GIFT</p>
+                <h3 id="demand-target-title">记忆马赛克礼物</h3>
+                <p class="demand-target-promise" id="demand-target-promise">帮一个已经决定要送礼的人，把最有意义的一张照片，做成不像通用照片周边的实体纪念物。</p>
+
+                <blockquote class="demand-user-job">
+                  <span>真实任务</span>
+                  <p id="demand-target-job">“纪念日快到了。我有照片，也知道要送给谁，但不想再送相框、杯子或模板化定制。”</p>
+                </blockquote>
+
+                <dl class="demand-target-brief" aria-label="当前产品目标的需求与交付定义">
+                  <div><dt>已有替代行为</dt><dd id="demand-target-alternative">定制照片墙、数字油画、积木画、拼豆代做和个性化礼盒。</dd></div>
+                  <div><dt>Pindo 可交付</dt><dd id="demand-target-delivery">上传照片后给出三版可编辑预览，确认后交付装框成品或完整材料包。</dd></div>
+                  <div><dt>为什么现在付费</dt><dd id="demand-target-trigger">收礼人、纪念日和交付日期都明确；决策不是“要不要”，而是“送什么更像他”。</dd></div>
+                  <div><dt>当前缺口</dt><dd id="demand-target-gap">Pindo 还缺图纸精修、可制造 BOM、订单报价、打样与履约伙伴。</dd></div>
+                </dl>
+
+                <ol class="demand-mvp-flow" id="demand-mvp-flow" aria-label="最小可售产品流程">
+                  <li><span>01</span><strong>上传照片与送礼日期</strong><small>先判断题材和交付风险</small></li>
+                  <li><span>02</span><strong>生成三版可编辑预览</strong><small>用户确认脸、轮廓与色板</small></li>
+                  <li><span>03</span><strong>支付订金再精修</strong><small>用真金白银筛掉伪需求</small></li>
+                  <li><span>04</span><strong>成品 / 材料包按时交付</strong><small>记录满意度与转介绍</small></li>
+                </ol>
+
+                <p class="demand-validation"><span>建议验证门槛</span><strong id="demand-target-validation">先获得 20 个非熟人付费订单；预览到订金转化 ≥ 15%，准时交付 ≥ 95%，成品“像本人”评分 ≥ 4/5。门槛是测试目标，不是现有业绩。</strong></p>
+                <p class="demand-evidence"><span>类目证据</span><strong id="demand-target-evidence">Etsy 的 2025 趋势报告基于平台搜索与销售数据，把个性化、感性礼物列为主要购买驱动。它证明类目存在，不证明用户会买 Pindo。</strong><a id="demand-target-source" href="https://www.etsy.com/ca/seller-handbook/article/1417223353768" target="_blank" rel="noreferrer">Etsy 2025 趋势数据 ↗</a></p>
+              </div>
+            </article>
+          </div>
+
+          <div class="life-lines-transition">
+            <p class="micro-label">OPPORTUNITY INVENTORY · NOT A ROADMAP</p>
+            <h5>十条产品线可以保留，但它们是机会库存，不是十个都该做的答案。</h5>
+            <p>只有满足“已有替代行为、明确付费时刻、短期可交付”的方向，才能从概念库进入产品路线。</p>
+          </div>
+
+          <ol class="life-value-pillars" aria-label="产品线进入路线图的三个门槛">
+            <li><span>01 · BEHAVIOR</span><strong>已经在解决</strong><small>用户已经花时间或花钱使用替代方案，而不是只说感兴趣。</small></li>
+            <li><span>02 · TRIGGER</span><strong>现在要购买</strong><small>生日、纪念日、毕业、旧物整理或异地关系形成明确时刻。</small></li>
+            <li><span>03 · FEASIBILITY</span><strong>现在能交付</strong><small>优先使用图案、编辑、BOM 与柔性生产，不先押注新硬件。</small></li>
+          </ol>
+
+          <div class="life-line-showcase">
+            <div class="life-line-tabs" role="tablist" aria-label="选择一条生活产品线">
+              <button id="life-line-tab-ritual" type="button" role="tab" data-life-line="ritual" aria-selected="false" aria-controls="life-line-panel" tabindex="-1">
+                <span>01 · DAILY</span><strong>Pindo Ritual</strong><small>日常仪式 · 每天</small>
+              </button>
+              <button id="life-line-tab-family" type="button" role="tab" data-life-line="family" aria-selected="false" aria-controls="life-line-panel" tabindex="-1">
+                <span>02 · TOGETHER</span><strong>Pindo Together</strong><small>家庭关系 · 每周</small>
+              </button>
+              <button id="life-line-tab-voice" type="button" role="tab" data-life-line="voice" aria-selected="false" aria-controls="life-line-panel" tabindex="-1">
+                <span>03 · VOICE</span><strong>Pindo Voice</strong><small>声音记忆 · 长期保存</small>
+              </button>
+              <button id="life-line-tab-scent" type="button" role="tab" data-life-line="scent" aria-selected="false" aria-controls="life-line-panel" tabindex="-1">
+                <span>04 · SCENT</span><strong>Pindo Scent</strong><small>气味记忆 · 日常耗材</small>
+              </button>
+              <button id="life-line-tab-kids" type="button" role="tab" data-life-line="kids" aria-selected="false" aria-controls="life-line-panel" tabindex="-1">
+                <span>05 · KIDS</span><strong>Pindo Kids</strong><small>亲子成长 · 每晚</small>
+              </button>
+              <button id="life-line-tab-pet" type="button" role="tab" data-life-line="pet" aria-selected="false" aria-controls="life-line-panel" tabindex="-1">
+                <span>06 · PET</span><strong>Pindo Pet</strong><small>宠物陪伴 · 每天</small>
+              </button>
+              <button id="life-line-tab-moments" type="button" role="tab" data-life-line="moments" aria-selected="false" aria-controls="life-line-panel" tabindex="-1">
+                <span>07 · MOMENTS</span><strong>Pindo Moments</strong><small>人生仪式 · 重要时刻</small>
+              </button>
+              <button id="life-line-tab-gift" type="button" role="tab" data-life-line="gift" aria-selected="true" aria-controls="life-line-panel">
+                <span>08 · GIFT</span><strong>Pindo Gift</strong><small>情绪礼物 · 节日高峰</small>
+              </button>
+              <button id="life-line-tab-spaces" type="button" role="tab" data-life-line="spaces" aria-selected="false" aria-controls="life-line-panel" tabindex="-1">
+                <span>09 · SPACES</span><strong>Pindo Spaces</strong><small>空间体验 · B2B</small>
+              </button>
+              <button id="life-line-tab-studio" type="button" role="tab" data-life-line="studio" aria-selected="false" aria-controls="life-line-panel" tabindex="-1">
+                <span>10 · STUDIO</span><strong>Pindo Studio</strong><small>创作者平台 · 生态</small>
+              </button>
+            </div>
+
+            <article class="life-line-panel" id="life-line-panel" role="tabpanel" aria-labelledby="life-line-tab-gift" data-active-life-line="gift">
+              <figure class="life-line-visual">
+                <img id="life-line-image" src="assets/product-lines/emotional-gift.webp" alt="照片、语音模块与纪念卡组成的个性化礼物产品概念效果图" loading="lazy" decoding="async">
+                <figcaption><span>生活尺度概念效果图</span><strong id="life-line-caption">个性化微光框、语音纪念块、织物挂件与礼盒</strong><small>非在售商品 / 非当前 Pindo 实现</small></figcaption>
+              </figure>
+
+              <div class="life-line-content">
+                <div class="life-line-topline"><span id="life-line-priority">P0 · 先验证成交</span><span id="life-line-format">在线生成 + 柔性定制</span></div>
+                <p class="micro-label" id="life-line-kicker">PRODUCT LINE 08 · GIFT</p>
+                <h3 id="life-line-title">Pindo Gift · 情绪礼物</h3>
+                <p class="life-line-promise" id="life-line-promise">把“我想送得更像他”变成一套可以直接下单的个性化产品。</p>
+
+                <blockquote class="life-line-personality">
+                  <span>产品形象</span>
+                  <p id="life-line-personality">有设计感但不炫技；像被认真挑选过的私人礼物，而不是印上照片的通用周边。</p>
+                </blockquote>
+
+                <dl class="life-line-brief" aria-label="当前产品线的价值与交付定义">
+                  <div><dt>核心价值</dt><dd id="life-line-value">把照片、语音和故事快速转成一致的色板、材质与礼物组合，降低私人定制决策成本。</dd></div>
+                  <div><dt>日常场景</dt><dd id="life-line-scene">生日、纪念日、宠物纪念、乔迁、异地问候，以及临时但重要的感谢。</dd></div>
+                  <div><dt>产品组合</dt><dd id="life-line-products">照片微光框、语音纪念块、织物挂件、记忆卡与组合礼盒。</dd></div>
+                  <div><dt>商业形态</dt><dd id="life-line-business">在线方案生成 + 按件定制 + 节日礼盒 + 品牌合作。</dd></div>
+                </dl>
+
+                <ol class="life-line-loop" aria-label="当前产品线如何进入生活">
+                  <li><span>INPUT</span><strong id="life-line-input">收礼人照片、声音、关系与送礼预算</strong></li>
+                  <li><span>PINDO</span><strong id="life-line-translate">生成专属色板、图案、材质和产品组合</strong></li>
+                  <li><span>RETURN</span><strong id="life-line-return">从犹豫送什么，到获得一套真正像对方的礼物</strong></li>
+                </ol>
+
+                <p class="life-line-verdict"><span>为什么值得做</span><strong id="life-line-verdict">最容易连接现有图案能力与真实交易，可先用人工服务补齐供应链，再逐步产品化。</strong></p>
+              </div>
+            </article>
+          </div>
+
+          <div class="life-portfolio-system" aria-labelledby="life-portfolio-system-title">
+            <div>
+              <p class="micro-label">FROM OBJECTS TO A PORTFOLIO</p>
+              <h5 id="life-portfolio-system-title">先做一件有人付钱的产品，再谈产品组合。</h5>
+              <p>真实路线应该从交易验证向服务、双人行为和硬件扩展，而不是按概念新鲜度排序。</p>
+            </div>
+            <ol>
+              <li><span>P0 · 交易验证</span><strong>Memory Gift</strong><small>用照片马赛克成品或材料包，验证预览后是否真愿意付订金。</small></li>
+              <li><span>P1 · 服务与行为</span><strong>Reuse · Together</strong><small>先用人工旧物服务与无硬件双人共创验证需求，不急着量产设备。</small></li>
+              <li><span>P2+ · 能力扩展</span><strong>Voice · Hardware · Platform</strong><small>成交和复用稳定后，再承担声音、联网硬件、B2B 与平台复杂度。</small></li>
+            </ol>
+          </div>
+
+          <noscript><p class="life-line-noscript">九豆记忆灯由相遇、日常、感谢、支持、和好、成长、想念、约定和未来九颗关系豆组成。第一版由网页负责写入，底座负责存储与灯光，实体豆只作为记忆钥匙；启用 JavaScript 后可按顺序或随机节奏循环已写入记忆，完整照片和音频不必存进每颗豆。三个可测试产品目标仍是记忆马赛克礼物、旧物记忆再生和双人共同拼图，十条产品线只作为机会库存保留。</p></noscript>
+        </section>
+      </section>
+
+      <div class="product-thesis" aria-label="Pindo 产品定位判断">
+        <div>
+          <span>现在</span>
+          <strong>图片转拼豆初稿</strong>
+          <small>能生成，但结果不可精修，材料和制作链路断开</small>
+        </div>
+        <p>产品跃迁</p>
+        <div>
+          <span>应该成为</span>
+          <strong>实体像素手工工作台</strong>
+          <small>图纸可修 · 材料可买 · 过程可续 · 项目可经营</small>
+        </div>
+      </div>
+
+      <div class="product-decision-shell">
+        <div class="product-goals" role="tablist" aria-label="选择最关心的产品结果" aria-orientation="vertical">
+          <p>你最想先解决什么？</p>
+          <button id="product-tab-edit" type="button" role="tab" data-product-goal="edit" aria-selected="true" aria-controls="product-panel">
+            <span>01 · P0</span><strong>先把图修对</strong><small>从自动初稿到最终图纸</small>
+          </button>
+          <button id="product-tab-material" type="button" role="tab" data-product-goal="material" aria-selected="false" aria-controls="product-panel" tabindex="-1">
+            <span>02 · P1</span><strong>按库存与预算做</strong><small>少缺料、少浪费</small>
+          </button>
+          <button id="product-tab-make" type="button" role="tab" data-product-goal="make" aria-selected="false" aria-controls="product-panel" tabindex="-1">
+            <span>03 · P1</span><strong>把大图真正做完</strong><small>分板、进度与续做</small>
+          </button>
+          <button id="product-tab-grow" type="button" role="tab" data-product-goal="grow" aria-selected="false" aria-controls="product-panel" tabindex="-1">
+            <span>04 · P2</span><strong>复用、交付与经营</strong><small>模板、材料包和工作坊</small>
+          </button>
+        </div>
+
+        <article class="product-detail" id="product-panel" role="tabpanel" aria-labelledby="product-tab-edit" data-active-product="edit">
+          <div class="product-detail-topline">
+            <span id="product-priority">P0 · FOUNDATION</span>
+            <span id="product-audience">个人创作者 / 定制打样</span>
+          </div>
+
+          <div class="product-detail-hero">
+            <div>
+              <p class="micro-label" id="product-kicker">DIRECTION A · PATTERN REPAIR</p>
+              <h3 id="product-direction-title">图纸修复工作台</h3>
+              <p class="product-promise" id="product-promise">自动生成不再是终点。用户能对照原图修轮廓、改色、删杂点，并在导出前确认尺寸与异常。</p>
+            </div>
+            <figure class="product-preview">
+              <img id="product-preview-image" src="assets/samples/portrait-simple-35.png" alt="Pindo 清晰模式生成的人物拼豆图纸，用于说明图纸修复工作台">
+              <figcaption><span id="product-preview-label">真实问题载体 · 人物图纸</span><strong id="product-preview-state">从不可编辑到可修正</strong></figcaption>
+            </figure>
+          </div>
+
+          <div class="product-evidence">
+            <span>为什么需要它</span>
+            <p id="product-evidence">人物三种模式都实际使用 15 色；用户缺的不是第四个模式，而是可撤销、可比较的逐格修正。</p>
+          </div>
+
+          <div class="product-detail-grid">
+            <div class="product-module-block">
+              <span>核心产品模块</span>
+              <ol id="product-modules">
+                <li>原图叠加与前后对照</li>
+                <li>画笔、区域填色与整图换色</li>
+                <li>撤销、版本比较与图纸 JSON</li>
+                <li>尺寸、孤立色和低置信度警告</li>
+              </ol>
+            </div>
+            <div class="product-success-block">
+              <span>验证成功的指标</span>
+              <strong id="product-metric-title">一次生成后即可完成修正</strong>
+              <p id="product-metric">减少反复切模式；导出前发现尺寸错误和孤立杂色。</p>
+              <dl class="product-scorecard">
+                <div><dt>用户影响</dt><dd id="product-impact">5 / 5</dd><meter id="product-impact-meter" min="0" max="5" value="5">5/5</meter></div>
+                <div><dt>实现投入</dt><dd id="product-effort">3 / 5</dd><meter id="product-effort-meter" min="0" max="5" value="3">3/5</meter></div>
+                <div><dt>商业杠杆</dt><dd id="product-leverage">3 / 5</dd><meter id="product-leverage-meter" min="0" max="5" value="3">3/5</meter></div>
+              </dl>
+            </div>
+          </div>
+
+          <p class="product-verdict"><span>产品判断</span><strong id="product-verdict">这是共同底座：图纸没修对，库存、Focus 和模板市场都会放大错误。</strong></p>
+        </article>
+      </div>
+
+      <div class="product-roadmap" aria-labelledby="roadmap-title">
+        <div class="roadmap-heading">
+          <p class="micro-label">VERSIONED PRODUCT ROUTE</p>
+          <h3 id="roadmap-title">先修对，再买齐，再做完，最后经营</h3>
+          <p>四条方向不是并列功能清单，而是一条有依赖关系的产品路线。</p>
+        </div>
+        <ol>
+          <li class="roadmap-now"><span>P0 · 做对</span><strong>可编辑最终图纸</strong><small>JSON、逐格编辑、换色、撤销、质量警告</small><b>产品基础</b></li>
+          <li><span>P1 · 买齐</span><strong>库存与成本规划</strong><small>已有色、替代色、损耗、袋数、采购清单</small><b>商业入口</b></li>
+          <li><span>P1 · 做完</span><strong>制作执行助手</strong><small>Focus 接通、分板、断点续做、打印 PDF</small><b>完成闭环</b></li>
+          <li><span>P2 · 经营</span><strong>模板与材料包</strong><small>项目库、分享、二维码、BOM、报价与交付</small><b>规模增长</b></li>
+        </ol>
+      </div>
+
+      <div class="product-market-signals">
+        <span>市场参照，不是功能照抄</span>
+        <p>成熟工具已经把竞争推进到“编辑、库存、PDF、进度”；Pindo 的机会是把这些环节用本地处理和中文品牌生态串成闭环。</p>
+        <div>
+          <a href="https://perlypop.com/features/">Perlypop：编辑与制作进度 ↗</a>
+          <a href="https://play.google.com/store/apps/details?id=com.isomem.beadie">Beadie：库存与袋数估算 ↗</a>
+          <a href="https://perler.com/">Perler：图案与材料购买 ↗</a>
+          <a href="../docs/product-opportunity-map.md">完整产品机会文档 →</a>
+        </div>
+      </div>
+
+      <noscript><p class="product-noscript">质量优化应分别处理关键结构、库存色板、网格识别和可编辑终稿；创意扩展回答还能用什么材料创作，产品扩展则包含 Creator、Merchant、Workshop、Projects 和 Platform 五条商业产品线。日常情绪价值可以进一步落到情绪日历、成长拼图、情绪氛围灯、关系留言板、触觉减压物、情绪饰品、记忆相框与旧物再生八个方向，主要交付可以是成品、模块化硬件或定制服务，手工只是可选。这些均为产品提案，不是当前 Pindo 已实现能力。</p></noscript>
+    </section>
+
+    <section class="pindo-section page-section" id="pindo" aria-labelledby="pindo-title">
+      <div class="section-intro split-intro">
+        <div>
+          <p class="eyebrow"><span>05</span> WHAT PINDO DOES</p>
+          <h2 id="pindo-title">Pindo 是“图纸工程师”，不是画图 AI</h2>
+        </div>
+        <p>它用传统图像处理，把不受材料约束的屏幕图片，翻译成有限尺寸、有限品牌色和有限颗数的制作方案。</p>
+      </div>
+
+      <div class="pipeline-shell">
+        <ol class="pipeline" aria-label="Pindo 图片生成流程">
+          <li>
+            <span class="pipeline-index">1</span>
+            <div><strong>读取图片</strong><small>背景、透明度与主体裁切</small></div>
+          </li>
+          <li>
+            <span class="pipeline-index">2</span>
+            <div><strong>缩成颗粒</strong><small>例如 40 × 40 颗，而不是 1080 × 1080 像素</small></div>
+          </li>
+          <li>
+            <span class="pipeline-index">3</span>
+            <div><strong>匹配实物色号</strong><small>RGB → Lab → 简化 CIEDE2000 色差</small></div>
+          </li>
+          <li>
+            <span class="pipeline-index">4</span>
+            <div><strong>限色与清理</strong><small>保护轮廓，去掉孤立杂点和难买的小众颜色</small></div>
+          </li>
+          <li>
+            <span class="pipeline-index">5</span>
+            <div><strong>交付制作资料</strong><small>当前界面：网格、色号、颗数、拼版与 PNG</small></div>
+          </li>
+        </ol>
+
+        <aside class="translation-card">
+          <p class="micro-label">THE KEY TRANSLATION</p>
+          <div class="translation-row">
+            <span>屏幕像素</span>
+            <b aria-hidden="true">→</b>
+            <span>实体材料</span>
+          </div>
+          <dl>
+            <div><dt>尺寸</dt><dd>宽高像素 → 宽高颗数</dd></div>
+            <div><dt>颜色</dt><dd>任意 RGB → 品牌库存色号</dd></div>
+            <div><dt>产物</dt><dd>一张图片 → 图纸 + 用量 + 拼版</dd></div>
+          </dl>
+        </aside>
+      </div>
+
+      <div class="capability-grid">
+        <article>
+          <span class="cap-number">A</span>
+          <h3>图片生成图纸</h3>
+          <p>照片、插画或像素图变成带品牌色号的拼豆矩阵，并支持背景、锐化、限色和色号筛选。</p>
+          <span class="cap-status yes">已实现</span>
+        </article>
+        <article>
+          <span class="cap-number">B</span>
+          <h3>识别旧图纸</h3>
+          <p>检测稳定网格并读取格内主色；没有网格时，按用户给定宽高均匀切分。</p>
+          <span class="cap-status yes">已实现 · 启发式</span>
+        </article>
+        <article>
+          <span class="cap-number">C</span>
+          <h3>制作过程引导</h3>
+          <p>Focus 页能按色号和连通区域标记完成、显示进度和计时；但主生成页没有数据写入和进入入口。</p>
+          <span class="cap-status partial">代码可运行 · 主流程未接通</span>
+        </article>
+        <article>
+          <span class="cap-number">D</span>
+          <h3>OCR / 生成式 AI</h3>
+          <p>它不会读取印刷字符，也不使用视觉大模型理解人物；核心是采样、色差和网格规则。</p>
+          <span class="cap-status no">不是这类产品</span>
+        </article>
+      </div>
+    </section>
+
+    <section class="evidence-section page-section" id="evidence" aria-labelledby="evidence-title">
+      <div class="section-intro split-intro">
+        <div>
+          <p class="eyebrow"><span>06</span> VERIFIED, NOT ASSUMED</p>
+          <h2 id="evidence-title">我们实际跑了什么</h2>
+        </div>
+        <p>研究固定到上游提交 <code>5b6c85c</code>。源码没有复制到本项目中，只记录可复现命令、结果和独立分析。</p>
+      </div>
+
+      <div class="evidence-grid">
+        <article class="evidence-card pass-card">
+          <span class="evidence-status">PASS</span>
+          <strong>13 / 13</strong>
+          <h3>自动测试通过</h3>
+          <p>覆盖缩图、限色、图案清理和主体裁切，共 4 个测试文件。</p>
+          <code>npm test -- --run</code>
+        </article>
+        <article class="evidence-card pass-card">
+          <span class="evidence-status">PASS</span>
+          <strong>2 routes</strong>
+          <h3>生产构建通过</h3>
+          <p>首页和 Focus 制作模式都完成 Next.js 静态预渲染。</p>
+          <code>npm run build</code>
+        </article>
+        <article class="evidence-card warn-card">
+          <span class="evidence-status">REVIEW</span>
+          <strong>26</strong>
+          <h3>依赖安全告警</h3>
+          <p>含 3 critical、17 high；同时包含开发和间接依赖，部署前需要逐项升级研判。</p>
+          <code>npm audit --json</code>
+        </article>
+        <article class="evidence-card warn-card">
+          <span class="evidence-status">BOUNDARY</span>
+          <strong>无 LICENSE</strong>
+          <h3>不能默认再分发</h3>
+          <p>公开可读不等于可复制商用；当前研究只做分析，不把上游代码纳入成果。</p>
+          <code>package v0.1.0</code>
+        </article>
+      </div>
+
+      <div class="truth-table" role="region" aria-labelledby="truth-title">
+        <div class="truth-heading">
+          <p class="micro-label">READ THIS BEFORE USING IT</p>
+          <h3 id="truth-title">五个最容易误解的地方</h3>
+        </div>
+        <div class="truth-row"><span>看起来像 AI 自动画图</span><b>实际是</b><p>传统图像采样、色差匹配与启发式降噪。</p></div>
+        <div class="truth-row"><span>看起来能读图纸色号</span><b>实际是</b><p>先读取格子颜色，再推断最接近色号；不是 OCR。</p></div>
+        <div class="truth-row"><span>看起来屏幕色等于实物色</span><b>实际是</b><p>相机白平衡、显示器、光源和不同生产批次都会带来偏差。</p></div>
+        <div class="truth-row"><span>看起来数量等于采购量</span><b>实际是</b><p>这是理论颗数；采购还要加入试熨、掉落和损耗余量。</p></div>
+        <div class="truth-row"><span>看起来 Focus / PDF 已能直接使用</span><b>实际是</b><p>底层代码存在，但固定提交的主界面没有接入对应入口与数据链路。</p></div>
+      </div>
+    </section>
+
+    <section class="meaning-section page-section" aria-labelledby="meaning-title">
+      <div class="section-intro split-intro">
+        <div>
+          <p class="eyebrow"><span>07</span> WHY IT MATTERS HERE</p>
+          <h2 id="meaning-title">它对这个 Research Lab 的意义</h2>
+        </div>
+        <p>它把现有的“AI 视觉内容研究”，接到了实体手工和材料交付上；这是一条比单纯展示图片更完整的价值链。</p>
+      </div>
+
+      <div class="value-flow" aria-label="从数字创意到实体手工的流程">
+        <div><span>01</span><strong>原创角色 / AI 概念图</strong><small>数字视觉输入</small></div>
+        <i aria-hidden="true">→</i>
+        <div><span>02</span><strong>Pindo 图纸</strong><small>颗数、色号、底板</small></div>
+        <i aria-hidden="true">→</i>
+        <div><span>03</span><strong>亲子手工作品</strong><small>实体体验与纪念物</small></div>
+        <i aria-hidden="true">→</i>
+        <div><span>04</span><strong>材料包 / 定制服务</strong><small>可探索的产品层</small></div>
+      </div>
+
+      <div class="next-grid">
+        <article>
+          <span>最先扩展</span>
+          <h3>真实基准与编辑能力</h3>
+          <p>透视校正、反光图纸测试、逐格修改、撤销和图纸 JSON，先把可靠性补齐。</p>
+        </article>
+        <article>
+          <span>最自然商业层</span>
+          <h3>库存、替代色与成本</h3>
+          <p>知道“缺哪些、换什么、多少钱”，才能从制图工具进入材料包和定制生产。</p>
+        </article>
+        <article>
+          <span>AI 最适合加入</span>
+          <h3>前处理而非色号匹配</h3>
+          <p>主体分割、五官保护和低分辨率语义简化，比给色差算法套聊天界面更有价值。</p>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div>
+      <p class="micro-label">RESEARCH NOTE</p>
+      <strong>Pindo 能力研究与记忆灯产品实验</strong>
+    </div>
+    <p>固定提交 <code>5b6c85c</code> · 获取与验证日期 2026-08-30 · 本页概念图案与代码均为研究项目独立创作。</p>
+    <div class="footer-links">
+      <a href="https://github.com/yydshly/0830_codex_project/tree/main/projects/pindo-capability-research">研究记录 ↗</a>
+      <a href="https://github.com/LunarXuan/Pindo">上游仓库 ↗</a>
+    </div>
+  </footer>
+</body>
+</html>

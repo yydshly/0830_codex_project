@@ -1,0 +1,18 @@
+{
+  "slug": "pindo-capability-research",
+  "title": "Pindo 能力研究与记忆灯产品实验",
+  "summary": "验证 Pindo 如何用传统图像处理把图片或旧图纸转成品牌拼豆色号、用量与制作图，确认其构建与核心流程可用，并明确网格识别、Focus/PDF 接线、依赖安全和许可边界；研究页另展示 One、Nine、Constellation 三种独立提出的记忆灯概念。",
+  "status": "complete",
+  "tags": [
+    "image-processing",
+    "craft",
+    "pixel-art",
+    "product-research",
+    "memory-light",
+    "emotional-product"
+  ],
+  "started_at": "2026-08-30",
+  "updated_at": "2026-08-31",
+  "upstream_url": "https://github.com/LunarXuan/Pindo",
+  "demo_url": "https://yydshly.github.io/0830_codex_project/demos/pindo-capability-research/#life-product-lines"
+}

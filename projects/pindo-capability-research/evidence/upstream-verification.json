@@ -1,0 +1,79 @@
+{
+  "repository": "https://github.com/LunarXuan/Pindo",
+  "branch": "main",
+  "commit": "5b6c85c3cb1bbf72b5f4ce91365a4cd61a9fad39",
+  "commit_date": "2026-08-13T08:22:19+08:00",
+  "fetched_at": "2026-08-30",
+  "package_version": "0.1.0",
+  "license_file_present": false,
+  "package_license_declared": false,
+  "source_snapshot_included": false,
+  "source_snapshot_reason": "上游没有明确许可证；本项目仅记录来源、固定提交和研究结论，不再分发源码。",
+  "observed_capabilities": {
+    "advertised_palette_brands": 8,
+    "creative_modes": [
+      "写实",
+      "主色",
+      "清晰"
+    ],
+    "work_modes": [
+      "图片生成图纸",
+      "拼豆图纸识别",
+      "图纸色号高亮"
+    ],
+    "exports": [
+      "PNG",
+      "PDF"
+    ],
+    "static_routes": [
+      "/",
+      "/focus"
+    ]
+  },
+  "verification": {
+    "install": {
+      "command": "npm ci",
+      "exit_code": 0,
+      "installed_packages": 819,
+      "audited_packages": 820
+    },
+    "tests": {
+      "command": "npm test -- --run",
+      "exit_code": 0,
+      "test_files_passed": 4,
+      "tests_passed": 13,
+      "covered_modules": [
+        "downscaler",
+        "palette-limit",
+        "pattern-cleanup",
+        "subject-crop"
+      ]
+    },
+    "build": {
+      "command": "npm run build",
+      "exit_code": 0,
+      "result": "Next.js production build and static prerender succeeded"
+    },
+    "dependency_audit": {
+      "command": "npm audit --json",
+      "exit_code": 1,
+      "recorded_at": "2026-08-30",
+      "vulnerabilities": {
+        "info": 0,
+        "low": 3,
+        "moderate": 3,
+        "high": 17,
+        "critical": 3,
+        "total": 26
+      },
+      "interpretation": "结果包含直接、间接、生产和开发工具依赖；它是升级与部署前的安全信号，不等于 26 个漏洞都能通过 Pindo 静态页面直接利用。"
+    }
+  },
+  "known_implementation_boundaries": [
+    "核心为浏览器 Canvas 与传统图像算法，不使用生成式 AI 或视觉大模型。",
+    "色号匹配使用 RGB 到 Lab 转换与简化 CIEDE2000 色差。",
+    "有网格图纸识别基于线条评分、间距稳定性和格内主色采样，不是 OCR。",
+    "ordered dithering 在固定提交中仍是占位分支；界面实际使用 Floyd-Steinberg 开关。",
+    "自动识别和品牌色表没有覆盖实物光照、相机白平衡与生产批次色差。"
+  ]
+}
