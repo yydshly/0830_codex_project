@@ -1,0 +1,4 @@
+interface:
+  display_name: "Genart Studio"
+  short_description: "Build, render, and verify deterministic generative art"
+  default_prompt: "Use $genart-studio to build a deterministic browser generative-art series and verify multiple seeds."

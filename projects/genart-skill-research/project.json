@@ -1,0 +1,17 @@
+{
+  "slug": "genart-skill-research",
+  "title": "genart-skill 能力研究",
+  "summary": "研究 genart-skill 如何以知识、作品协议和 Playwright 工具，把模型编写的 Canvas/WebGL 生成器变成可复现、可批量验收的系统；通过玩家事件、六产品、六场景和品牌生产闭环验证，并转为项目内 Codex Skill。",
+  "status": "paused",
+  "tags": [
+    "ai-skill",
+    "generative-art",
+    "creative-coding",
+    "determinism",
+    "playwright"
+  ],
+  "started_at": "2026-08-30",
+  "updated_at": "2026-08-31",
+  "demo_url": "https://yydshly.github.io/0830_codex_project/demos/genart-skill-research/",
+  "upstream_url": "https://github.com/camilleroux/genart-skill"
+}

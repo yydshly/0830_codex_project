@@ -1,0 +1,685 @@
+<!doctype html>
+<html lang="zh-CN" data-theme="light">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="用完整玩家事件、六个角色视角、真实 Canvas、像素摘要和系列普查，交互演示 genart-skill 的能力、边界与团队价值。">
+    <meta name="theme-color" content="#f4f0e8">
+    <title>Genart Lab｜生成艺术 Skill 能力实证</title>
+    <link rel="icon" href="./favicon.svg" type="image/svg+xml">
+    <script>
+      document.documentElement.dataset.theme = localStorage.getItem("genart-theme") || "light";
+    </script>
+    <link rel="stylesheet" href="./styles.css">
+  </head>
+  <body data-mode="deterministic">
+    <a class="skip-link" href="#main-content">跳到主要内容</a>
+
+    <header class="site-header">
+      <nav class="nav-shell" aria-label="主导航">
+        <a class="brand" href="#top" aria-label="Genart Lab 首页">
+          <span class="brand-glyph" aria-hidden="true">G/A</span>
+          <span><strong>GENART LAB</strong><small>能力实证 · 不是文生图</small></span>
+        </a>
+        <div class="nav-links">
+          <a href="#ability">能力</a>
+          <a href="#case-study">完整案例</a>
+          <a href="#role-lenses">多视角</a>
+          <a href="#application-demo">产品落地</a>
+          <a href="#proof">验证</a>
+          <a href="#edition">系列</a>
+          <a href="#census">普查</a>
+          <a href="#scenarios">场景</a>
+          <a href="#use">直接使用</a>
+        </div>
+        <button class="theme-toggle" id="theme-toggle" type="button" aria-pressed="false">
+          <i aria-hidden="true"></i><span>切换深色</span>
+        </button>
+      </nav>
+    </header>
+
+    <main id="main-content">
+      <section class="hero section-shell" id="top">
+        <div class="hero-copy">
+          <p class="eyebrow"><span></span> HASH → PRNG → FEATURES → ARTWORK</p>
+          <h1>同一个 hash，<em>永远回到同一件作品。</em></h1>
+          <p class="hero-lead">
+            genart-skill 不负责“替你画一张图”。它让编码代理知道怎样把一个生成算法做成可重放、可批量观察、可验证、可发行的完整系列。
+          </p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="#proof">亲手破坏确定性</a>
+            <a class="button button-secondary" href="#use">直接使用我们的版本</a>
+          </div>
+          <dl class="hero-facts" aria-label="本页真实能力">
+            <div><dt>3×</dt><dd>同 seed 像素复验</dd></div>
+            <div><dt>12</dt><dd>实时系列样本</dd></div>
+            <div><dt>5,000</dt><dd>浏览器特征普查</dd></div>
+          </dl>
+          <p class="truth-note">本页所有作品由浏览器实时绘制，不是预生成截图。</p>
+        </div>
+
+        <div class="live-studio" aria-label="实时确定性生成艺术工作台">
+          <div class="studio-topline">
+            <div>
+              <span class="live-dot"></span>
+              <strong>LIVE SKETCH</strong>
+            </div>
+            <code id="seed-short">0xc0dec0de…dec0de</code>
+          </div>
+          <div class="canvas-frame">
+            <canvas id="live-canvas" width="720" height="720" aria-label="由当前 seed 实时生成的艺术作品"></canvas>
+            <div class="canvas-fallback" id="canvas-fallback" hidden role="status">
+              <strong>Canvas 在当前环境不可用</strong>
+              <p>文字说明、能力边界和直接使用命令仍然可用。换用支持 Canvas 2D 的浏览器即可运行实时实验。</p>
+            </div>
+            <div class="canvas-badge"><span>PIXEL SHA-256</span><code id="pixel-digest">calculating…</code></div>
+          </div>
+          <div class="studio-controls">
+            <label class="seed-field" for="seed-input">
+              <span>作品 hash</span>
+              <input id="seed-input" type="text" spellcheck="false" autocomplete="off" aria-describedby="seed-help">
+            </label>
+            <p class="sr-only" id="seed-help">输入十六进制 hash，按回车重新渲染</p>
+            <div class="control-row">
+              <button class="button button-ink" id="rerender-seed" type="button">重放同一 seed</button>
+              <button class="icon-button" id="random-seed" type="button" aria-label="生成一个新 seed">新 seed</button>
+              <button class="icon-button" id="download-png" type="button">下载 PNG</button>
+            </div>
+            <div class="mode-and-size">
+              <div class="segmented" aria-label="随机模式">
+                <button type="button" data-mode="deterministic" aria-pressed="true">稳定 PRNG</button>
+                <button type="button" data-mode="broken" aria-pressed="false">故障 Math.random</button>
+              </div>
+              <label>输出
+                <select id="render-size">
+                  <option value="480">480</option>
+                  <option value="720" selected>720</option>
+                  <option value="1200">1200</option>
+                </select>
+              </label>
+            </div>
+          </div>
+          <ul class="feature-list" id="feature-list" aria-label="当前作品特征"></ul>
+          <div class="studio-metrics">
+            <span>BUFFER <strong id="buffer-size">720 × 720</strong></span>
+            <span>RENDER <strong id="render-time">—</strong></span>
+          </div>
+        </div>
+      </section>
+
+      <section class="statement-band" aria-label="核心定位">
+        <div class="section-shell statement-grid">
+          <p>它不是</p><strong>文生图模型</strong>
+          <p>它是</p><strong>生成算法的技术导演 + 质检台</strong>
+        </div>
+      </section>
+
+      <section class="case-section" id="case-study">
+        <div class="section-shell">
+          <div class="split-heading case-heading">
+            <div>
+              <p class="eyebrow"><span></span> ONE COMPLETE CASE</p>
+              <h2>一次玩家报错，看懂这个库的完整价值。</h2>
+            </div>
+            <div class="heading-action">
+              <p>这不是“画一张地牢图”的演示。请按 ①重放、②修复、③普查操作，观察一个生成系统怎样从玩家现场走到可验证发布。</p>
+              <p class="case-promise"><strong>目标：</strong>修复出口规则，同时保持同一只怪物、同一件掉落和同一种艺术氛围。</p>
+            </div>
+          </div>
+
+          <article class="incident-card" aria-label="玩家事件报告">
+            <div class="incident-index"><span>INCIDENT</span><strong>GA-2048</strong></div>
+            <blockquote>“第 7 个房间的出口被墙封死，我带着稀有护盾但无法继续。”</blockquote>
+            <dl>
+              <div><dt>玩家提交</dt><dd>世界 seed</dd></div>
+              <div><dt>线上版本</dt><dd>release / v1.4.2</dd></div>
+              <div><dt>复现目标</dt><dd>地图 + 怪物 + 掉落 + 氛围</dd></div>
+            </dl>
+          </article>
+
+          <ol class="case-stepper" aria-label="完整处理流程">
+            <li class="is-active" data-case-step="report"><span>01</span><strong>收到 seed</strong><small>玩家不必录完整视频</small></li>
+            <li data-case-step="replay"><span>02</span><strong>重放现场</strong><small>三次像素一致</small></li>
+            <li data-case-step="diagnose"><span>03</span><strong>隔离子流</strong><small>定位 route 规则</small></li>
+            <li data-case-step="fix"><span>04</span><strong>应用修复</strong><small>身份保持不变</small></li>
+            <li data-case-step="audit"><span>05</span><strong>批量普查</strong><small>10,000 seed 归零</small></li>
+          </ol>
+
+          <div class="case-workbench">
+            <div class="case-visual">
+              <div class="case-visual-header">
+                <span>WORLD REPLAY / GA-2048</span>
+                <code id="case-seed">0xc0dec0de…c0de</code>
+              </div>
+              <canvas id="case-canvas" width="1120" height="720" aria-label="玩家坏地图现场"></canvas>
+              <div class="canvas-fallback case-fallback" id="case-fallback" hidden>
+                <strong>现场 Canvas 不可用</strong>
+                <p>事件、seed、命名子流、修复原则和批量普查说明仍可阅读；像素重放暂时停用。</p>
+              </div>
+              <div class="case-controls" aria-label="案例操作">
+                <button class="button button-light" id="case-replay" type="button"><span>①</span>同 seed 重放 3 次</button>
+                <button class="button button-coral" id="case-fix" type="button"><span>②</span>应用候选修复</button>
+                <button class="button button-outline-light" id="case-audit" type="button"><span>③</span>普查 10,000 seed</button>
+              </div>
+            </div>
+
+            <aside class="case-console" aria-live="polite">
+              <div class="case-status-head">
+                <div><small>CURRENT BUILD</small><strong id="case-version">release / v1.4.2</strong></div>
+                <span class="case-route-status is-blocked" id="case-route-status">BLOCKED</span>
+              </div>
+              <div class="case-explanation">
+                <p class="case-phase" id="case-phase">玩家现场已恢复</p>
+                <h3 id="case-result-title">第 7 房间出口被封死。</h3>
+                <p id="case-result-copy">因为世界 seed 控制完整输出，我们恢复的不只是地图截图，还包括当时的怪物、掉落和雾效。</p>
+              </div>
+
+              <div class="case-streams">
+                <p class="mini-heading">同一个 seed → 四个命名子流</p>
+                <dl>
+                  <div><dt><code>world</code></dt><dd id="case-world">—</dd><span>地图与路线</span></div>
+                  <div><dt><code>enemy</code></dt><dd id="case-enemy">—</dd><span>怪物身份</span></div>
+                  <div><dt><code>loot</code></dt><dd id="case-loot">—</dd><span>掉落身份</span></div>
+                  <div><dt><code>vfx</code></dt><dd id="case-vfx">—</dd><span>艺术氛围</span></div>
+                </dl>
+              </div>
+
+              <div class="case-evidence-grid">
+                <section>
+                  <header><span>重放证据</span><strong id="case-replay-status">等待操作</strong></header>
+                  <ol id="case-replay-runs"><li><span>RUN 1</span><code>—</code></li><li><span>RUN 2</span><code>—</code></li><li><span>RUN 3</span><code>—</code></li></ol>
+                </section>
+                <section>
+                  <header><span>身份保持</span><strong id="case-identity-status">等待修复</strong></header>
+                  <dl class="identity-check"><div><dt>Enemy</dt><dd id="case-enemy-check">—</dd></div><div><dt>Loot</dt><dd id="case-loot-check">—</dd></div></dl>
+                </section>
+                <section class="case-audit-panel">
+                  <header><span>10,000 seed 路线普查</span><strong id="case-audit-status">尚未运行</strong></header>
+                  <div class="audit-comparison">
+                    <div><span>修复前 BLOCKED</span><strong id="case-audit-before">—</strong><i class="audit-before"></i></div>
+                    <div><span>修复后 BLOCKED</span><strong id="case-audit-after">—</strong><i class="audit-after"></i></div>
+                  </div>
+                </section>
+              </div>
+            </aside>
+          </div>
+
+          <div class="case-meaning">
+            <article><span>艺术效果的意义</span><h3>视觉是可寻址的产品状态。</h3><p>地图色彩、怪物轮廓、宝箱和雾不是库自带画风，而是示例算法的输出；库让这套艺术结果拥有稳定编号、traits 和高清重建能力。</p></article>
+            <article><span>对我们的意义</span><h3>问题能重放，模块能独立演进。</h3><p>修 route 规则时不重抽 <code>enemy</code> 和 <code>loot</code> 子流，避免“修一个门，整张世界全部变化”。</p></article>
+            <article><span>什么时候使用</span><h3>任何“随机但必须负责”的系统。</h3><p>Roguelike 地图、装备、怪物、VFX、品牌批量视觉、数字艺术发行，以及需要回归测试的创意代码。</p></article>
+          </div>
+        </div>
+      </section>
+
+      <section class="lens-section" id="role-lenses">
+        <div class="section-shell">
+          <div class="lens-heading">
+            <div>
+              <p class="eyebrow"><span></span> ONE SEED / SIX REALITIES</p>
+              <h2><span>先看见生成，</span><span>再看懂系统。</span></h2>
+            </div>
+            <div>
+              <strong>同一个世界 seed</strong>
+              <p>不是六张预制图，而是六次实时确定性重建。切换角色，观看玩家现场、艺术流体、子流轨道、批量扫描、发行画廊和选型宇宙怎样从同一 hash 生长出来。</p>
+            </div>
+          </div>
+
+          <div class="lens-workbench">
+            <div class="lens-visual">
+              <div class="lens-visual-header">
+                <div><i></i><span id="lens-code">01 / PLAYER SUPPORT</span></div>
+                <code id="lens-seed">WORLD 0xc0dec0de…c0de</code>
+              </div>
+              <canvas id="lens-canvas" width="1280" height="760" aria-label="玩家支持与客服视角生成场景"></canvas>
+              <div class="canvas-fallback lens-fallback" id="lens-fallback" hidden>
+                <strong>沉浸场景不可用</strong>
+                <p>角色收到的输入、证据、决策和价值仍完整保留；换用支持 Canvas 2D 的浏览器可查看六种确定性视觉现实。</p>
+              </div>
+              <div class="lens-visual-footer">
+                <div><small>VIEW DIGEST</small><code id="lens-digest">calculating…</code></div>
+                <div><small>RENDER</small><strong id="lens-render-time">—</strong></div>
+                <div><small>SAME INCIDENT</small><strong>GA-2048</strong></div>
+              </div>
+            </div>
+
+            <div class="lens-tabs" role="tablist" aria-label="选择视觉现实">
+              <button id="lens-tab-support" type="button" role="tab" data-lens="support" aria-selected="true" aria-controls="lens-panel" tabindex="0"><span>01</span><strong>玩家现场</strong><small>INCIDENT</small></button>
+              <button id="lens-tab-art" type="button" role="tab" data-lens="art" aria-selected="false" aria-controls="lens-panel" tabindex="-1"><span>02</span><strong>艺术流体</strong><small>ART ID</small></button>
+              <button id="lens-tab-engineering" type="button" role="tab" data-lens="engineering" aria-selected="false" aria-controls="lens-panel" tabindex="-1"><span>03</span><strong>子流轨道</strong><small>STREAMS</small></button>
+              <button id="lens-tab-qa" type="button" role="tab" data-lens="qa" aria-selected="false" aria-controls="lens-panel" tabindex="-1"><span>04</span><strong>批量扫描</strong><small>10K AUDIT</small></button>
+              <button id="lens-tab-production" type="button" role="tab" data-lens="production" aria-selected="false" aria-controls="lens-panel" tabindex="-1"><span>05</span><strong>发行画廊</strong><small>SHIP</small></button>
+              <button id="lens-tab-boundary" type="button" role="tab" data-lens="boundary" aria-selected="false" aria-controls="lens-panel" tabindex="-1"><span>06</span><strong>选型宇宙</strong><small>BOUNDARY</small></button>
+            </div>
+
+            <article class="lens-detail" id="lens-panel" role="tabpanel" aria-labelledby="lens-tab-support" tabindex="0" aria-live="polite">
+              <div class="lens-narrative">
+                <p class="lens-kicker" id="lens-kicker">玩家支持与客服</p>
+                <h3 id="lens-title">把“偶现卡关”变成可转交的事件包。</h3>
+                <p class="lens-question"><span>关键问题</span><strong id="lens-question">玩家不懂生成算法，怎样让他用最低成本提交一个可复现现场？</strong></p>
+                <p class="lens-summary" id="lens-summary">客服只收集世界 seed、版本和一句现象描述；技术团队即可恢复地图、怪物、掉落与氛围，不再追问录屏和设备运气。</p>
+              </div>
+
+              <div class="lens-decision-flow">
+                <section><span>01 / 收到什么</span><p id="lens-input">世界 seed、线上版本、玩家一句话描述</p></section>
+                <section><span>02 / 看到什么证据</span><ul id="lens-evidence"><li>同 seed 3 次重放像素一致</li><li>现场包含地图 / 怪物 / 掉落 / VFX</li><li>事件编号 GA-2048 可跨团队引用</li></ul></section>
+                <section><span>03 / 作什么决定</span><p id="lens-decision">确认是可复现的生成规则缺陷，升级给工程与 QA，而不是让玩家反复尝试。</p></section>
+              </div>
+
+              <div class="lens-impact">
+                <span id="lens-impact-label">支持效率</span>
+                <strong id="lens-impact">1 个 seed 代替完整录屏；事件现场约 42 秒恢复。</strong>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="application-section" id="applications">
+        <div class="section-shell">
+          <div class="application-heading">
+            <div>
+              <p class="eyebrow"><span></span> FROM ENGINE TO PRODUCT</p>
+              <h2><span>不要想象用途，</span><span>直接看最终产品。</span></h2>
+            </div>
+            <div class="application-heading-copy">
+              <strong>同一个 Seed，不止能生成艺术作品。</strong>
+              <p>下面六幅都由浏览器实时绘制：可玩的关卡、跨渠道品牌物料、可生产的个性包装、数据报告、媒体栏目和产品 UI 身份。</p>
+            </div>
+          </div>
+
+          <div class="application-workbench is-settled" id="application-demo" data-application="game">
+            <div class="application-tabs" role="tablist" aria-label="选择产品落地案例">
+              <button id="application-tab-game" type="button" role="tab" data-application="game" aria-selected="true" aria-controls="application-panel" tabindex="0"><span>01</span><strong>游戏关卡</strong><small>GAME</small></button>
+              <button id="application-tab-brand" type="button" role="tab" data-application="brand" aria-selected="false" aria-controls="application-panel" tabindex="-1"><span>02</span><strong>品牌活动</strong><small>BRAND</small></button>
+              <button id="application-tab-product" type="button" role="tab" data-application="product" aria-selected="false" aria-controls="application-panel" tabindex="-1"><span>03</span><strong>个性商品</strong><small>PRODUCT</small></button>
+              <button id="application-tab-data" type="button" role="tab" data-application="data" aria-selected="false" aria-controls="application-panel" tabindex="-1"><span>04</span><strong>数据报告</strong><small>DATA</small></button>
+              <button id="application-tab-media" type="button" role="tab" data-application="media" aria-selected="false" aria-controls="application-panel" tabindex="-1"><span>05</span><strong>媒体内容</strong><small>MEDIA</small></button>
+              <button id="application-tab-identity" type="button" role="tab" data-application="identity" aria-selected="false" aria-controls="application-panel" tabindex="-1"><span>06</span><strong>UI 身份</strong><small>IDENTITY</small></button>
+            </div>
+
+            <div class="application-stage">
+              <div class="application-stage-header">
+                <div><i></i><span id="application-code">01 / PLAYABLE WORLD</span></div>
+                <code id="application-seed">SEED 0xc0dec0de…c0de</code>
+              </div>
+              <canvas id="application-canvas" width="1280" height="760" aria-label="游戏关卡产品演示"></canvas>
+              <div class="canvas-fallback application-fallback" id="application-fallback" hidden>
+                <strong>产品画面不可用</strong>
+                <p>六个案例的业务输入、最终交付物、格式和价值仍可切换阅读；换用支持 Canvas 2D 的浏览器可查看实时产品 mockup。</p>
+              </div>
+              <div class="application-stage-footer">
+                <div><small>PRODUCT DIGEST</small><code id="application-digest">calculating…</code></div>
+                <div><small>RENDER</small><strong id="application-render-time">—</strong></div>
+                <div class="application-actions">
+                  <button class="button button-ink" id="application-replay" type="button">重放同一 Seed</button>
+                  <button class="button button-primary" id="application-random" type="button">换 Seed 看变体</button>
+                </div>
+              </div>
+            </div>
+
+            <article class="application-bridge" id="application-panel" role="tabpanel" aria-labelledby="application-tab-game" tabindex="0" aria-live="polite">
+              <div class="application-story">
+                <p class="application-kicker" id="application-kicker">游戏关卡 / GAME</p>
+                <h3 id="application-title">生成结果直接成为可玩的关卡。</h3>
+                <p id="application-summary">地图、角色、敌人、掉落和出口由独立子流生成；产品消费的是 Tilemap 与实体配置，不是抽象光效。</p>
+              </div>
+              <div class="application-pipeline">
+                <section><span>01 / 业务输入</span><strong id="application-input">世界 seed · Biome · 难度 · 关卡规则</strong></section>
+                <section><span>02 / 最终交付</span><strong id="application-output">俯视关卡 · 敌人编队 · 掉落点 · HUD</strong></section>
+                <section><span>03 / 产品价值</span><strong id="application-value">玩家报一个 seed，就能恢复他真正玩到的现场。</strong></section>
+              </div>
+              <div class="application-formats" id="application-formats" aria-label="当前案例交付格式">
+                <span>TILEMAP JSON</span><span>ENTITY JSON</span><span>PNG PREVIEW</span>
+              </div>
+            </article>
+
+            <div class="capability-attribution" aria-label="演示能力来源">
+              <article><span>01 / 库负责</span><strong>Seed、命名子流、重放与批量验收</strong><p>它提供生成纪律和作品协议，不提供固定画风。</p></article>
+              <article><span>02 / 模型负责</span><strong>构图、配色、产品规则与 Canvas 代码</strong><p>这里的 AERO 品牌视觉由模型在约束下设计。</p></article>
+              <article><span>03 / 浏览器负责</span><strong>实时绘制、像素摘要和文件导出</strong><p>切换参数时不再调用模型，结果由本地代码生成。</p></article>
+            </div>
+
+            <section class="brand-production" id="brand-production" aria-labelledby="brand-production-title" hidden>
+              <header class="brand-production-header">
+                <div>
+                  <p>BRAND PRODUCTION LOOP</p>
+                  <h3 id="brand-production-title">把展示变成一次真实交付。</h3>
+                </div>
+                <div class="brand-export-actions" aria-label="下载品牌资产">
+                  <button class="button button-secondary" type="button" data-brand-download="png">下载 PNG</button>
+                  <button class="button button-secondary" type="button" data-brand-download="svg">下载 SVG</button>
+                  <button class="button button-primary" type="button" data-brand-download="manifest">下载 Manifest</button>
+                </div>
+              </header>
+
+              <section class="principle-anatomy" id="principle-anatomy" aria-labelledby="principle-title">
+                <header class="principle-heading">
+                  <div>
+                    <p>HOW THIS IMAGE IS MADE</p>
+                    <h4 id="principle-title">先拆开看：线条是画面，Skill 是方法。</h4>
+                  </div>
+                  <strong>当前 AERO 视觉，本质上是一个极简线条 / 光带生成器；它不是 genart-skill 内置的画风。</strong>
+                </header>
+
+                <div class="principle-flow" aria-label="从生成器到可交付资产的三层原理">
+                  <article class="principle-step principle-generator">
+                    <span>01 / 画面实现层</span>
+                    <h5>模型或创作者编写生成器</h5>
+                    <p>决定“画出什么”。本页用一小段 Canvas 代码，把业务参数变成线条品牌视觉。</p>
+                    <div class="principle-mini-art" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+                    <ul class="principle-recipe" aria-label="当前画面算法配方">
+                      <li>Seeded PRNG</li><li>贝塞尔曲线</li><li>径向渐变</li><li>字体排版</li>
+                    </ul>
+                  </article>
+
+                  <div class="principle-connector" aria-hidden="true"><small>接入作品协议</small><b>→</b></div>
+
+                  <article class="principle-step principle-skill">
+                    <span>02 / 方法与验收层</span>
+                    <h5>genart-skill 管理生成过程</h5>
+                    <p>决定“怎样对结果负责”。它不替你画线，而是把任何生成器接入同一套可复现工作流。</p>
+                    <code>hash → named streams → render → digest</code>
+                    <ul class="principle-capabilities">
+                      <li><b>固定 Seed</b><small>同一输入能重放</small></li>
+                      <li><b>命名子流</b><small>模块变化可隔离</small></li>
+                      <li><b>浏览器检查</b><small>像素与 traits 可验证</small></li>
+                      <li><b>批量普查</b><small>看整个系列而非英雄图</small></li>
+                    </ul>
+                  </article>
+
+                  <div class="principle-connector" aria-hidden="true"><small>执行与落盘</small><b>→</b></div>
+
+                  <article class="principle-step principle-runtime">
+                    <span>03 / 运行与交付层</span>
+                    <h5>浏览器执行确定性代码</h5>
+                    <p>决定“得到什么文件”。修改参数时不再调用模型，本地代码直接绘制、摘要和导出。</p>
+                    <div class="principle-output-stack" aria-label="运行时输出">
+                      <i>CANVAS PIXELS</i><i>SHA-256</i><i>PNG / SVG</i><i>MANIFEST</i>
+                    </div>
+                  </article>
+                </div>
+
+                <footer class="generator-swap">
+                  <div><span>REPLACE THE GENERATOR</span><strong>换掉画面算法，方法层仍然成立</strong></div>
+                  <ul aria-label="可替换的生成器类型"><li>粒子流场</li><li>几何拼贴</li><li>复古版画</li><li>字体生成</li><li>3D Shader</li><li>程序化地形</li></ul>
+                  <p>艺术上限取决于我们实现什么生成算法；genart-skill 的价值，是让这些算法可重放、可审查、可批量交付。</p>
+                </footer>
+              </section>
+
+              <div class="brand-production-layout">
+                <form class="brand-controls" id="brand-controls">
+                  <div class="brand-controls-heading">
+                    <span>01 / BUSINESS INPUTS</span>
+                    <strong>编辑业务参数，主画面立即重建</strong>
+                  </div>
+                  <label for="brand-name">品牌名称<input id="brand-name" name="brandName" type="text" value="AERO" maxlength="18" required></label>
+                  <label for="brand-headline">活动标题<input id="brand-headline" name="headline" type="text" value="MOVE BEYOND" maxlength="28" required></label>
+                  <label for="brand-campaign-id">活动 ID<input id="brand-campaign-id" name="campaignId" type="text" value="A/26" maxlength="12" required></label>
+                  <div class="brand-color-row">
+                    <label for="brand-primary">主色<input id="brand-primary" name="primary" type="color" value="#ff6b4f"></label>
+                    <label for="brand-accent">强调色<input id="brand-accent" name="accent" type="color" value="#536eff"></label>
+                  </div>
+                  <p class="brand-edit-status" id="brand-edit-status" aria-live="polite">默认参数 · 画面与 Manifest 已同步</p>
+                  <button class="button button-ink" id="brand-reset" type="button">恢复默认品牌参数</button>
+                </form>
+
+                <div class="brand-comparison" id="brand-comparison">
+                  <div class="brand-comparison-heading">
+                    <div><span>02 / WITH VS WITHOUT SKILL</span><strong>同一个 Seed，连续运行三次</strong></div>
+                    <button class="button button-primary" id="brand-run-comparison" type="button">运行 3 次对照</button>
+                  </div>
+                  <div class="brand-comparison-grid">
+                    <article>
+                      <header><div><i></i><strong>有 Skill</strong><small>SEEDED STREAM</small></div><span class="brand-compare-status is-idle" id="brand-stable-status">等待</span></header>
+                      <canvas id="brand-stable-canvas" width="640" height="360" aria-label="使用确定性 Seed 的品牌输出"></canvas>
+                      <ol id="brand-stable-runs"><li><span>RUN 1</span><code>—</code></li><li><span>RUN 2</span><code>—</code></li><li><span>RUN 3</span><code>—</code></li></ol>
+                    </article>
+                    <article>
+                      <header><div><i></i><strong>无 Skill</strong><small>MATH.RANDOM</small></div><span class="brand-compare-status is-idle" id="brand-broken-status">等待</span></header>
+                      <canvas id="brand-broken-canvas" width="640" height="360" aria-label="使用 Math.random 的漂移品牌输出"></canvas>
+                      <ol id="brand-broken-runs"><li><span>RUN 1</span><code>—</code></li><li><span>RUN 2</span><code>—</code></li><li><span>RUN 3</span><code>—</code></li></ol>
+                    </article>
+                  </div>
+                  <p class="brand-comparison-note" id="brand-comparison-note" aria-live="polite">运行后会比较六次真实 Canvas 像素摘要：左侧应稳定，右侧应漂移。</p>
+                </div>
+              </div>
+
+              <footer class="brand-delivery-map">
+                <span>03 / REAL FILES</span>
+                <strong>当前画面 → PNG 预览</strong><i>+</i><strong>桌面 KV → SVG</strong><i>+</i><strong>生产坐标 → Manifest JSON</strong>
+              </footer>
+            </section>
+          </div>
+        </div>
+      </section>
+
+      <section class="section-shell content-section" id="ability">
+        <div class="section-heading split-heading">
+          <div>
+            <p class="eyebrow"><span></span> WHAT IT ADDS</p>
+            <h2>它真正增加了三层能力</h2>
+          </div>
+          <p>Claude 本来就会写 Canvas。这个库让它知道怎样把一段“看起来随机”的代码，推进成一个可发行、可回放、可审查的作品系统。</p>
+        </div>
+        <div class="ability-grid">
+          <article class="ability-card">
+            <span class="card-number">01</span>
+            <div class="card-icon" aria-hidden="true">{ }</div>
+            <h3>专业判断</h3>
+            <p>何时选平台、怎样从完整 hash 播种、为什么要拆命名随机子流、怎样设计 traits 和稀有度。</p>
+            <small>SKILL.md + 14 份按需资料</small>
+          </article>
+          <article class="ability-card card-accent-blue">
+            <span class="card-number">02</span>
+            <div class="card-icon" aria-hidden="true">↻</div>
+            <h3>统一作品协议</h3>
+            <p>用 <code>?hash</code>、<code>render(hash)</code>、<code>$features</code> 和完成信号，把不同 Web sketch 接到同一套工具。</p>
+            <small>平台代码与工作室 QA 解耦</small>
+          </article>
+          <article class="ability-card card-accent-coral">
+            <span class="card-number">03</span>
+            <div class="card-icon" aria-hidden="true">✓</div>
+            <h3>真实验收</h3>
+            <p>运行浏览器、读取 Canvas 原始像素、生成联系表、统计 feature 分布，并批量导出高清 PNG。</p>
+            <small>Playwright + 像素 SHA-256</small>
+          </article>
+        </div>
+      </section>
+
+      <section class="proof-section" id="proof">
+        <div class="section-shell proof-layout">
+          <div class="proof-copy">
+            <p class="eyebrow"><span></span> LIVE PROOF</p>
+            <h2>同一个 seed，跑三次。</h2>
+            <p>稳定模式使用整数 PRNG 和命名子流；故障模式把布局与 features 换成 <code>Math.random</code>。点击检查，浏览器会真实绘制三次并比较原始像素摘要。</p>
+            <ol class="proof-steps">
+              <li><span>1</span>固定当前 hash</li>
+              <li><span>2</span>创建三个独立 Canvas</li>
+              <li><span>3</span>比较像素与 features</li>
+            </ol>
+          </div>
+          <div class="check-console">
+            <div class="console-header">
+              <span>DETERMINISM CHECK</span>
+              <span class="status-chip status-idle" id="check-status" aria-live="polite">等待检查</span>
+            </div>
+            <ul class="check-runs" id="check-runs">
+              <li class="placeholder-row"><span>RUN 1</span><code>—</code></li>
+              <li class="placeholder-row"><span>RUN 2</span><code>—</code></li>
+              <li class="placeholder-row"><span>RUN 3</span><code>—</code></li>
+            </ul>
+            <button class="button button-primary button-wide" id="run-check" type="button">运行真实像素检查</button>
+            <p class="console-help">先在首屏切换“故障 Math.random”，再运行一次，观察 PASS 变成 FAIL。</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section-shell content-section" id="edition">
+        <div class="section-heading split-heading">
+          <div>
+            <p class="eyebrow"><span></span> EDITION VIEW</p>
+            <h2>一张好图，不代表一个好系列。</h2>
+          </div>
+          <div class="heading-action">
+            <p>联系表让我们一次看到多个 seed，检查布局覆盖、颜色分布、视觉重复和失败输出。</p>
+            <button class="button button-secondary" id="refresh-grid" type="button">基于当前 seed 重建 12 件</button>
+          </div>
+        </div>
+        <div class="collection-grid" id="collection-grid" aria-live="polite"></div>
+      </section>
+
+      <section class="census-section" id="census">
+        <div class="section-shell census-layout">
+          <div class="census-intro">
+            <p class="eyebrow"><span></span> FEATURE CENSUS</p>
+            <h2>设计的是权重，发行的是实际结果。</h2>
+            <p>实时抽取 5,000 个确定性 seed，计算 Palette、Density、Gesture 的实际分布，并与目标权重并排显示。</p>
+            <button class="button button-primary" id="run-census" type="button">运行 5,000 seed 普查</button>
+            <p class="census-status" id="census-status" aria-live="polite">尚未运行 · 计算完全在当前浏览器完成</p>
+            <div class="legend"><span><i class="legend-actual"></i>实测</span><span><i class="legend-target"></i>目标</span></div>
+          </div>
+          <div class="census-charts" id="census-charts">
+            <div class="empty-chart">
+              <span>5K</span>
+              <p>点击运行，查看一个算法在整个 seed 空间里的真实倾向。</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="scenario-section" id="scenarios">
+        <div class="section-shell">
+          <div class="split-heading scenario-heading">
+            <div>
+              <p class="eyebrow"><span></span> USE-CASE ATLAS</p>
+              <h2>同一套原理，进入六种真实生产场景。</h2>
+            </div>
+            <div class="heading-action">
+              <p>圆圈只是测试载体。下面六个 Canvas 共用当前 seed，却使用独立命名随机流，展示它怎样进入游戏、品牌、发行和工程质检。</p>
+              <div class="scenario-principle"><strong>一个 seed</strong><span>→</span><strong>六个领域子流</strong><span>→</span><strong>可复现结果</strong></div>
+            </div>
+          </div>
+
+          <div class="scenario-tabs" role="tablist" aria-label="选择使用场景">
+            <button id="scenario-tab-world" type="button" role="tab" data-scenario="world" aria-selected="true" aria-controls="scenario-panel" tabindex="0"><span>01</span>游戏地图</button>
+            <button id="scenario-tab-loot" type="button" role="tab" data-scenario="loot" aria-selected="false" aria-controls="scenario-panel" tabindex="-1"><span>02</span>装备掉落</button>
+            <button id="scenario-tab-monster" type="button" role="tab" data-scenario="monster" aria-selected="false" aria-controls="scenario-panel" tabindex="-1"><span>03</span>怪物外观</button>
+            <button id="scenario-tab-brand" type="button" role="tab" data-scenario="brand" aria-selected="false" aria-controls="scenario-panel" tabindex="-1"><span>04</span>品牌视觉</button>
+            <button id="scenario-tab-edition" type="button" role="tab" data-scenario="edition" aria-selected="false" aria-controls="scenario-panel" tabindex="-1"><span>05</span>数字发行</button>
+            <button id="scenario-tab-qa" type="button" role="tab" data-scenario="qa" aria-selected="false" aria-controls="scenario-panel" tabindex="-1"><span>06</span>系统质检</button>
+          </div>
+
+          <div class="scenario-workbench" id="scenario-panel" role="tabpanel" aria-labelledby="scenario-tab-world">
+            <div class="scenario-visual">
+              <div class="scenario-visual-header">
+                <span id="scenario-code">01 / GAME WORLD</span>
+                <code id="scenario-seed">0xc0dec0de…c0de</code>
+              </div>
+              <canvas id="scenario-canvas" width="960" height="640" aria-label="游戏地图生成案例"></canvas>
+              <div class="canvas-fallback scenario-fallback" id="scenario-fallback" hidden>
+                <strong>场景 Canvas 不可用</strong>
+                <p>仍可切换并阅读六种案例；实时画面、重放和摘要暂时停用。</p>
+              </div>
+              <div class="scenario-visual-footer">
+                <div><small>PIXEL SHA-256</small><code id="scenario-digest">calculating…</code></div>
+                <div class="scenario-actions">
+                  <button class="button button-ink" id="scenario-rerender" type="button">重放当前 seed</button>
+                  <button class="button button-secondary" id="scenario-random" type="button">换一个 seed</button>
+                </div>
+              </div>
+            </div>
+
+            <article class="scenario-detail" aria-live="polite">
+              <p class="scenario-kicker" id="scenario-kicker">01 / GAME WORLD</p>
+              <h3 id="scenario-title">Roguelike 地牢与关卡</h3>
+              <p class="scenario-summary" id="scenario-summary">让地图拓扑、房间密度、危险等级都由外部 seed 决定；玩家提交编号，开发者即可恢复同一世界。</p>
+              <ul class="scenario-features" id="scenario-features" aria-label="当前案例 traits">
+                <li><span>Biome</span><strong>—</strong></li>
+                <li><span>Topology</span><strong>—</strong></li>
+                <li><span>Danger</span><strong>—</strong></li>
+              </ul>
+              <dl class="scenario-angle-grid">
+                <div><dt>输入</dt><dd id="scenario-angle-input">世界 seed、难度、Biome 配置</dd></div>
+                <div><dt>生成输出</dt><dd id="scenario-angle-output">房间、走廊、出生点、出口与危险区</dd></div>
+                <div><dt>怎样验收</dt><dd id="scenario-angle-verify">固定测试 seed 检查连通性；A-B-A 排除全局污染</dd></div>
+                <div><dt>团队价值</dt><dd id="scenario-angle-value">线上异常可以精确回放，版本更新也能保留世界身份</dd></div>
+                <div><dt>可扩展</dt><dd id="scenario-angle-extend">接入 Three.js Tilemap、NavMesh、敌人/宝箱命名子流</dd></div>
+                <div><dt>诚实边界</dt><dd id="scenario-angle-boundary">可复现不代表一定可玩，仍需路径和难度规则验收</dd></div>
+              </dl>
+            </article>
+          </div>
+
+          <div class="scenario-matrix-wrap">
+            <div class="matrix-heading"><span>横向比较</span><p>不是“哪里都能画图”，而是每个领域都能建立自己的输入契约、批量观察和失败判据。</p></div>
+            <div class="scenario-matrix-scroll" tabindex="0" aria-label="使用场景横向比较，可横向滚动">
+              <table class="scenario-matrix">
+                <thead><tr><th>场景</th><th>外部输入</th><th>批量检查</th><th>最能避免的失败</th><th>适合的下一步</th></tr></thead>
+                <tbody>
+                  <tr><th>游戏地图</th><td>世界 seed</td><td>连通性 + 联系表</td><td>无法复现坏地图</td><td>Three.js / NavMesh</td></tr>
+                  <tr><th>装备掉落</th><td>掉落 seed + 权重</td><td>10万次概率普查</td><td>稀有度与配置不符</td><td>背包 / 经济系统</td></tr>
+                  <tr><th>怪物外观</th><td>个体 seed + 物种规则</td><td>轮廓与 traits 网格</td><td>外观漂移、组合穿模</td><td>骨骼 / AI / 招式</td></tr>
+                  <tr><th>品牌视觉</th><td>campaign seed + token</td><td>多画幅联系表</td><td>品牌失控、文字越界</td><td>SVG / CMS / 印刷</td></tr>
+                  <tr><th>数字发行</th><td>hash + edition 规则</td><td>traits / rarity census</td><td>英雄 seed 偏差</td><td>画廊 / 平台 / 绘图机</td></tr>
+                  <tr><th>系统质检</th><td>固定 seed fixture</td><td>像素 + features diff</td><td>代码改动产生隐性漂移</td><td>CI / PR 视觉审查</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="use-section" id="use">
+        <div class="section-shell use-layout">
+          <div class="use-copy">
+            <p class="eyebrow"><span></span> READY IN THIS PROJECT</p>
+            <h2>我们已经把它转成项目内可直接使用的能力。</h2>
+            <p>保留上游方法论，补上 Windows 兼容、Codex Skill 元数据、可复制 starter 和验证脚本。上游快照仍保持只读。</p>
+            <ul class="done-list">
+              <li>项目内 <code>$genart-studio</code> Skill</li>
+              <li>Canvas starter 脚手架</li>
+              <li>check / render / grid / census</li>
+              <li>Windows 可运行的静态服务器</li>
+            </ul>
+          </div>
+          <div class="command-stack">
+            <article class="command-card">
+              <header><span>在 Codex 中调用</span><button type="button" data-copy="#skill-prompt">复制</button></header>
+              <pre><code id="skill-prompt">使用 $genart-studio，在当前项目创建一个可复现的 Canvas 生成艺术系列；先设计 traits，再生成联系表并运行确定性检查。</code></pre>
+            </article>
+            <article class="command-card">
+              <header><span>创建一个可运行 starter</span><button type="button" data-copy="#scaffold-command">复制</button></header>
+              <pre><code id="scaffold-command">node skills/genart-studio/scripts/scaffold.mjs ./my-genart</code></pre>
+            </article>
+            <article class="command-card">
+              <header><span>验证作品</span><button type="button" data-copy="#check-command">复制</button></header>
+              <pre><code id="check-command">node skills/genart-studio/scripts/check.mjs ./my-genart</code></pre>
+            </article>
+            <a class="source-link" href="https://github.com/camilleroux/genart-skill" target="_blank" rel="noreferrer">查看原始上游仓库 <span>↗</span></a>
+          </div>
+        </div>
+      </section>
+
+      <section class="section-shell boundary-section">
+        <div class="boundary-title">
+          <p class="eyebrow"><span></span> HONEST BOUNDARY</p>
+          <h2>它能保证工程纪律，不能替代艺术判断。</h2>
+        </div>
+        <div class="boundary-columns">
+          <div><h3>它可以</h3><ul><li>证明固定环境中的重复渲染</li><li>暴露未播种随机和全局状态污染</li><li>批量查看 seed 与 feature 分布</li><li>指导平台约束、导出和许可证判断</li></ul></div>
+          <div><h3>它不可以</h3><ul><li>像 Midjourney 一样直接文生图</li><li>证明不同 GPU 的 WebGL 像素完全一致</li><li>保证作品原创、好看或具有市场价值</li><li>代替平台申请、部署、钱包和铸造流程</li></ul></div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="section-shell">
+        <div><strong>GENART LAB</strong><p>camilleroux/genart-skill 的本地实证、Web 演示与 Codex 转换。</p></div>
+        <p>固定上游 v0.1.0 · 研究日期 2026-08-30</p>
+      </div>
+    </footer>
+
+    <noscript><p class="noscript">此演示需要 JavaScript 才能运行实时 Canvas；页面中的能力说明仍可阅读。</p></noscript>
+    <script type="module" src="./app.js"></script>
+  </body>
+</html>

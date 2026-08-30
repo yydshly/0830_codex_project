@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Deterministic Genart Starter</title>
+    <link rel="stylesheet" href="./styles.css">
+  </head>
+  <body>
+    <main>
+      <canvas id="artwork" width="800" height="800" aria-label="Generated artwork"></canvas>
+      <aside>
+        <p class="eyebrow">GENART STARTER</p>
+        <h1>One hash.<br>One artwork.</h1>
+        <label for="hash">Hash</label>
+        <input id="hash" spellcheck="false" autocomplete="off">
+        <div class="actions">
+          <button id="rerender" type="button">Render hash</button>
+          <button id="new-seed" type="button">New seed</button>
+          <button id="download" type="button">Download PNG</button>
+        </div>
+        <dl id="features"></dl>
+        <p class="note">Replace the drawing language, not the seed contract. The page exposes <code>window.render</code>, <code>window.$features</code>, and <code>window.rendered</code>.</p>
+      </aside>
+    </main>
+    <script type="module" src="./app.js"></script>
+  </body>
+</html>

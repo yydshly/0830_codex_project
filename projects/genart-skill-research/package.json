@@ -1,0 +1,25 @@
+{
+  "name": "genart-skill-research",
+  "private": true,
+  "version": "0.0.0",
+  "description": "Interactive capability lab and project-local Codex Skill derived from camilleroux/genart-skill.",
+  "scripts": {
+    "web": "node web/serve.mjs",
+    "test:web": "node tests/web-smoke.mjs",
+    "prepare:broken": "node experiments/make-broken-fixture.mjs",
+    "check:upstream": "node upstream/scripts/check.mjs upstream/tests/fixture",
+    "check:good": "node experiments/windows-compatible/scripts/check.mjs upstream/tests/fixture",
+    "check:broken": "node experiments/windows-compatible/scripts/check.mjs .tmp/broken-fixture",
+    "render:single": "node experiments/windows-compatible/scripts/render.mjs upstream/tests/fixture --hash 0xc0dec0dec0dec0dec0dec0dec0dec0dec0dec0dec0dec0dec0dec0dec0dec0de --out artifacts/single.png",
+    "render:grid": "node experiments/windows-compatible/scripts/render.mjs upstream/tests/fixture --grid 9 --out artifacts/grid.png",
+    "census": "node experiments/windows-compatible/scripts/render.mjs upstream/tests/fixture --census 500 --edition-size 256",
+    "check:links": "node upstream/scripts/check-links.mjs",
+    "skill:validate": "python -X utf8 C:/Users/yun68/.codex/skills/.system/skill-creator/scripts/quick_validate.py skills/genart-studio",
+    "skill:scan": "node skills/genart-studio/scripts/scan.mjs skills/genart-studio/assets/starter",
+    "skill:check": "node skills/genart-studio/scripts/check.mjs skills/genart-studio/assets/starter",
+    "skill:grid": "node skills/genart-studio/scripts/render.mjs skills/genart-studio/assets/starter --grid 9 --out artifacts/starter-grid.png"
+  },
+  "devDependencies": {
+    "playwright": "1.62.1"
+  }
+}
