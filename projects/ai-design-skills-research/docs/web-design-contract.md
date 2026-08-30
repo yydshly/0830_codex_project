@@ -64,3 +64,23 @@ Observable completion criteria: 研究观察台继续满足原验收；新增实
 | 邻接入口 | 从研究观察台进入场景页 | 首页 CTA | 点击与 URL | 5 | pass | 首页入口点击后到达 `/showcase.html` |
 | 跨表面 | 响应式和键盘 | 1440/768/390 | 三视口、无溢出、键盘路径 | 7 | pass | 三视口无横向溢出，菜单键盘路径通过 |
 | 交付 | 场景验收与证据 | 文档、测试、截图 | 文件与命令输出 | 9 | pass | 36 项 Chromium 检查、测试脚本与六张场景截图齐全 |
+
+## Repair 3：场景演示入口发现性
+
+```text
+Entry mode: Repair-led
+User goal: 在研究首页清楚看到并进入场景演示
+Observed baseline: 桌面端入口混在普通 Hero 操作中；390px 下顶部导航整体隐藏，用户无法把现有文案识别为“场景演示”入口
+Preserved behavior: 现有研究信息架构、主题切换、能力实验和场景页路径保持不变
+Minimal intervention: 增加始终可见的高对比度 Header 入口，并把 Hero 主按钮明确命名为“进入场景演示：上线哨兵”
+Affected surfaces: 桌面/平板/390px，亮色/深色，键盘焦点
+Observable completion: Header 入口在桌面与 390px 首屏可见；标签明确包含“场景演示”；Hero 主按钮高对比；两处入口均到达 showcase.html；无横向溢出
+Autonomy authorization: 用户报告已部署页面缺少关联入口，可直接实施局部可逆修复
+```
+
+| 覆盖项 | 表面 / 状态 | 所需证据 | 阶段 | 状态 | 下一动作 |
+| --- | --- | --- | --- | --- | --- |
+| 持久场景入口 | 1440/768/390，亮暗主题 | 可见性、标签、截图 | 2–7 | pass | `entry-desktop.png`、`entry-mobile.png`；滚动后仍可见 |
+| 主旅程 | 鼠标与键盘 | 点击 URL、Tab 焦点 | 4–7 | pass | Header/Hero 入口明确，键盘焦点与 showcase 跳转通过 |
+| 邻接回归 | Header、Hero、主题按钮 | 无溢出、无遮挡、主题切换 | 7 | pass | 能力观察台 36/36、场景页 36/36 通过 |
+| 交付 | GitHub Pages | Actions 与线上 DOM | 9 | continue | 提交、部署并验证线上入口 |

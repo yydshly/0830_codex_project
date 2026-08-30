@@ -8,6 +8,7 @@
   --line: #d3d0c6;
   --line-strong: #a7a89f;
   --blue: #2452ff;
+  --on-blue: #ffffff;
   --blue-soft: #e4e9ff;
   --orange: #d94b2b;
   --orange-soft: #f8e1d8;
@@ -31,6 +32,7 @@ html[data-theme="dark"] {
   --line: #34372f;
   --line-strong: #62675b;
   --blue: #89a3ff;
+  --on-blue: #11152a;
   --blue-soft: #242d50;
   --orange: #ff8b6e;
   --orange-soft: #48291f;
@@ -148,6 +150,38 @@ a {
   color: var(--ink);
 }
 
+.header-actions {
+  display: flex;
+  justify-self: end;
+  align-items: center;
+  gap: 10px;
+}
+
+.demo-header-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 42px;
+  gap: 8px;
+  padding: 8px 14px;
+  border: 1px solid var(--blue);
+  border-radius: var(--radius-sm);
+  background: var(--blue);
+  color: var(--on-blue);
+  font-size: 13px;
+  font-weight: 800;
+  text-decoration: none;
+  transition: transform var(--transition), filter var(--transition);
+}
+
+.demo-header-link:hover {
+  filter: brightness(1.08);
+  transform: translateY(-1px);
+}
+
+.demo-header-link:active {
+  transform: scale(0.98);
+}
+
 .icon-button {
   justify-self: end;
   width: 42px;
@@ -237,8 +271,9 @@ a {
 }
 
 .button-primary {
-  background: var(--ink);
-  color: var(--bg);
+  border-color: var(--blue);
+  background: var(--blue);
+  color: var(--on-blue);
 }
 
 .button:hover {
@@ -1155,6 +1190,14 @@ a {
     display: none;
   }
 
+  .header-actions {
+    gap: 8px;
+  }
+
+  .demo-header-link {
+    padding-inline: 12px;
+  }
+
   .section-shell {
     width: min(calc(100% - 32px), var(--max));
   }
@@ -1364,4 +1407,3 @@ a {
     transition-duration: 0.01ms !important;
   }
 }
-
