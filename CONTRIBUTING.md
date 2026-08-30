@@ -21,6 +21,7 @@ Copy-Item -Recurse templates/research-project projects/rag-evaluation
 | `tags` | 是 | 字符串数组，可为空 |
 | `started_at` | 是 | `YYYY-MM-DD` |
 | `updated_at` | 是 | `YYYY-MM-DD`，有实质进展时更新 |
+| `upstream_url` | 否 | 原项目或上游仓库的完整 HTTP(S) 地址；索引和门户会显示“原项目库”入口 |
 | `demo_url` | 否 | 可公开访问的演示或报告地址 |
 
 每个项目还必须包含 `README.md`。若项目需要独立依赖、工作流或许可证，请直接放在它自己的目录中。
@@ -50,4 +51,3 @@ python scripts/research_hub.py build --output .tmp/research-site
 - 数据文件应说明来源和许可；大文件优先使用外部可追溯存储。
 - 不提交密钥、个人令牌、私有数据、构建产物和本机环境目录。
 - 改变结论时保留旧结论的上下文，说明新证据为何改变了判断。
-

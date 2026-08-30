@@ -47,6 +47,7 @@ class Project:
     started_at: str
     updated_at: str
     demo_url: str
+    upstream_url: str
     directory: Path
 
 
@@ -143,6 +144,9 @@ def load_project(directory: Path) -> Project:
         started_at=started_at,
         updated_at=updated_at,
         demo_url=validate_optional_url(data.get("demo_url", ""), "demo_url", source),
+        upstream_url=validate_optional_url(
+            data.get("upstream_url", ""), "upstream_url", source
+        ),
         directory=directory,
     )
 
@@ -168,11 +172,14 @@ def render_readme_index(projects: list[Project]) -> str:
         return "_尚未创建研究项目。复制 `templates/research-project/` 即可开始第一个实验。_"
 
     rows = [
-        "| 项目 | 状态 | 简介 | 标签 | 最近更新 | 展示 |",
-        "| --- | --- | --- | --- | --- | --- |",
+        "| 项目 | 原项目库 | 状态 | 简介 | 标签 | 最近更新 | 展示 |",
+        "| --- | --- | --- | --- | --- | --- | --- |",
     ]
     for project in projects:
         project_link = f"[{markdown_cell(project.title)}](projects/{project.slug}/README.md)"
+        upstream = (
+            f"[查看原库]({project.upstream_url})" if project.upstream_url else "—"
+        )
         tags = "、".join(f"`{markdown_cell(tag)}`" for tag in project.tags) or "—"
         demo = f"[在线查看]({project.demo_url})" if project.demo_url else "—"
         rows.append(
@@ -180,6 +187,7 @@ def render_readme_index(projects: list[Project]) -> str:
             + " | ".join(
                 (
                     project_link,
+                    upstream,
                     STATUS_LABELS[project.status],
                     markdown_cell(project.summary),
                     tags,
@@ -220,6 +228,11 @@ def render_project_card(project: Project, repository_url: str) -> str:
         if project.demo_url
         else ""
     )
+    upstream_link = (
+        f'<a class="button" href="{html.escape(project.upstream_url, quote=True)}" target="_blank" rel="noreferrer">原项目库</a>'
+        if project.upstream_url
+        else ""
+    )
     return f"""
       <article class="project-card" data-status="{project.status}" data-search="{html.escape(' '.join((project.title, project.summary, *project.tags)).lower(), quote=True)}">
         <div class="card-topline">
@@ -231,6 +244,7 @@ def render_project_card(project: Project, repository_url: str) -> str:
         <ul class="tags" aria-label="标签">{tags}</ul>
         <div class="card-actions">
           {demo_link}
+          {upstream_link}
           <a class="button" href="{html.escape(source_url, quote=True)}">研究记录与源码</a>
         </div>
       </article>""".strip()

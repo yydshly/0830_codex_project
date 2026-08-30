@@ -22,6 +22,7 @@ class ResearchHubTests(unittest.TestCase):
             "tags": ["testing", "python"],
             "started_at": "2026-08-01",
             "updated_at": "2026-08-29",
+            "upstream_url": "https://github.com/example/original-project",
             "demo_url": "https://example.com/demo",
         }
         data.update(overrides)
@@ -41,6 +42,9 @@ class ResearchHubTests(unittest.TestCase):
         self.assertEqual(project.slug, "sample-study")
         self.assertEqual(project.status, "active")
         self.assertEqual(project.tags, ("testing", "python"))
+        self.assertEqual(
+            project.upstream_url, "https://github.com/example/original-project"
+        )
 
     def test_load_project_rejects_directory_slug_mismatch(self) -> None:
         directory = self.make_project(slug="directory-name")
@@ -60,6 +64,44 @@ class ResearchHubTests(unittest.TestCase):
 
         self.assertIn("A \\| B", rendered)
         self.assertIn("Compare X \\| Y", rendered)
+        self.assertIn("| 项目 | 原项目库 | 状态 |", rendered)
+        self.assertIn(
+            "[查看原库](https://github.com/example/original-project)", rendered
+        )
+
+    def test_upstream_url_is_optional(self) -> None:
+        directory = self.make_project()
+        data = json.loads((directory / "project.json").read_text(encoding="utf-8"))
+        data.pop("upstream_url")
+        (directory / "project.json").write_text(json.dumps(data), encoding="utf-8")
+
+        project = research_hub.load_project(directory)
+
+        self.assertEqual(project.upstream_url, "")
+        self.assertIn("—", research_hub.render_readme_index([project]))
+        self.assertNotIn(
+            ">原项目库</a>",
+            research_hub.render_project_card(
+                project, "https://github.com/example/research-hub"
+            ),
+        )
+
+    def test_upstream_url_rejects_non_http_value(self) -> None:
+        directory = self.make_project(upstream_url="github.com/example/original")
+
+        with self.assertRaisesRegex(research_hub.HubError, "upstream_url"):
+            research_hub.load_project(directory)
+
+    def test_project_card_links_to_upstream_repository(self) -> None:
+        project = research_hub.load_project(self.make_project())
+
+        rendered = research_hub.render_project_card(
+            project, "https://github.com/example/research-hub"
+        )
+
+        self.assertIn('>原项目库</a>', rendered)
+        self.assertIn('href="https://github.com/example/original-project"', rendered)
+        self.assertIn('target="_blank" rel="noreferrer"', rendered)
 
     def test_build_site_refuses_output_outside_repository(self) -> None:
         config = research_hub.load_config()
