@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta
       name="description"
-      content="Anthropic FDE 深度研究可视化：从岗位概念、企业 Agent 原理、客服样例到面试准备与证据边界。"
+      content="Anthropic FDE 深度研究可视化：从岗位概念、企业 Agent 原理、客服样例到高约束场景与仿真对抗产品探索。"
     />
     <meta name="theme-color" content="#f2efe8" />
     <title>FDE Field Guide · 从模型到业务结果</title>
@@ -34,6 +34,7 @@
         <a href="#architecture">架构</a>
         <a href="#case">样例</a>
         <a href="#landscape">场景</a>
+        <a href="#simulation-archive">仿真归档</a>
         <a href="#growth">进阶</a>
         <a href="#guide">指南</a>
         <a href="#roadmap">路线</a>
@@ -604,6 +605,62 @@
 
           <aside class="mission-safety-note"><span>公开表达边界</span><p>只讨论业务目标、抽象流程、验证方法与安全控制；不包含真实组织、任务、目标、网络拓扑、漏洞、参数或操作细节。</p></aside>
         </div>
+
+        <section class="simulation-archive reveal" id="simulation-archive" aria-labelledby="simulation-archive-title" tabindex="-1">
+          <header class="simulation-archive-head">
+            <div>
+              <p class="panel-index">DOWNSTREAM PRODUCT ARCHIVE / PAUSED</p>
+              <h3 id="simulation-archive-title">仿真对抗没有被遗漏，<br />而是作为独立产品探索归档。</h3>
+            </div>
+            <div class="simulation-archive-lede">
+              <span class="simulation-status">前置设计已归档 · 实现暂停</span>
+              <p>它承接了 FDE 研究中反复出现的现场问题：模型制作、时间管理、态势显示和项目集成总被重新实现。探索目标不是再做一次定制项目，而是把这些稳定能力沉淀成可组合的仿真工作台。</p>
+            </div>
+          </header>
+
+          <div class="simulation-branch" aria-label="从 FDE 研究到仿真产品探索的关系">
+            <div><span>01</span><strong>FDE 方法</strong><small>从业务结果反推最小闭环</small></div><i aria-hidden="true">→</i>
+            <div><span>02</span><strong>现场共性</strong><small>通用能力在项目间重复建设</small></div><i aria-hidden="true">→</i>
+            <div><span>03</span><strong>产品前置设计</strong><small>冻结语义、契约与扩展边界</small></div><i aria-hidden="true">→</i>
+            <div><span>04</span><strong>暂停实现</strong><small>保留证据与恢复条件</small></div>
+          </div>
+
+          <div class="simulation-archive-grid">
+            <article>
+              <span>PRODUCT GOAL</span>
+              <h4>合成双阵营仿真工作台</h4>
+              <p>支持构建模型与地图、下发抽象指令、推进仿真时间、显示运动与态势，并允许用插件扩展规则、可视化和分析能力。</p>
+            </article>
+            <article>
+              <span>ARCHIVED NOW</span>
+              <h4>已经完成的前置设计</h4>
+              <p>产品章程、参考场景、时间与指令语义、领域契约、架构决策、风险清单、验证尖峰和恢复开发的交接说明。</p>
+            </article>
+            <article>
+              <span>NOT IMPLEMENTED</span>
+              <h4>尚不能声称具备的能力</h4>
+              <p>没有可运行引擎、编辑器、多人对战、性能证据或专业有效性结论；当前产物是可恢复的设计归档，不是 AFSIM 替代品。</p>
+            </article>
+          </div>
+
+          <div class="simulation-scenario-row">
+            <p><span>适合先验证的原型场景</span>把“对抗”理解为可重复、可观察、可比较的合成实验，而不是现实行动系统。</p>
+            <ul class="simulation-scenarios" aria-label="仿真工作台原型使用场景">
+              <li>合成红蓝对抗</li>
+              <li>态势 / 控制软件联调</li>
+              <li>教学训练与复盘</li>
+              <li>算法与规则比较</li>
+            </ul>
+          </div>
+
+          <footer class="simulation-archive-footer">
+            <p class="simulation-archive-boundary"><strong>公开与安全边界</strong><span>仅讨论虚构地图、合成角色、抽象资源和 L0/L1 原型；不连接真实装备、任务、敏感网络或行动参数。</span></p>
+            <div class="simulation-archive-actions">
+              <a class="button button-primary" href="https://github.com/yydshly/0830_codex_project/tree/main/projects/composable-simulation-workbench" target="_blank" rel="noreferrer">打开项目归档 <span aria-hidden="true">↗</span></a>
+              <a class="button button-quiet" href="https://github.com/yydshly/0830_codex_project/blob/main/projects/composable-simulation-workbench/docs/07-archive-handoff.md" target="_blank" rel="noreferrer">阅读恢复交接 <span aria-hidden="true">↗</span></a>
+            </div>
+          </footer>
+        </section>
 
         <div class="autonomy-map reveal">
           <div class="subsection-heading"><p class="panel-index">AUTONOMY LADDER</p><h3>自治不是开关，而是一段逐级开放的阶梯</h3><p>越靠右，越需要可逆动作、稳定 Evals 和更强运营能力。</p></div>

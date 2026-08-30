@@ -2278,6 +2278,236 @@ summary {
   font-size: 0.68rem;
 }
 
+.simulation-archive {
+  position: relative;
+  margin-top: 68px;
+  padding: 44px;
+  overflow: hidden;
+  border: 1px solid color-mix(in srgb, var(--orange) 35%, var(--line));
+  border-radius: var(--radius-lg);
+  background:
+    linear-gradient(135deg, color-mix(in srgb, var(--orange) 10%, transparent), transparent 42%),
+    var(--surface-contrast);
+  color: var(--bg-elevated);
+  box-shadow: var(--shadow);
+  scroll-margin-top: 120px;
+}
+
+.simulation-archive::after {
+  content: "ARCHIVE";
+  position: absolute;
+  top: 20px;
+  right: 28px;
+  color: color-mix(in srgb, var(--bg-elevated) 5%, transparent);
+  font-size: clamp(4rem, 10vw, 9rem);
+  font-weight: 900;
+  letter-spacing: -0.08em;
+  line-height: 1;
+  pointer-events: none;
+}
+
+.simulation-archive:focus-visible {
+  outline: 3px solid var(--orange);
+  outline-offset: 5px;
+}
+
+.simulation-archive-head {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: minmax(0, 1.08fr) minmax(300px, 0.92fr);
+  gap: 56px;
+  align-items: end;
+}
+
+.simulation-archive-head h3 {
+  margin: 18px 0 0;
+  max-width: 18ch;
+  color: var(--bg-elevated);
+  font-size: clamp(2rem, 3.6vw, 3.35rem);
+  letter-spacing: -0.055em;
+  line-height: 1.02;
+}
+
+.simulation-archive-lede p {
+  margin: 16px 0 0;
+  color: color-mix(in srgb, var(--bg-elevated) 72%, transparent);
+  font-size: 0.78rem;
+}
+
+.simulation-status {
+  display: inline-flex;
+  padding: 7px 10px;
+  border: 1px solid color-mix(in srgb, var(--orange) 55%, transparent);
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--orange) 13%, transparent);
+  color: color-mix(in srgb, var(--orange) 78%, white);
+  font-size: 0.6rem;
+  font-weight: 850;
+  letter-spacing: 0.08em;
+}
+
+.simulation-branch {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr auto 1fr auto 1fr;
+  gap: 10px;
+  align-items: center;
+  margin-top: 36px;
+  padding: 16px;
+  border: 1px solid color-mix(in srgb, var(--bg-elevated) 15%, transparent);
+  border-radius: var(--radius-md);
+  background: color-mix(in srgb, var(--bg-elevated) 5%, transparent);
+}
+
+.simulation-branch > div {
+  display: grid;
+  align-content: center;
+  min-height: 92px;
+  padding: 14px;
+  border-left: 3px solid var(--orange);
+  background: color-mix(in srgb, var(--bg-elevated) 6%, transparent);
+}
+
+.simulation-branch span,
+.simulation-archive-grid > article > span,
+.simulation-scenario-row > p span {
+  color: color-mix(in srgb, var(--orange) 82%, white);
+  font-size: 0.58rem;
+  font-weight: 850;
+  letter-spacing: 0.08em;
+}
+
+.simulation-branch strong {
+  margin-top: 8px;
+  color: var(--bg-elevated);
+  font-size: 0.72rem;
+}
+
+.simulation-branch small {
+  margin-top: 4px;
+  color: color-mix(in srgb, var(--bg-elevated) 55%, transparent);
+  font-size: 0.61rem;
+}
+
+.simulation-branch > i {
+  color: var(--orange);
+  font-style: normal;
+}
+
+.simulation-archive-grid {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.simulation-archive-grid article {
+  min-height: 200px;
+  padding: 22px;
+  border: 1px solid color-mix(in srgb, var(--bg-elevated) 14%, transparent);
+  border-radius: var(--radius-sm);
+  background: color-mix(in srgb, var(--bg-elevated) 7%, transparent);
+}
+
+.simulation-archive-grid h4 {
+  margin: 20px 0 9px;
+  color: var(--bg-elevated);
+  font-size: 0.86rem;
+}
+
+.simulation-archive-grid p,
+.simulation-scenario-row > p,
+.simulation-archive-boundary span {
+  margin: 0;
+  color: color-mix(in srgb, var(--bg-elevated) 67%, transparent);
+  font-size: 0.68rem;
+}
+
+.simulation-scenario-row {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: minmax(230px, 0.85fr) minmax(0, 1.15fr);
+  gap: 30px;
+  align-items: center;
+  margin-top: 12px;
+  padding: 20px 22px;
+  border: 1px solid color-mix(in srgb, var(--bg-elevated) 14%, transparent);
+  border-radius: var(--radius-sm);
+}
+
+.simulation-scenario-row > p span {
+  display: block;
+  margin-bottom: 7px;
+}
+
+.simulation-scenarios {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 7px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.simulation-scenarios li {
+  padding: 8px 11px;
+  border: 1px solid color-mix(in srgb, var(--blue) 65%, transparent);
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--blue) 16%, transparent);
+  color: color-mix(in srgb, var(--bg-elevated) 82%, transparent);
+  font-size: 0.62rem;
+  font-weight: 800;
+}
+
+.simulation-archive-footer {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 26px;
+  align-items: center;
+  margin-top: 24px;
+  padding-top: 22px;
+  border-top: 1px solid color-mix(in srgb, var(--bg-elevated) 15%, transparent);
+}
+
+.simulation-archive-boundary {
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  gap: 16px;
+  margin: 0;
+}
+
+.simulation-archive-boundary strong {
+  color: color-mix(in srgb, var(--orange) 82%, white);
+  font-size: 0.62rem;
+}
+
+.simulation-archive-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.simulation-archive-actions .button {
+  min-height: 46px;
+  white-space: nowrap;
+}
+
+.simulation-archive-actions .button-quiet {
+  border-color: color-mix(in srgb, var(--bg-elevated) 25%, transparent);
+  color: var(--bg-elevated);
+}
+
+.simulation-archive-actions .button-quiet:hover {
+  background: color-mix(in srgb, var(--bg-elevated) 8%, transparent);
+}
+
 .scenario-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -3399,6 +3629,18 @@ summary {
     box-shadow: inset 0 -4px var(--orange);
   }
 
+  .simulation-archive {
+    padding: 36px;
+  }
+
+  .simulation-archive-footer {
+    grid-template-columns: 1fr;
+  }
+
+  .simulation-archive-actions {
+    justify-content: flex-start;
+  }
+
   .flywheel {
     grid-template-columns: 1fr 28px 1fr;
   }
@@ -3582,6 +3824,39 @@ summary {
     grid-column: 1 / -1;
   }
 
+  .simulation-archive-head,
+  .simulation-scenario-row {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .simulation-branch {
+    grid-template-columns: repeat(4, minmax(155px, 1fr));
+    overflow-x: auto;
+    padding-bottom: 20px;
+  }
+
+  .simulation-branch > i {
+    display: none;
+  }
+
+  .simulation-archive-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .simulation-archive-grid article {
+    min-height: 0;
+  }
+
+  .simulation-scenarios {
+    justify-content: flex-start;
+  }
+
+  .simulation-archive-footer,
+  .simulation-archive-boundary {
+    grid-template-columns: 1fr;
+  }
+
   .artifact-chain {
     grid-template-columns: repeat(4, minmax(155px, 1fr) 24px) minmax(155px, 1fr);
     overflow-x: auto;
@@ -3672,6 +3947,23 @@ summary {
 
   .button {
     width: 100%;
+  }
+
+  .simulation-archive {
+    margin-top: 48px;
+    padding: 28px 20px;
+    border-radius: var(--radius-md);
+    scroll-margin-top: 112px;
+  }
+
+  .simulation-archive::after {
+    top: 18px;
+    right: 18px;
+    font-size: 4.2rem;
+  }
+
+  .simulation-archive-actions {
+    display: grid;
   }
 
   .hero-facts {
