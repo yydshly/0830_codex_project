@@ -1,0 +1,855 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Motion Sticker Pack v0.2.0 能力地图：从角色输入、静图审批、视频路由到透明动态表情交付的源码级拆解。" />
+    <title>Motion Sticker Pack · 能力地图</title>
+    <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="styles.css?v=20260831b" />
+    <script src="app.js?v=20260831b" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">跳到主要内容</a>
+
+    <header class="topbar" aria-label="页面导航">
+      <a class="brand" href="#top" aria-label="回到页面顶部">
+        <span class="brand-icon" aria-hidden="true">MS</span>
+        <span><b>Motion Sticker Pack</b><small>CAPABILITY MAP / v0.2.0</small></span>
+      </a>
+      <nav aria-label="章节导航">
+        <a href="#scenes">场景图谱</a>
+        <a href="#video-driver">提示词工作台</a>
+        <a href="#our-sample">代表实测</a>
+        <a href="#extensions">扩展方向</a>
+        <a href="#pipeline">生产阶段</a>
+        <a href="#boundary">能力边界</a>
+      </nav>
+      <a class="source-link" href="https://github.com/kobingogo/motion-sticker-pack" target="_blank" rel="noreferrer">上游源码 <span aria-hidden="true">↗</span></a>
+    </header>
+
+    <aside class="archive-notice" aria-label="项目归档状态">
+      <div class="shell">
+        <p><b>PROJECT PAUSED · 2026-08-31</b><span>研究问题与真实交付闭环已经完成验证，当前暂时归档；网页、证据和复现入口继续保留。</span></p>
+        <a href="https://github.com/kobingogo/motion-sticker-pack" target="_blank" rel="noreferrer">查看原库 ↗</a>
+      </div>
+    </aside>
+
+    <main id="main">
+      <section class="hero shell" id="top">
+        <div class="hero-copy">
+          <p class="eyebrow"><span class="signal" aria-hidden="true"></span> SOURCE-FROZEN AUDIT · 6531B37</p>
+          <h1>它不是动画模型。<br /><em>它是一条动态贴纸生产线。</em></h1>
+          <p class="lede">输入角色，先锁定静态形象，再路由视频能力，最后由确定性程序完成切图、透明处理、循环编码、质量检查和打包。真正的价值，是把不稳定的生成模型包进一套可审批、可降级、可追溯的交付流程。</p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="#scenes">按场景看能力 <span aria-hidden="true">↓</span></a>
+            <a class="button button-secondary" href="downloads/capability-map.json" download>下载能力地图 JSON</a>
+          </div>
+          <dl class="hero-facts" aria-label="源码快照指标">
+            <div><dt>498</dt><dd>跟踪文件</dd></div>
+            <div><dt>29</dt><dd>执行脚本</dd></div>
+            <div><dt>05</dt><dd>外部视频适配</dd></div>
+            <div><dt>14</dt><dd>测试文件</dd></div>
+          </dl>
+        </div>
+
+        <div class="sticker-console" aria-label="上游真实动态贴纸输出预览">
+          <div class="console-head">
+            <span><i aria-hidden="true"></i> DELIVERED / ANIMATED WEBP</span>
+            <span>240 × 240 · LOOP</span>
+          </div>
+          <div class="sticker-stage">
+            <figure class="sticker sticker-left">
+              <img src="assets/stickers/black-cat-01.webp" alt="上游黑猫动态贴纸样例一" />
+              <figcaption>01.WEBP</figcaption>
+            </figure>
+            <figure class="sticker sticker-main">
+              <img src="assets/stickers/black-cat-05.webp" alt="上游黑猫动态贴纸样例五" />
+              <figcaption>05.WEBP</figcaption>
+            </figure>
+            <figure class="sticker sticker-right">
+              <img src="assets/stickers/black-cat-09.webp" alt="上游黑猫动态贴纸样例九" />
+              <figcaption>09.WEBP</figcaption>
+            </figure>
+          </div>
+          <div class="console-route" aria-label="核心生产流">
+            <span>REFERENCE</span><b aria-hidden="true">→</b><span>APPROVAL</span><b aria-hidden="true">→</b><span>VIDEO</span><b aria-hidden="true">→</b><span>PACKAGE</span>
+          </div>
+          <p class="sample-note"><span>证据说明</span>以上三份 Animated WebP 直接来自固定上游快照的 <code>examples/black-cat/</code>；不是本研究重新生成的结果。</p>
+        </div>
+      </section>
+
+      <section class="positioning-band" aria-label="核心定位">
+        <div class="shell positioning-grid">
+          <p><span>01</span><b>Agent 负责理解与编排</b><small>角色特征、表情语义、审批、路由和异常说明</small></p>
+          <p><span>02</span><b>生成模型负责创造像素</b><small>透明静图与图生视频来自宿主或外部 Provider</small></p>
+          <p><span>03</span><b>本地程序负责可靠交付</b><small>检测、裁切、去背、编码、QC、报告与 ZIP</small></p>
+        </div>
+      </section>
+
+      <section class="section scene-section" id="scenes">
+        <div class="shell">
+          <div class="section-heading split-heading scene-heading">
+            <div><p class="eyebrow">01 / SCENE CAPABILITY ATLAS</p><h2>不是六种特效。<br />是六种不同的业务任务。</h2></div>
+            <p>同一条管线，进入场景后会改变身份约束、动作语义、审批重点和交付格式。先选“为什么做”，再决定调用生成、导入还是本地后处理。</p>
+          </div>
+
+          <div class="scene-atlas">
+            <div class="scene-tabs" role="tablist" aria-label="业务场景">
+              <button class="scene-tab is-active" id="scene-tab-brand" type="button" role="tab" aria-selected="true" aria-controls="scene-brand" data-scene="brand"><span>01</span><b>品牌互动</b><small>吉祥物 × 社群反应</small></button>
+              <button class="scene-tab" id="scene-tab-personal" type="button" role="tab" aria-selected="false" aria-controls="scene-personal" data-scene="personal" tabindex="-1"><span>02</span><b>个人表达</b><small>宠物 × 日常情绪</small></button>
+              <button class="scene-tab" id="scene-tab-kids" type="button" role="tab" aria-selected="false" aria-controls="scene-kids" data-scene="kids" tabindex="-1"><span>03</span><b>儿童内容</b><small>故事角色 × 亲子反馈</small></button>
+              <button class="scene-tab" id="scene-tab-product" type="button" role="tab" aria-selected="false" aria-controls="scene-product" data-scene="product" tabindex="-1"><span>04</span><b>商品营销</b><small>产品卖点 × 发布节奏</small></button>
+              <button class="scene-tab" id="scene-tab-education" type="button" role="tab" aria-selected="false" aria-controls="scene-education" data-scene="education" tabindex="-1"><span>05</span><b>教育知识</b><small>知识部件 × 步骤反馈</small></button>
+              <button class="scene-tab" id="scene-tab-migration" type="button" role="tab" aria-selected="false" aria-controls="scene-migration" data-scene="migration" tabindex="-1"><span>06</span><b>资产迁移</b><small>图板 / 视频 × 多端交付</small></button>
+            </div>
+
+            <div class="scene-panels">
+              <article class="scene-panel is-active" id="scene-brand" role="tabpanel" aria-labelledby="scene-tab-brand" data-scene-panel="brand">
+                <div class="scene-media scene-media-duo">
+                  <figure class="scene-source"><img src="assets/scenes/source-felted-story.webp" alt="工作区毛毡故事世界源图，包含小女孩、狐狸和绿色小龙" /><figcaption>工作区输入 · 角色世界观</figcaption></figure>
+                  <span class="scene-arrow" aria-hidden="true">→</span>
+                  <figure class="scene-output checker motion-output">
+                    <picture><source media="(prefers-reduced-motion: reduce)" srcset="assets/semantic-animations/dragon-celebration-keypose.png" /><img src="assets/semantic-animations/dragon-celebration-keypose.webp" alt="绿色毛毡小龙从蓄力、闭眼举臂跳起到落地挥手的语义关键姿态循环动画" data-motion-media="animated-webp" data-motion-route="keypose-local" /></picture>
+                    <span class="motion-stamp"><i aria-hidden="true"></i> KEYPOSE · 3 POSE LOOP</span>
+                    <span class="motion-static-stamp">STATIC FALLBACK · REDUCED MOTION</span>
+                    <figcaption>语义关键姿态 · CELEBRATE · 2.0s</figcaption>
+                  </figure>
+                </div>
+                <div class="scene-copy">
+                  <div class="evidence-label evidence-real"><i aria-hidden="true"></i> 真实透明关键姿态 + 上游 keypose-local 实跑</div>
+                  <p class="scene-kicker">BRAND / COMMUNITY</p>
+                  <h3>把一个吉祥物，变成一套会回应用户的品牌语言。</h3>
+                  <p>重点不是“画更多姿势”，而是先固定轮廓、材质、配色与性格，再把欢迎、收到、庆祝、提醒、安慰等高频社群语义编译成动作。</p>
+                  <dl class="scene-spec"><div><dt>输入</dt><dd>角色锚点 + 品牌语气 + 反应清单</dd></div><div><dt>推荐路线</dt><dd>角色图 → 静图审批 → 分格动作 → 动态交付</dd></div><div><dt>交付</dt><dd>社群表情包、客服快捷回应、活动主题包</dd></div><div><dt>验收</dt><dd>轮廓相似度、品牌色偏差、语义可读性</dd></div></dl>
+                  <div class="motion-delivery"><span><b>已执行动作</b>蓄力 → 闭眼举臂跳起 → 落地挥手</span><span><b>媒体</b>3 关键姿态 · 6fps · 2 秒</span><a href="assets/semantic-animations/dragon-celebration-keypose.gif" download>下载 GIF</a><a href="assets/semantic-animations/semantic-animation.json">查看审计 JSON</a></div>
+                  <p class="scene-boundary"><b>边界</b>这是 `keypose-local` 的真实姿态变化；时间是确定性阶梯切换，没有光流插帧，因此还达不到视频模型案例的连续形变。</p>
+                </div>
+              </article>
+
+              <article class="scene-panel" id="scene-personal" role="tabpanel" aria-labelledby="scene-tab-personal" data-scene-panel="personal">
+                <div class="scene-media scene-media-duo">
+                  <figure class="scene-source"><img src="assets/our-dog/source-black-longhair-dog-web.jpg" alt="黑色长毛犬 CC0 源图" loading="lazy" /><figcaption>CC0 输入 · 身份锚点</figcaption></figure>
+                  <span class="scene-arrow" aria-hidden="true">→</span>
+                  <figure class="scene-output checker motion-output">
+                    <picture><source media="(prefers-reduced-motion: reduce)" srcset="assets/semantic-animations/dog-greeting-keypose.png" /><img src="assets/semantic-animations/dog-greeting-keypose.webp" alt="黑色长毛犬从睁眼端坐、闭眼抬爪到睁眼挥爪的语义关键姿态循环动画" loading="lazy" data-motion-media="animated-webp" data-motion-route="keypose-local" /></picture>
+                    <span class="motion-stamp"><i aria-hidden="true"></i> KEYPOSE · 3 POSE LOOP</span>
+                    <span class="motion-static-stamp">STATIC FALLBACK · REDUCED MOTION</span>
+                    <figcaption>语义关键姿态 · GREETING · 2.0s</figcaption>
+                  </figure>
+                </div>
+                <div class="scene-copy">
+                  <div class="evidence-label evidence-real"><i aria-hidden="true"></i> 真实 CC0 输入 + 透明关键姿态 + keypose-local</div>
+                  <p class="scene-kicker">PERSONAL / PET</p>
+                  <h3>把“我家的它”，变成聊天里长期可用的第二张脸。</h3>
+                  <p>宠物场景最看重身份保持：毛色、耳型、嘴部、配饰不能在不同表情里漂移；动作数量反而是第二优先级。</p>
+                  <dl class="scene-spec"><div><dt>输入</dt><dd>1–3 张清晰参考图 + 身份锚点</dd></div><div><dt>推荐路线</dt><dd>先锁一张静图 → 人工确认 → 再扩表情</dd></div><div><dt>交付</dt><dd>个人聊天包、纪念包、节日增量包</dd></div><div><dt>验收</dt><dd>毛色、五官、配饰、透明边缘</dd></div></dl>
+                  <div class="motion-delivery"><span><b>已执行动作</b>睁眼端坐 → 闭眼抬爪 → 睁眼挥爪</span><span><b>媒体</b>3 关键姿态 · 6fps · 2 秒</span><a href="assets/semantic-animations/dog-greeting-keypose.gif" download>下载 GIF</a><a href="#our-sample">查看完整实测</a></div>
+                  <p class="scene-boundary"><b>边界</b>眼睛和前爪确实改变姿态，但复杂黑毛在不同关键图间仍有细节漂移；没有声称做了光流或视频级时序一致性。</p>
+                </div>
+              </article>
+
+              <article class="scene-panel" id="scene-kids" role="tabpanel" aria-labelledby="scene-tab-kids" data-scene-panel="kids">
+                <div class="scene-media scene-media-story">
+                  <figure class="scene-wide"><img src="assets/scenes/source-felted-story.webp" alt="毛毡童话世界里的小女孩、狐狸和小龙" loading="lazy" /><figcaption>工作区已有儿童内容样例 · 本页作为输入演示</figcaption></figure>
+                  <div class="scene-token-row" aria-label="可编译的儿童反馈语义"><span>找到啦</span><span>再试一次</span><span>太棒了</span><span>晚安</span></div>
+                </div>
+                <div class="scene-copy">
+                  <div class="evidence-label evidence-illustrative"><i aria-hidden="true"></i> 工作区真实素材 + 管线路线演示</div>
+                  <p class="scene-kicker">KIDS / STORY LEARNING</p>
+                  <h3>让故事角色承担鼓励、引导和情绪安抚。</h3>
+                  <p>同一个世界观可以按角色拆成贴纸包，也可以按学习环节拆成反馈包。动作幅度、节奏和色彩要比社群贴纸更温和、更易读。</p>
+                  <dl class="scene-spec"><div><dt>输入</dt><dd>角色设定图 + 年龄段 + 反馈语义</dd></div><div><dt>推荐路线</dt><dd>分角色静图 → 亲子审批 → 轻动作循环</dd></div><div><dt>交付</dt><dd>故事互动、学习反馈、睡前陪伴贴纸</dd></div><div><dt>验收</dt><dd>角色一致、动作安全、语义单一、循环柔和</dd></div></dl>
+                  <p class="scene-boundary"><b>边界</b>页面未声称已为整套故事角色生成动画；展示的是可进入仓库的输入资产和一张真实角色扩展结果。</p>
+                </div>
+              </article>
+
+              <article class="scene-panel" id="scene-product" role="tabpanel" aria-labelledby="scene-tab-product" data-scene-panel="product">
+                <div class="scene-media scene-media-duo scene-product-media">
+                  <figure class="scene-source"><img src="assets/scenes/source-earbuds-storyboard.jpg" alt="翻译耳机产品广告六格分镜源图" loading="lazy" /><figcaption>工作区输入 · 商品分镜</figcaption></figure>
+                  <span class="scene-arrow" aria-hidden="true">→</span>
+                  <figure class="scene-output checker motion-output">
+                    <picture><source media="(prefers-reduced-motion: reduce)" srcset="assets/semantic-animations/earbuds-translation-keypose.png" /><img src="assets/semantic-animations/earbuds-translation-keypose.webp" alt="黑色翻译耳机主体保持稳定而双色声波从左侧经过中心传递到右侧的语义关键姿态循环动画" loading="lazy" data-motion-media="animated-webp" data-motion-route="keypose-local" /></picture>
+                    <span class="motion-stamp"><i aria-hidden="true"></i> KEYPOSE · 3 POSE LOOP</span>
+                    <span class="motion-static-stamp">STATIC FALLBACK · REDUCED MOTION</span>
+                    <figcaption>语义关键姿态 · SIGNAL FLOW · 2.0s</figcaption>
+                  </figure>
+                </div>
+                <div class="scene-copy">
+                  <div class="evidence-label evidence-real"><i aria-hidden="true"></i> 真实商品关键状态 + 上游 keypose-local 实跑</div>
+                  <p class="scene-kicker">COMMERCE / LAUNCH MOMENT</p>
+                  <h3>把产品卖点，压缩成一眼能懂的动态符号。</h3>
+                  <p>“实时翻译”不必重放整条广告：一对耳机、一条跨色声波和一次脉冲，就能成为发布会、直播间与客服会话中的轻量传播单元。</p>
+                  <dl class="scene-spec"><div><dt>输入</dt><dd>产品图 + 卖点 + 活动语气</dd></div><div><dt>推荐路线</dt><dd>抠出商品 → 构造关键姿态 → 图生视频 / 本地循环</dd></div><div><dt>交付</dt><dd>上新贴纸、直播角标、卖点反应包</dd></div><div><dt>验收</dt><dd>产品结构、材质、品牌资产、卖点辨识</dd></div></dl>
+                  <div class="motion-delivery"><span><b>已执行动作</b>左侧发声 → 中心翻译峰值 → 右侧接收</span><span><b>媒体</b>3 关键姿态 · 6fps · 2 秒</span><a href="assets/semantic-animations/earbuds-translation-keypose.gif" download>下载 GIF</a><a href="assets/semantic-animations/semantic-sticker-pack.zip" download>下载语义动画包</a></div>
+                  <p class="scene-boundary"><b>边界</b>耳机主体基本稳定、声波与指示灯发生状态变化；三状态仍是阶梯时序，不是连续粒子模拟或生成式视频。</p>
+                </div>
+              </article>
+
+              <article class="scene-panel" id="scene-education" role="tabpanel" aria-labelledby="scene-tab-education" data-scene-panel="education">
+                <div class="scene-media scene-education-media">
+                  <figure class="scene-portrait"><img src="assets/scenes/source-hanzi-mang.webp" alt="汉字忙的笔顺和部件拆分教学海报" loading="lazy" /><figcaption>工作区知识样例 · “忙 = 忄 + 亡”</figcaption></figure>
+                  <div class="knowledge-loop" aria-label="知识贴纸循环示意"><span>笔顺写入</span><i aria-hidden="true">→</i><span>部件分离</span><i aria-hidden="true">→</i><span>答案揭示</span><i aria-hidden="true">↺</i></div>
+                </div>
+                <div class="scene-copy">
+                  <div class="evidence-label evidence-illustrative"><i aria-hidden="true"></i> 工作区真实知识素材 + 管线路线演示</div>
+                  <p class="scene-kicker">EDUCATION / MICRO EXPLAINER</p>
+                  <h3>贴纸不只表达情绪，也能承载一个最小知识循环。</h3>
+                  <p>笔顺、部件拆解和答案揭示都适合编成 1–3 秒循环；仓库的价值在于把每一步裁成独立素材并稳定编码，而不是判断知识是否正确。</p>
+                  <dl class="scene-spec"><div><dt>输入</dt><dd>知识图板 + 步骤顺序 + 正确答案</dd></div><div><dt>推荐路线</dt><dd>独立步骤图 → 审批 → 本地时序合成</dd></div><div><dt>交付</dt><dd>微课贴纸、错题反馈、步骤提示</dd></div><div><dt>验收</dt><dd>知识正确、顺序明确、文字不变形</dd></div></dl>
+                  <p class="scene-boundary"><b>边界</b>仓库没有事实校验器；汉字来源、笔顺与拆解结论必须由内容负责人确认。</p>
+                </div>
+              </article>
+
+              <article class="scene-panel" id="scene-migration" role="tabpanel" aria-labelledby="scene-tab-migration" data-scene-panel="migration">
+                <div class="scene-media scene-migration-media">
+                  <div class="migration-grid checker" aria-label="上游黑猫独立动态贴纸输出">
+                    <img src="assets/stickers/black-cat-01.webp" alt="黑猫动态贴纸一" loading="lazy" /><img src="assets/stickers/black-cat-05.webp" alt="黑猫动态贴纸五" loading="lazy" /><img src="assets/stickers/black-cat-09.webp" alt="黑猫动态贴纸九" loading="lazy" />
+                  </div>
+                  <div class="migration-route" aria-label="资产迁移路线"><span>图板 / 视频 / 独立文件</span><i aria-hidden="true">→</i><span>检测与分割</span><i aria-hidden="true">→</i><span>WebP / GIF / PNG / ZIP</span></div>
+                </div>
+                <div class="scene-copy">
+                  <div class="evidence-label evidence-real"><i aria-hidden="true"></i> 上游真实输出 + 源码可验证的加工路线</div>
+                  <p class="scene-kicker">MIGRATION / REPUBLISH</p>
+                  <h3>已有素材不用重做，先识别它是什么，再转成可交付包。</h3>
+                  <p>静态图板、整板视频和独立文件有三条不同入口。工具检测真实网格、叠线预览与置信度，避免为了“统一”而伪造 1×1 图板。</p>
+                  <dl class="scene-spec"><div><dt>输入</dt><dd>静态图板 / 网格视频 / 独立 PNG、GIF、WebP</dd></div><div><dt>推荐路线</dt><dd>探测 → 人工覆盖 → 裁切 → 透明 → 编码</dd></div><div><dt>交付</dt><dd>统一尺寸媒体、质量报告、处理清单、ZIP</dd></div><div><dt>验收</dt><dd>裁切完整、Alpha 正确、循环无跳帧、体积合规</dd></div></dl>
+                  <p class="scene-boundary"><b>边界</b>保守色键不能代替专业时序抠像；复杂发丝、阴影和跨格运动仍可能需要外部工具。</p>
+                </div>
+              </article>
+            </div>
+            <p class="scene-status" aria-live="polite">当前场景：01 品牌互动 · 吉祥物身份合同、社群语义与多格式交付。</p>
+          </div>
+
+          <div class="scene-common-pipeline" aria-label="六类场景共享的能力骨架">
+            <p><span>共享骨架</span><b>输入识别</b><i aria-hidden="true">→</i><b>身份 / 布局合同</b><i aria-hidden="true">→</i><b>审批</b><i aria-hidden="true">→</i><b>能力路由</b><i aria-hidden="true">→</i><b>后处理与交付</b></p>
+            <small>变化的是语义、风险与验收标准；不变的是“先锁定，再生成，再确定性交付”。</small>
+          </div>
+        </div>
+      </section>
+
+      <section class="section video-driver-section" id="video-driver">
+        <div class="shell">
+          <div class="section-heading split-heading video-driver-heading">
+            <div><p class="eyebrow">02 / VIDEO PROMPT WORKBENCH</p><h2>我生成提示词。<br />你去生成视频。</h2></div>
+            <p>这里不连接任何视频平台。系统只把源图、身份约束和你的动作意图整理成一份可复制的 Image-to-Video 提示词；你再自行选择平台、上传源图并点击生成。</p>
+          </div>
+
+          <div class="video-driver-board">
+            <article class="video-driver-source">
+              <div class="video-driver-topline"><span>SOURCE REFERENCE</span><span id="video-source-state">PROMPT INPUT</span></div>
+              <div class="video-driver-media checker">
+                <img id="video-source-preview" src="assets/scenes/felt-dragon-celebrate.png" alt="用于生成视频提示词的毛毡小龙透明静态贴纸" />
+                <span id="video-source-badge">推荐样例 · 连续动作清晰</span>
+              </div>
+              <div class="video-sample-tabs" role="group" aria-label="选择视频提示词样例">
+                <button class="video-sample-button is-active" type="button" data-video-sample="dragon" aria-pressed="true"><b>小龙庆祝</b><small>连续角色动作</small></button>
+                <button class="video-sample-button" type="button" data-video-sample="dog" aria-pressed="false"><b>小狗挥爪</b><small>身份保持压力测试</small></button>
+                <button class="video-sample-button" type="button" data-video-sample="earbuds" aria-pressed="false"><b>耳机传译</b><small>产品结构锁定</small></button>
+              </div>
+              <p class="video-sample-note" id="video-sample-note">毛毡材质允许少量纹理变化；小幅原地庆祝适合检验连续肢体动作和回环质量。</p>
+            </article>
+
+            <form class="video-driver-controls" id="video-driver-form">
+              <div class="video-driver-topline"><span>PROMPT INPUTS</span><span>PROMPT ONLY</span></div>
+              <div class="video-driver-field">
+                <label for="video-action-intent">01 · 描述你想要的动作</label>
+                <textarea id="video-action-intent" name="action" rows="4">先轻微屈膝蓄力，再原地小幅跳起并举起双臂庆祝，落地后挥手一次</textarea>
+                <small>写清动作顺序、次数和结束姿态；系统会自动补足身份、镜头、构图和负向约束。</small>
+              </div>
+              <div class="video-driver-control-grid">
+                <div class="video-driver-field">
+                  <label for="video-duration">02 · 目标时长</label>
+                  <select id="video-duration" name="duration"><option value="3">3 秒</option><option value="4">4 秒</option><option value="6" selected>6 秒</option><option value="10">10 秒</option></select>
+                </div>
+                <div class="video-driver-field">
+                  <label for="video-amplitude">03 · 动作幅度</label>
+                  <select id="video-amplitude" name="amplitude"><option value="small" selected>小幅 · 推荐</option><option value="medium">中幅 · 风险较高</option></select>
+                </div>
+              </div>
+              <label class="video-loop-control"><input id="video-loop" type="checkbox" checked /> <span><b>提示回到起始姿态</b><small>让提示词要求尾帧接近首帧，方便后续制作循环贴纸。</small></span></label>
+
+              <div class="video-motion-contract">
+                <p><span>提示词将自动补齐</span><b id="video-action-copy">身份锁定 → 动作顺序 → 固定镜头 → 结束姿态</b></p>
+                <ol aria-label="提示词组成"><li><span>IDENTITY</span><b>保持造型和比例</b></li><li><span>MOTION</span><b>只做一次目标动作</b></li><li><span>CAMERA</span><b>镜头与主体中心固定</b></li><li><span>ENDING</span><b>按选择处理尾帧</b></li></ol>
+              </div>
+
+              <div class="video-capability-state is-prompt-only" id="video-capability-state" data-state="prompt-only">
+                <span><i aria-hidden="true"></i> 我的能力</span>
+                <h3>生成提示词，不生成视频。</h3>
+                <p>系统不会连接平台或提交任务。平台选择、素材上传、参数调整与点击生成都由你完成。</p>
+              </div>
+            </form>
+
+            <aside class="video-driver-preview" aria-label="视频提示词预览">
+              <div class="video-driver-topline"><span>PROMPT OUTPUT</span><span id="video-task-state">READY TO COPY</span></div>
+              <p class="video-command-label">正向提示词</p>
+              <pre id="video-positive-prompt" tabindex="0">严格保持毛毡小龙的绿色毛毡材质、圆角轮廓、橙色腹部、短角、五官、四肢比例和中心构图。以所附源图作为唯一主体参考，不改变原有造型。先轻微屈膝蓄力，再原地小幅跳起并举起双臂庆祝，落地后挥手一次。动作幅度小而克制，在 6 秒内只完成这一组动作；动作完成后自然回到与首帧一致的起始姿态，使首尾可以平滑衔接。镜头完全固定，主体中心和整体构图保持稳定。若平台不能输出透明通道，使用纯色 #00FF00 背景。</pre>
+              <p class="video-command-label">负向约束</p>
+              <pre class="video-negative-prompt" id="video-negative-prompt" tabindex="0">不要增加肢体、重复配件或改变五官；不要改变主体身份、颜色、材质和比例；不要增加角色、文字、边框、阴影或背景元素；不要出现镜头运动、主体漂移、缩放、变形、闪烁或脏边。</pre>
+              <div class="video-driver-actions">
+                <button class="button button-primary" id="video-copy-prompt" type="button" disabled>复制完整提示词</button>
+                <button class="button button-secondary" id="video-download-task" type="button" disabled>下载提示词 JSON</button>
+                <a class="button video-source-download" id="video-source-download" href="assets/scenes/felt-dragon-celebrate.png" download>下载当前源图</a>
+              </div>
+              <ol class="video-handoff-steps" aria-label="由用户驱动生成视频的步骤"><li><span>01</span>下载或保留当前源图</li><li><span>02</span>复制正向与负向提示词</li><li><span>03</span>在你选择的平台上传并粘贴</li><li><span>04</span>由你设置参数、点击生成和评审</li></ol>
+              <p class="video-stop-note"><b>能力停止点</b>提示词包生成后，本项目的工作就结束了。页面没有视频生成接口，也不会判断你最终选择哪个平台。</p>
+              <a class="video-default-download" href="downloads/video-prompt-default.json" download>下载默认提示词包 ↘</a>
+            </aside>
+          </div>
+          <p class="video-driver-live" id="video-driver-live" aria-live="polite">当前：毛毡小龙庆祝 · 提示词已生成 · 未调用任何视频服务。</p>
+
+          <section class="user-video-result" aria-labelledby="user-video-result-title">
+            <div class="user-video-result-heading">
+              <div>
+                <div class="evidence-label evidence-real"><i aria-hidden="true"></i> 用户真实回传视频 + 仓库后处理实跑</div>
+                <p class="eyebrow">PROMPT → USER GENERATION → STICKER DELIVERY</p>
+                <h3 id="user-video-result-title">成片已经回来。<br />现在验证完整闭环。</h3>
+              </div>
+              <p>提示词由本项目生成；768×768 MP4 由用户在外部平台生成；透明 WebP、GIF、PNG、ZIP 和质检报告由固定上游脚本本地输出。三段能力不混在一起。</p>
+            </div>
+
+            <div class="user-video-compare">
+              <article class="user-video-card user-video-raw">
+                <div class="video-driver-topline"><span>01 / USER-GENERATED MP4</span><span>GREEN PLATE</span></div>
+                <div class="user-video-media user-video-media-raw">
+                  <video controls muted playsinline preload="metadata" poster="assets/user-video/dragon-user-generated-green-frame.png" aria-label="用户根据提示词在外部平台生成的毛毡小龙庆祝视频">
+                    <source src="assets/user-video/dragon-user-generated.mp4" type="video/mp4" />
+                    你的浏览器不支持 MP4 播放；可使用下方链接下载查看。
+                  </video>
+                </div>
+                <dl class="user-video-spec"><div><dt>来源</dt><dd>用户驱动外部平台</dd></div><div><dt>媒体</dt><dd>768² · 24fps · 158 帧</dd></div><div><dt>时长</dt><dd>6.583 秒 · 含 AAC 音轨</dd></div><div><dt>实测背景</dt><dd><code>#6FF280</code></dd></div></dl>
+                <p>动作完成了蓄力、跳跃举臂、落地、挥手和站姿恢复。源图身份大体保持，但模型重建了新的站立首姿。</p>
+              </article>
+
+              <article class="user-video-card user-video-processed">
+                <div class="video-driver-topline"><span>02 / TRANSPARENT STICKER</span><span>QC PASSED</span></div>
+                <div class="user-video-media checker">
+                  <picture>
+                    <source media="(prefers-reduced-motion: reduce)" srcset="assets/user-video/dragon-user-generated-first-frame.png" />
+                    <img src="assets/user-video/dragon-user-generated-transparent.webp" alt="仓库从用户生成视频去除绿幕并编码的透明毛毡小龙动态贴纸" loading="lazy" />
+                  </picture>
+                </div>
+                <dl class="user-video-spec"><div><dt>路线</dt><dd>edge-color → Alpha → encode</dd></div><div><dt>媒体</dt><dd>240² · 8fps · 53 帧</dd></div><div><dt>时长</dt><dd>6.625 秒 · 无音轨</dd></div><div><dt>GIF 预算</dt><dd>772KB / 1MiB · PASS</dd></div></dl>
+                <p>53 帧背景、Alpha 和编码检查全部通过；静止段仍有低幅抖动，报告为 <code>residual-hold-jitter</code>，没有被包装成“完美循环”。</p>
+              </article>
+            </div>
+
+            <ol class="user-video-ownership" aria-label="视频闭环中的能力归属">
+              <li><span>01</span><b>项目</b><p>生成身份、动作、镜头和背景提示词。</p></li>
+              <li><span>02</span><b>用户</b><p>选择平台、上传源图、粘贴提示词并生成 MP4。</p></li>
+              <li><span>03</span><b>项目</b><p>接收视频，逐帧去背、质检、编码并装包。</p></li>
+            </ol>
+
+            <div class="user-video-downloads" aria-label="用户生成视频与透明贴纸下载">
+              <a href="assets/user-video/dragon-user-generated.mp4" download>原始 MP4 <small>708KB</small></a>
+              <a href="assets/user-video/dragon-user-generated-transparent.webp" download>透明 WebP <small>2.26MB</small></a>
+              <a href="assets/user-video/dragon-user-generated-transparent.gif" download>循环 GIF <small>772KB</small></a>
+              <a href="assets/user-video/dragon-user-generated-pack.zip" download>完整 ZIP <small>4.59MB</small></a>
+              <a href="assets/user-video/dragon-user-generated-processing.json" download>质检 JSON <small>13.9KB</small></a>
+            </div>
+          </section>
+        </div>
+      </section>
+
+      <section class="section our-demo-section" id="our-sample">
+        <div class="shell">
+          <div class="section-heading split-heading our-demo-heading">
+            <div><p class="eyebrow">03 / REPRESENTATIVE WORKSPACE DEMO</p><h2>个人表达场景，<br />用我们的黑色长毛犬跑一遍。</h2></div>
+            <p>这张 CC0 原图来自另一项工作区研究。它有复杂黑色卷毛、灰色格纹胸背和蓝色挂饰，既适合验证身份锚点，也会放大透明边缘、暗部细节和风格漂移问题。</p>
+          </div>
+
+          <div class="our-demo-board">
+            <article class="our-source-card">
+              <div class="our-card-topline"><span>OUR SOURCE / CC0</span><span>1920 × 2560 · WEB PREVIEW</span></div>
+              <div class="our-source-media">
+                <img src="assets/our-dog/source-black-longhair-dog-web.jpg" alt="我们的 CC0 样例原图：黑色长毛犬佩戴灰色格纹胸背和蓝色挂饰，趴在室内地面" loading="lazy" />
+                <span>INPUT 00</span>
+              </div>
+              <div class="our-source-copy">
+                <p class="our-mini-label">为什么选它</p>
+                <h3>不是“最好做”的图，<br />而是容易看出真假的图。</h3>
+                <p>黑毛是否变棕、卷毛是否糊成一块、胸背花纹和蓝色挂饰是否消失，都能直接作为身份保持检查点。</p>
+                <div class="identity-lock" aria-label="身份锚点">
+                  <span>黑色卷毛</span><span>垂耳</span><span>长吻部</span><span>张口笑</span><span>格纹胸背</span><span>蓝色挂饰</span>
+                </div>
+                <a href="https://commons.wikimedia.org/wiki/File:A_long_hair_dog_sitting_at_floor.jpg" target="_blank" rel="noreferrer">KANABAIS / Wikimedia Commons / CC0 ↗</a>
+              </div>
+            </article>
+
+            <div class="our-result-lab">
+              <div class="our-effect-tabs" role="tablist" aria-label="我们的贴纸效果">
+                <button class="our-effect-tab is-active" id="our-tab-core" type="button" role="tab" aria-selected="true" aria-controls="our-panel-core" data-our-effect="core"><span>01</span><b>身份贴纸化</b><small>CORE</small></button>
+                <button class="our-effect-tab" id="our-tab-kinetic" type="button" role="tab" aria-selected="false" aria-controls="our-panel-kinetic" data-our-effect="kinetic" tabindex="-1"><span>02</span><b>动势轨迹</b><small>EXTENSION</small></button>
+                <button class="our-effect-tab" id="our-tab-dream" type="button" role="tab" aria-selected="false" aria-controls="our-panel-dream" data-our-effect="dream" tabindex="-1"><span>03</span><b>睡眠氛围</b><small>EXTENSION</small></button>
+                <button class="our-effect-tab" id="our-tab-local" type="button" role="tab" aria-selected="false" aria-controls="our-panel-local" data-our-effect="local" tabindex="-1"><span>04</span><b>语义循环</b><small>KEYPOSE</small></button>
+              </div>
+
+              <div class="our-effect-panels">
+                <article class="our-effect-panel is-active" id="our-panel-core" role="tabpanel" aria-labelledby="our-tab-core" data-our-effect-panel="core">
+                  <div class="our-output-stage">
+                    <div class="our-output-topline"><span>REAL OUTPUT / ALPHA WEB PREVIEW</span><span>1254 × 1254</span></div>
+                    <img src="assets/our-dog/dog-core.webp" alt="我们的黑色长毛犬身份贴纸化结果，保留格纹胸背、蓝色挂饰和黑色卷毛" loading="lazy" />
+                    <span class="our-output-badge">STATIC RESULT · ACCEPTED</span>
+                  </div>
+                  <div class="our-effect-copy">
+                    <div class="evidence-label evidence-mixed"><i aria-hidden="true"></i> 本次真实生成 · 对应仓库静图阶段</div>
+                    <p class="our-mini-label">CORE / IDENTITY LOCK</p>
+                    <h3>先证明“还是它”，<br />再讨论怎么让它动。</h3>
+                    <p>结果保留黑色卷毛、垂耳、长吻部、格纹胸背和蓝色挂饰；背景含真实 Alpha，可作为后续静图审批输入。</p>
+                    <dl class="our-proof-list"><div><dt>生成者</dt><dd>内置图像编辑器</dd></div><div><dt>仓库负责</dt><dd>身份合同、审批与后续路由</dd></div><div><dt>当前停止点</dt><dd>静图结果，尚未调用视频 Provider</dd></div></dl>
+                  </div>
+                </article>
+
+                <article class="our-effect-panel" id="our-panel-kinetic" role="tabpanel" aria-labelledby="our-tab-kinetic" data-our-effect-panel="kinetic">
+                  <div class="our-output-stage our-output-kinetic">
+                    <div class="our-output-topline"><span>REAL OUTPUT / ALPHA WEB PREVIEW</span><span>1254 × 1254</span></div>
+                    <img src="assets/our-dog/dog-kinetic.webp" alt="我们的黑色长毛犬动势轨迹扩展效果，带青绿速度弧线和星形冲击火花" loading="lazy" />
+                    <span class="our-output-badge">EXTENDED EFFECT · KINETIC</span>
+                  </div>
+                  <div class="our-effect-copy">
+                    <div class="evidence-label evidence-extension"><i aria-hidden="true"></i> 本次真实生成 · 仓库外创意扩展</div>
+                    <p class="our-mini-label">EXTENSION / KINETIC TRAIL</p>
+                    <h3>动作还没做成视频，<br />先把“冲出去”画进单帧。</h3>
+                    <p>青色到荧光绿的速度弧线、星形冲击点和前探姿态，让静态贴纸先获得方向与力度；脸部和胸背保持无遮挡。</p>
+                    <dl class="our-proof-list"><div><dt>新增效果</dt><dd>速度轨迹、冲击火花、动作构图</dd></div><div><dt>能力归属</dt><dd>本项目扩展提示层，不是上游内置滤镜</dd></div><div><dt>可接入点</dt><dd>作为关键姿态或独立贴纸输入</dd></div></dl>
+                  </div>
+                </article>
+
+                <article class="our-effect-panel" id="our-panel-dream" role="tabpanel" aria-labelledby="our-tab-dream" data-our-effect-panel="dream">
+                  <div class="our-output-stage our-output-dream">
+                    <div class="our-output-topline"><span>REAL OUTPUT / ALPHA WEB PREVIEW</span><span>1254 × 1254</span></div>
+                    <img src="assets/our-dog/dog-dream.webp" alt="我们的黑色长毛犬睡眠氛围扩展效果，带紫蓝光环、星点和月牙光效" loading="lazy" />
+                    <span class="our-output-badge">EXTENDED EFFECT · MOOD</span>
+                  </div>
+                  <div class="our-effect-copy">
+                    <div class="evidence-label evidence-extension"><i aria-hidden="true"></i> 本次真实生成 · 仓库外创意扩展</div>
+                    <p class="our-mini-label">EXTENSION / MOOD FIELD</p>
+                    <h3>不只换表情，<br />还可以给情绪一层视觉语法。</h3>
+                    <p>蜷卧姿态对应“困困”，紫蓝光环、星点与月牙负责氛围表达；图外仍为真实透明像素，能直接叠在聊天界面上。</p>
+                    <dl class="our-proof-list"><div><dt>新增效果</dt><dd>氛围光环、微粒、月牙语义</dd></div><div><dt>能力归属</dt><dd>本项目扩展提示层，不是仓库标准动作</dd></div><div><dt>质量边界</dt><dd>姿态和配饰发生生成式重绘，仍需人工验收</dd></div></dl>
+                  </div>
+                </article>
+
+                <article class="our-effect-panel" id="our-panel-local" role="tabpanel" aria-labelledby="our-tab-local" data-our-effect-panel="local">
+                  <div class="our-output-stage">
+                    <div class="our-output-topline"><span>SEMANTIC KEYPOSE ANIMATION / ALPHA WEBP</span><span>420 × 420 · 3 KEYPOSES</span></div>
+                    <picture class="our-motion-picture"><source media="(prefers-reduced-motion: reduce)" srcset="assets/semantic-animations/dog-greeting-keypose.png" /><img src="assets/semantic-animations/dog-greeting-keypose.webp" alt="黑色长毛犬透明贴纸眨眼、抬爪并挥爪问候的关键姿态循环动画" loading="lazy" data-motion-media="animated-webp" data-motion-route="keypose-local" /></picture>
+                    <span class="our-output-badge our-motion-badge"><i aria-hidden="true"></i> KEYPOSE WEBP · PLAYING</span>
+                    <span class="our-output-badge our-static-badge">STATIC WEBP · REDUCED MOTION</span>
+                  </div>
+                  <div class="our-effect-copy">
+                    <div class="evidence-label evidence-real"><i aria-hidden="true"></i> 本轮真实编码 · 上游 keypose-local 路线</div>
+                    <p class="our-mini-label">SEMANTIC KEYPOSE / GREETING</p>
+                    <h3>不是整张图在晃，<br />是眼睛和前爪真的换了姿态。</h3>
+                    <p>三张透明关键姿态依次表现睁眼端坐、闭眼抬爪、睁眼挥爪；固定上游脚本按 0→1→2→1 组帧并编码 Animated WebP、GIF 和首帧 PNG。</p>
+                    <dl class="our-proof-list"><div><dt>动作</dt><dd>眨眼、抬爪、挥爪，身体中心基本固定</dd></div><div><dt>媒体</dt><dd>3 关键姿态 · 6fps · 2 秒 · 无限循环</dd></div><div><dt>能力边界</dt><dd>阶梯时序，无光流插帧；黑毛细节仍需人工验收</dd></div></dl>
+                    <div class="our-motion-links"><a href="assets/semantic-animations/dog-greeting-keypose.gif" download>下载 GIF</a><a href="assets/semantic-animations/semantic-sticker-pack.zip" download>下载语义动画包</a><a href="assets/semantic-animations/semantic-animation.json">审计 JSON</a></div>
+                  </div>
+                </article>
+              </div>
+              <p class="our-effect-status" aria-live="polite">当前效果：01 身份贴纸化 · 对应静图生成与审批入口。</p>
+            </div>
+          </div>
+
+          <div class="our-demo-flow" aria-label="我们的样例接入仓库的路径">
+            <div class="is-done"><span>01</span><b>CC0 原图</b><small>已固定来源与散列</small></div><i aria-hidden="true">→</i>
+            <div class="is-done"><span>02</span><b>身份贴纸</b><small>3 份透明静图已生成</small></div><i aria-hidden="true">→</i>
+            <div class="is-ready"><span>03</span><b>静图审批</b><small>可进入哈希绑定</small></div><i aria-hidden="true">→</i>
+            <div class="is-done"><span>04</span><b>语义关键姿态</b><small>眨眼 / 抬爪 / 挥爪</small></div><i aria-hidden="true">→</i>
+            <div class="is-done"><span>05</span><b>媒体交付</b><small>WebP / GIF / PNG / ZIP</small></div>
+          </div>
+          <p class="our-demo-note"><b>本轮真实完成：</b>源图选择、三份透明静图、三张语义关键姿态，以及一条眨眼 / 抬爪 / 挥爪循环的 WebP / GIF / PNG / ZIP 交付。<b>没有冒充完成：</b>光流插帧、生成式视频和平台投稿。</p>
+        </div>
+      </section>
+
+      <section class="section example-section" id="examples">
+        <div class="shell">
+          <div class="section-heading split-heading">
+            <div><p class="eyebrow">04 / INPUT-LED ROUTE TOUR</p><h2>场景决定目标。输入类型决定怎么走。</h2></div>
+            <p>每个样例都回答四件事：你给什么、它做什么、交付什么、哪里会停。绿色“真实输出”来自固定上游快照；蓝色“流程样例”用于解释代码路径，不冒充本次运行结果。</p>
+          </div>
+
+          <div class="example-lab">
+            <div class="example-tabs" role="tablist" aria-label="输入样例" aria-orientation="vertical">
+              <button class="example-tab is-active" id="example-tab-character" type="button" role="tab" aria-selected="true" aria-controls="example-character" data-example="character">
+                <span>01 · CHARACTER</span><b>角色图做整包</b><small>从身份提取到动态 ZIP</small>
+              </button>
+              <button class="example-tab" id="example-tab-sheet" type="button" role="tab" aria-selected="false" aria-controls="example-sheet" data-example="sheet" tabindex="-1">
+                <span>02 · STATIC SHEET</span><b>已有图板动画化</b><small>检测真实网格，不重复审批</small>
+              </button>
+              <button class="example-tab" id="example-tab-video" type="button" role="tab" aria-selected="false" aria-controls="example-video" data-example="video" tabindex="-1">
+                <span>03 · GRID VIDEO</span><b>整板视频切成单格</b><small>抽帧、分割、透明和循环</small>
+              </button>
+              <button class="example-tab" id="example-tab-independent" type="button" role="tab" aria-selected="false" aria-controls="example-independent" data-example="independent" tabindex="-1">
+                <span>04 · SEPARATE FILES</span><b>独立贴纸批处理</b><small>不伪造 1×1 网格</small>
+              </button>
+              <button class="example-tab" id="example-tab-local" type="button" role="tab" aria-selected="false" aria-controls="example-local" data-example="local" tabindex="-1">
+                <span>05 · LOCAL ONLY</span><b>完全本地降级</b><small>无视频模型也诚实交付</small>
+              </button>
+            </div>
+
+            <div class="example-panels">
+              <article class="example-panel is-active" id="example-character" role="tabpanel" aria-labelledby="example-tab-character" data-example-panel="character">
+                <div class="example-copy">
+                  <div class="evidence-label evidence-mixed"><i aria-hidden="true"></i> 上游真实输出 + 流程样例</div>
+                  <p class="example-number">EXAMPLE 01</p>
+                  <h3>“把这只黑猫做成一套 3D 动态表情。”</h3>
+                  <div class="example-input"><span>示例输入</span><code>角色参考图 + 3D + 开心 / 喜欢 / 委屈 / 惊讶 / 亲亲 / 谢谢 / 加油 / 困困 / 点赞</code></div>
+                  <ol class="example-steps">
+                    <li><span>1</span><p><b>读角色</b>提取黑色毛发、圆头、大眼、短肢和红色配饰等身份锚点。</p></li>
+                    <li><span>2</span><p><b>先出静图</b>生成透明图板，检测模型实际返回的网格，再让用户看图确认。</p></li>
+                    <li><span>3</span><p><b>再做动画</b>逐格编译小动作，选择视频路线，最后切图、编码并打包。</p></li>
+                  </ol>
+                  <div class="deliverable-chips" aria-label="示例交付"><span>09 × WebP</span><span>09 × GIF</span><span>09 × PNG</span><span>layout.json</span><span>processing.json</span><span>ZIP</span></div>
+                  <p class="example-boundary"><b>能力边界</b>身份保持和动作自然度仍需人工看；整板视频可能出现跨格污染。</p>
+                </div>
+                <div class="example-visual real-output" aria-label="上游真实黑猫动态贴纸样例">
+                  <div class="visual-topline"><span>REAL UPSTREAM OUTPUT</span><span>examples/black-cat</span></div>
+                  <div class="output-triptych">
+                    <figure><img src="assets/stickers/black-cat-01.webp" alt="黑猫开心动态贴纸" /><figcaption>开心 · 01.webp</figcaption></figure>
+                    <figure><img src="assets/stickers/black-cat-05.webp" alt="黑猫喜欢动态贴纸" /><figcaption>喜欢 · 05.webp</figcaption></figure>
+                    <figure><img src="assets/stickers/black-cat-09.webp" alt="黑猫反应动态贴纸" /><figcaption>反应 · 09.webp</figcaption></figure>
+                  </div>
+                  <p>三份文件来自固定提交，网页直接播放 Animated WebP。</p>
+                </div>
+              </article>
+
+              <article class="example-panel" id="example-sheet" role="tabpanel" aria-labelledby="example-tab-sheet" data-example-panel="sheet">
+                <div class="example-copy">
+                  <div class="evidence-label evidence-flow"><i aria-hidden="true"></i> 流程样例 · 非本次生成</div>
+                  <p class="example-number">EXAMPLE 02</p>
+                  <h3>“这张 4×3 图板我已经选好了，直接让它动起来。”</h3>
+                  <div class="example-input"><span>示例输入</span><code>static-sheet.png / source-type: user-supplied / layout preference: 4×3</code></div>
+                  <ol class="example-steps">
+                    <li><span>1</span><p><b>重新观察布局</b>请求的 4×3 只是偏好；脚本仍检测实际列、行、数量和置信度。</p></li>
+                    <li><span>2</span><p><b>跳过重复确认</b>用户自己提供的图板直接进入 <code>static-approved</code>，不会再要求“确认一次”。</p></li>
+                    <li><span>3</span><p><b>逐格写动作</b>为检测到的 12 格建立动作计划，再进入视频能力路由。</p></li>
+                  </ol>
+                  <div class="deliverable-chips"><span>layout.json</span><span>job-state.json</span><span>12 条动作计划</span><span>route.json</span></div>
+                  <p class="example-boundary"><b>能力边界</b>自由排版或置信度低于 0.75 时必须看叠线图并人工覆盖，不能盲切。</p>
+                </div>
+                <div class="example-visual flow-output" aria-label="4×3 图板检测流程示意">
+                  <div class="visual-topline"><span>ILLUSTRATIVE FLOW</span><span>detected_layout</span></div>
+                  <div class="sheet-inspector">
+                    <div class="mini-sheet" aria-hidden="true">
+                      <span>01</span><span>02</span><span>03</span><span>04</span><span>05</span><span>06</span><span>07</span><span>08</span><span>09</span><span>10</span><span>11</span><span>12</span>
+                    </div>
+                    <dl><div><dt>observed</dt><dd>4 columns × 3 rows</dd></div><div><dt>count</dt><dd>12 cells</dd></div><div><dt>confidence</dt><dd>0.93 · 示例值</dd></div><div><dt>review</dt><dd>user-supplied → approved</dd></div></dl>
+                  </div>
+                </div>
+              </article>
+
+              <article class="example-panel" id="example-video" role="tabpanel" aria-labelledby="example-tab-video" data-example-panel="video">
+                <div class="example-copy">
+                  <div class="evidence-label evidence-flow"><i aria-hidden="true"></i> 流程样例 · 非本次生成</div>
+                  <p class="example-number">EXAMPLE 03</p>
+                  <h3>“我只有一段九宫格 MP4，把它拆成可发送的表情。”</h3>
+                  <div class="example-input"><span>示例输入</span><code>grid.mp4 / 3 seconds / source fps / unknown layout</code></div>
+                  <ol class="example-steps">
+                    <li><span>1</span><p><b>抽代表帧</b>没有对应静图时，先从 MP4 抽一帧，再检测实际网格。</p></li>
+                    <li><span>2</span><p><b>按格处理</b>以同一布局切所有帧，保留真实 Alpha；不透明时才使用边缘连通色键。</p></li>
+                    <li><span>3</span><p><b>复检交付</b>检查原生帧、静止段位移、循环跳变和解码结果。</p></li>
+                  </ol>
+                  <div class="deliverable-chips"><span>01.webp … 09.webp</span><span>01.gif … 09.gif</span><span>首帧 PNG</span><span>processing.json</span></div>
+                  <p class="example-boundary"><b>能力边界</b>保守色键不是专业时序抠像；发丝、运动模糊和复杂阴影仍可能受损。</p>
+                </div>
+                <div class="example-visual flow-output" aria-label="整板视频切分流程示意">
+                  <div class="visual-topline"><span>ILLUSTRATIVE FLOW</span><span>postprocess-only</span></div>
+                  <div class="video-flow">
+                    <div class="video-source"><span>GRID.MP4</span><b>00:03.000</b><div class="video-track"><i></i><i></i><i></i><i></i><i></i><i></i></div></div>
+                    <div class="flow-arrow" aria-hidden="true">↓</div>
+                    <div class="video-operations"><span>抽帧</span><span>检测 3×3</span><span>逐格裁切</span><span>Alpha / 色键</span><span>循环编码</span></div>
+                    <div class="flow-arrow" aria-hidden="true">↓</div>
+                    <div class="file-stack"><span>01.webp</span><span>01.gif</span><span>01.png</span><b>× 09</b></div>
+                  </div>
+                </div>
+              </article>
+
+              <article class="example-panel" id="example-independent" role="tabpanel" aria-labelledby="example-tab-independent" data-example-panel="independent">
+                <div class="example-copy">
+                  <div class="evidence-label evidence-mixed"><i aria-hidden="true"></i> 上游真实输出 + 流程样例</div>
+                  <p class="example-number">EXAMPLE 04</p>
+                  <h3>“这三张是独立贴纸，别把它们拼成九宫格。”</h3>
+                  <div class="example-input"><span>示例输入</span><code>stickers/01.png + 02.png + 03.png / independent files</code></div>
+                  <ol class="example-steps">
+                    <li><span>1</span><p><b>保留独立语义</b>直接读取文件集合，不为每张图伪造一个 1×1 <code>layout.json</code>。</p></li>
+                    <li><span>2</span><p><b>逐张处理</b>每张贴纸独立归一尺寸、透明和动画帧。</p></li>
+                    <li><span>3</span><p><b>统一装包</b>按确定顺序编号并输出相同格式集合。</p></li>
+                  </ol>
+                  <div class="deliverable-chips"><span>独立 WebP</span><span>独立 GIF</span><span>首帧 PNG</span><span>一个 ZIP</span></div>
+                  <p class="example-boundary"><b>能力边界</b>如果输入本身动作、画布和帧率差异过大，归一化只能保证格式，不能自动统一美术质量。</p>
+                </div>
+                <div class="example-visual real-output independent-output" aria-label="三张独立黑猫贴纸示例">
+                  <div class="visual-topline"><span>REAL FILE EXAMPLES</span><span>no grid invented</span></div>
+                  <div class="independent-files">
+                    <figure><img src="assets/stickers/black-cat-01.webp" alt="独立贴纸示例一" /><figcaption><b>01.webp</b><span>independent</span></figcaption></figure>
+                    <figure><img src="assets/stickers/black-cat-05.webp" alt="独立贴纸示例二" /><figcaption><b>02.webp</b><span>independent</span></figcaption></figure>
+                    <figure><img src="assets/stickers/black-cat-09.webp" alt="独立贴纸示例三" /><figcaption><b>03.webp</b><span>independent</span></figcaption></figure>
+                  </div>
+                </div>
+              </article>
+
+              <article class="example-panel" id="example-local" role="tabpanel" aria-labelledby="example-tab-local" data-example-panel="local">
+                <div class="example-copy">
+                  <div class="evidence-label evidence-flow"><i aria-hidden="true"></i> 流程样例 · 非本次生成</div>
+                  <p class="example-number">EXAMPLE 05</p>
+                  <h3>“不要上传，不调用外部 API，只用本地能力。”</h3>
+                  <div class="example-input"><span>示例输入</span><code>approved-sheet.png / external API: forbidden / Pillow + NumPy: available</code></div>
+                  <ol class="example-steps">
+                    <li><span>1</span><p><b>排除外部路线</b>不会把参考图和提示词发送给视频 Provider。</p></li>
+                    <li><span>2</span><p><b>选择 transform-local</b>对整张贴纸做轻微位移、缩放或旋转，生成可循环帧。</p></li>
+                    <li><span>3</span><p><b>明确降级</b>交付中记录所用路线，不把仿射循环描述成生成式视频。</p></li>
+                  </ol>
+                  <div class="deliverable-chips"><span>本地循环媒体</span><span>route.json</span><span>processing.json</span><span>ZIP</span></div>
+                  <p class="example-boundary"><b>能力边界</b>本地模式不会让眼睛、嘴巴或四肢产生新的语义动作；它只是整图轻量变换。</p>
+                </div>
+                <div class="example-visual flow-output" aria-label="完全本地路由示意">
+                  <div class="visual-topline"><span>ILLUSTRATIVE ROUTE</span><span>external: forbidden</span></div>
+                  <div class="local-route">
+                    <div class="route-node route-disabled"><span>01</span><p><b>外部视频</b><small>用户禁止</small></p><i>SKIP</i></div>
+                    <div class="route-node route-disabled"><span>02</span><p><b>关键姿态</b><small>无生图工具</small></p><i>SKIP</i></div>
+                    <div class="route-node route-selected"><span>03</span><p><b>transform-local</b><small>Pillow + NumPy</small></p><i>SELECTED</i></div>
+                    <div class="local-motion"><img src="assets/stickers/black-cat-01.png" alt="本地仿射动画使用的静态黑猫贴纸示例" /><span>translate · scale · rotate · loop</span></div>
+                  </div>
+                </div>
+              </article>
+            </div>
+          </div>
+          <p class="example-status" aria-live="polite">当前样例：01 角色图做整包 · 从角色身份到动态 ZIP。</p>
+
+          <div class="format-proof">
+            <div class="format-heading">
+              <p class="eyebrow">SAME STICKER / THREE DELIVERIES</p>
+              <h3>同一格，为什么要交付三种文件？</h3>
+              <p>下面是固定上游提交中的同一只黑猫 `01`，不是三次不同生成。格式各自服务于不同平台能力。</p>
+            </div>
+            <div class="format-grid">
+              <figure class="format-card">
+                <div class="format-media"><img src="assets/stickers/black-cat-01.webp" alt="黑猫贴纸 Animated WebP 格式" /></div>
+                <figcaption><span>ANIMATED WEBP</span><b>01.webp</b><small>814,608 bytes · 循环动画 · 较完整 Alpha</small></figcaption>
+              </figure>
+              <figure class="format-card">
+                <div class="format-media"><img src="assets/stickers/black-cat-01.gif" alt="黑猫贴纸 GIF 格式" loading="lazy" /></div>
+                <figcaption><span>LOOPING GIF</span><b>01.gif</b><small>565,218 bytes · 兼容聊天应用 · 二值透明</small></figcaption>
+              </figure>
+              <figure class="format-card">
+                <div class="format-media"><img src="assets/stickers/black-cat-01.png" alt="黑猫贴纸第一帧 PNG 格式" loading="lazy" /></div>
+                <figcaption><span>FIRST-FRAME PNG</span><b>01.png</b><small>38,859 bytes · 静态预览 · 透明首帧</small></figcaption>
+              </figure>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section extension-section" id="extensions">
+        <div class="shell">
+          <div class="section-heading split-heading">
+            <div><p class="eyebrow">05 / EXTENSION ROADMAP</p><h2>可扩展，不等于“再接一个模型”。</h2></div>
+            <p>真正值得扩的是确定性能力：平台交付合同、质量指标、时序透明、品牌版本和成本路由。每一项都能用结果验收，而不是只增加 Provider 名单。</p>
+          </div>
+
+          <div class="extension-priority" aria-label="扩展优先级建议">
+            <div><span>NOW · 先补交付</span><b>平台包 + 动作模板</b><small>最快把现有能力变成可复用产品</small></div>
+            <i aria-hidden="true">→</i>
+            <div><span>NEXT · 再补可靠性</span><b>时序抠像 + 自动 QC</b><small>解决最常见的返工与边缘破损</small></div>
+            <i aria-hidden="true">→</i>
+            <div><span>LATER · 最后规模化</span><b>品牌系统 + 成本路由</b><small>服务多角色、多活动和团队协作</small></div>
+          </div>
+
+          <div class="extension-grid">
+            <article class="extension-card" data-horizon="now">
+              <div class="extension-card-head"><span>01 · DELIVERY</span><b>近期</b></div>
+              <h3>平台专用交付包</h3>
+              <p>当前通用 WebP / GIF / PNG 还不能直接等同于每个平台原生包。</p>
+              <dl><div><dt>扩展模块</dt><dd>Telegram WebM、Discord APNG、WhatsApp 尺寸与体积预设、manifest 生成器</dd></div><div><dt>验证指标</dt><dd>上传零报错、尺寸 / 帧率 / 体积全部过平台校验</dd></div></dl>
+              <small>价值场景：品牌互动、个人表达、资产迁移</small>
+            </article>
+
+            <article class="extension-card" data-horizon="now">
+              <div class="extension-card-head"><span>02 · MOTION DSL</span><b>近期</b></div>
+              <h3>可复用动作语义库</h3>
+              <p>现在逐格提示词很强，但跨角色复用仍主要依赖人工描述。</p>
+              <dl><div><dt>扩展模块</dt><dd>“庆祝 / 收到 / 困惑 / 警告”等动作模板、幅度和节奏参数、角色适配规则</dd></div><div><dt>验证指标</dt><dd>同一语义跨三类角色仍可读，身份锚点不被动作遮挡</dd></div></dl>
+              <small>价值场景：品牌互动、儿童内容、教育知识</small>
+            </article>
+
+            <article class="extension-card" data-horizon="next">
+              <div class="extension-card-head"><span>03 · TEMPORAL ALPHA</span><b>工程</b></div>
+              <h3>时序抠像与边缘修复</h3>
+              <p>边缘连通色键足够保守，但面对发丝、半透明光效和运动模糊仍会漏边或挖空。</p>
+              <dl><div><dt>扩展模块</dt><dd>视频分割 Adapter、跨帧 Alpha 平滑、去溢色、边缘羽化与对照预览</dd></div><div><dt>验证指标</dt><dd>Alpha 闪烁率、边缘污染率、内部误删率低于阈值</dd></div></dl>
+              <small>价值场景：宠物、商品营销、复杂角色</small>
+            </article>
+
+            <article class="extension-card" data-horizon="next">
+              <div class="extension-card-head"><span>04 · QUALITY SCORE</span><b>工程</b></div>
+              <h3>身份与循环自动质检</h3>
+              <p>当前报告偏媒体技术指标；“还是不是它”和“动作懂不懂”仍主要靠人看。</p>
+              <dl><div><dt>扩展模块</dt><dd>参考图相似度、品牌色差、遮挡检测、动作语义评分、首尾帧跳变评分</dd></div><div><dt>验证指标</dt><dd>自动拦截已知坏样本，同时保留人工覆盖和理由记录</dd></div></dl>
+              <small>价值场景：所有需要规模化批量生产的场景</small>
+            </article>
+
+            <article class="extension-card" data-horizon="later">
+              <div class="extension-card-head"><span>05 · BRAND SYSTEM</span><b>产品</b></div>
+              <h3>角色圣经与版本治理</h3>
+              <p>哈希能锁一份图板，但还没有跨活动、跨角色的长期品牌资产关系。</p>
+              <dl><div><dt>扩展模块</dt><dd>角色 token、禁用动作、配色规范、审批角色、版本差异和增量发布</dd></div><div><dt>验证指标</dt><dd>旧包可复现，新包能追溯到角色规则与审批版本</dd></div></dl>
+              <small>价值场景：品牌矩阵、儿童 IP、长期运营</small>
+            </article>
+
+            <article class="extension-card" data-horizon="later">
+              <div class="extension-card-head"><span>06 · COST ROUTING</span><b>产品</b></div>
+              <h3>质量 / 隐私 / 成本联合路由</h3>
+              <p>当前路由以硬能力和优先级为主，还缺少任务级预算与历史质量反馈。</p>
+              <dl><div><dt>扩展模块</dt><dd>单格成本上限、隐私等级、Provider 成功率、缓存复用、失败不重复计费策略</dd></div><div><dt>验证指标</dt><dd>每包成本可预测，敏感输入不越界，失败提交次数可审计</dd></div></dl>
+              <small>价值场景：商品营销、团队生产、私有角色</small>
+            </article>
+          </div>
+
+          <div class="extension-takeaway">
+            <span>对我们的意义</span>
+            <p><b>短期：</b>把已有工作区角色、商品分镜和知识图板转成可传播小资产。<b>中期：</b>形成“内容项目 → 贴纸包”的统一交付层。<b>长期：</b>沉淀角色、动作、质量和成本数据，变成可复用的内容生产基础设施。</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section shell" id="pipeline">
+        <div class="section-heading split-heading">
+          <div><p class="eyebrow">06 / PRODUCTION PIPELINE</p><h2>六个阶段，把“生成一下”变成“交付一包”。</h2></div>
+          <p>选择阶段查看它接收什么、由谁执行、留下什么证据。静图确认是付费动画之前的硬门，不是聊天里的礼貌步骤。</p>
+        </div>
+
+        <div class="stage-tabs" role="tablist" aria-label="生产阶段">
+          <button class="stage-tab is-active" id="tab-intake" type="button" role="tab" aria-selected="true" aria-controls="panel-intake" data-stage="intake"><span>01</span>输入建档</button>
+          <button class="stage-tab" id="tab-static" type="button" role="tab" aria-selected="false" aria-controls="panel-static" data-stage="static" tabindex="-1"><span>02</span>静图建形</button>
+          <button class="stage-tab" id="tab-approval" type="button" role="tab" aria-selected="false" aria-controls="panel-approval" data-stage="approval" tabindex="-1"><span>03</span>审批锁版</button>
+          <button class="stage-tab" id="tab-routing" type="button" role="tab" aria-selected="false" aria-controls="panel-routing" data-stage="routing" tabindex="-1"><span>04</span>能力路由</button>
+          <button class="stage-tab" id="tab-process" type="button" role="tab" aria-selected="false" aria-controls="panel-process" data-stage="process" tabindex="-1"><span>05</span>媒体加工</button>
+          <button class="stage-tab" id="tab-delivery" type="button" role="tab" aria-selected="false" aria-controls="panel-delivery" data-stage="delivery" tabindex="-1"><span>06</span>质检交付</button>
+        </div>
+
+        <div class="stage-panels">
+          <article class="stage-panel is-active" id="panel-intake" role="tabpanel" aria-labelledby="tab-intake" data-stage-panel="intake">
+            <div class="panel-index">01</div><div class="panel-copy"><p class="panel-kicker">INTAKE / WORKSPACE</p><h3>先确定入口，不把所有素材硬塞进九宫格。</h3><p>角色参考图、纯文字角色、现成图板、整板视频和多张独立贴纸走不同入口。每个角色创建独立工作目录，避免旧文件进入新交付。</p></div>
+            <dl class="panel-contract"><div><dt>输入</dt><dd>角色图、文字角色、图板、视频或独立贴纸</dd></div><div><dt>执行者</dt><dd>Agent + <code>character_workspace.py</code></dd></div><div><dt>证据</dt><dd><code>works/&lt;character&gt;/</code> 独立工作区</dd></div></dl>
+          </article>
+          <article class="stage-panel" id="panel-static" role="tabpanel" aria-labelledby="tab-static" data-stage-panel="static">
+            <div class="panel-index">02</div><div class="panel-copy"><p class="panel-kicker">STATIC SHEET / ALPHA</p><h3>先把角色、表情和布局变成可检查的静态事实。</h3><p>Agent 从参考图提取可见身份特征并编译提示词；上游推荐由支持参考图与透明输出的宿主工具生成 PNG，再检测真实网格和 Alpha，而不是相信提示词请求。</p></div>
+            <dl class="panel-contract"><div><dt>输入</dt><dd>身份特征 + 风格 + Emoji / 表情描述</dd></div><div><dt>执行者</dt><dd>宿主图像模型 + 网格检测脚本</dd></div><div><dt>证据</dt><dd><code>static-sheet.png</code> + <code>layout.json</code></dd></div></dl>
+          </article>
+          <article class="stage-panel" id="panel-approval" role="tabpanel" aria-labelledby="tab-approval" data-stage-panel="approval">
+            <div class="panel-index">03</div><div class="panel-copy"><p class="panel-kicker">STATIC REVIEW / SHA-256</p><h3>用户批准的是这一张图，不是一句可以复用的“确认”。</h3><p>生成图板必须展示给用户。批准状态绑定图片和布局哈希；一旦重新生成，旧审批和所有下游产物立即失效，动画执行器在哈希不一致时关闭。</p></div>
+            <dl class="panel-contract"><div><dt>输入</dt><dd>静图 + 检测布局 + 明确用户确认</dd></div><div><dt>执行者</dt><dd><code>manage_job_state.py</code></dd></div><div><dt>证据</dt><dd><code>job-state.json</code> + SHA-256</dd></div></dl>
+          </article>
+          <article class="stage-panel" id="panel-routing" role="tabpanel" aria-labelledby="tab-routing" data-stage-panel="routing">
+            <div class="panel-index">04</div><div class="panel-copy"><p class="panel-kicker">DISCOVERY / ONE ROUTE</p><h3>先探测能力，再只执行一条满足条件的路线。</h3><p>路由器区分“目录里装过工具”和“当前真的可调用”。原生图生视频优先，其次是已配置 Provider，然后才是关键姿态、本地仿射和 Prompt-only。</p></div>
+            <dl class="panel-contract"><div><dt>输入</dt><dd>运行时工具清单 + Provider 配置 + 任务约束</dd></div><div><dt>执行者</dt><dd>probe / route / execute 三段合同</dd></div><div><dt>证据</dt><dd><code>capabilities.json</code> + <code>route.json</code></dd></div></dl>
+          </article>
+          <article class="stage-panel" id="panel-process" role="tabpanel" aria-labelledby="tab-process" data-stage-panel="process">
+            <div class="panel-index">05</div><div class="panel-copy"><p class="panel-kicker">SPLIT / MATTE / ENCODE</p><h3>生成模型交回视频以后，确定性程序接管。</h3><p>FFmpeg 抽帧，实际布局决定裁切；已有 Alpha 就保留，否则只移除与裁切边缘连通的相似背景色，降低挖空角色内部的风险，再编码循环 WebP、GIF 和首帧 PNG。</p></div>
+            <dl class="panel-contract"><div><dt>输入</dt><dd>规范源视频 + 实际布局 + 背景策略</dd></div><div><dt>执行者</dt><dd>Python / Pillow / NumPy / FFmpeg</dd></div><div><dt>证据</dt><dd>编号媒体 + <code>processing.json</code></dd></div></dl>
+          </article>
+          <article class="stage-panel" id="panel-delivery" role="tabpanel" aria-labelledby="tab-delivery" data-stage-panel="delivery">
+            <div class="panel-index">06</div><div class="panel-copy"><p class="panel-kicker">QC / ASSEMBLY</p><h3>最后交付的不只是媒体，还有生成过程的审计轨迹。</h3><p>交付目录合并媒体、审批、提示词、路由和处理报告。布局低置信度、Alpha 损伤、循环跳变、Provider 降级或失败格必须显式报告，不能用一个 ZIP 掩盖。</p></div>
+            <dl class="panel-contract"><div><dt>输入</dt><dd>媒体目录 + 审计目录 + 输出合同</dd></div><div><dt>执行者</dt><dd><code>assemble_delivery.py</code></dd></div><div><dt>证据</dt><dd><code>delivered/</code> + ZIP + 五类 JSON</dd></div></dl>
+          </article>
+        </div>
+        <p class="stage-status" aria-live="polite">当前阶段：01 输入建档 · 明确素材类型和独立工作区。</p>
+      </section>
+
+      <section class="section capability-section" id="capabilities">
+        <div class="shell">
+          <div class="section-heading split-heading">
+            <div><p class="eyebrow">07 / CAPABILITY LAYERS</p><h2>谁在提供能力？把功劳分清。</h2></div>
+            <p>这套 Skill 的成熟之处，不是宣称自己包办一切，而是明确哪些能力来自 Agent、生成模型、Provider Gateway 和本地媒体栈。</p>
+          </div>
+          <div class="filter-bar" aria-label="按能力层筛选">
+            <button class="filter-button is-active" type="button" data-filter="all" aria-pressed="true">全部 <span>10</span></button>
+            <button class="filter-button" type="button" data-filter="agent" aria-pressed="false">Agent 合同 <span>3</span></button>
+            <button class="filter-button" type="button" data-filter="generation" aria-pressed="false">生成与路由 <span>3</span></button>
+            <button class="filter-button" type="button" data-filter="media" aria-pressed="false">媒体处理 <span>2</span></button>
+            <button class="filter-button" type="button" data-filter="quality" aria-pressed="false">状态与质检 <span>2</span></button>
+          </div>
+          <p class="filter-status visually-hidden" aria-live="polite">当前显示全部 10 项能力。</p>
+
+          <div class="capability-grid">
+            <article class="capability-card" data-layer="agent"><span class="layer-tag">AGENT</span><h3>多入口识别</h3><p>参考角色、文字角色、现成图板、整板视频和独立贴纸分别进入不同处理路径。</p><code>SKILL.md / Workflow 1</code></article>
+            <article class="capability-card" data-layer="agent"><span class="layer-tag">AGENT</span><h3>角色身份约束</h3><p>从图像读取脸、毛发、轮廓、颜色、服装、配件和姿态语言，默认保留源角色特征。</p><code>compile_static_prompt.py</code></article>
+            <article class="capability-card" data-layer="agent"><span class="layer-tag">AGENT</span><h3>逐格动作计划</h3><p>每个检测到的格子必须有独立、语义匹配的动作计划；通用动作只能作为明确降级。</p><code>prompt_compiler.py</code></article>
+            <article class="capability-card" data-layer="generation"><span class="layer-tag">GENERATION</span><h3>透明静图主路径</h3><p>请求宿主图像工具使用参考图生成透明 PNG；Alpha 由像素检查确认，不把棋盘格预览当透明。</p><code>prepare_image_gen_call.py</code></article>
+            <article class="capability-card" data-layer="generation"><span class="layer-tag">ROUTING</span><h3>能力驱动路由</h3><p>原生图生视频优先，外部 Provider 按任务硬要求与优先级过滤，而不是仅凭厂商名称。</p><code>route_video_provider.py</code></article>
+            <article class="capability-card" data-layer="generation"><span class="layer-tag">GATEWAY</span><h3>五类视频适配</h3><p>锁定 xAI、Kling、ByteDance、Alibaba 和 FAL 的 AI SDK 依赖，也允许受约束的 command Adapter。</p><code>video_gateway.mjs</code></article>
+            <article class="capability-card" data-layer="media"><span class="layer-tag">MEDIA</span><h3>真实网格检测</h3><p>请求布局只作为偏好；后续裁切始终读取实际检测的列、行、数量和置信度。</p><code>inspect_sticker_sheet.py</code></article>
+            <article class="capability-card" data-layer="media"><span class="layer-tag">MEDIA</span><h3>透明循环编码</h3><p>保留源 Alpha 或做边缘连通色键，输出 Animated WebP、GIF、首帧 PNG 和 ZIP。</p><code>process_emoji_grid.py</code></article>
+            <article class="capability-card" data-layer="quality"><span class="layer-tag">STATE</span><h3>哈希审批门</h3><p>图像或布局变化会使旧审批失效；Python 与 Node 执行器都会在哈希不匹配时停止。</p><code>manage_job_state.py</code></article>
+            <article class="capability-card" data-layer="quality"><span class="layer-tag">QC</span><h3>可审计交付</h3><p>记录 Alpha、尺寸、帧率、越界、静止段位移、循环质量、路由和失败格。</p><code>processing.json / route.json</code></article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section shell" id="routing">
+        <div class="section-heading split-heading">
+          <div><p class="eyebrow">08 / GRACEFUL DEGRADATION</p><h2>有视频工具时向上走，没有时诚实向下退。</h2></div>
+          <p>探测不会产生费用。只有显式执行一条 route attempt 才会提交生成；第一次外部付费调用前必须说明 Provider 和计费可能。</p>
+        </div>
+        <div class="routing-board">
+          <ol class="route-ladder">
+            <li class="route-primary"><span>01</span><div><p>NATIVE VIDEO</p><h3>当前 Agent 的图生视频工具</h3><small>必须真实可调用、能接收参考图；文生视频不算。</small></div><b>最高优先</b></li>
+            <li><span>02</span><div><p>EXTERNAL VIDEO</p><h3>已配置的外部 Provider</h3><small>xAI / Kling / Seedance / Wan / FAL；按硬能力和优先级过滤。</small></div><b>可能付费</b></li>
+            <li><span>03</span><div><p>KEYPOSE LOCAL</p><h3>关键姿态 + 本地组帧</h3><small>有生图、无视频时生成每格 3–5 个姿态，再本地编排。</small></div><b>生成降级</b></li>
+            <li><span>04</span><div><p>TRANSFORM LOCAL</p><h3>整张贴纸的仿射循环</h3><small>只有 Pillow / NumPy 时做位移、缩放和轻微旋转。</small></div><b>完全本地</b></li>
+            <li class="route-stop"><span>05</span><div><p>PROMPT ONLY</p><h3>交付计划，然后明确停止</h3><small>没有视频和本地媒体能力时只交付提示词与路由审计，不冒充成片。</small></div><b>诚实停点</b></li>
+          </ol>
+          <aside class="routing-rules">
+            <p class="panel-kicker">ROUTING INVARIANTS</p>
+            <h3>路由不是“多试几个，总有一个行”。</h3>
+            <ul>
+              <li><span>01</span>每次只执行一个编号 attempt。</li>
+              <li><span>02</span>配置默认不允许 SDK 内部重复提交付费任务。</li>
+              <li><span>03</span>配置只写凭证环境变量名，不写密钥值。</li>
+              <li><span>04</span>子进程只继承基础运行变量与当前 Provider 声明的凭证。</li>
+              <li><span>05</span>失败回退必须受 <code>max_attempts</code> 和用户授权约束。</li>
+            </ul>
+            <a href="https://github.com/kobingogo/motion-sticker-pack/blob/6531b374c8a5c324a7d98067408832084a2182c9/references/runtime-routing.md" target="_blank" rel="noreferrer">阅读固定提交的路由合同 ↗</a>
+          </aside>
+        </div>
+      </section>
+
+      <section class="section truth-section" id="boundary">
+        <div class="shell">
+          <div class="section-heading split-heading">
+            <div><p class="eyebrow">09 / CLAIM CONTROL</p><h2>能力成立，但每一层都有限定词。</h2></div>
+            <p>下面把“源码能证明”“作者主路径主张”“仍需真实调用验证”分开，避免把完整的工作流误读为已经验证过所有生成质量。</p>
+          </div>
+          <div class="truth-table" role="table" aria-label="能力证据与边界">
+            <div class="truth-row truth-head" role="row"><span role="columnheader">命题</span><span role="columnheader">当前证据</span><span role="columnheader">判断</span></div>
+            <div class="truth-row" role="row"><b role="cell">能输出完整贴纸包</b><p role="cell">源码含切图、编码、装配脚本和真实 WebP/GIF/PNG 样例。</p><strong role="cell" class="status-proven">源码已证</strong></div>
+            <div class="truth-row" role="row"><b role="cell">审批不会串版本</b><p role="cell">图片与布局 SHA-256 绑定；Python、Node 执行前双重校验。</p><strong role="cell" class="status-proven">合同已证</strong></div>
+            <div class="truth-row" role="row"><b role="cell">能自动选视频路线</b><p role="cell">Probe、Route、Execute 分离，五类 Adapter 依赖被锁定。</p><strong role="cell" class="status-proven">代码已证</strong></div>
+            <div class="truth-row" role="row"><b role="cell">静图一定有完美 Alpha</b><p role="cell">宠物、小龙和耳机共五份 PNG 已验证真实 Alpha，但第一次睡眠稿仍生成了假棋盘并被拒收；这些样本不能保证所有模型和请求。</p><strong role="cell" class="status-claim">五样本通过</strong></div>
+            <div class="truth-row" role="row"><b role="cell">外部视频一定自然稳定</b><p role="cell">一份用户回传 MP4 已完成去背交付，但出现首姿重建与静止段低幅抖动；单样本不能证明不同平台和模型都稳定。</p><strong role="cell" class="status-claim">单样本已证</strong></div>
+            <div class="truth-row" role="row"><b role="cell">适配所有聊天平台</b><p role="cell">通用包已有 WebP/GIF/PNG；Telegram WebM、Discord APNG 等仍是计划项。</p><strong role="cell" class="status-open">当前不具备</strong></div>
+          </div>
+
+          <div class="boundary-grid">
+            <article><span>01</span><h3>不是角色设计系统</h3><p>输入最好已经有可识别角色；它负责保持和动画化身份，不负责从零建立完整角色圣经。</p></article>
+            <article><span>02</span><h3>不是通用视频剪辑器</h3><p>固定镜头、独立小动作、规则图板是核心假设；长剧情和自由镜头语言不在范围内。</p></article>
+            <article><span>03</span><h3>不是专业视频抠像</h3><p>边缘连通色键是保守工程折中，无法替代针对发丝、阴影和运动模糊的时序分割模型。</p></article>
+            <article><span>04</span><h3>不是安全沙箱</h3><p>命令 Adapter 的环境经过过滤，但用户配置的可执行程序仍然拥有本机文件和网络能力。</p></article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section shell source-section">
+        <div class="source-card">
+          <div><p class="eyebrow">FIXED RESEARCH SNAPSHOT</p><h2>结论固定在一个提交上。</h2><p>本页读取的是 <code>6531b374c8a5c324a7d98067408832084a2182c9</code>。上游完整源码已保存到研究子项目，可离线回看 Skill、脚本、Schema、测试和案例。</p></div>
+          <dl><div><dt>版本</dt><dd>0.2.0</dd></div><div><dt>获取日期</dt><dd>2026-08-30</dd></div><div><dt>许可证</dt><dd>MIT</dd></div><div><dt>仓库侧费用</dt><dd>¥0 / 用户平台未计</dd></div></dl>
+          <div class="source-actions"><a class="button button-primary" href="https://github.com/yydshly/0830_codex_project/tree/main/projects/motion-sticker-pack-demo" target="_blank" rel="noreferrer">研究记录与快照 ↗</a><a class="button button-secondary" href="https://github.com/kobingogo/motion-sticker-pack/tree/6531b374c8a5c324a7d98067408832084a2182c9" target="_blank" rel="noreferrer">固定上游提交 ↗</a></div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer shell"><p>MOTION STICKER PACK · CAPABILITY AUDIT</p><p>固定上游输出、工作区素材、真实扩展输出与流程示意均已分级标注。</p></footer>
+  </body>
+</html>

@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "tiles": [
+    {
+      "id": "01",
+      "motion": "先轻微屈膝蓄力，再原地小幅跳起并举起双臂庆祝，落地后挥手一次",
+      "amplitude": "small",
+      "loop": "return-to-start"
+    }
+  ]
+}

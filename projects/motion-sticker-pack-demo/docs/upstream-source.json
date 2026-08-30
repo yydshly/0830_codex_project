@@ -1,0 +1,11 @@
+{
+  "repository": "https://github.com/kobingogo/motion-sticker-pack",
+  "branch": "main",
+  "commit": "6531b374c8a5c324a7d98067408832084a2182c9",
+  "version": "0.2.0",
+  "acquired_at": "2026-08-30",
+  "license": "MIT",
+  "tracked_files": 498,
+  "snapshot_path": "upstream",
+  "acquisition_method": "git archive of the fixed commit; nested Git metadata excluded"
+}

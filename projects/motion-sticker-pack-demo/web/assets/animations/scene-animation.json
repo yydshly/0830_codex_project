@@ -1,0 +1,155 @@
+{
+  "version": 1,
+  "generator": "frozen upstream scripts/process_independent_stickers.py",
+  "upstream_commit": "6531b374c8a5c324a7d98067408832084a2182c9",
+  "route": "independent-stickers / deterministic local affine fallback",
+  "fps": 8,
+  "duration_seconds": 1.5,
+  "frames_per_output": 12,
+  "staged_width": 420,
+  "upstream_warning": "independent inputs are user-supplied assets; no grid detection was performed",
+  "approval_basis": "User requested real animation for the already displayed scene samples on 2026-08-30.",
+  "outputs": [
+    {
+      "id": "01",
+      "source": "web\\assets\\scenes\\felt-dragon-celebrate.webp",
+      "recipe": "bounce",
+      "meaning": "whole-sticker vertical bounce; no new limb pose is synthesized",
+      "media": {
+        "webp": {
+          "file": "felt-dragon-bounce.webp",
+          "bytes": 1253010,
+          "sha256": "C2DCACDBC2C2A17C25B109859088E68533C4AA2C0B8C1EDFBE79F58470B6CBD8",
+          "width": 420,
+          "height": 434,
+          "frames": 12,
+          "duration_ms": 1500,
+          "alpha_extrema_first_frame": [
+            0,
+            255
+          ]
+        },
+        "gif": {
+          "file": "felt-dragon-bounce.gif",
+          "bytes": 540741,
+          "sha256": "2F48192027C762EC59245888FECC33325A8863F6354A43CE58CD7EA4814F1030",
+          "width": 420,
+          "height": 434,
+          "frames": 12,
+          "duration_ms": 1510,
+          "alpha_extrema_first_frame": [
+            0,
+            255
+          ]
+        },
+        "png": {
+          "file": "felt-dragon-bounce.png",
+          "bytes": 157098,
+          "sha256": "315389D661EE6FB2DF536F96B16DC6A38F8EF12F5669E0D2487F70C63AD66CAC",
+          "width": 420,
+          "height": 434,
+          "frames": 1,
+          "duration_ms": 0,
+          "alpha_extrema_first_frame": [
+            0,
+            255
+          ]
+        }
+      }
+    },
+    {
+      "id": "02",
+      "source": "web\\assets\\scenes\\earbuds-live-translation.webp",
+      "recipe": "sway",
+      "meaning": "whole-sticker 2.5-degree sway; the product geometry does not articulate",
+      "media": {
+        "webp": {
+          "file": "earbuds-sway.webp",
+          "bytes": 793688,
+          "sha256": "442A56A037BD9C1C4DB4DF3BF0BA56B221740D400C1B0A12E60FD44F0BE2F1F3",
+          "width": 420,
+          "height": 280,
+          "frames": 12,
+          "duration_ms": 1500,
+          "alpha_extrema_first_frame": [
+            0,
+            255
+          ]
+        },
+        "gif": {
+          "file": "earbuds-sway.gif",
+          "bytes": 302679,
+          "sha256": "A26F683B467B036AA3A7CE5403F2B4A20D09D81DBEDE629C2C46DAC1C3E7A9CC",
+          "width": 420,
+          "height": 280,
+          "frames": 12,
+          "duration_ms": 1510,
+          "alpha_extrema_first_frame": [
+            0,
+            255
+          ]
+        },
+        "png": {
+          "file": "earbuds-sway.png",
+          "bytes": 87527,
+          "sha256": "FD95659896C47AA7D2B08AF75F267631F79BA2BD8B1B2EA03F4618AB6079B036",
+          "width": 420,
+          "height": 280,
+          "frames": 1,
+          "duration_ms": 0,
+          "alpha_extrema_first_frame": [
+            0,
+            255
+          ]
+        }
+      }
+    },
+    {
+      "id": "03",
+      "source": "web\\assets\\our-dog\\dog-core.webp",
+      "recipe": "pulse",
+      "meaning": "whole-sticker 3.5-percent pulse; the face and limbs do not articulate",
+      "media": {
+        "webp": {
+          "file": "dog-core-pulse.webp",
+          "bytes": 1391202,
+          "sha256": "FF571F36548429DF747B41DEC175557FD4846D421B3A6103D8D014279E368FFC",
+          "width": 420,
+          "height": 420,
+          "frames": 12,
+          "duration_ms": 1500,
+          "alpha_extrema_first_frame": [
+            0,
+            255
+          ]
+        },
+        "gif": {
+          "file": "dog-core-pulse.gif",
+          "bytes": 828749,
+          "sha256": "C42ED9B24ACF1B985B8D6660712DF9F75D2466FC2E41A32AFF6369F7A3CBA626",
+          "width": 420,
+          "height": 420,
+          "frames": 12,
+          "duration_ms": 1510,
+          "alpha_extrema_first_frame": [
+            0,
+            255
+          ]
+        },
+        "png": {
+          "file": "dog-core-pulse.png",
+          "bytes": 196840,
+          "sha256": "784048E688D1778556C030699508E45648682AEA9AA13F9F3130DC1EEC2C2A01",
+          "width": 420,
+          "height": 420,
+          "frames": 1,
+          "duration_ms": 0,
+          "alpha_extrema_first_frame": [
+            0,
+            255
+          ]
+        }
+      }
+    }
+  ]
+}

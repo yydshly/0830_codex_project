@@ -1,0 +1,11 @@
+{
+  "source_type": "separate-static-stickers",
+  "numbering_layout": "synthetic single row for output ordering only",
+  "detected_layout": {
+    "columns": 3,
+    "rows": 1,
+    "count": 3,
+    "confidence": 1.0,
+    "detection_mode": "separate-input"
+  }
+}

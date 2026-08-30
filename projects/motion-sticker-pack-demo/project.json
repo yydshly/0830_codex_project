@@ -1,0 +1,18 @@
+{
+  "slug": "motion-sticker-pack-demo",
+  "title": "Motion Sticker Pack 能力地图",
+  "summary": "用语义关键姿态、视频提示词工作台和用户回传成片，展示从提示词到外部生成、透明去背、质检与动态贴纸交付的完整闭环。",
+  "status": "paused",
+  "tags": [
+    "ai-skill",
+    "animated-stickers",
+    "image-to-video",
+    "media-pipeline",
+    "agent-workflow",
+    "capability-audit"
+  ],
+  "started_at": "2026-08-30",
+  "updated_at": "2026-08-31",
+  "demo_url": "https://yydshly.github.io/0830_codex_project/demos/motion-sticker-pack-demo/",
+  "upstream_url": "https://github.com/kobingogo/motion-sticker-pack"
+}

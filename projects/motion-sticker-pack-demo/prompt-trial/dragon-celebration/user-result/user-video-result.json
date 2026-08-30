@@ -1,0 +1,85 @@
+{
+  "version": 1,
+  "status": "processed",
+  "source": {
+    "origin": "user-provided local video",
+    "original_name": "video_1788105533581.mp4",
+    "stored_as": "dragon-celebration-user-generated.mp4",
+    "sha256": "6008157915ca9fef73aaa53e3bc9e21a25f30428237e75884cf5daad9a2e4d36",
+    "bytes": 707900,
+    "width": 768,
+    "height": 768,
+    "duration_seconds": 6.583333,
+    "video_codec": "h264",
+    "video_fps": 24,
+    "video_frames": 158,
+    "audio_codec": "aac"
+  },
+  "capability_ownership": {
+    "prompt_generation": "this project",
+    "video_generation": "user-operated external platform",
+    "video_postprocessing": "frozen upstream process_emoji_grid.py"
+  },
+  "processing": {
+    "source": "processing-source-8fps.mp4",
+    "source_sha256": "7c84675bad6494dba4b61cde991340beb87e93e9d00de615aa6550dcda1b1516",
+    "source_frames": 53,
+    "reason": "The final delivery is 8fps, so the user video was deterministically sampled to 8fps before the CPU-intensive matte pass.",
+    "background_mode": "edge-color",
+    "observed_key_color": "#6FF280",
+    "requested_key_color": "#00FF00",
+    "supersample": 1,
+    "output_size": [240, 240],
+    "output_fps": 8,
+    "output_duration_seconds": 6.625,
+    "native_frames_analyzed": 53,
+    "invalid_frames": 0,
+    "failed_cells": 0,
+    "gif_budget_bytes": 1048576,
+    "gif_bytes": 771943,
+    "warning": "residual-hold-jitter"
+  },
+  "visual_review": {
+    "identity_preserved": [
+      "green felt material",
+      "orange spikes",
+      "cream belly",
+      "large black eyes",
+      "small wings and tail"
+    ],
+    "motion_observed": "anticipation -> jump with both arms raised -> landing -> one wave -> standing recovery",
+    "limitations": [
+      "the model reconstructs a standing start pose rather than preserving the source action pose",
+      "the hold section contains visible low-amplitude body jitter",
+      "the generated green plate shifted from requested #00FF00 to observed #6FF280",
+      "audio is present in the MP4 but is intentionally omitted from sticker deliveries"
+    ]
+  },
+  "deliveries": {
+    "animated_webp": {
+      "file": "trial-output/01.webp",
+      "bytes": 2258092,
+      "sha256": "bea7424d06be13da5aa244861c1bf23730b2ca75ce5ea4a79702cbf867edeef3"
+    },
+    "gif": {
+      "file": "trial-output/01.gif",
+      "bytes": 771943,
+      "sha256": "c3d40dfff00bff9667771ea24c7a35cf0766bb55c4bd79370b4291f76cc5b476"
+    },
+    "first_frame_png": {
+      "file": "trial-output/01.png",
+      "bytes": 57655,
+      "sha256": "cb435231b8ae340909b8c4e8f545372e0b1b0d46b6227e5aea8ae287b94c2b0c"
+    },
+    "zip": {
+      "file": "trial-output/sticker-pack.zip",
+      "bytes": 4593270,
+      "sha256": "46f46f168282feb90253a86399890bda6a374d9e3e8eaed63bb90cb6e67d6bed"
+    },
+    "processing_report": {
+      "file": "trial-output/processing.json",
+      "bytes": 13879,
+      "sha256": "82e581ce8c5aebb52e226b19722b80f0ccb0273bf01c3d83d17bbb8730e4b987"
+    }
+  }
+}

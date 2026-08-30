@@ -1,0 +1,21 @@
+{
+  "version": 1,
+  "revision": "23af49c5f6f1d6a6",
+  "phase": "static-approved",
+  "source_type": "user-supplied",
+  "created_at": "2026-08-30T07:38:17.136588Z",
+  "static_image": {
+    "path": "E:\\0830_codex_project\\projects\\motion-sticker-pack-demo\\web\\assets\\scenes\\felt-dragon-celebrate.png",
+    "sha256": "23af49c5f6f1d6a686f9de19af689e91e48d0315da201cdd6e62f757dbb37427"
+  },
+  "layout": {
+    "path": "C:\\Users\\yun68\\AppData\\Local\\Temp\\motion-keypose-dragon-xmfannn7\\layout.json",
+    "sha256": "fe329e2ae539792727138dc819914d132cf701ffa4130373c4cfa1c6203ffa1b"
+  },
+  "static_prompt": null,
+  "approval": {
+    "kind": "user-supplied-source",
+    "approved_at": "2026-08-30T07:38:17.137592Z",
+    "static_sha256": "23af49c5f6f1d6a686f9de19af689e91e48d0315da201cdd6e62f757dbb37427"
+  }
+}

@@ -1,0 +1,360 @@
+{
+  "subject": "motion-sticker-pack v0.2.0",
+  "commit": "6531b374c8a5c324a7d98067408832084a2182c9",
+  "classification": "Agent Skill plus deterministic media pipeline; not a trained image or video model",
+  "research_archive": {
+    "status": "paused",
+    "archived_on": "2026-08-31",
+    "reason": "The capability, architecture, scenarios, extension roadmap and one user-driven video-to-sticker loop have been documented and verified.",
+    "resume_when": [
+      "benchmarking a new image-to-video provider",
+      "building platform-specific delivery packs",
+      "improving temporal alpha and edge repair",
+      "comparing whole-grid and per-cell generation cost and rework"
+    ]
+  },
+  "entry_modes": [
+    "character reference image",
+    "text-defined character",
+    "existing static sticker sheet",
+    "existing grid video",
+    "separate static stickers"
+  ],
+  "workflow": [
+    "intake and static prompt compilation",
+    "transparent static sheet generation",
+    "observed grid detection",
+    "user approval bound to image and layout hashes",
+    "per-cell motion prompt compilation",
+    "runtime capability discovery and provider routing",
+    "video generation or local fallback",
+    "split, matte, encode, quality-check and package"
+  ],
+  "delivery": [
+    "Animated WebP",
+    "looping GIF",
+    "first-frame PNG",
+    "ZIP package",
+    "layout.json",
+    "job-state.json",
+    "prompts.json",
+    "route.json",
+    "processing.json"
+  ],
+  "bundled_external_video_providers": [
+    "xAI",
+    "Kling AI",
+    "ByteDance / Seedance",
+    "Alibaba / Wan",
+    "FAL"
+  ],
+  "local_fallbacks": [
+    "keypose-local",
+    "transform-local",
+    "prompt-only"
+  ],
+  "example_scenarios": [
+    {
+      "input": "character reference plus style and reactions",
+      "capability": "identity extraction, static approval, animation routing and full pack delivery",
+      "evidence": "real upstream black-cat WebP outputs plus an illustrative workflow"
+    },
+    {
+      "input": "user-supplied static sheet",
+      "capability": "observed grid detection, automatic approved state and per-cell motion planning",
+      "evidence": "illustrative workflow bound to the upstream contract"
+    },
+    {
+      "input": "grid video without a layout file",
+      "capability": "representative-frame extraction, layout detection, splitting, matting and encoding",
+      "evidence": "illustrative workflow bound to executable scripts"
+    },
+    {
+      "input": "separate sticker files",
+      "capability": "independent processing without inventing a grid",
+      "evidence": "real upstream sticker files plus an illustrative workflow"
+    },
+    {
+      "input": "approved sheet with external APIs forbidden",
+      "capability": "transform-local fallback with explicit route disclosure",
+      "evidence": "illustrative workflow; no external provider called"
+    }
+  ],
+  "format_example": {
+    "source": "upstream/examples/black-cat/01",
+    "webp_bytes": 814608,
+    "gif_bytes": 565218,
+    "png_bytes": 38859
+  },
+  "our_workspace_demo": {
+    "source": "CC0 black long-haired dog photo by KANABAIS via Wikimedia Commons",
+    "identity_anchors": [
+      "black curly fur",
+      "floppy ears",
+      "long muzzle",
+      "open-mouth smile",
+      "gray plaid harness",
+      "blue hanging tag"
+    ],
+    "generated_outputs": [
+      {
+        "file": "assets/our-dog/dog-core.png",
+        "effect": "identity-preserving soft-3D sticker",
+        "ownership": "real output from the built-in image editor; maps to the upstream static-image stage"
+      },
+      {
+        "file": "assets/our-dog/dog-kinetic.png",
+        "effect": "cyan-lime kinetic trail and impact sparks",
+        "ownership": "real output from a project-specific creative prompt layer; not an upstream built-in effect"
+      },
+      {
+        "file": "assets/our-dog/dog-dream.png",
+        "effect": "lavender mood halo, particles and crescent accent",
+        "ownership": "real output from a project-specific creative prompt layer; not an upstream built-in effect"
+      }
+    ],
+    "output_dimensions": "1254x1254",
+    "alpha_verified": true,
+    "stopping_point": "static PNG outputs plus a three-key-pose blink and raised-paw greeting loop; no external video provider was executed"
+  },
+  "our_keypose_animation_demo": {
+    "generator": "frozen upstream scripts/render_keypose_pack.py",
+    "upstream_commit": "6531b374c8a5c324a7d98067408832084a2182c9",
+    "route": "keypose-local / generated semantic poses plus deterministic stepped sequencing",
+    "subjects": [
+      {
+        "subject": "felt dragon",
+        "action": "anticipate -> jump with closed eyes and raised arms -> land while waving",
+        "keyposes": 3,
+        "webp": "assets/semantic-animations/dragon-celebration-keypose.webp",
+        "gif": "assets/semantic-animations/dragon-celebration-keypose.gif"
+      },
+      {
+        "subject": "translation earbuds",
+        "action": "cyan signal begins left -> translation peak -> orange signal reaches right",
+        "keyposes": 3,
+        "webp": "assets/semantic-animations/earbuds-translation-keypose.webp",
+        "gif": "assets/semantic-animations/earbuds-translation-keypose.gif"
+      },
+      {
+        "subject": "black long-haired dog",
+        "action": "open-eye start -> blink while paw lifts -> open-eye raised-paw greeting",
+        "keyposes": 3,
+        "webp": "assets/semantic-animations/dog-greeting-keypose.webp",
+        "gif": "assets/semantic-animations/dog-greeting-keypose.gif"
+      }
+    ],
+    "fps": 6,
+    "duration_seconds": 2.0,
+    "sequence": [0, 1, 2, 1],
+    "delivery": [
+      "Animated WebP",
+      "looping GIF",
+      "first-frame PNG",
+      "semantic sticker ZIP",
+      "job-state, layout, processing and audit JSON"
+    ],
+    "boundary": "real subject-part and expression changes with stepped timing; no optical-flow interpolation or video-model temporal synthesis"
+  },
+  "user_driven_video_prompt_workbench": {
+    "sample": "felt dragon celebration",
+    "source": "assets/scenes/felt-dragon-celebrate.png",
+    "capability": "prompt-generation-only",
+    "intended_downstream_operation": "user-operated image-to-video",
+    "default_duration_seconds": 6,
+    "motion": "anticipate -> small in-place jump with raised arms -> land and wave -> return to start",
+    "user_controls": [
+      "sample preset",
+      "editable motion intent",
+      "target duration",
+      "motion amplitude",
+      "return-to-start loop"
+    ],
+    "prompt_artifacts": [
+      "layout.json",
+      "tile-plan.json",
+      "prompts.json",
+      "prompt-bundle.json",
+      "source SHA-256",
+      "positive prompt",
+      "negative constraints",
+      "suggested settings",
+      "manual handoff steps"
+    ],
+    "project_does_not": [
+      "select a video provider",
+      "read credentials",
+      "upload the source image",
+      "submit generation",
+      "review or retry the resulting video"
+    ],
+    "user_handoff": [
+      "choose a video platform",
+      "upload the source image",
+      "paste the prompts",
+      "set platform parameters and click generate",
+      "review the result"
+    ],
+    "current_status": "prompt-ready",
+    "external_request_made": false,
+    "video_generated_here": false,
+    "boundary": "This project generates prompt text only. The user drives video generation on a separately chosen platform."
+  },
+  "user_generated_video_result": {
+    "source": "assets/user-video/dragon-user-generated.mp4",
+    "source_owner": "user-operated external generation",
+    "source_media": {
+      "width": 768,
+      "height": 768,
+      "fps": 24,
+      "frames": 158,
+      "duration_seconds": 6.583333,
+      "video_codec": "h264",
+      "audio_codec": "aac"
+    },
+    "project_postprocessing": {
+      "script": "frozen upstream scripts/process_emoji_grid.py",
+      "processing_source_fps": 8,
+      "frames_analyzed": 53,
+      "observed_key_color": "#6FF280",
+      "alpha_method": "full-frame-continuous-fixed-key",
+      "output_width": 240,
+      "output_height": 240,
+      "output_fps": 8,
+      "output_duration_seconds": 6.625,
+      "invalid_frames": 0,
+      "failed_cells": 0,
+      "gif_budget_passed": true,
+      "warning": "residual-hold-jitter"
+    },
+    "deliveries": [
+      "transparent Animated WebP",
+      "transparent GIF",
+      "first-frame PNG",
+      "3-second derivative",
+      "processing JSON",
+      "delivery ZIP"
+    ],
+    "boundary": "The project generated the prompt and post-processed the returned media. The user selected and operated the external video platform."
+  },
+  "our_local_animation_demo": {
+    "generator": "frozen upstream scripts/process_independent_stickers.py",
+    "upstream_commit": "6531b374c8a5c324a7d98067408832084a2182c9",
+    "route": "independent-stickers / deterministic local affine last-resort fallback",
+    "subjects": [
+      {
+        "subject": "felt dragon",
+        "recipe": "bounce",
+        "webp": "assets/animations/felt-dragon-bounce.webp",
+        "gif": "assets/animations/felt-dragon-bounce.gif"
+      },
+      {
+        "subject": "translation earbuds",
+        "recipe": "sway",
+        "webp": "assets/animations/earbuds-sway.webp",
+        "gif": "assets/animations/earbuds-sway.gif"
+      },
+      {
+        "subject": "black long-haired dog",
+        "recipe": "pulse",
+        "webp": "assets/animations/dog-core-pulse.webp",
+        "gif": "assets/animations/dog-core-pulse.gif"
+      }
+    ],
+    "frames_per_output": 12,
+    "fps": 8,
+    "duration_seconds": 1.5,
+    "delivery": [
+      "Animated WebP",
+      "looping GIF",
+      "first-frame PNG",
+      "ZIP package",
+      "processing and audit JSON"
+    ],
+    "boundary": "whole-sticker affine motion only; no blink, mouth shape, product-part articulation or new limb pose is synthesized"
+  },
+  "scene_atlas": [
+    {
+      "scene": "brand community",
+      "example": "original felt-dragon mascot celebration sticker",
+      "route": "character anchor -> static approval -> reaction semantics -> animated delivery",
+      "acceptance": "silhouette similarity, brand-color drift and semantic readability",
+      "evidence": "real workspace input, three transparent semantic key poses and a keypose-local celebration Animated WebP/GIF"
+    },
+    {
+      "scene": "personal expression",
+      "example": "CC0 black long-haired dog emotion pack",
+      "route": "identity anchors -> single-image approval -> reaction expansion",
+      "acceptance": "fur color, face, accessories and transparent edges",
+      "evidence": "real CC0 input, three transparent greeting key poses and a keypose-local blink/raised-paw Animated WebP/GIF"
+    },
+    {
+      "scene": "children's content",
+      "example": "original felt story world with a girl, fox and dragon",
+      "route": "per-character static images -> parent/editor approval -> gentle loops",
+      "acceptance": "character consistency, safe motion and gentle looping",
+      "evidence": "real workspace source plus route illustration; no complete animated pack claimed"
+    },
+    {
+      "scene": "product marketing",
+      "example": "translation-earbuds feature sticker",
+      "route": "product extraction -> feature symbol -> image-to-video or local loop",
+      "acceptance": "product geometry, material, brand assets and feature readability",
+      "evidence": "real workspace storyboard, three transparent signal states and a keypose-local waveform-transfer Animated WebP/GIF"
+    },
+    {
+      "scene": "educational micro-explainer",
+      "example": "Chinese-character stroke and component sequence",
+      "route": "independent step images -> content approval -> local temporal assembly",
+      "acceptance": "factual correctness, sequence clarity and text integrity",
+      "evidence": "real workspace poster plus route illustration; no automatic fact checking claimed"
+    },
+    {
+      "scene": "asset migration",
+      "example": "existing sheets, grid video and separate stickers",
+      "route": "detect -> human override -> split -> matte -> encode",
+      "acceptance": "complete crops, correct alpha, clean loops and platform limits",
+      "evidence": "real upstream outputs plus executable processing contracts"
+    }
+  ],
+  "extension_roadmap": [
+    {
+      "module": "platform delivery packs",
+      "horizon": "now",
+      "validation": "zero upload errors and platform-compliant size, frame rate and file weight"
+    },
+    {
+      "module": "reusable motion semantics DSL",
+      "horizon": "now",
+      "validation": "one semantic action stays readable across three character types without hiding identity anchors"
+    },
+    {
+      "module": "temporal alpha and edge repair",
+      "horizon": "engineering",
+      "validation": "alpha flicker, spill and interior-deletion rates remain below declared thresholds"
+    },
+    {
+      "module": "identity and loop quality scoring",
+      "horizon": "engineering",
+      "validation": "known bad samples are blocked while human override and rationale remain auditable"
+    },
+    {
+      "module": "character bible and version governance",
+      "horizon": "product",
+      "validation": "old packs are reproducible and new packs trace back to role rules and approval versions"
+    },
+    {
+      "module": "quality, privacy and cost-aware routing",
+      "horizon": "product",
+      "validation": "per-pack cost is predictable, sensitive inputs stay in policy and paid retries are auditable"
+    }
+  ],
+  "known_boundaries": [
+    "whole-sheet video can leak motion across cells",
+    "free-form layouts need manual override",
+    "complex temporal matting is not included",
+    "local transform fallback is intentionally lightweight",
+    "platform-specific Telegram and Discord submission formats are not automated",
+    "remote provider quality, quota and billing require an explicitly authorized real call"
+  ]
+}

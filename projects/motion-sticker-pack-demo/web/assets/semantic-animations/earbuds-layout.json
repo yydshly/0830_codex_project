@@ -1,0 +1,10 @@
+{
+  "source_type": "user-approved-workspace-sticker",
+  "detected_layout": {
+    "columns": 1,
+    "rows": 1,
+    "count": 1,
+    "confidence": 1.0,
+    "detection_mode": "confirmed-single-sticker"
+  }
+}

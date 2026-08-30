@@ -1,0 +1,294 @@
+{
+  "version": 1,
+  "generator": "frozen upstream scripts/render_keypose_pack.py",
+  "upstream_commit": "6531b374c8a5c324a7d98067408832084a2182c9",
+  "route": "keypose-local / generated semantic poses + deterministic stepped sequencing",
+  "fps": 6,
+  "hold_frames": 3,
+  "keyposes_per_output": 3,
+  "timeline_frames_per_output": 12,
+  "duration_seconds": 2.0,
+  "approval_basis": "User explicitly requested optimization to achieve case-like semantic motion on 2026-08-30.",
+  "warning": "key poses change subject parts and expression, but use stepped timing without optical-flow or video-model interpolation",
+  "outputs": [
+    {
+      "id": "dragon",
+      "route": "keypose-local",
+      "strip": "assets/keyposes/dragon-celebration-strip-v2.png",
+      "strip_sha256": "7FF17CE6ECA573A7157254B5443EAB038FB7141346319019A01F2D912C69A097",
+      "approved_image": "assets/scenes/felt-dragon-celebrate.png",
+      "action": "anticipate -> jump with eyes closed and arms raised -> land while waving",
+      "pose_labels": [
+        "anticipation",
+        "celebration peak",
+        "wave recovery"
+      ],
+      "identity_lock": "mint felt, cream belly, orange spikes, wings and round friendly face",
+      "poses": [
+        {
+          "file": "assets/keyposes/dragon/01/pose-01.png",
+          "bytes": 181213,
+          "sha256": "3A58D2A2CC6157ADD57B1EB4CFCF60C76582DF3D7F6680F8A9196546519843FF",
+          "alpha_extrema": [
+            0,
+            255
+          ]
+        },
+        {
+          "file": "assets/keyposes/dragon/01/pose-02.png",
+          "bytes": 178754,
+          "sha256": "5E78F25F56870370AE009ABDCE4A3CA5B7CF3C8515BCC280C9D06599139C453F",
+          "alpha_extrema": [
+            0,
+            255
+          ]
+        },
+        {
+          "file": "assets/keyposes/dragon/01/pose-03.png",
+          "bytes": 173568,
+          "sha256": "F6D94CE22F4FD99F0569BF53EA40BE0FC2326E4538B6902E779940252902225C",
+          "alpha_extrema": [
+            0,
+            255
+          ]
+        }
+      ],
+      "sequence": [
+        0,
+        1,
+        2,
+        1
+      ],
+      "media": {
+        "webp": {
+          "file": "dragon-celebration-keypose.webp",
+          "bytes": 475260,
+          "sha256": "A7FD3947209883A3A30D45E3D0604C06CEBA4977D2B622AC0825763B3C550B11",
+          "width": 420,
+          "height": 420,
+          "frames": 4,
+          "duration_ms": 2000,
+          "alpha_extrema_first_frame": [
+            0,
+            255
+          ],
+          "max_changed_pixels_vs_first": 114306
+        },
+        "gif": {
+          "file": "dragon-celebration-keypose.gif",
+          "bytes": 633918,
+          "sha256": "2AC93576EF2D8562B6ABBF156AEE830CA1B23F26866F1965149AE3ACE0A337C2",
+          "width": 420,
+          "height": 420,
+          "frames": 12,
+          "duration_ms": 2000,
+          "alpha_extrema_first_frame": [
+            0,
+            255
+          ],
+          "max_changed_pixels_vs_first": 86246
+        },
+        "png": {
+          "file": "dragon-celebration-keypose.png",
+          "bytes": 181213,
+          "sha256": "3A58D2A2CC6157ADD57B1EB4CFCF60C76582DF3D7F6680F8A9196546519843FF",
+          "width": 420,
+          "height": 420,
+          "frames": 1,
+          "duration_ms": 0,
+          "alpha_extrema_first_frame": [
+            0,
+            255
+          ],
+          "max_changed_pixels_vs_first": 0
+        }
+      }
+    },
+    {
+      "id": "earbuds",
+      "route": "keypose-local",
+      "strip": "assets/keyposes/earbuds-translation-strip-v2.png",
+      "strip_sha256": "0FDD2448BF1393B49747212F0FEE39FC9E557D236B83B2C7B48EEC5BEAAACF5F",
+      "approved_image": "assets/scenes/earbuds-live-translation.png",
+      "action": "cyan waveform begins left -> peaks through center -> reaches orange receiver",
+      "pose_labels": [
+        "left signal",
+        "center translation peak",
+        "right signal"
+      ],
+      "identity_lock": "fixed matte-black ear-hook geometry with cyan and orange indicators",
+      "poses": [
+        {
+          "file": "assets/keyposes/earbuds/01/pose-01.png",
+          "bytes": 57969,
+          "sha256": "04B6941F4C6845BBC199697901B1D8249A0CE8D9A99C78F0B8F8EEB1B2124668",
+          "alpha_extrema": [
+            0,
+            255
+          ]
+        },
+        {
+          "file": "assets/keyposes/earbuds/01/pose-02.png",
+          "bytes": 60943,
+          "sha256": "F5A3FBACFE2A242E2B060B0B43549D3382158FB2076723E0344C790CD6C81EAB",
+          "alpha_extrema": [
+            0,
+            255
+          ]
+        },
+        {
+          "file": "assets/keyposes/earbuds/01/pose-03.png",
+          "bytes": 57763,
+          "sha256": "6ADDB2065AE817FA80029C2C1D4788B4016C1031411DE61C93657964D6577CF4",
+          "alpha_extrema": [
+            0,
+            255
+          ]
+        }
+      ],
+      "sequence": [
+        0,
+        1,
+        2,
+        1
+      ],
+      "media": {
+        "webp": {
+          "file": "earbuds-translation-keypose.webp",
+          "bytes": 177034,
+          "sha256": "794107CDCCB3909C65511E48F3A27E6EB0A96CA0664646580EB5925D04EAC8C4",
+          "width": 420,
+          "height": 420,
+          "frames": 4,
+          "duration_ms": 2000,
+          "alpha_extrema_first_frame": [
+            0,
+            255
+          ],
+          "max_changed_pixels_vs_first": 42336
+        },
+        "gif": {
+          "file": "earbuds-translation-keypose.gif",
+          "bytes": 187704,
+          "sha256": "85C9BB00DD1C35D3C21404FC5DA5EF21F9AE61B7EC456EA59D700624810E5111",
+          "width": 420,
+          "height": 420,
+          "frames": 12,
+          "duration_ms": 2000,
+          "alpha_extrema_first_frame": [
+            0,
+            255
+          ],
+          "max_changed_pixels_vs_first": 29525
+        },
+        "png": {
+          "file": "earbuds-translation-keypose.png",
+          "bytes": 57969,
+          "sha256": "04B6941F4C6845BBC199697901B1D8249A0CE8D9A99C78F0B8F8EEB1B2124668",
+          "width": 420,
+          "height": 420,
+          "frames": 1,
+          "duration_ms": 0,
+          "alpha_extrema_first_frame": [
+            0,
+            255
+          ],
+          "max_changed_pixels_vs_first": 0
+        }
+      }
+    },
+    {
+      "id": "dog",
+      "route": "keypose-local",
+      "strip": "assets/keyposes/dog-greeting-strip-v2.png",
+      "strip_sha256": "3AE837CE4965688529B9BDA042503752E42F0A7AAE4F6EFF931CEA59B58FD04F",
+      "approved_image": "assets/our-dog/dog-core.png",
+      "action": "eyes open and paws down -> blink while paw lifts -> eyes open with paw waving",
+      "pose_labels": [
+        "open-eye start",
+        "blink anticipation",
+        "raised-paw greeting"
+      ],
+      "identity_lock": "black curly fur, floppy ears, gray plaid harness and blue hanging tag",
+      "poses": [
+        {
+          "file": "assets/keyposes/dog/01/pose-01.png",
+          "bytes": 201296,
+          "sha256": "8E7DA28BAEE42D6765027B23BA95752ACF3727E0696668FB0C9D574A141EDF58",
+          "alpha_extrema": [
+            0,
+            255
+          ]
+        },
+        {
+          "file": "assets/keyposes/dog/01/pose-02.png",
+          "bytes": 196158,
+          "sha256": "22A35A9B4F1DA9C9FAD3D82D34CCEDAA8C71F20CB653995D75FCF5ECB1C09076",
+          "alpha_extrema": [
+            0,
+            255
+          ]
+        },
+        {
+          "file": "assets/keyposes/dog/01/pose-03.png",
+          "bytes": 202552,
+          "sha256": "B6937B408F65A510B8A08AB1EBF4346DC09E26F6A8BE3F38F3BE190746D7C2AC",
+          "alpha_extrema": [
+            0,
+            255
+          ]
+        }
+      ],
+      "sequence": [
+        0,
+        1,
+        2,
+        1
+      ],
+      "media": {
+        "webp": {
+          "file": "dog-greeting-keypose.webp",
+          "bytes": 476378,
+          "sha256": "98F8F3CC7E3E17BC115F6F9339B9E561DBE8A82DE170F37A29507DE6D2B13F10",
+          "width": 420,
+          "height": 420,
+          "frames": 4,
+          "duration_ms": 2000,
+          "alpha_extrema_first_frame": [
+            0,
+            255
+          ],
+          "max_changed_pixels_vs_first": 90495
+        },
+        "gif": {
+          "file": "dog-greeting-keypose.gif",
+          "bytes": 874260,
+          "sha256": "22508F5C5BDB60ED98925A2EFEFE7433FCDB5C019B42AA12087DC35BAD80DC7D",
+          "width": 420,
+          "height": 420,
+          "frames": 12,
+          "duration_ms": 2000,
+          "alpha_extrema_first_frame": [
+            0,
+            255
+          ],
+          "max_changed_pixels_vs_first": 78799
+        },
+        "png": {
+          "file": "dog-greeting-keypose.png",
+          "bytes": 201296,
+          "sha256": "8E7DA28BAEE42D6765027B23BA95752ACF3727E0696668FB0C9D574A141EDF58",
+          "width": 420,
+          "height": 420,
+          "frames": 1,
+          "duration_ms": 0,
+          "alpha_extrema_first_frame": [
+            0,
+            255
+          ],
+          "max_changed_pixels_vs_first": 0
+        }
+      }
+    }
+  ]
+}

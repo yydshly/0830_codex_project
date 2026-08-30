@@ -1,0 +1,41 @@
+{
+  "version": 1,
+  "mode": "independent-stickers",
+  "source": "C:\\Users\\yun68\\AppData\\Local\\Temp\\motion-scene-animation-stgrp686\\inputs",
+  "output_fps": 8,
+  "duration_seconds": 1.5,
+  "cells": [
+    {
+      "id": "01",
+      "source": "C:\\Users\\yun68\\AppData\\Local\\Temp\\motion-scene-animation-stgrp686\\inputs\\01-dragon.webp",
+      "frames": 12
+    },
+    {
+      "id": "02",
+      "source": "C:\\Users\\yun68\\AppData\\Local\\Temp\\motion-scene-animation-stgrp686\\inputs\\02-earbuds.webp",
+      "frames": 12
+    },
+    {
+      "id": "03",
+      "source": "C:\\Users\\yun68\\AppData\\Local\\Temp\\motion-scene-animation-stgrp686\\inputs\\03-dog.webp",
+      "frames": 12
+    }
+  ],
+  "warnings": [
+    "independent inputs are user-supplied assets; no grid detection was performed"
+  ],
+  "outputs": [
+    "01.webp",
+    "01.gif",
+    "01.png",
+    "02.webp",
+    "02.gif",
+    "02.png",
+    "03.webp",
+    "03.gif",
+    "03.png",
+    "layout.json",
+    "processing.json",
+    "sticker-pack.zip"
+  ]
+}

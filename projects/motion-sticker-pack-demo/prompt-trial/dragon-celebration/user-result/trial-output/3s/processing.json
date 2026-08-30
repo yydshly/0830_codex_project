@@ -1,0 +1,134 @@
+{
+  "version": 2,
+  "status": "succeeded",
+  "variant": "3s",
+  "source": "E:\\0830_codex_project\\projects\\motion-sticker-pack-demo\\prompt-trial\\dragon-celebration\\user-result\\processing-source-8fps.mp4",
+  "output_fps": 8.0,
+  "target_duration_seconds": 3.0,
+  "frames_per_animation": 24,
+  "successful_cells": 1,
+  "failed_cells": 0,
+  "trial_mode": true,
+  "selected_cells": [
+    "01"
+  ],
+  "production_settings": {
+    "path": "E:\\0830_codex_project\\projects\\motion-sticker-pack-demo\\prompt-trial\\dragon-celebration\\user-result\\sticker-production.json",
+    "sha256": "cc0a394926e754fcc90d38d97d426e9fb8942bc23c83c162439b7d84ef910fd0"
+  },
+  "budget_failures": [],
+  "cells": [
+    {
+      "id": "01",
+      "status": "succeeded",
+      "loop_selection": {
+        "mode": "prefix-duration",
+        "indices": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23
+        ],
+        "source_start_frame": 1,
+        "source_end_frame": 24,
+        "source_duration_seconds": 3.0,
+        "output_frames": 24,
+        "duration_seconds": 3.0,
+        "endpoint_difference": 0.1482994705438614,
+        "endpoint_difference_policy": "informational-only",
+        "speed_factor": 1.0
+      },
+      "file_budget": {
+        "gif_bytes": 349614,
+        "gif_max_bytes": 1048576,
+        "passed": true
+      },
+      "encoded_qc": {
+        "gif": {
+          "frames_checked": 24,
+          "alpha_coverage_min": 0.319497,
+          "alpha_coverage_max": 0.347795,
+          "border_coverage_max": 0.0,
+          "centroid_step_pixels_mean": 4.724406,
+          "centroid_step_pixels_max": 18.471643,
+          "hold_centroid_step_pixels_mean": 4.399073,
+          "hold_centroid_step_pixels_max": 15.801105
+        },
+        "webp": {
+          "frames_checked": 24,
+          "alpha_coverage_min": 0.328455,
+          "alpha_coverage_max": 0.357222,
+          "border_coverage_max": 0.0,
+          "centroid_step_pixels_mean": 4.727668,
+          "centroid_step_pixels_max": 18.368735,
+          "hold_centroid_step_pixels_mean": 4.383274,
+          "hold_centroid_step_pixels_max": 15.669229
+        }
+      },
+      "gif_alpha": {
+        "selected": {
+          "threshold": 128,
+          "score": 0.00205235
+        },
+        "candidates": [
+          {
+            "threshold": 96,
+            "score": 0.00787802
+          },
+          {
+            "threshold": 128,
+            "score": 0.00205235
+          },
+          {
+            "threshold": 160,
+            "score": 0.01306868
+          },
+          {
+            "threshold": 192,
+            "score": 0.06598277
+          }
+        ]
+      },
+      "gif_palette": {
+        "max_colors": 192,
+        "dither": "none"
+      },
+      "webp": {
+        "enabled": true,
+        "lossless": true,
+        "quality": 85,
+        "method": 4,
+        "loop": 0
+      }
+    }
+  ],
+  "outputs": [
+    "01.webp",
+    "01.gif",
+    "01.png",
+    "preview.png",
+    "sticker-production.json",
+    "layout.json",
+    "processing.json"
+  ]
+}

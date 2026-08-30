@@ -1,0 +1,37 @@
+{
+  "version": 1,
+  "mode": "keypose-local",
+  "output_fps": 6,
+  "hold_frames": 3,
+  "cells": [
+    {
+      "id": "01",
+      "source_directory": "E:\\0830_codex_project\\projects\\motion-sticker-pack-demo\\web\\assets\\keyposes\\dragon\\01",
+      "keyposes": 3,
+      "output_frames": 12,
+      "sequence": [
+        0,
+        1,
+        2,
+        1
+      ]
+    }
+  ],
+  "warnings": [
+    "key poses are sequenced deterministically without optical-flow or generative interpolation"
+  ],
+  "detected_layout": {
+    "columns": 1,
+    "rows": 1,
+    "count": 1,
+    "confidence": 1.0
+  },
+  "outputs": [
+    "01.webp",
+    "01.gif",
+    "01.png",
+    "layout.json",
+    "processing.json",
+    "sticker-pack.zip"
+  ]
+}
