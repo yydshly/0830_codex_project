@@ -5,6 +5,17 @@
 
 这是一个面向长期探索的研究型 monorepo。根 README 是所有研究的总入口；每个子项目独立记录问题、方法、实验、结论与展示地址；[GitHub Pages 门户](https://yydshly.github.io/0830_codex_project/)负责汇总可浏览成果。
 
+## 新增完整研究：Self Media Skills 内容工作流
+
+[`self-media-content-workflow`](https://github.com/yanhua1010/self-media-content-workflow) 的核心不是“自动写一篇文案”，而是把**想法、简报、证据、多平台原生表达、素材、质检、人工审核、发布包和复盘**组织成可续跑的 Agent 工作流。
+
+- **核心能力**：把一个模糊想法推进成有证据、分平台、可审核、可返工的内容包。
+- **完整样例**：使用 `genart-skill` 的真实源码与实验研究作为可替换内容原料，生成小红书、公众号和短视频三套平台稿。
+- **人工边界**：9 / 9 阶段、主平台和 4 / 4 人工确认全部满足后才能批准；事实、素材、平台或合规问题会返回准确阶段并重新检查下游。
+- **自动化边界**：仓库不自带图片/视频模型、真实平台账号或全平台群发能力；所有外部写入仍需工具和单独授权。
+
+[打开研究概览](https://yydshly.github.io/0830_codex_project/demos/self-media-content-workflow-research/) · [运行完整案例](https://yydshly.github.io/0830_codex_project/demos/self-media-content-workflow-research/demo.html#scenario) · [查看项目研究与复现说明](projects/self-media-content-workflow-research/README.md) · [查看上游仓库](https://github.com/yanhua1010/self-media-content-workflow)
+
 ## 最新能力项目：Rembrandt 肖像能力工作台
 
 这是对上游 [`okooo5km/rembrandt-portrait-lighting`](https://github.com/okooo5km/rembrandt-portrait-lighting) 的可运行产品化研究：它不是新的修图模型或单图滤镜，而是把**主体诊断、伦勃朗布光约束、身份与关系锁定、多画幅规划、失败判定和定向重试**编译成可审查的肖像生产任务。
@@ -34,6 +45,7 @@
 <!-- PROJECTS:START -->
 | 项目 | 原项目库 | 状态 | 简介 | 标签 | 最近更新 | 展示 |
 | --- | --- | --- | --- | --- | --- | --- |
+| [Self Media Skills 内容工作流研究](projects/self-media-content-workflow-research/README.md) | [查看原库](https://github.com/yanhua1010/self-media-content-workflow) | 已完成 | 研究 9 个 Agent Skills 如何把想法组织成多平台可发布内容包，并用可替换的真实研究样例演示证据、质检、人工审核与精准返工闭环。 | `ai-skill`、`content-workflow`、`self-media`、`agent-architecture`、`human-in-the-loop` | 2026-08-30 | [在线查看](https://yydshly.github.io/0830_codex_project/demos/self-media-content-workflow-research/) |
 | [replicate-video-ad 能力研究与热门广告结构迁移实验](projects/replicate-video-ad-demo/README.md) | [查看原库](https://github.com/Jingyi-Wu-Richael/replicate-video-ad) | 已完成 | 验证 replicate-video-ad 如何完成视频证据抽取、广告机制迁移与生成约束，输出可脱离原片执行的新产品视频生产架构；它本身不直接生成视频。 | `ai-skill`、`video-analysis`、`prompt-engineering`、`ecommerce-ad`、`real-world-case`、`creative-strategy` | 2026-08-30 | [在线查看](https://yydshly.github.io/0830_codex_project/demos/replicate-video-ad-demo/) |
 | [Rembrandt 肖像能力工作台](projects/portrait-workbench-mvp/README.md) | [查看原库](https://github.com/okooo5km/rembrandt-portrait-lighting) | 已完成 | 用产品、探索与架构三种模式完整展示 Rembrandt Portrait Lighting 的操作闭环、研究证据、场景方向和系统边界。 | `ai-skill`、`portrait-workflow`、`product-prototype`、`quality-review`、`research-evidence`、`knowledge-workbench`、`frontend` | 2026-08-30 | [在线查看](https://yydshly.github.io/0830_codex_project/demos/portrait-workbench-mvp/) |
 | [Kid Papercraft 情绪价值内容方法研究](projects/kid-papercraft-demo/README.md) | [查看原库](https://github.com/kaomei/kid-papercraft) | 已完成 | 从儿童纸艺 Prompt Skill 出发，验证人物一致性与图生视频边界，并沉淀为面向亲子、伴侣、长辈、宠物与自我的个性化情绪价值内容方法。 | `ai-skill`、`emotional-value`、`relationship-content`、`personalized-media`、`prompt-engineering`、`creative-method` | 2026-08-30 | [在线查看](https://yydshly.github.io/0830_codex_project/demos/kid-papercraft-demo/) |

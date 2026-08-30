@@ -1,0 +1,17 @@
+{
+  "slug": "self-media-content-workflow-research",
+  "title": "Self Media Skills 内容工作流研究",
+  "summary": "研究 9 个 Agent Skills 如何把想法组织成多平台可发布内容包，并用可替换的真实研究样例演示证据、质检、人工审核与精准返工闭环。",
+  "status": "complete",
+  "tags": [
+    "ai-skill",
+    "content-workflow",
+    "self-media",
+    "agent-architecture",
+    "human-in-the-loop"
+  ],
+  "started_at": "2026-08-30",
+  "updated_at": "2026-08-30",
+  "demo_url": "https://yydshly.github.io/0830_codex_project/demos/self-media-content-workflow-research/",
+  "upstream_url": "https://github.com/yanhua1010/self-media-content-workflow"
+}

@@ -1,0 +1,609 @@
+<!doctype html>
+<html lang="zh-CN" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="完整演示 self-media-content-workflow 如何把一个真实研究想法推进为证据包、三平台成稿、素材方案、质量门、待发布包和数据复盘。">
+  <meta name="color-scheme" content="light dark">
+  <title>完整演示｜从一个想法到待发布包</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23f05a3c'/%3E%3Cpath d='M18 45V19h14c9 0 15 4 15 12 0 5-3 9-8 11l9 3H36l-7-8v8H18Zm11-14h3c3 0 5-1 5-4s-2-4-5-4h-3v8Z' fill='white'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="demo.css">
+  <script src="demo.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#demo-main">跳到完整案例</a>
+
+  <header class="demo-topbar">
+    <a class="demo-brand" href="index.html" aria-label="返回研究概览">
+      <span class="brand-mark" aria-hidden="true">R</span>
+      <span><strong>0830 RESEARCH LAB</strong><small>CASE WORKBENCH / 01</small></span>
+    </a>
+    <nav aria-label="案例页导航">
+      <a href="index.html">研究概览</a>
+      <a href="#scenario">场景设定</a>
+      <a href="#workbench">案例工作台</a>
+      <a href="#approval">人工审核</a>
+      <a href="#case-closure">案例结论</a>
+      <a href="#artifact-index">文件清单</a>
+    </nav>
+    <button class="theme-toggle" id="demo-theme-toggle" type="button" aria-pressed="false" aria-label="切换到深色主题">
+      <span aria-hidden="true">◐</span><span class="theme-label">深色</span>
+    </button>
+  </header>
+
+  <main id="demo-main">
+    <section class="case-hero shell" aria-labelledby="case-title">
+      <div class="case-intro">
+        <p class="eyebrow"><span>COMPLETE DEMO</span> REAL EVIDENCE · UNPUBLISHED OUTPUTS</p>
+        <h1 id="case-title"><span class="hero-line">一句想法，如何走成</span><em class="hero-line">三平台待发布包</em></h1>
+        <p class="case-lead">这里真正演示的是 <code>self-media-content-workflow</code>：如何把一个想法推进成可审核、可返工的内容包。<code>genart-skill</code> 只是本次选用的真实研究原料，可以换成产品、论文、项目复盘或业务数据。</p>
+        <dl class="case-kpis" aria-label="完整案例交付规模">
+          <div><dt>阶段</dt><dd><strong>9</strong><span>从想法到复盘</span></dd></div>
+          <div><dt>平台</dt><dd><strong>3</strong><span>原生表达成稿</span></dd></div>
+          <div><dt>文件</dt><dd><strong>11</strong><span>可续跑交付物</span></dd></div>
+          <div class="zero-write"><dt>外部写入</dt><dd><strong>0</strong><span>未获发布授权</span></dd></div>
+        </dl>
+        <div class="hero-actions">
+          <a class="primary-action" href="#scenario">进入具体场景 <span aria-hidden="true">↓</span></a>
+          <a class="secondary-action" href="downloads/README.md">查看完整文件包</a>
+        </div>
+      </div>
+
+      <aside class="case-card" aria-label="案例状态摘要">
+        <div class="case-card-top">
+          <span>CASE / GENART-001</span>
+          <span class="live-dot"><i aria-hidden="true"></i>可复现证据</span>
+        </div>
+        <blockquote>“这个库是不是装上就能让 Agent 画出生成艺术？”</blockquote>
+        <dl>
+          <div><dt>场景</dt><dd>真实研究转三平台内容</dd></div>
+          <div><dt>真实证据</dt><dd>7 组 · 固定提交</dd></div>
+          <div><dt>平台产物</dt><dd>小红书 / 公众号 / 短视频</dd></div>
+          <div><dt>当前状态</dt><dd><code>AWAITING_USER</code></dd></div>
+        </dl>
+        <p class="truth-note"><strong>没有发生：</strong>登录账号、创建草稿、自动发布、采集真实运营数据。</p>
+      </aside>
+    </section>
+
+    <section class="scenario-section shell" id="scenario" aria-labelledby="scenario-title">
+      <div class="scenario-heading">
+        <div>
+          <p class="eyebrow"><span>ONE SCENARIO</span> RESEARCH → CONTENT PACKAGE</p>
+          <h2 id="scenario-title">周一上午，研究完成了，<br>但内容还没有开始</h2>
+        </div>
+        <p>这是整套演示唯一使用的业务场景。后面的 9 个阶段、3 份平台稿、素材、质量门和发布状态，都从这里连续推进。</p>
+      </div>
+
+      <div class="case-position" aria-label="研究对象与演示原料的关系">
+        <div class="position-summary"><span>READ THIS FIRST</span><strong>演示的是内容工作流，<br>不是生成艺术工具</strong><p>前者负责把想法落成平台内容；后者只提供一个有真实证据的主题。</p></div>
+        <div class="position-flow">
+          <a href="https://github.com/yanhua1010/self-media-content-workflow"><span>研究与演示对象</span><strong>self-media-content-workflow</strong><small>想法 → 证据 → 平台稿 → 审核</small></a>
+          <i aria-hidden="true">处理</i>
+          <a href="https://github.com/camilleroux/genart-skill"><span>可替换的案例原料</span><strong>genart-skill 实测</strong><small>源码 · 实验 · 图片 · 统计</small></a>
+          <i aria-hidden="true">得到</i>
+          <div><span>本次演示产物</span><strong>三平台待发布包</strong><small>11 个文件 · 外部写入 0</small></div>
+        </div>
+      </div>
+
+      <div class="scenario-board">
+        <article class="scenario-setup">
+          <div class="scene-topline"><span>SCENE-RL-001</span><time datetime="2026-08-30T09:00:00+08:00">MON / 09:00</time></div>
+          <h3>演示任务：把一份完成实测的真实研究，转成一套可以审核的内容</h3>
+          <blockquote>“本次原料使用 <code>genart-skill</code>；必须使用真实实验，不要登录账号，也不要假设已经发布。”</blockquote>
+          <dl class="scene-facts">
+            <div><dt>组织</dt><dd>Research Lab</dd></div>
+            <div><dt>受众</dt><dd>AI 工具研究者与创意编码者</dd></div>
+            <div><dt>样例原料</dt><dd><code>genart-skill</code> 研究，不是工作流依赖</dd></div>
+            <div><dt>输入</dt><dd>固定源码、故障对照、网格图、500-seed 数据</dd></div>
+            <div><dt>目标</dt><dd>小红书 + 公众号 + 60 秒视频待发布包</dd></div>
+            <div><dt>硬边界</dt><dd>无账号授权、无真实运营数据、不做一稿三发</dd></div>
+            <div><dt>终点</dt><dd><code>AWAITING_USER</code></dd></div>
+          </dl>
+        </article>
+
+        <article class="scenario-timeline" aria-labelledby="timeline-title">
+          <header><div><span>DEMO PLAN</span><h3 id="timeline-title">90 分钟演示计划</h3></div><strong>00 → 90</strong></header>
+          <ol>
+            <li><time>00–10</time><div><strong>想法</strong><p>识别母题、风险和路由</p></div><span>任务卡</span></li>
+            <li><time>10–20</time><div><strong>简报</strong><p>固定受众、平台和禁区</p></div><span>方向</span></li>
+            <li><time>20–35</time><div><strong>证据</strong><p>整理可说、不可说和来源</p></div><span>证据包</span></li>
+            <li><time>35–65</time><div><strong>创作</strong><p>分别完成三个平台原生稿</p></div><span>3 成稿</span></li>
+            <li><time>65–80</time><div><strong>素材与质检</strong><p>映射真实图片，运行六道门</p></div><span>复检</span></li>
+            <li><time>80–90</time><div><strong>交付</strong><p>保存发布清单和唯一下一步</p></div><span>待授权</span></li>
+          </ol>
+          <p class="timeline-disclaimer"><strong>计划预算，不是效率承诺。</strong>时间用于讲清流程，不表示已经实测完成速度或生产 SLA。</p>
+        </article>
+      </div>
+
+      <div class="input-lineage" aria-labelledby="lineage-title">
+        <div class="lineage-heading">
+          <span>INPUT LINEAGE</span>
+          <h3 id="lineage-title">研究材料具体去了哪里？</h3>
+          <p>选择任一输入，可以直接定位到它被核验、改写或使用的工作阶段。</p>
+        </div>
+        <div class="lineage-grid">
+          <a href="#stage-evidence"><span>01 / SOURCE</span><strong>固定源码与提交</strong><p>成为可追溯事实、版本边界与引用来源。</p><small>进入证据阶段 →</small></a>
+          <a href="#stage-evidence"><span>02 / TEST</span><strong>正常组与故障对照</strong><p>成为 A-B-A 图解、4 项 FAIL 和不可夸大的结论。</p><small>进入证据阶段 →</small></a>
+          <a href="#stage-assets"><span>03 / VISUAL</span><strong>9-seed 网格图</strong><p>成为封面、头图和短视频 04–10 秒的共用视觉。</p><small>进入素材阶段 →</small></a>
+          <a href="#stage-quality"><span>04 / RULE</span><strong>500-seed 与写作禁区</strong><p>成为平台结构差异、合规披露和质量门修改记录。</p><small>进入质检阶段 →</small></a>
+        </div>
+      </div>
+
+      <div class="responsibility-map" aria-label="场景责任边界">
+        <article><span>AI AGENT</span><strong>组织与创作</strong><p>路由、回读、分别写作、质检、保存状态。</p><small>不能编造证据或授权</small></article>
+        <i aria-hidden="true">＋</i>
+        <article><span>RUNTIME TOOLS</span><strong>读取与执行</strong><p>读项目、验网页、加载真实图；只有授权后才连接平台。</p><small>不会自行获得凭据</small></article>
+        <i aria-hidden="true">＋</i>
+        <article><span>HUMAN OWNER</span><strong>判断与授权</strong><p>确认方向、标题、终稿，以及是否进入草稿或发布。</p><small>发布权始终留在人手里</small></article>
+      </div>
+
+      <div class="scenario-done">
+        <div><span>DONE DEFINITION</span><strong>这个场景怎样才算完成？</strong></div>
+        <ul><li>事实可回溯</li><li>三平台结构不同</li><li>六道质量门有记录</li><li>外部写入保持 0</li></ul>
+        <a id="start-demo" href="#workbench">启动完整演示 <span aria-hidden="true">→</span></a>
+      </div>
+    </section>
+
+    <section class="flow-ribbon" aria-label="完整案例流程">
+      <div class="shell flow-track">
+        <span class="flow-start">IDEA</span>
+        <ol>
+          <li class="is-done">想法</li><li class="is-done">简报</li><li class="is-done">证据</li><li class="is-done">平台</li><li class="is-done">创作</li><li class="is-done">素材</li><li class="is-done">质检</li><li class="is-waiting">发布</li><li class="is-simulated">复盘</li>
+        </ol>
+        <span class="flow-end">AWAITING USER</span>
+      </div>
+    </section>
+
+    <section class="workbench shell" id="workbench" aria-labelledby="workbench-title">
+      <div class="workbench-heading">
+        <div>
+          <p class="eyebrow"><span>09 STAGES</span> CLICK THROUGH THE CASE</p>
+          <h2 id="workbench-title">完整案例工作台</h2>
+        </div>
+        <p>选择左侧阶段，查看当时的输入、系统决策、实际产物和推进边界。键盘可用方向键切换阶段。</p>
+      </div>
+
+      <div class="workbench-grid">
+        <aside class="stage-rail" aria-label="案例阶段导航">
+          <div class="stage-rail-head"><span>WORKFLOW</span><strong><b id="visited-count">1</b> / 9 已检查</strong></div>
+          <div class="stage-tabs" role="tablist" aria-orientation="vertical" aria-label="选择案例阶段">
+            <button id="stage-tab-idea" role="tab" aria-selected="true" aria-controls="stage-idea" tabindex="0" data-stage="idea" data-step="01" data-status="输入已识别"><span>01</span><strong>想法</strong><small>原始输入</small></button>
+            <button id="stage-tab-brief" role="tab" aria-selected="false" aria-controls="stage-brief" tabindex="-1" data-stage="brief" data-step="02" data-status="演示方向已确认"><span>02</span><strong>简报</strong><small>方向与禁区</small></button>
+            <button id="stage-tab-evidence" role="tab" aria-selected="false" aria-controls="stage-evidence" tabindex="-1" data-stage="evidence" data-step="03" data-status="7 组事实已核验"><span>03</span><strong>证据</strong><small>事实与边界</small></button>
+            <button id="stage-tab-platform" role="tab" aria-selected="false" aria-controls="stage-platform" tabindex="-1" data-stage="platform" data-step="04" data-status="三平台已路由"><span>04</span><strong>平台</strong><small>任务与预检</small></button>
+            <button id="stage-tab-create" role="tab" aria-selected="false" aria-controls="stage-create" tabindex="-1" data-stage="create" data-step="05" data-status="三份演示成稿"><span>05</span><strong>创作</strong><small>平台原生稿</small></button>
+            <button id="stage-tab-assets" role="tab" aria-selected="false" aria-controls="stage-assets" tabindex="-1" data-stage="assets" data-step="06" data-status="主视觉已就绪"><span>06</span><strong>素材</strong><small>视觉与镜头</small></button>
+            <button id="stage-tab-quality" role="tab" aria-selected="false" aria-controls="stage-quality" tabindex="-1" data-stage="quality" data-step="07" data-status="演示质量门通过"><span>07</span><strong>质检</strong><small>六道质量门</small></button>
+            <button id="stage-tab-publish" role="tab" aria-selected="false" aria-controls="stage-publish" tabindex="-1" data-stage="publish" data-step="08" data-status="等待用户授权"><span>08</span><strong>发布</strong><small>授权与交付</small></button>
+            <button id="stage-tab-review" role="tab" aria-selected="false" aria-controls="stage-review" tabindex="-1" data-stage="review" data-step="09" data-status="合成数据演示"><span>09</span><strong>复盘</strong><small>归因与实验</small></button>
+          </div>
+          <div class="rail-legend"><span><i class="done"></i>演示完成</span><span><i class="wait"></i>等待授权</span><span><i class="sim"></i>合成演示</span></div>
+        </aside>
+
+        <div class="stage-console">
+          <div class="console-status">
+            <div>
+              <span id="current-step">01 / 09</span>
+              <strong id="current-status">输入已识别</strong>
+            </div>
+            <div class="progress-track" role="progressbar" aria-label="案例阶段进度" aria-valuemin="1" aria-valuemax="9" aria-valuenow="1"><span id="progress-value" style="width:11.111%"></span></div>
+            <button class="next-stage" id="next-stage" type="button">下一阶段 <span aria-hidden="true">→</span></button>
+          </div>
+          <p class="sr-only" id="stage-announcer" aria-live="polite" aria-atomic="true"></p>
+
+          <div class="stage-panels">
+            <section class="stage-panel" id="stage-idea" role="tabpanel" aria-labelledby="stage-tab-idea" data-stage-panel="idea">
+              <header class="panel-heading">
+                <p><span>INPUT</span> 从模糊问题开始</p>
+                <h3>系统先判断任务，而不是直接写正文</h3>
+              </header>
+              <blockquote class="idea-quote"><span>用户原话</span>“这个库是不是装上就能让 Agent 画出生成艺术？我想用实测讲清它到底增加了什么。”</blockquote>
+              <div class="decision-grid">
+                <article><span>01 / REQUEST</span><strong>研究转内容</strong><p>已有源码和实验，不需要重新编造故事。</p></article>
+                <article><span>02 / RISK</span><strong>容易把 Skill 写成模型</strong><p>必须把仓库、Agent、运行时工具和人的能力分开。</p></article>
+                <article><span>03 / ROUTE</span><strong>多平台内容任务</strong><p>先简报，再证据；方向成立后才生成平台稿。</p></article>
+              </div>
+              <div class="io-strip"><span>输入 <b>1 句想法</b></span><i aria-hidden="true">→</i><span>系统动作 <b>识别母题与风险</b></span><i aria-hidden="true">→</i><span>产物 <b>内容任务卡 v0</b></span></div>
+            </section>
+
+            <section class="stage-panel" id="stage-brief" role="tabpanel" aria-labelledby="stage-tab-brief" data-stage-panel="brief" hidden>
+              <header class="panel-heading">
+                <p><span>CREATIVE BRIEF</span> 把方向写成可核对约束</p>
+                <h3>简报不是提问清单，而是后续创作的合同</h3>
+              </header>
+              <div class="brief-board">
+                <div class="brief-core"><span>一句话核心判断</span><strong><code>genart-skill</code> 增加的是专业知识、作品协议与质检工具，不是新的绘画模型。</strong></div>
+                <dl>
+                  <div><dt>目标受众</dt><dd>AI 工具研究者、创意编码者、评估 Agent Skill 的团队</dd></div>
+                  <div><dt>内容目标</dt><dd>建立“模型 / 流程 / 工具 / 权限”的评估框架</dd></div>
+                  <div><dt>主平台</dt><dd>公众号；扩展到小红书和 60 秒短视频</dd></div>
+                  <div><dt>调性</dt><dd>证据先行、克制、允许讲失败与边界</dd></div>
+                  <div><dt>明确不写</dt><dd>自动爆款、安装即新画风、跨 GPU 绝对一致</dd></div>
+                  <div><dt>默认值</dt><dd>不接真实账号，不生成数字人，不虚构数据</dd></div>
+                </dl>
+              </div>
+              <aside class="gate-card"><span>GATE 01</span><div><strong>方向确认</strong><p>本页使用 <code>DEMO_CONFIRMED</code> 让案例继续推进；它不代表真实账号的终稿或发布授权。</p></div><i aria-hidden="true">✓</i></aside>
+            </section>
+
+            <section class="stage-panel" id="stage-evidence" role="tabpanel" aria-labelledby="stage-tab-evidence" data-stage-panel="evidence" hidden>
+              <header class="panel-heading">
+                <p><span>EVIDENCE PACK</span> 共享事实，不共享正文</p>
+                <h3>所有平台稿都从同一份可追溯证据取材</h3>
+              </header>
+              <div class="evidence-grid">
+                <div class="evidence-list">
+                  <article><span>E01</span><div><strong>固定上游提交</strong><p><code>3380ebc</code>，避免跟随最新版本漂移。</p></div><i>已核验</i></article>
+                  <article><span>E02</span><div><strong>正常 fixture 全部通过</strong><p>重复性、差异性、A-B-A 状态与 features 稳定。</p></div><i>已核验</i></article>
+                  <article><span>E03</span><div><strong>故障对照 4 项失败</strong><p>两个随机流换成 <code>Math.random</code> 后被真实抓出。</p></div><i>已核验</i></article>
+                  <article><span>E04</span><div><strong>500-seed census</strong><p>Palette / Density 从声明权重走向实测分布。</p></div><i>已核验</i></article>
+                  <article><span>E05</span><div><strong>Windows 前置故障</strong><p>上游 v0.1.0 在本机触发 <code>ERR_HTTP_HEADERS_SENT</code>。</p></div><i>已核验</i></article>
+                </div>
+                <aside class="evidence-boundary">
+                  <span>CLAIM BOUNDARY</span>
+                  <h4>这三句话不能写</h4>
+                  <ul><li>“安装后获得新的绘画模型”</li><li>“所有设备像素完全一致”</li><li>“所有生成艺术框架开箱即用”</li></ul>
+                  <p>可以写：固定 Chromium 环境中的同机检查已通过。</p>
+                </aside>
+              </div>
+              <div class="evidence-lab">
+                <article class="aba-card">
+                  <div class="lab-heading"><span>DETERMINISM CHECK</span><strong>A-B-A 怎样抓全局状态污染</strong></div>
+                  <div class="aba-diagram" aria-label="正常 fixture 中，第一次 hash A 和再次运行的 hash A 像素摘要相同，中间 hash B 不同">
+                    <div><span>HASH A</span><strong>06669011</strong><small>首次渲染</small></div>
+                    <i aria-hidden="true">→</i>
+                    <div class="hash-b"><span>HASH B</span><strong>7e5f6b7f</strong><small>切换输入</small></div>
+                    <i aria-hidden="true">→</i>
+                    <div><span>HASH A′</span><strong>06669011</strong><small>再次渲染</small></div>
+                  </div>
+                  <p class="aba-verdict"><span>A = A′</span>正常组没有观察到跨渲染状态污染；故障组则累计出现 <strong>4 项 FAIL</strong>。</p>
+                </article>
+                <article class="census-card">
+                  <div class="lab-heading"><span>500-SEED CENSUS</span><strong>Palette：目标权重 vs 本次实测</strong></div>
+                  <div class="trait-bars" aria-label="500 个 seed 的 Palette 实测分布：Ember 44.4%，Ash 33.6%，Verdant 15%，Aurora 7%">
+                    <div><span>Ember</span><b><i style="--actual:44.4%"></i><em style="--target:45%"></em></b><strong>44.4%</strong></div>
+                    <div><span>Ash</span><b><i style="--actual:33.6%"></i><em style="--target:30%"></em></b><strong>33.6%</strong></div>
+                    <div><span>Verdant</span><b><i style="--actual:15%"></i><em style="--target:18%"></em></b><strong>15.0%</strong></div>
+                    <div><span>Aurora</span><b><i style="--actual:7%"></i><em style="--target:7%"></em></b><strong>7.0%</strong></div>
+                  </div>
+                  <p class="chart-legend"><span><i></i>本次实测</span><span><em></em>目标权重</span><small>目标对照由本研究人工整理，并非上游自动拟合检验。</small></p>
+                </article>
+              </div>
+              <div class="source-line"><span>证据来源</span><code>genart-skill-research / 源码与实验研究报告</code><a href="downloads/evidence-pack.md">打开完整证据包 →</a></div>
+            </section>
+
+            <section class="stage-panel" id="stage-platform" role="tabpanel" aria-labelledby="stage-tab-platform" data-stage-panel="platform" hidden>
+              <header class="panel-heading">
+                <p><span>PLATFORM ROUTING</span> 同一母题，三个不同任务</p>
+                <h3>平台选择决定内容结构，而不只是字数</h3>
+              </header>
+              <div class="platform-route">
+                <article class="route-xhs"><span>小红书</span><h4>让人发现并收藏</h4><p>用“500 seed”形成搜索与过程证据，8 页组图每页一个任务。</p><strong>产物：标题 ×3 · 组图 ×8 · 正文 · 首评</strong></article>
+                <article class="route-wechat"><span>公众号</span><h4>把方法讲透</h4><p>从认知误解进入，完整展开知识、协议、工具、实验与边界。</p><strong>产物：标题 ×3 · 摘要 · 长文 · 配图</strong></article>
+                <article class="route-video"><span>短视频</span><h4>先展示冲突</h4><p>以一行 <code>Math.random</code> 导致 4 项 FAIL 作为 3 秒钩子。</p><strong>产物：钩子 ×3 · 口播 · 9 镜 · 字幕</strong></article>
+              </div>
+              <div class="platform-matrix table-scroll">
+                <table>
+                  <caption>三个平台的内容决策对比</caption>
+                  <thead><tr><th scope="col">决策维度</th><th scope="col">小红书</th><th scope="col">公众号</th><th scope="col">短视频</th></tr></thead>
+                  <tbody>
+                    <tr><th scope="row">核心目标</th><td>搜索发现与收藏</td><td>建立深度信任</td><td>形成快速认知</td></tr>
+                    <tr><th scope="row">内容结构</th><td>8 页单任务组图</td><td>4 段递进方法文</td><td>60 秒 9 镜冲突链</td></tr>
+                    <tr><th scope="row">最强证据</th><td>9-seed 网格 + 500</td><td>机制 + 正常 / 故障实验</td><td><code>Math.random</code> → 4 FAIL</td></tr>
+                    <tr><th scope="row">唯一行动</th><td>收藏四问方法</td><td>用于下一次 Skill 评估</td><td>记住模型 / 流程 / 工具 / 权限</td></tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="preflight-table table-scroll">
+                <table>
+                  <thead><tr><th>能力</th><th>检查结果</th><th>本案例处理</th></tr></thead>
+                  <tbody>
+                    <tr><td>写作</td><td><span class="status-pass">可用</span></td><td>直接生成三平台原生稿</td></tr>
+                    <tr><td>真实图片</td><td><span class="status-pass">可用</span></td><td>复用研究生成的 9-seed 网格</td></tr>
+                    <tr><td>视频原片</td><td><span class="status-wait">缺失</span></td><td>交付分镜、字幕和录屏清单</td></tr>
+                    <tr><td>平台写入</td><td><span class="status-wait">未授权</span></td><td>仅交付手动发布包</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </section>
+
+            <section class="stage-panel" id="stage-create" role="tabpanel" aria-labelledby="stage-tab-create" data-stage-panel="create" hidden>
+              <header class="panel-heading">
+                <p><span>NATIVE OUTPUTS</span> 三份成稿，不是一稿三剪</p>
+                <h3>在工作台里检查每个平台的完整交付</h3>
+              </header>
+
+              <div class="output-tabs" role="tablist" aria-label="选择平台成稿">
+                <button id="output-tab-xhs" role="tab" aria-selected="true" aria-controls="output-xhs" tabindex="0" data-output="xhs"><span>01</span>小红书</button>
+                <button id="output-tab-wechat" role="tab" aria-selected="false" aria-controls="output-wechat" tabindex="-1" data-output="wechat"><span>02</span>公众号</button>
+                <button id="output-tab-video" role="tab" aria-selected="false" aria-controls="output-video" tabindex="-1" data-output="video"><span>03</span>短视频</button>
+              </div>
+
+              <article class="output-panel xhs-output" id="output-xhs" role="tabpanel" aria-labelledby="output-tab-xhs" data-output-panel="xhs">
+                <div class="output-summary"><span>SEARCH + SAVE</span><h4>我跑了 500 个 seed，才看懂这个生成艺术 Skill</h4><p>8 页图文 · 真实过程 · 首评补充方法边界</p></div>
+                <div class="xhs-carousel" aria-label="小红书八页组图文案">
+                  <article><span>01 / COVER</span><strong>跑完 500 个 seed<br>我发现它不是绘画模型</strong></article>
+                  <article><span>02 / MISREAD</span><strong>我原本以为</strong><p>装上 Skill = Agent 多一种画风</p></article>
+                  <article><span>03 / MODEL</span><strong>实际得到 3 层</strong><p>知识 / 协议 / 工具</p></article>
+                  <article><span>04 / PROTOCOL</span><strong>最小协议 4 件事</strong><p>hash / render / features / done</p></article>
+                  <article><span>05 / GOOD</span><strong>正常组</strong><p>同一 hash 的像素与 features 稳定</p></article>
+                  <article><span>06 / BROKEN</span><strong>故障组</strong><p><code>Math.random</code> → 4 项 FAIL</p></article>
+                  <article><span>07 / CENSUS</span><strong>500 个 seed</strong><p>不是挑一张好看，而是看系列分布</p></article>
+                  <article><span>08 / TAKEAWAY</span><strong>评估 Skill 的四问</strong><p>知识？协议？工具？权限？</p></article>
+                </div>
+                <div class="output-foot"><p><strong>正文开头：</strong>我第一次看到 <code>genart-skill</code> 时，也下意识把它理解成：装上以后，Agent 会多一种生成艺术能力……</p><a href="downloads/platforms/xiaohongshu.md">阅读全文、话题和首评 →</a></div>
+              </article>
+
+              <article class="output-panel wechat-output" id="output-wechat" role="tabpanel" aria-labelledby="output-tab-wechat" data-output-panel="wechat" hidden>
+                <div class="article-sheet">
+                  <span class="article-kicker">RESEARCH LAB · 深度方法</span>
+                  <h4>一个生成艺术 Skill，真正增加的不是绘画能力</h4>
+                  <p class="article-deck">我固定源码、制造随机故障并跑了 500 个 seed。这个库最重要的能力不是“会画”，而是让 Agent 的生成艺术过程可复现、可检查、可批量观察。</p>
+                  <p>第一次看到 <code>genart-skill</code> 时，我也很容易把它理解成一种“能力插件”：装进 Claude Code，Agent 就会多一种生成艺术风格。</p>
+                  <h5>先把“会生成”拆成三层</h5>
+                  <p>第一层是知识；第二层是协议；第三层才是工具。三层合在一起，才构成它真正增加的能力。</p>
+                  <h5>我为什么一定要做故障对照</h5>
+                  <p>我把 features 和 layout 使用的确定性随机流换成 <code>Math.random</code>。结果不是“看起来有点不一样”，而是 4 项检查明确失败。</p>
+                  <h5>500 个 seed 改变了观察尺度</h5>
+                  <p>只看一张图时，我们很容易围绕一个漂亮结果讲故事；census 让系列分布成为可测量的对象。</p>
+                  <h5>边界比漂亮结论更重要</h5>
+                  <p>固定 Chromium 的同机复现，不自动等于跨浏览器、跨 GPU 的像素完全一致。</p>
+                </div>
+                <div class="output-foot"><p>完整正文包含机制、实验、Windows 失败、跨 GPU 边界和四问框架。</p><a href="downloads/platforms/wechat.md">阅读公众号完整成稿 →</a></div>
+              </article>
+
+              <article class="output-panel video-output" id="output-video" role="tabpanel" aria-labelledby="output-tab-video" data-output-panel="video" hidden>
+                <div class="video-hook"><span>00:00 — 00:04</span><strong>“我只把确定性随机换成 <code>Math.random</code>，四项检查立刻失败。”</strong></div>
+                <div class="shot-list" aria-label="60 秒九镜分镜">
+                  <div><span>01</span><time>00–04s</time><p>代码切 4 个红色 FAIL</p></div>
+                  <div><span>02</span><time>04–10s</time><p>9-seed 网格铺开</p></div>
+                  <div><span>03</span><time>10–17s</time><p>知识 / 协议 / 工具</p></div>
+                  <div><span>04</span><time>17–25s</time><p>hash → render → features</p></div>
+                  <div><span>05</span><time>25–33s</time><p>A-A-A 与 A-B-A</p></div>
+                  <div><span>06</span><time>33–41s</time><p>正常绿 / 故障红</p></div>
+                  <div><span>07</span><time>41–48s</time><p>500-seed 分布</p></div>
+                  <div><span>08</span><time>48–55s</time><p>Windows / GPU 边界</p></div>
+                  <div><span>09</span><time>55–60s</time><p>四问清单收束</p></div>
+                </div>
+                <div class="output-foot"><p><strong>交付：</strong>3 个钩子、完整口播、逐句字幕、9 镜、封面与录屏缺口。</p><a href="downloads/platforms/short-video.md">打开完整分镜与字幕 →</a></div>
+              </article>
+            </section>
+
+            <section class="stage-panel" id="stage-assets" role="tabpanel" aria-labelledby="stage-tab-assets" data-stage-panel="assets" hidden>
+              <header class="panel-heading">
+                <p><span>VISUAL PACKAGE</span> 画面必须承担证据任务</p>
+                <h3>主视觉来自真实渲染，不虚构产品界面</h3>
+              </header>
+              <figure class="asset-proof">
+                <div class="asset-image-wrap"><img src="assets/genart-seed-grid.png" alt="九个确定性 seed 的生成艺术联系表，每格标有 hash 片段及 Palette 和 Density 特征" width="720" height="810" loading="lazy" decoding="async" fetchpriority="low"></div>
+                <figcaption>
+                  <span>PRIMARY ASSET / VERIFIED</span>
+                  <h4>9 个确定性 seed 联系表</h4>
+                  <p>由研究项目真实运行生成。它同时证明批量渲染可执行，并让系列中的颜色、密度和布局差异可观察。</p>
+                  <dl><div><dt>来源</dt><dd><code>genart-skill-research/artifacts/grid.png</code></dd></div><div><dt>用途</dt><dd>小红书封面、公众号头图、视频 04–10 秒</dd></div><div><dt>限制</dt><dd>不能把 fixture 输出说成新模型生成</dd></div></dl>
+                </figcaption>
+              </figure>
+              <div class="visual-tokens"><span>视觉锚</span><div><i style="--swatch:#08131b"></i>近黑</div><div><i style="--swatch:#2d91d2"></i>实验蓝</div><div><i style="--swatch:#f2633f"></i>信号橙</div><div><i style="--swatch:#f4efe4"></i>纸白</div><p>统一采用实验记录风，不使用科幻宣传片式假 UI。</p></div>
+            </section>
+
+            <section class="stage-panel" id="stage-quality" role="tabpanel" aria-labelledby="stage-tab-quality" data-stage-panel="quality" hidden>
+              <header class="panel-heading">
+                <p><span>QUALITY GATES</span> 不是“已检查”，而是结果与修改</p>
+                <h3>六道质量门留下了具体修订痕迹</h3>
+              </header>
+              <div class="gate-list">
+                <article><span>01</span><div><strong>事实与证据</strong><p>删掉“census 自动验证分布正确”，改成“工具输出实测，目标对照由研究人工整理”。</p></div><i>PASS</i></article>
+                <article><span>02</span><div><strong>账号声音</strong><p>删除“颠覆创作方式”，用第一人称实验判断承担结论。</p></div><i>PASS</i></article>
+                <article><span>03</span><div><strong>平台原生</strong><p>从一稿三剪改成搜索型组图、深度方法文和故障对照视频。</p></div><i>PASS</i></article>
+                <article><span>04</span><div><strong>视觉一致</strong><p>固定真实网格、近黑 / 蓝 / 橙和实验记录风；最终成图仍待验。</p></div><i class="conditional">CONDITIONAL</i></article>
+                <article><span>05</span><div><strong>合规披露</strong><p>所有页面明确“真实研究证据、平台稿未实际发布”。</p></div><i>PASS</i></article>
+                <article><span>06</span><div><strong>发布包完整</strong><p>文字包完整；最终封面、录屏、成片和平台预览尚未完成。</p></div><i class="conditional">CONDITIONAL</i></article>
+              </div>
+              <p class="quality-verdict"><span>演示包结论</span><strong>内容层通过；真实发布仍需素材完稿、终稿确认与独立授权。</strong><a href="downloads/quality-gate.md">查看完整质检记录 →</a></p>
+            </section>
+
+            <section class="stage-panel" id="stage-publish" role="tabpanel" aria-labelledby="stage-tab-publish" data-stage-panel="publish" hidden>
+              <header class="panel-heading">
+                <p><span>PUBLISHING PACKAGE</span> “写完”不是“允许发布”</p>
+                <h3>工作流在外部写操作之前主动停下</h3>
+              </header>
+              <div class="auth-state">
+                <div><span>01</span><small>内容方向</small><strong>DEMO_CONFIRMED</strong></div>
+                <i aria-hidden="true">→</i>
+                <div><span>02</span><small>演示成稿</small><strong>READY_FOR_REVIEW</strong></div>
+                <i aria-hidden="true">→</i>
+                <div class="blocked"><span>03</span><small>终稿确认</small><strong>NO</strong></div>
+                <i aria-hidden="true">→</i>
+                <div class="blocked"><span>04</span><small>发布授权</small><strong>NO</strong></div>
+              </div>
+              <div class="publish-grid">
+                <article><span>小红书</span><strong>手动发布包</strong><ul><li class="done">正文、话题、首评</li><li class="done">8 页画面任务</li><li>最终成图与手机审校</li><li>发布授权</li></ul></article>
+                <article><span>公众号</span><strong>可进入排版</strong><ul><li class="done">摘要、正文、配图需求</li><li>封面与编辑器预览</li><li>终稿确认</li><li>创建草稿授权</li></ul></article>
+                <article><span>短视频</span><strong>制片方案包</strong><ul><li class="done">口播、分镜、字幕</li><li>终端录屏和图卡</li><li>60 秒成片核验</li><li>发布授权</li></ul></article>
+              </div>
+              <aside class="stop-card"><span>STOP</span><div><strong>当前状态：<code>AWAITING_USER</code></strong><p>下一步唯一动作：账号负责人选择一个主平台，并明确授权进入真实终稿 / 草稿阶段。</p></div></aside>
+            </section>
+
+            <section class="stage-panel" id="stage-review" role="tabpanel" aria-labelledby="stage-tab-review" data-stage-panel="review" hidden>
+              <div class="synthetic-banner"><span>SYNTHETIC FIXTURE</span><strong>以下全部是合成演示数据，不是实际发布表现</strong><p>只用于展示分析结构，不得写入真实运营台账或对外业绩。</p></div>
+              <header class="panel-heading">
+                <p><span>ANALYTICS</span> 同平台比较，样本不足不改长期策略</p>
+                <h3>从指标到“下一次唯一实验”</h3>
+              </header>
+              <div class="metric-cards">
+                <article><span>A / 500 SEED</span><strong>38.7%</strong><small>打开率</small><b style="--value:88%"></b></article>
+                <article><span>A / 500 SEED</span><strong>10.0%</strong><small>收藏率</small><b style="--value:100%"></b></article>
+                <article><span>A / 500 SEED</span><strong>1.8%</strong><small>关注转化</small><b style="--value:90%"></b></article>
+              </div>
+              <div class="analysis-board">
+                <article><span>OBSERVATION</span><strong>打开率不是最高，收藏率与关注转化最高</strong><p>在三个合成小红书样本中，A 的打开率低于安装清单，但更容易被收藏与转关注。</p></article>
+                <article><span>LIMIT</span><strong>不能归因到“500 seed”</strong><p>样本只有 3 条，发布时间、封面与历史粉丝结构都没有被控制。</p></article>
+                <article class="experiment"><span>NEXT EXPERIMENT</span><strong>只改封面信息</strong><p><code>500 个 seed</code> 对比 <code>4 项 FAIL</code>；正文与发布时间保持一致，观察 7 天打开率。</p></article>
+              </div>
+              <div class="synthetic-foot"><span>成功标准</span><strong>打开率相对基线 +10%，且收藏率下降不超过 1 个百分点</strong><a href="downloads/analytics-demo.md">查看合成数据表与完整复盘 →</a></div>
+            </section>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="approval-section shell" id="approval" aria-labelledby="approval-title">
+      <div class="approval-heading">
+        <div>
+          <p class="eyebrow"><span>HUMAN GATE</span> LOCAL REHEARSAL · ZERO EXTERNAL WRITE</p>
+          <h2 id="approval-title">最后一步，由人作出决定</h2>
+        </div>
+        <p>这里可以完整演练选择主平台、核对四项条件、批准进入本地草稿准备或退回修改。所有操作只改变当前浏览器页面，不会连接账号、创建草稿或发布内容。</p>
+      </div>
+
+      <div class="approval-workspace" data-decision="awaiting">
+        <aside class="approval-state-card" aria-label="人工审核当前状态">
+          <span class="state-kicker">DECISION STATE</span>
+          <code id="approval-state">AWAITING_USER</code>
+          <p id="approval-state-copy">等待内容负责人完成 9 / 9 阶段检查、选择主平台并完成四项确认。</p>
+          <dl>
+            <div><dt>场景</dt><dd>SCENE-RL-001</dd></div>
+            <div><dt>已检查阶段</dt><dd><span id="approval-visited-count">1</span> / 9</dd></div>
+            <div><dt>外部写入</dt><dd><strong id="external-write-count">0</strong></dd></div>
+            <div><dt>结果类型</dt><dd>本地演示回执</dd></div>
+          </dl>
+          <p class="approval-boundary"><strong>边界：</strong>批准只表示“可以继续准备草稿”，不等于终稿确认、账号授权或真实发布。</p>
+          <div class="approval-state-actions">
+            <a href="#workbench">回到工作台检查阶段 →</a>
+            <button id="restart-demo" type="button">重新开始完整演示</button>
+          </div>
+        </aside>
+
+        <form class="approval-form" id="approval-form">
+          <fieldset class="platform-choice">
+            <legend><span>01</span>选择一个主平台</legend>
+            <div>
+              <label><input type="radio" name="primary-platform" value="xiaohongshu"><span><strong>小红书</strong><small>搜索发现与收藏</small></span></label>
+              <label><input type="radio" name="primary-platform" value="wechat"><span><strong>公众号</strong><small>深度方法与信任</small></span></label>
+              <label><input type="radio" name="primary-platform" value="video"><span><strong>短视频</strong><small>快速认知与冲突</small></span></label>
+            </div>
+          </fieldset>
+
+          <fieldset class="approval-checks">
+            <legend><span>02</span>完成人工确认</legend>
+            <label><input type="checkbox" data-approval-check><span><strong>事实可回溯</strong><small>关键数字能回到 evidence-pack.md</small></span></label>
+            <label><input type="checkbox" data-approval-check><span><strong>素材与版权已核对</strong><small>仅使用本项目可说明来源的视觉</small></span></label>
+            <label><input type="checkbox" data-approval-check><span><strong>平台结构已人工复核</strong><small>不是把同一正文简单裁切三次</small></span></label>
+            <label><input type="checkbox" data-approval-check><span><strong>理解外部写入仍为 0</strong><small>本次决定不会创建草稿或真实发布</small></span></label>
+          </fieldset>
+
+          <fieldset class="return-choice">
+            <legend><span>03</span>决定：通过或退回</legend>
+            <label for="return-reason">如需退回，先选择主要原因</label>
+            <select id="return-reason" name="return-reason">
+              <option value="">请选择退回原因</option>
+              <option value="FACT">事实或引用需要复核</option>
+              <option value="ASSET">素材或版权需要完稿</option>
+              <option value="PLATFORM">平台结构需要调整</option>
+              <option value="COMPLIANCE">合规披露需要确认</option>
+            </select>
+          </fieldset>
+
+          <div class="approval-actions">
+            <button id="approve-button" class="approve-button" type="button" disabled>批准进入本地草稿准备</button>
+            <button id="return-button" class="return-button" type="button" disabled>退回修改</button>
+          </div>
+          <p class="approval-feedback" id="approval-feedback" role="status" aria-live="polite">还需检查 8 个阶段；再选择主平台并完成 0 / 4 项确认。</p>
+        </form>
+
+        <section class="run-log-panel" aria-labelledby="run-log-title">
+          <header>
+            <div><span>SESSION EVENT LOG</span><h3 id="run-log-title">这套状态机刚刚发生了什么？</h3></div>
+            <p>只记录当前浏览器会话；刷新不会持久化，任何事件的外部写入都保持为 <strong>0</strong>。</p>
+          </header>
+          <ol class="run-event-log" id="run-event-log" aria-label="当前演示运行事件"></ol>
+          <p class="sr-only" id="run-log-announcer" aria-live="polite" aria-atomic="true"></p>
+        </section>
+
+        <section class="decision-receipt" id="decision-receipt" tabindex="-1" aria-labelledby="receipt-title" hidden>
+          <div class="receipt-top"><span>SIMULATED LOCAL RECORD</span><strong id="receipt-id">DEMO-RL-001</strong></div>
+          <h3 id="receipt-title">本地演示决策回执</h3>
+          <dl>
+            <div><dt>决定</dt><dd id="receipt-decision">—</dd></div>
+            <div><dt>主平台</dt><dd id="receipt-platform">—</dd></div>
+            <div><dt>人工确认</dt><dd id="receipt-checks">—</dd></div>
+            <div><dt>外部写入</dt><dd><strong>0</strong></dd></div>
+            <div><dt>唯一下一步</dt><dd id="receipt-next">—</dd></div>
+          </dl>
+          <div class="receipt-actions">
+            <button id="revision-route" class="revision-route" type="button" hidden>返回对应阶段修订</button>
+            <button id="reset-approval" type="button">重置本次审核</button>
+            <a href="downloads/approval-record.md">打开回执模板 →</a>
+          </div>
+        </section>
+      </div>
+    </section>
+
+    <section class="case-closure" id="case-closure" aria-labelledby="closure-title">
+      <div class="shell">
+        <div class="closure-heading">
+          <div>
+            <p class="eyebrow"><span>CASE CLOSED</span> WHAT THIS DEMO ACTUALLY PROVES</p>
+            <h2 id="closure-title">一份真实案例，最终留下了什么？</h2>
+          </div>
+          <p>案例的完成不是“生成了三篇文案”，而是输入有来源、平台有差异、质量有记录、返工有路径、权限有边界，并且所有状态都能由文件继续接手。</p>
+        </div>
+
+        <dl class="closure-kpis" aria-label="案例最终规模">
+          <div><dt>真实输入</dt><dd><strong>4</strong><span>源码 · 实验 · 图像 · 分布</span></dd></div>
+          <div><dt>平台原生稿</dt><dd><strong>3</strong><span>小红书 · 公众号 · 视频</span></dd></div>
+          <div><dt>质量门</dt><dd><strong>6</strong><span>事实到发布包</span></dd></div>
+          <div><dt>外部写入</dt><dd><strong>0</strong><span>权限仍在人手里</span></dd></div>
+        </dl>
+
+        <div class="closure-branch" aria-label="案例成功与返工分支">
+          <div class="branch-origin"><span>9 / 9 REVIEWED</span><strong>人工审核门</strong><small>主平台 + 4 / 4 确认</small></div>
+          <i aria-hidden="true">→</i>
+          <div class="branch-split">
+            <article class="branch-pass"><span>APPROVE</span><strong>进入本地草稿准备</strong><p>保存批准回执；仍需另行申请真实账号授权。</p></article>
+            <article class="branch-repair"><span>RETURN</span><strong>按原因回到准确阶段</strong><p>事实→证据 · 素材→素材 · 平台→平台 · 合规→质检；下游重新检查。</p></article>
+          </div>
+        </div>
+
+        <div class="closure-proof">
+          <article><span>PROVED</span><h3>这个案例证明了</h3><ul><li>共享证据可以生成三种平台原生结构</li><li>Agent、工具和人的边界可以落到状态与文件</li><li>批准、退回、返工和重新提交可以在零外部写入下演练</li></ul></article>
+          <article class="not-proved"><span>NOT PROVED</span><h3>这个案例没有证明</h3><ul><li>90 分钟是实际生产效率或 SLA</li><li>平台内容已经真实发布或取得运营结果</li><li>安装仓库即可获得账号、模型或无人值守群发能力</li></ul></article>
+          <a href="downloads/case-report.md"><span>FULL CASE REPORT</span><strong>打开总案例报告</strong><small>输入 · 决策 · 产物 · 分支 · 边界 →</small></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="artifact-section" id="artifact-index" aria-labelledby="artifact-title">
+      <div class="shell">
+        <div class="artifact-heading">
+          <div><p class="eyebrow"><span>DELIVERABLES</span> OPEN THE SOURCE ARTIFACTS</p><h2 id="artifact-title">演示不只存在于页面里</h2></div>
+          <p>每个阶段都保存为可继续编辑的 Markdown 文件。页面负责解释，文件负责续跑和交付。</p>
+        </div>
+        <div class="provenance-grid" aria-label="案例来源索引">
+          <a href="https://github.com/yanhua1010/self-media-content-workflow/tree/c4602993ee744e3ceae4a9bfb8760b92d9338aad"><span>01 / WORKFLOW UPSTREAM</span><strong>内容工作流上游</strong><p><code>yanhua1010/self-media-content-workflow</code></p><small>固定提交 c4602993 · v0.1.0 · MIT ↗</small></a>
+          <a href="https://github.com/camilleroux/genart-skill/tree/3380ebc05d4d5b7e76554d410ecb56fc1b5812b0"><span>02 / SAMPLE UPSTREAM</span><strong>案例原料上游</strong><p><code>camilleroux/genart-skill</code></p><small>固定提交 3380ebc0 · 可替换演示输入 ↗</small></a>
+          <a href="https://github.com/yydshly/0830_codex_project/tree/main/projects/self-media-content-workflow-research"><span>03 / RESEARCH DELIVERY</span><strong>我们的研究与交付</strong><p><code>self-media-content-workflow-research</code></p><small>研究报告 · 浏览器证据 · 完整案例 ↗</small></a>
+        </div>
+        <div class="artifact-grid">
+          <a href="downloads/scenario.md"><span>00</span><strong>场景说明</strong><small>角色 · 输入 · 时间线 · 完成定义</small></a>
+          <a href="downloads/content-task.md"><span>01</span><strong>内容任务卡</strong><small>状态 · 简报 · 标题 · 下一步</small></a>
+          <a href="downloads/evidence-pack.md"><span>02</span><strong>证据包</strong><small>事实 · 来源 · 可说 / 不可说</small></a>
+          <a href="downloads/platforms/xiaohongshu.md"><span>03</span><strong>小红书成稿</strong><small>8 页 · 正文 · 话题 · 首评</small></a>
+          <a href="downloads/platforms/wechat.md"><span>04</span><strong>公众号成稿</strong><small>摘要 · 长文 · 配图要求</small></a>
+          <a href="downloads/platforms/short-video.md"><span>05</span><strong>短视频方案</strong><small>60 秒 · 9 镜 · 字幕</small></a>
+          <a href="downloads/quality-gate.md"><span>06</span><strong>质量门</strong><small>失败项 · 修改 · 复检</small></a>
+          <a href="downloads/publishing-package.md"><span>07</span><strong>发布清单</strong><small>授权 · 缺口 · 降级</small></a>
+          <a href="downloads/analytics-demo.md"><span>08</span><strong>复盘演示</strong><small>合成数据 · 归因 · 实验</small></a>
+          <a href="downloads/approval-record.md"><span>09</span><strong>审核回执</strong><small>主平台 · 人工确认 · 下一步</small></a>
+          <a href="downloads/case-report.md"><span>10</span><strong>总案例报告</strong><small>输入 · 决策 · 分支 · 结论</small></a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="demo-footer shell">
+    <div><span>0830 RESEARCH LAB</span><strong>Self Media Workflow · Complete Case 01</strong></div>
+    <p>真实研究证据 · 独立创建的平台演示稿 · 未实际发布 · 无真实运营数据</p>
+    <a href="index.html">返回研究概览 ↑</a>
+  </footer>
+</body>
+</html>

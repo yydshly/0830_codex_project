@@ -1,0 +1,424 @@
+<!doctype html>
+<html lang="zh-CN" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="用图解和真实样例理解 self-media-content-workflow：9 个 Agent Skills 如何把想法编排成平台稿、发布包与数据复盘。">
+  <meta name="color-scheme" content="light dark">
+  <title>Self Media Skills 研究｜从想法到可发布成品</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23f05a3c'/%3E%3Cpath d='M18 45V19h14c9 0 15 4 15 12 0 5-3 9-8 11l9 3H36l-7-8v8H18Zm11-14h3c3 0 5-1 5-4s-2-4-5-4h-3v8Z' fill='white'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="styles.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">跳到主要内容</a>
+
+  <header class="topbar">
+    <a class="brand" href="../../../" aria-label="返回 0830 Research Lab 首页">
+      <span class="brand-mark" aria-hidden="true">R</span>
+      <span><strong>0830</strong><small>FIELD NOTE 10</small></span>
+    </a>
+    <nav aria-label="研究页导航">
+      <a href="#capabilities">能力地图</a>
+      <a href="#principle">运行原理</a>
+      <a href="#example">三平台样例</a>
+      <a href="#meaning">对我们的意义</a>
+      <a href="#sources">来源索引</a>
+      <a href="demo.html">完整演示</a>
+    </nav>
+    <div class="header-actions">
+      <a class="text-link source-link" href="https://github.com/yanhua1010/self-media-content-workflow">上游源码 ↗</a>
+      <button class="theme-toggle" id="theme-toggle" type="button" aria-pressed="false" aria-label="切换到深色主题">
+        <span class="theme-icon" aria-hidden="true">◐</span>
+        <span class="theme-label">深色</span>
+      </button>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero shell" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <p class="eyebrow"><span>RESEARCH 01</span> CONTENT OPERATING SYSTEM</p>
+        <h1 id="hero-title">从一个想法，<br>走到<span>可发布成品</span></h1>
+        <p class="hero-lead">核心能力是把一个模糊想法组织成有证据、分平台、经过质检和人工审核的可发布内容包。它是一套给 AI Agent 使用的内容运营架构，不是“自动写爆款”或自带账号群发的程序。</p>
+
+        <div class="verdict" aria-label="核心判断">
+          <span class="verdict-mark" aria-hidden="true">✓</span>
+          <div>
+            <strong>完整的是业务架构</strong>
+            <p>搜索、图片、视频和平台写入仍依赖运行时工具；没有工具时交付可手动完成的发布包。</p>
+          </div>
+        </div>
+
+        <div class="hero-actions">
+          <a class="primary-action" href="demo.html">打开完整演示 <span aria-hidden="true">→</span></a>
+          <a class="secondary-action" href="#capabilities">展开能力地图</a>
+          <a class="secondary-action" href="https://github.com/yydshly/0830_codex_project/blob/main/projects/self-media-content-workflow-research/docs/%E7%AC%AC%E4%B8%80%E9%98%B6%E6%AE%B5%E7%A0%94%E7%A9%B6%E6%8A%A5%E5%91%8A.md">阅读完整报告</a>
+        </div>
+      </div>
+
+      <figure class="system-orbit" aria-labelledby="orbit-title">
+        <figcaption id="orbit-title">
+          <span>END-TO-END MAP</span>
+          <strong>一条母题的完整旅程</strong>
+        </figcaption>
+        <svg class="orbit-canvas" viewBox="0 0 620 520" role="img" aria-label="八个内容阶段围绕总控工作流连接">
+          <defs>
+            <linearGradient id="orbit-gradient" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="var(--signal)"></stop>
+              <stop offset="1" stop-color="var(--teal)"></stop>
+            </linearGradient>
+          </defs>
+          <ellipse cx="310" cy="270" rx="244" ry="178" class="orbit-line"></ellipse>
+          <path d="M310 94 C450 94 554 164 554 270 C554 376 450 448 310 448" class="orbit-progress"></path>
+          <circle cx="310" cy="270" r="88" class="core-ring"></circle>
+          <circle cx="310" cy="270" r="118" class="core-halo"></circle>
+        </svg>
+        <div class="orbit-core">
+          <span>总控</span>
+          <strong>路由 · 状态<br>确认点</strong>
+          <small>1 + 8 Skills</small>
+        </div>
+        <ol class="orbit-nodes">
+          <li class="orbit-node n1"><span>01</span><strong>想法</strong><small>模糊输入</small></li>
+          <li class="orbit-node n2"><span>02</span><strong>简报</strong><small>方向确认</small></li>
+          <li class="orbit-node n3"><span>03</span><strong>证据</strong><small>事实边界</small></li>
+          <li class="orbit-node n4"><span>04</span><strong>平台稿</strong><small>分别重写</small></li>
+          <li class="orbit-node n5"><span>05</span><strong>素材</strong><small>图 / 视频</small></li>
+          <li class="orbit-node n6"><span>06</span><strong>质检</strong><small>六道质量门</small></li>
+          <li class="orbit-node n7"><span>07</span><strong>草稿</strong><small>再次授权</small></li>
+          <li class="orbit-node n8"><span>08</span><strong>复盘</strong><small>唯一实验</small></li>
+        </ol>
+        <p class="orbit-note"><i aria-hidden="true"></i> 默认只创建草稿或发布包，从不自动群发</p>
+      </figure>
+    </section>
+
+    <section class="fact-strip" aria-label="上游结构事实">
+      <div class="shell fact-grid">
+        <div><strong>9</strong><span>Agent Skills</span></div>
+        <div><strong>17</strong><span>参考规范</span></div>
+        <div><strong>12</strong><span>交付模板</span></div>
+        <div><strong>5</strong><span>人工确认点</span></div>
+        <div><strong>0.1.0</strong><span>固定研究版本</span></div>
+        <p>固定提交 <code>c460299</code> · 上游结构校验通过</p>
+      </div>
+    </section>
+
+    <section class="page-section shell" id="capabilities" aria-labelledby="capabilities-title">
+      <div class="section-heading split-heading">
+        <div>
+          <p class="eyebrow"><span>02</span> CAPABILITY MAP</p>
+          <h2 id="capabilities-title">一个总控，八个专业模块</h2>
+        </div>
+        <p>点击模块查看它接收什么、做什么、交付什么。真正执行外部动作时，模块会先检查当前环境的工具与授权。</p>
+      </div>
+
+      <div class="capability-workbench">
+        <div class="skill-map" aria-label="九个 Skill 能力地图">
+          <div class="map-spine" aria-hidden="true"><span></span></div>
+          <button class="skill-card orchestrator is-active" type="button" data-skill="workflow" aria-pressed="true">
+            <span class="skill-index">00</span>
+            <span class="skill-name"><strong>总控工作流</strong><small>路由 · 状态 · 确认</small></span>
+            <span class="skill-kind">CORE</span>
+          </button>
+          <div class="skill-grid">
+            <button class="skill-card" type="button" data-skill="brief" aria-pressed="false"><span class="skill-index">01</span><span class="skill-name"><strong>创作简报</strong><small>把模糊想法变清楚</small></span></button>
+            <button class="skill-card" type="button" data-skill="strategy" aria-pressed="false"><span class="skill-index">02</span><span class="skill-name"><strong>内容策略</strong><small>定位 · 栏目 · 日历</small></span></button>
+            <button class="skill-card" type="button" data-skill="radar" aria-pressed="false"><span class="skill-index">03</span><span class="skill-name"><strong>热点雷达</strong><small>研究 · 竞品 · 选题</small></span></button>
+            <button class="skill-card" type="button" data-skill="copy" aria-pressed="false"><span class="skill-index">04</span><span class="skill-name"><strong>平台文案</strong><small>一题多写，不一稿多发</small></span></button>
+            <button class="skill-card" type="button" data-skill="video" aria-pressed="false"><span class="skill-index">05</span><span class="skill-name"><strong>短视频</strong><small>钩子 · 分镜 · 字幕</small></span></button>
+            <button class="skill-card" type="button" data-skill="analytics" aria-pressed="false"><span class="skill-index">06</span><span class="skill-name"><strong>数据复盘</strong><small>基线 · 归因 · 实验</small></span></button>
+            <button class="skill-card" type="button" data-skill="delivery" aria-pressed="false"><span class="skill-index">07</span><span class="skill-name"><strong>交付归档</strong><small>版本 · 路径 · 发布包</small></span></button>
+            <button class="skill-card" type="button" data-skill="wechat" aria-pressed="false"><span class="skill-index">08</span><span class="skill-name"><strong>公众号发布</strong><small>排版 · 图片 · 草稿箱</small></span></button>
+          </div>
+        </div>
+
+        <aside class="skill-detail" aria-live="polite" aria-labelledby="detail-title">
+          <div class="detail-topline">
+            <span class="detail-number" id="detail-number">00 / CORE</span>
+            <span class="detail-status" id="detail-status">编排能力</span>
+          </div>
+          <h3 id="detail-title">总控工作流</h3>
+          <p class="detail-summary" id="detail-summary">识别请求类型，只加载必要模块，并管理方向、平台、标题、终稿和发布授权。</p>
+          <dl class="detail-contract">
+            <div><dt>输入</dt><dd id="detail-input">想法、链接、素材、数据或“继续上次任务”</dd></div>
+            <div><dt>处理</dt><dd id="detail-process">路由请求、推进状态、触发质量门、发现可用工具</dd></div>
+            <div><dt>产物</dt><dd id="detail-output">任务卡、阶段产物、状态和下一步唯一动作</dd></div>
+            <div><dt>依赖</dt><dd id="detail-dependency">核心流程无厂商硬依赖；外部动作按环境适配</dd></div>
+          </dl>
+          <div class="detail-boundary">
+            <span>边界</span>
+            <p id="detail-boundary">终稿确认不等于发布授权；任何外部写操作都要单独确认。</p>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="principle-section page-section" id="principle" aria-labelledby="principle-title">
+      <div class="shell">
+        <div class="section-heading split-heading inverse-heading">
+          <div>
+            <p class="eyebrow"><span>03</span> HOW IT WORKS</p>
+            <h2 id="principle-title">它增加的不是模型，<br>而是<span>控制系统</span></h2>
+          </div>
+          <p>仓库主体是 Skill、参考规范和 Markdown 模板。唯一的 Python 脚本负责结构校验，不负责生成内容。</p>
+        </div>
+
+        <div class="principle-grid">
+          <article class="layer-stack" aria-labelledby="layers-title">
+            <div class="panel-label"><span>01</span> EXECUTION LAYERS</div>
+            <h3 id="layers-title">四层能力，缺一层就不能冒充“已完成”</h3>
+            <ol>
+              <li class="layer-repo"><span>仓库能力</span><strong>规则与模板</strong><small>9 Skills · 17 references · 12 assets</small></li>
+              <li class="layer-agent"><span>Agent 能力</span><strong>理解与执行</strong><small>路由、写作、分析、文件操作</small></li>
+              <li class="layer-tool"><span>条件能力</span><strong>运行时工具</strong><small>搜索、图片、视频、连接器、API</small></li>
+              <li class="layer-human"><span>人工动作</span><strong>判断与授权</strong><small>方向、平台、标题、终稿、发布</small></li>
+            </ol>
+          </article>
+
+          <article class="state-machine" aria-labelledby="state-title">
+            <div class="panel-label"><span>02</span> STATE MACHINE</div>
+            <h3 id="state-title">五个确认点，把高风险动作留给人</h3>
+            <div class="state-track" aria-label="内容工作流状态">
+              <div><span>AI</span><strong>需求澄清</strong></div><i aria-hidden="true">→</i>
+              <div class="human-gate"><span>YOU</span><strong>方向确认</strong></div><i aria-hidden="true">→</i>
+              <div><span>AI</span><strong>证据与创作</strong></div><i aria-hidden="true">→</i>
+              <div class="human-gate"><span>YOU</span><strong>标题 / 终稿</strong></div><i aria-hidden="true">→</i>
+              <div><span>AI</span><strong>质检与交付</strong></div><i aria-hidden="true">→</i>
+              <div class="human-gate"><span>YOU</span><strong>发布授权</strong></div>
+            </div>
+            <p class="state-note">发布授权是独立状态。公众号可写草稿箱，但项目明确不调用群发接口。</p>
+          </article>
+
+          <article class="adapter-flow" aria-labelledby="adapter-title">
+            <div class="panel-label"><span>03</span> ADAPTER + FALLBACK</div>
+            <h3 id="adapter-title">有工具就执行，没有工具就降级</h3>
+            <div class="adapter-diagram">
+              <div class="request-node"><span>任务需要</span><strong>图片 / 视频 / 草稿 / 数据</strong></div>
+              <div class="fork-line" aria-hidden="true"></div>
+              <div class="adapter-result available"><span>能力可用</span><strong>调用当前工具</strong><small>生成、合成、写草稿或读取</small></div>
+              <div class="adapter-result fallback"><span>能力不可用</span><strong>交付手动包</strong><small>提示词、分镜、素材清单或缺失字段</small></div>
+            </div>
+          </article>
+
+          <article class="memory-loop" aria-labelledby="memory-title">
+            <div class="panel-label"><span>04</span> EXPLICIT MEMORY</div>
+            <h3 id="memory-title">用文件记住，不靠聊天猜测</h3>
+            <div class="memory-diagram">
+              <div><span>任务卡</span><small>证据 · 状态 · 版本</small></div>
+              <b aria-hidden="true">＋</b>
+              <div><span>内容注册表</span><small>母题 · 平台 · 路径</small></div>
+              <b aria-hidden="true">＋</b>
+              <div><span>复盘台账</span><small>数据 · 归因 · 实验</small></div>
+            </div>
+            <p>同一种人工修改重复至少 3 篇，或用户明确确认后，才升级为稳定风格偏好。</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="page-section shell" id="example" aria-labelledby="example-title">
+      <div class="section-heading split-heading">
+        <div>
+          <p class="eyebrow"><span>04</span> ONE TOPIC, THREE NATIVE OUTPUTS</p>
+          <h2 id="example-title">同一份事实，不共享同一份正文</h2>
+        </div>
+        <p>下面用 Research Lab 已完成的 `genart-skill` 研究做概念样例。事实来自真实实验，平台表达是本研究页为了说明工作流而创建的未发布示范。</p>
+      </div>
+
+      <a class="demo-promo" href="demo.html">
+        <span>NEW · COMPLETE CASE</span>
+        <div><strong>这次不只看三段概念文案</strong><p>进入 9 阶段工作台，查看完整简报、证据包、8 页小红书、公众号长文、60 秒分镜、质量门、待发布清单与合成复盘。</p></div>
+        <i aria-hidden="true">→</i>
+      </a>
+
+      <div class="example-shell">
+        <article class="evidence-packet" aria-labelledby="packet-title">
+          <div class="packet-heading">
+            <span class="packet-tag">SHARED EVIDENCE</span>
+            <span class="verified"><i aria-hidden="true"></i>真实研究材料</span>
+          </div>
+          <h3 id="packet-title">母题：一个生成艺术 Skill，真正增加了什么？</h3>
+          <p>不是绘画模型，而是给编码 Agent 配备生成艺术技术导演与质检流程。</p>
+          <ul>
+            <li><span>01</span><div><strong>固定上游提交</strong><small><code>3380ebc</code>，可追溯源码快照</small></div></li>
+            <li><span>02</span><div><strong>500 seed census</strong><small>统计 Palette / Density 实际分布</small></div></li>
+            <li><span>03</span><div><strong>故障对照成立</strong><small>替换为 `Math.random` 后 4 项检查失败</small></div></li>
+            <li><span>04</span><div><strong>能力边界明确</strong><small>证明同机 Chromium 复现，不证明跨 GPU 一致</small></div></li>
+          </ul>
+          <div class="packet-boundary"><span>暂时不能说</span><p>“安装后获得新的绘画模型”或“所有设备像素完全一致”。</p></div>
+        </article>
+
+        <article class="sample-browser" aria-labelledby="sample-title">
+          <div class="sample-topline">
+            <div>
+              <span>PLATFORM NATIVE DRAFT</span>
+              <h3 id="sample-title">选择一个平台查看改写</h3>
+            </div>
+            <span class="draft-badge">样例 · 未发布</span>
+          </div>
+
+          <div class="sample-tabs" role="tablist" aria-label="选择内容平台">
+            <button type="button" id="tab-xhs" role="tab" aria-selected="true" aria-controls="panel-xhs" tabindex="0" data-sample-tab="xhs">小红书</button>
+            <button type="button" id="tab-wechat" role="tab" aria-selected="false" aria-controls="panel-wechat" tabindex="-1" data-sample-tab="wechat">公众号</button>
+            <button type="button" id="tab-video" role="tab" aria-selected="false" aria-controls="panel-video" tabindex="-1" data-sample-tab="video">短视频</button>
+          </div>
+
+          <div class="sample-panel" id="panel-xhs" role="tabpanel" aria-labelledby="tab-xhs" data-sample-panel="xhs">
+            <span class="sample-kicker">搜索发现 · 过程证明 · 组图</span>
+            <h4>我把一个“生成艺术 Skill”跑了 500 个 seed，才发现它根本不是绘画模型</h4>
+            <div class="sample-lead"><b>第一屏</b><p>安装前我以为它会让我多一种画风。真正跑完测试后才发现：它增加的是可复现、可批量检查、能抓出随机污染的工程流程。</p></div>
+            <ol class="sample-structure">
+              <li><span>第 1 页</span>一句结论 + 500 seed 结果图</li>
+              <li><span>第 2–4 页</span>check / render / census 分别解决什么</li>
+              <li><span>第 5 页</span>`Math.random` 故障对照为什么重要</li>
+              <li><span>末页</span>适合谁、不能证明什么</li>
+            </ol>
+            <p class="sample-action"><strong>行动：</strong>先收藏这套“看 Skill 不看宣传语”的实测方法。</p>
+          </div>
+
+          <div class="sample-panel" id="panel-wechat" role="tabpanel" aria-labelledby="tab-wechat" data-sample-panel="wechat" hidden>
+            <span class="sample-kicker">深度方法 · 工程拆解 · 长期检索</span>
+            <h4>一个生成艺术 Skill，真正增加的不是绘画能力</h4>
+            <div class="sample-lead"><b>开头</b><p>如果只读 README，很容易把 Skill 理解成“模型的新能力”。但把源码、浏览器和 500 个 seed 放到一起看，它更像一套交给编码代理的技术导演制度。</p></div>
+            <ol class="sample-structure">
+              <li><span>一</span>为什么它不是图像模型</li>
+              <li><span>二</span>Skill、作品接口与 Playwright 如何协作</li>
+              <li><span>三</span>正常组和 `Math.random` 故障组的实测</li>
+              <li><span>四</span>确定性、跨 GPU 与安全边界</li>
+            </ol>
+            <p class="sample-action"><strong>行动：</strong>把“能生成”升级为“能复现、能检查、能批量观察”。</p>
+          </div>
+
+          <div class="sample-panel" id="panel-video" role="tabpanel" aria-labelledby="tab-video" data-sample-panel="video" hidden>
+            <span class="sample-kicker">鲜明判断 · 画面证明 · 45 秒</span>
+            <h4>别再把 Agent Skill 当成新模型了</h4>
+            <div class="sample-lead"><b>0–3 秒</b><p>“这个 Skill 不会画画，但它能抓出一幅生成艺术作品为什么不可靠。”</p></div>
+            <ol class="sample-structure timeline-list">
+              <li><span>03–12s</span>画面：同一 seed 两次渲染并排，解释确定性</li>
+              <li><span>12–24s</span>画面：9 seed 网格与 500 seed census</li>
+              <li><span>24–35s</span>画面：替换 `Math.random` 后 4 项 FAIL</li>
+              <li><span>35–45s</span>画面：一句边界 + 适用人群</li>
+            </ol>
+            <p class="sample-action"><strong>行动：</strong>下一次评估 Skill，先问它增加模型、流程，还是工具。</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="meaning-section page-section" id="meaning" aria-labelledby="meaning-title">
+      <div class="shell">
+        <div class="section-heading split-heading">
+          <div>
+            <p class="eyebrow"><span>05</span> WHY IT MATTERS TO US</p>
+            <h2 id="meaning-title">让每一次研究，<br>同时成为<span>内容资产</span></h2>
+          </div>
+          <p>我们的项目已经拥有源码、实验、截图和结论。这个工作流最直接的意义，是把这些一手证据转成可持续传播和可复盘的内容。</p>
+        </div>
+
+        <div class="value-loop" aria-label="Research Lab 内容资产闭环">
+          <div class="value-node research-node"><span>01</span><strong>研究项目</strong><small>源码 · 实验 · 演示</small></div>
+          <i aria-hidden="true">→</i>
+          <div class="value-node evidence-node"><span>02</span><strong>证据母题</strong><small>判断 · 数据 · 边界</small></div>
+          <i aria-hidden="true">→</i>
+          <div class="value-node content-node"><span>03</span><strong>平台内容</strong><small>图文 · 深度文 · 视频</small></div>
+          <i aria-hidden="true">→</i>
+          <div class="value-node data-node"><span>04</span><strong>数据复盘</strong><small>基线 · 归因 · 实验</small></div>
+          <svg viewBox="0 0 100 100" aria-hidden="true"><path d="M82 18 C95 64 70 92 22 86"></path><path d="M21 86 l14 -9 M21 86 l11 11"></path></svg>
+        </div>
+
+        <div class="meaning-grid">
+          <article><span class="meaning-icon">A</span><h3>研究即选题库</h3><p>每个子项目天然包含问题、过程、证据、失败和边界，不必重新编造“内容灵感”。</p></article>
+          <article><span class="meaning-icon">B</span><h3>一题多平台</h3><p>事实只维护一份，表达按平台重写，降低重复劳动又避免机械搬运。</p></article>
+          <article><span class="meaning-icon">C</span><h3>显式运营记忆</h3><p>任务卡和注册表比聊天历史更可靠，跨会话可以准确继续。</p></article>
+          <article><span class="meaning-icon">D</span><h3>可复用架构样板</h3><p>总控、模块、确认点、适配器和降级路径也适合我们的图像、视频与游戏 Skill。</p></article>
+        </div>
+
+        <aside class="adoption-note">
+          <div><span>NEXT EXPERIMENT</span><strong>最小采用方式</strong></div>
+          <p>先选一个已有完整证据的研究项目，生成“小红书 + 公众号 + 短视频方案”三件套；暂不连接真实发布账号。成功标准是平台表达明显不同、事实可追溯、文件可续跑。</p>
+          <a href="https://github.com/yydshly/0830_codex_project/tree/main/projects/self-media-content-workflow-research">查看研究项目与后续计划 →</a>
+        </aside>
+      </div>
+    </section>
+
+    <section class="source-section page-section shell" id="sources" aria-labelledby="sources-title">
+      <div class="section-heading split-heading">
+        <div>
+          <p class="eyebrow"><span>06</span> SOURCE OF TRUTH</p>
+          <h2 id="sources-title">两个上游，<br>承担<span>不同角色</span></h2>
+        </div>
+        <p>研究对象决定工作流能力；演示原料只负责提供一个有真实证据的内容主题。两者不是依赖关系，也不能混为同一个库。</p>
+      </div>
+
+      <div class="source-register">
+        <article class="source-record research-source">
+          <span>01 / RESEARCH TARGET</span>
+          <h3>self-media-content-workflow</h3>
+          <p>本页真正研究的对象。它提供 9 个 Agent Skills、内容状态、质量门、人工确认点和平台交付协议。</p>
+          <dl><div><dt>上游</dt><dd>yanhua1010</dd></div><div><dt>固定提交</dt><dd><code>c4602993</code></dd></div><div><dt>版本 / 许可</dt><dd>0.1.0 / MIT</dd></div></dl>
+          <div><a href="https://github.com/yanhua1010/self-media-content-workflow">打开原始仓库 ↗</a><a href="https://github.com/yanhua1010/self-media-content-workflow/tree/c4602993ee744e3ceae4a9bfb8760b92d9338aad">查看固定提交 ↗</a></div>
+        </article>
+
+        <article class="source-record sample-source">
+          <span>02 / REPLACEABLE DEMO INPUT</span>
+          <h3>genart-skill</h3>
+          <p>完整案例使用的真实研究素材，提供源码、实验、9-seed 图片和 500-seed 统计；它不是内容工作流的安装依赖。</p>
+          <dl><div><dt>上游</dt><dd>camilleroux</dd></div><div><dt>固定提交</dt><dd><code>3380ebc0</code></dd></div><div><dt>可替换</dt><dd>产品、论文、复盘、数据</dd></div></dl>
+          <div><a href="https://github.com/camilleroux/genart-skill">打开样例原库 ↗</a><a href="demo.html#scenario">查看它如何进入案例 →</a></div>
+        </article>
+
+        <article class="source-record delivery-source">
+          <span>03 / OUR RESEARCH LAYER</span>
+          <h3>研究、演示与交付文件</h3>
+          <p>我们固定上游、区分能力层级，并把结论转换成可操作网页、完整案例、审核状态机和 11 个可续跑文件。</p>
+          <dl><div><dt>研究日期</dt><dd>2026-08-30</dd></div><div><dt>浏览器场景</dt><dd>源码 + 构建态</dd></div><div><dt>外部写入</dt><dd>0</dd></div></dl>
+          <div><a href="https://github.com/yydshly/0830_codex_project/tree/main/projects/self-media-content-workflow-research">打开研究源码 ↗</a><a href="demo.html#case-closure">查看案例结论 →</a></div>
+        </article>
+      </div>
+
+      <p class="source-relation"><strong>关系结论：</strong><code>self-media-content-workflow</code> 是被研究和演示的工作流；<code>genart-skill</code> 是可替换的案例原料。换一个有证据的主题，工作流仍然成立。</p>
+    </section>
+
+    <section class="boundary-section page-section shell" aria-labelledby="boundary-title">
+      <div class="section-heading split-heading">
+        <div>
+          <p class="eyebrow"><span>07</span> TRUTH BEFORE AUTOMATION</p>
+          <h2 id="boundary-title">完整架构，不等于开箱即全自动</h2>
+        </div>
+        <p>理解这个边界，才能正确判断安装后的收益与仍需建设的基础设施。</p>
+      </div>
+
+      <div class="truth-grid">
+        <article class="truth-card can-do">
+          <span>已经能组织</span>
+          <h3>从想法到可发布成品</h3>
+          <ul><li>方向与证据</li><li>多平台原生稿</li><li>视觉和视频方案</li><li>质量门与发布包</li><li>数据复盘框架</li></ul>
+        </article>
+        <article class="truth-card conditional">
+          <span>满足条件才执行</span>
+          <h3>外部工具和账号动作</h3>
+          <ul><li>联网研究</li><li>图片和视频生成</li><li>数字人片段与合成</li><li>后台数据读取</li><li>公众号草稿写入</li></ul>
+        </article>
+        <article class="truth-card never-do">
+          <span>刻意不做</span>
+          <h3>无人值守的账号运营</h3>
+          <ul><li>自动群发</li><li>自动点赞与评论</li><li>自动关注与私信</li><li>主账号批量采集竞品</li><li>编造数据、体验和收益</li></ul>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer shell">
+    <div>
+      <p class="footer-label">0830 RESEARCH LAB</p>
+      <strong>Self Media Skills 内容工作流研究</strong>
+    </div>
+    <p>固定上游提交 <code>c460299</code> · 研究日期 2026-08-30 · 页面中的平台文案为独立创建的说明样例，未实际发布。</p>
+    <div class="footer-links">
+      <a href="https://github.com/yydshly/0830_codex_project/blob/main/projects/self-media-content-workflow-research/docs/%E7%AC%AC%E4%B8%80%E9%98%B6%E6%AE%B5%E7%A0%94%E7%A9%B6%E6%8A%A5%E5%91%8A.md">完整报告</a>
+      <a href="https://github.com/yanhua1010/self-media-content-workflow">上游仓库 ↗</a>
+    </div>
+  </footer>
+</body>
+</html>
