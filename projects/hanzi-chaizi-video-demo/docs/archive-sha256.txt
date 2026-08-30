@@ -1,0 +1,17 @@
+# SHA-256 archive manifest generated 2026-08-30
+# Paths are relative to projects/hanzi-chaizi-video-demo/.
+8a6aeed638d27cb82208b562eeb95515fa9f7c375ecfb394a1a23537def7c2cb  web/assets/hanzi-chaizi-demo.mp4
+566314a8c74568be3178d2f22d1e84f952b785b2a0f2beba5d8d94983132ed44  web/assets/mang-heart-direction.mp4
+79afb37645b32fcd1e14f4220259922fca4d67eb732425f58ea6713231fdd58a  web/assets/hanzi-effects-lab.mp4
+c290d41ca69ec27d89d01427c319c56e451daf49696110eb6c9b4f46b3f3080f  web/assets/workbench-config-demo.mp4
+1868c55e2d432dc0be43c980ba7ea0ba0f65746d95157e7d7dbebd79a5473e1c  web/assets/name-blessing-muyang.mp4
+348b695ba463aea41ba6fd32167c4d4b282a3f53a9cf69d632c02f142a3ad8eb  web/assets/wedding-zhangshuai-dong.mp4
+6dec20267261477e575808d0a87d1b65c9cd699ab0cfd71b1f4de80a6a48b8f3  web/assets/wedding-zhangshuai-dong-screen.mp4
+d91cc3b5dde34c18637fc47b528302f821a9d39ab83a76327db608bbeb99ac1a  web/assets/wedding-ai/01-first-meet.png
+f312bea37d2fc22dd5e17586adee5185434b1609808ebb8005e82cb7d4e69605  web/assets/wedding-ai/02-together.png
+c205710f1bf1626c64d3a397df576fdd0e75b7b8aa58011865a5cf1ed46a2647  web/assets/wedding-ai/03-promise.png
+f73cb7ff1a68aa0df893fde24acc9dbcbea60a31c8d07fa0d1a2e64bf3130665  web/assets/wedding-welcome-demo.png
+15678b4383bf08f8d14fe464f963530d3bc2520a7f17d9d10bd14b638edeb7e8  web/data/hanzi-workbench.json
+5ecc0f109eae98c5f229de65a2c883100b3e7fe12ccf93f9783502b7a484820e  web/data/name-blessing.json
+dd839600f5fc8311d08bcde1e033bb48d9a3213fefbe3cd9cf70e9c0275856b4  web/data/wedding-zhangshuai-dong.json
+8347512daa4d9cb59bf5439b476f99eeab54e55debf60ef61bd2821315b417d2  web/data/wedding-sample-delivery.json

@@ -68,6 +68,7 @@ hanzi-chaizi-video-demo/
 ├─ docs/
 │  ├─ evidence/                   # 24 张媒体与响应式关键证据
 │  ├─ assets.md                   # 素材来源和背景音说明
+│  ├─ archive-sha256.txt          # 关键视频、源图和配置的完整性校验
 │  ├─ browser-validation.md       # 浏览器验收记录
 │  ├─ design-contract.md          # 展示页设计与覆盖契约
 │  └─ research-handoff.md         # 后续恢复研究的事实、边界与最短路径
@@ -412,6 +413,7 @@ python -m http.server 52731 --bind 127.0.0.1 --directory web
 
 - GitHub Pages：<https://yydshly.github.io/0830_codex_project/demos/hanzi-chaizi-video-demo/>
 - 后续研究交接单：[`docs/research-handoff.md`](docs/research-handoff.md)
+- 关键文件 SHA-256：[`docs/archive-sha256.txt`](docs/archive-sha256.txt)
 - 关键事实、模拟资料、AI 身份边界、已完成能力、未实现能力和最短恢复命令均已集中记录在交接单中。
 - 页面由仓库根目录 `.github/workflows/pages.yml` 自动部署；推送 `main` 且修改 `projects/**` 或根索引后会重新构建研究门户。
 

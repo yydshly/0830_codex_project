@@ -12,6 +12,7 @@
 - 资产来源与尺寸：`docs/assets.md`
 - 浏览器验收：`docs/browser-validation.md`
 - 需求与完成矩阵：`docs/design-contract.md`
+- 关键文件 SHA-256：`docs/archive-sha256.txt`
 - 自动检查：`python demo/verify_demo.py`
 
 ## 事实、假设与模拟资料
@@ -45,6 +46,13 @@
 - 生成意图依次为：延安风格秋日初见；保持身份与服装并肩同行；保持身份进入戒指约定场景。
 
 源图位于 `web/assets/wedding-ai/*.png`，网页／Remotion 优化图位于同目录及 `demo/mang-video/public/wedding-ai/*.webp`。
+
+## 许可边界
+
+- 上游快照采用 MIT 许可证，原文保存在 `upstream/LICENSE`；固定提交和来源见 `UPSTREAM.md`。
+- 本研究新增的网页、Composition、文档、视频、截图和 AI 图片尚未声明独立许可证。公开可浏览不等于自动授予复制、再发布或商业使用权。
+- `hanzi-writer-data`、Remotion、React、Edge TTS 和其他第三方数据／依赖继续受各自许可证或服务条款约束。
+- 后续准备对外复用或商业化前，应由仓库所有者选择新增内容的许可证，并重新核对图片、字体、音乐、人物资料和第三方数据授权。
 
 ## 当前已经跑通
 

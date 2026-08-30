@@ -4,12 +4,15 @@
 from __future__ import annotations
 
 import json
+import hashlib
 import re
 import subprocess
 from pathlib import Path
 
 
 PROJECT = Path(__file__).resolve().parents[1]
+PROJECT_META = PROJECT / "project.json"
+ARCHIVE_SHA256 = PROJECT / "docs" / "archive-sha256.txt"
 UPSTREAM_VIDEO = PROJECT / "web" / "assets" / "hanzi-chaizi-demo.mp4"
 UPSTREAM_POSTER = PROJECT / "web" / "assets" / "poster.webp"
 MANG_VIDEO = PROJECT / "web" / "assets" / "mang-heart-direction.mp4"
@@ -183,6 +186,8 @@ def verify_scenario_clip(path: Path, duration_range: tuple[float, float]) -> dic
 def main() -> None:
     for path in (
         UPSTREAM_VIDEO,
+        PROJECT_META,
+        ARCHIVE_SHA256,
         UPSTREAM_POSTER,
         MANG_VIDEO,
         MANG_POSTER,
@@ -219,6 +224,26 @@ def main() -> None:
         UPSTREAM_COMPOSITION,
     ):
         require(path.is_file(), f"Missing required artifact: {path.relative_to(PROJECT)}")
+
+    project_meta = json.loads(PROJECT_META.read_text(encoding="utf-8"))
+    require(
+        project_meta.get("upstream_url") == "https://github.com/Mr-funny/hbg-hanzi-chaizi-video",
+        "Project metadata must expose the upstream repository",
+    )
+
+    archive_entries: dict[str, str] = {}
+    for raw_line in ARCHIVE_SHA256.read_text(encoding="utf-8").splitlines():
+        line = raw_line.strip()
+        if not line or line.startswith("#"):
+            continue
+        expected_hash, relative_path = line.split(maxsplit=1)
+        archive_entries[relative_path] = expected_hash
+    require(len(archive_entries) == 15, "Expected fifteen archive checksum entries")
+    for relative_path, expected_hash in archive_entries.items():
+        artifact = PROJECT / relative_path
+        require(artifact.is_file(), f"Missing checksummed artifact: {relative_path}")
+        actual_hash = hashlib.sha256(artifact.read_bytes()).hexdigest()
+        require(actual_hash == expected_hash, f"Archive checksum mismatch: {relative_path}")
     for scenario, (_, clip) in SCENARIO_CLIPS.items():
         require(clip.is_file(), f"Missing scenario clip: {scenario}")
         require(clip.with_suffix(".webp").is_file(), f"Missing scenario poster: {scenario}")
