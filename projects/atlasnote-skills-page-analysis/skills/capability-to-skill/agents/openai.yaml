@@ -1,0 +1,4 @@
+interface:
+  display_name: "Capability to Skill"
+  short_description: "Adapt capability patterns into minimal testable skills"
+  default_prompt: "Use $capability-to-skill to turn a repeated task into a minimal, testable Codex skill."

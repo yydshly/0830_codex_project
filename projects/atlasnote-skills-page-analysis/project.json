@@ -1,0 +1,18 @@
+{
+  "slug": "atlasnote-skills-page-analysis",
+  "title": "Atlasnote Skills 能力地图与落地工作台",
+  "summary": "全量拆解 Atlasnote 81 项能力的领域、形态、链路和采用方式，以九类官方仓库核验建立采用边界，并把参考模式改造成个人 Codex Skill 草案。",
+  "status": "paused",
+  "tags": [
+    "capability-analysis",
+    "workflow-design",
+    "agent-skills",
+    "tooling",
+    "agent-evaluation",
+    "knowledge-systems"
+  ],
+  "started_at": "2026-08-30",
+  "updated_at": "2026-08-31",
+  "upstream_url": "https://atlasnote.ai/zh-CN/skills",
+  "demo_url": "https://yydshly.github.io/0830_codex_project/demos/atlasnote-skills-page-analysis/"
+}

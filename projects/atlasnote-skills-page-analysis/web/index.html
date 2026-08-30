@@ -1,0 +1,632 @@
+<!doctype html>
+<html lang="zh-CN" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="全量分类 Atlasnote 81 项能力，并把可借鉴模式落地为自己的 Codex Skill。">
+  <title>Agent 能力落地工作台｜Atlasnote 81 项研究</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%2311131a'/%3E%3Cpath d='M16 46V18h12c12 0 20 4 20 14s-8 14-20 14H16Zm9-8h4c7 0 10-2 10-6s-3-6-10-6h-4v12Z' fill='%23c8f05a'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="styles.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">跳到主要内容</a>
+
+  <header class="topbar">
+    <a class="brand" href="https://github.com/yydshly/0830_codex_project/tree/main/projects/atlasnote-skills-page-analysis#readme" aria-label="打开 GitHub 上的 Atlasnote Skills 能力研究总览">
+      <span class="brand-index">0830</span>
+      <span><strong>CAPABILITY ATLAS</strong><small>Agent 工作系统研究</small></span>
+    </a>
+    <nav aria-label="页面导航">
+      <a href="#model">原理</a>
+      <a href="#classify">分类</a>
+      <a href="#explorer">81 项</a>
+      <a href="#verification-lab">核验</a>
+      <a href="#builder">做成技能</a>
+    </nav>
+    <button class="theme-toggle" id="theme-toggle" type="button" aria-label="切换到深色主题" aria-pressed="false">
+      <span aria-hidden="true">◐</span><span class="theme-label">深色</span>
+    </button>
+  </header>
+
+  <main id="main">
+    <section class="hero page-shell" aria-labelledby="page-title">
+      <div class="hero-copy">
+        <p class="eyebrow"><span>FIELD NOTE 08</span> / 2026.08.31</p>
+        <h1 id="page-title">别把它理解成<br><em>81 个插件。</em></h1>
+        <p class="hero-lead">它更像一张 Agent 能力系统地图：有人负责定义目标，有人提供专业方法，有人连接真实工具，还有人专门判断“到底做完没有”。</p>
+        <div class="hero-actions">
+          <a class="primary-action" href="#explorer">探索 81 项能力 <span aria-hidden="true">↓</span></a>
+          <a class="text-action" href="#compose">先看怎样组合 <span aria-hidden="true">↗</span></a>
+        </div>
+        <dl class="hero-stats" aria-label="研究数据">
+          <div><dt>81</dt><dd>完整模块</dd></div>
+          <div><dt>9</dt><dd>能力形态</dd></div>
+          <div><dt>7</dt><dd>业务领域</dd></div>
+          <div><dt>1</dt><dd>核心工作链</dd></div>
+        </dl>
+      </div>
+
+      <aside class="formula-panel" aria-labelledby="formula-title">
+        <div class="panel-heading">
+          <span class="status-dot" aria-hidden="true"></span>
+          <p>CAPABILITY FORMULA</p>
+          <span>不是新模型</span>
+        </div>
+        <h2 id="formula-title">能力 = 同一个模型<br>获得了更好的工作条件</h2>
+        <div class="formula-stack" aria-label="能力的六种增量">
+          <div><span>01</span><strong>上下文</strong><small>知道对象与边界</small></div>
+          <b aria-hidden="true">＋</b>
+          <div><span>02</span><strong>程序</strong><small>知道步骤与分支</small></div>
+          <b aria-hidden="true">＋</b>
+          <div><span>03</span><strong>工具</strong><small>能改变真实世界</small></div>
+          <b aria-hidden="true">＋</b>
+          <div><span>04</span><strong>约束</strong><small>减少自由漂移</small></div>
+          <b aria-hidden="true">＋</b>
+          <div><span>05</span><strong>验证</strong><small>证明是否合格</small></div>
+          <b aria-hidden="true">＋</b>
+          <div><span>06</span><strong>资产</strong><small>复用模板与知识</small></div>
+        </div>
+        <p class="formula-note"><strong>一句人话：</strong>不是给 Agent 换了脑子，而是给它配了一份 SOP、一套工具、几张模板和一个质检员。</p>
+      </aside>
+    </section>
+
+    <section class="thesis-strip" aria-label="核心判断">
+      <p><span>核心判断</span> 真正成熟的能力，不只告诉 Agent <strong>“怎样做”</strong>，还说明 <strong>“何时用、用什么做、做到什么程度、失败怎么办”</strong>。</p>
+    </section>
+
+    <section class="model-section page-section" id="model" aria-labelledby="model-title">
+      <div class="section-heading split-heading">
+        <div>
+          <p class="eyebrow"><span>01</span> HOW IT WORKS</p>
+          <h2 id="model-title">一项能力，靠什么生效？</h2>
+        </div>
+        <p>开放的 Agent Skill 通常不会修改模型参数，而是按需加载说明、参考资料和执行工具。只有当前任务需要的部分进入上下文。</p>
+      </div>
+
+      <div class="disclosure-flow" aria-label="渐进加载原理">
+        <article>
+          <span class="flow-no">A</span>
+          <p class="micro-label">DISCOVER</p>
+          <h3>发现</h3>
+          <p>先只看到名称与简述，用来判断它与当前任务是否相关。</p>
+          <code>name + description</code>
+        </article>
+        <i aria-hidden="true">→</i>
+        <article>
+          <span class="flow-no">B</span>
+          <p class="micro-label">ACTIVATE</p>
+          <h3>激活</h3>
+          <p>命中任务后，才加载完整步骤、输入、输出与停止条件。</p>
+          <code>SKILL.md</code>
+        </article>
+        <i aria-hidden="true">→</i>
+        <article>
+          <span class="flow-no">C</span>
+          <p class="micro-label">EXECUTE</p>
+          <h3>执行</h3>
+          <p>真正需要时再读取资料、运行脚本或调用外部系统。</p>
+          <code>scripts / refs / MCP</code>
+        </article>
+      </div>
+
+      <div class="capability-anatomy">
+        <div class="anatomy-intro">
+          <p class="micro-label">ANATOMY OF A CAPABILITY</p>
+          <h3>成熟能力包的八个部件</h3>
+          <p>不一定每项都有，但缺失的部件会直接决定它的能力边界。</p>
+        </div>
+        <ol class="anatomy-grid">
+          <li><span>01</span><strong>触发</strong><small>什么时候该用</small></li>
+          <li><span>02</span><strong>输入</strong><small>开始前必须知道什么</small></li>
+          <li><span>03</span><strong>方法</strong><small>步骤、分支与循环</small></li>
+          <li><span>04</span><strong>工具</strong><small>怎样改变真实世界</small></li>
+          <li><span>05</span><strong>资产</strong><small>参考、模板与组件</small></li>
+          <li><span>06</span><strong>交付</strong><small>最终产生什么</small></li>
+          <li><span>07</span><strong>质量门</strong><small>怎样证明成功</small></li>
+          <li><span>08</span><strong>恢复</strong><small>失败时怎样停下</small></li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="chain-section page-section" aria-labelledby="chain-title">
+      <div class="section-heading split-heading">
+        <div>
+          <p class="eyebrow"><span>02</span> ONE WORKING CHAIN</p>
+          <h2 id="chain-title">81 项，其实在同一条链上分工</h2>
+        </div>
+        <p>点击任一环节，会直接跳到清单并筛出承担该角色的模块。这比按 Star 排名更接近真实选型。</p>
+      </div>
+
+      <div class="chain-map" role="group" aria-label="按工作链角色筛选能力">
+        <button type="button" data-stage-filter="goal"><span>01</span><strong>目标</strong><small>结果、边界、完成条件</small></button>
+        <i aria-hidden="true">→</i>
+        <button type="button" data-stage-filter="route"><span>02</span><strong>路由</strong><small>此刻加载哪项能力</small></button>
+        <i aria-hidden="true">→</i>
+        <button type="button" data-stage-filter="method"><span>03</span><strong>方法</strong><small>专业步骤与判断框架</small></button>
+        <i aria-hidden="true">→</i>
+        <button type="button" data-stage-filter="act"><span>04</span><strong>执行</strong><small>CLI、脚本、MCP、API</small></button>
+        <i aria-hidden="true">→</i>
+        <button type="button" data-stage-filter="check"><span>05</span><strong>验证</strong><small>测试、规则、人工门</small></button>
+        <i aria-hidden="true">→</i>
+        <button type="button" data-stage-filter="deliver"><span>06</span><strong>交付</strong><small>文件、页面、视频、状态</small></button>
+        <i aria-hidden="true">→</i>
+        <button type="button" data-stage-filter="learn"><span>07</span><strong>改进</strong><small>记忆、证据与复盘</small></button>
+      </div>
+    </section>
+
+    <section class="classification-section page-section" id="classify" aria-labelledby="classify-title">
+      <div class="section-heading split-heading">
+        <div>
+          <p class="eyebrow"><span>03</span> FOUR CLASSIFICATION LENSES</p>
+          <h2 id="classify-title">先分清它是什么，再决定怎样拿来用</h2>
+        </div>
+        <p>同一个模块可以同时属于一个业务领域、一种能力形态和工作链的一段；“采用方式”回答的则是另一个问题：你应该直接用、与别的能力组合、只借结构，还是先完成外部集成。</p>
+      </div>
+
+      <ol class="reading-route" aria-label="理解能力目录的阅读顺序">
+        <li><span>01</span><strong>先说真实任务</strong><p>不要从热门模块出发，先描述最近一次返工或每周重复的工作。</p></li>
+        <li><span>02</span><strong>诊断能力缺口</strong><p>判断缺的是方法、工具、约束、验证、路由还是记忆。</p></li>
+        <li><span>03</span><strong>用四套分类定位</strong><p>领域看对象，形态看机制，链路看角色，采用方式看落地成本。</p></li>
+        <li><span>04</span><strong>用真实任务验证</strong><p>先做最小版本，只有结果更稳、更快或可证明时才长期保留。</p></li>
+      </ol>
+
+      <div class="taxonomy-board">
+        <article>
+          <header><span>A / 对象</span><h3>七个业务领域</h3><p>它主要在解决谁的工作。</p></header>
+          <div class="count-list" id="domain-counts"></div>
+        </article>
+        <article>
+          <header><span>B / 机制</span><h3>九种能力形态</h3><p>它靠什么让 Agent 变得更可靠。</p></header>
+          <div class="count-list" id="shape-counts"></div>
+        </article>
+        <article>
+          <header><span>C / 角色</span><h3>七段工作链</h3><p>它在一次完整交付里承担哪一段。</p></header>
+          <div class="count-list" id="stage-counts"></div>
+        </article>
+      </div>
+
+      <div class="adoption-heading">
+        <div><p class="micro-label">D / ADOPTION MODE</p><h3>四种采用方式</h3></div>
+        <p>这是对你最有用的一层：它不评价谁更强，只判断怎样把价值安全地带进自己的工作流。</p>
+      </div>
+      <div class="adoption-grid" id="adoption-grid" role="group" aria-label="按采用方式筛选能力">
+        <button type="button" data-adoption-filter="direct"><span class="adoption-count" data-adoption-count="direct">0</span><strong>直接采用</strong><small>边界清楚、可独立运行或验证</small></button>
+        <button type="button" data-adoption-filter="compose"><span class="adoption-count" data-adoption-count="compose">0</span><strong>组合使用</strong><small>负责一段流程，需要互补角色</small></button>
+        <button type="button" data-adoption-filter="adapt"><span class="adoption-count" data-adoption-count="adapt">0</span><strong>借鉴改造</strong><small>结构有价值，内容要换成你的任务</small></button>
+        <button type="button" data-adoption-filter="integration"><span class="adoption-count" data-adoption-count="integration">0</span><strong>先做集成</strong><small>依赖实例、凭证、CLI、MCP 或权限</small></button>
+      </div>
+      <p class="classification-note">分类是本研究的主倾向判断，不代表原作者的官方标签。一个真实项目可以跨多类，但选型时仍应先明确它的首要职责。</p>
+    </section>
+
+    <section class="field-guide-section page-section" id="field-guide" aria-labelledby="field-guide-title">
+      <div class="section-heading split-heading">
+        <div>
+          <p class="eyebrow"><span>04</span> CAPABILITY FIELD GUIDE</p>
+          <h2 id="field-guide-title">九种形态，代表九种不同的落地机制</h2>
+        </div>
+        <p>名称相似不代表作用相同。展开任一形态，查看它怎样生效、适合解决什么、最小需要做成什么，以及最容易踩到的边界。</p>
+      </div>
+
+      <div class="shape-guide-grid" id="shape-guide-grid"></div>
+
+      <div class="gap-lab" aria-labelledby="gap-lab-title">
+        <div class="gap-lab-heading">
+          <div><p class="micro-label">SYMPTOM → MINIMUM CAPABILITY</p><h3 id="gap-lab-title">从反复发生的症状，诊断真正缺口</h3></div>
+          <p>先选最接近你的症状。建议只补一个主要缺口；如果同时缺很多，先从最影响交付结果的一项开始。</p>
+        </div>
+        <div class="gap-lab-layout">
+          <div class="gap-options" role="group" aria-label="选择能力缺口症状">
+            <button type="button" data-gap-select="method"><strong>每次做法都不一样</strong><small>缺专业方法</small></button>
+            <button type="button" data-gap-select="tool"><strong>知道步骤却碰不到系统</strong><small>缺执行工具</small></button>
+            <button type="button" data-gap-select="constraint"><strong>结果总是跑偏</strong><small>缺边界约束</small></button>
+            <button type="button" data-gap-select="verification"><strong>总说完成却无法证明</strong><small>缺质量验证</small></button>
+            <button type="button" data-gap-select="routing"><strong>Skill 越装越乱</strong><small>缺能力路由</small></button>
+            <button type="button" data-gap-select="memory"><strong>同样错误反复发生</strong><small>缺记忆与复盘</small></button>
+          </div>
+          <aside class="gap-recommendation" id="gap-recommendation" aria-live="polite">
+            <p class="micro-label">DIAGNOSTIC RESULT</p>
+            <span class="gap-code" id="gap-code">等待选择</span>
+            <h3 id="gap-result-title">先描述失败，不要先安装模块</h3>
+            <p id="gap-result-summary">选择左侧最接近的症状，页面会给出一个主要缺口、优先能力形态、最小落地物和验证证据。</p>
+            <dl>
+              <div><dt>优先形态</dt><dd id="gap-result-shapes">—</dd></div>
+              <div><dt>最小落地物</dt><dd id="gap-result-artifact">—</dd></div>
+              <div><dt>有效证据</dt><dd id="gap-result-evidence">—</dd></div>
+              <div><dt>避免</dt><dd id="gap-result-avoid">—</dd></div>
+            </dl>
+            <div class="gap-actions">
+              <button id="apply-gap-builder" type="button" disabled>带入 Skill Builder</button>
+              <button id="filter-gap-shape" type="button" disabled>筛选优先形态</button>
+            </div>
+          </aside>
+        </div>
+      </div>
+
+      <div class="maturity-block">
+        <div class="maturity-intro"><p class="micro-label">SKILL MATURITY</p><h3>从一句提示，到会自我改进的能力资产</h3><p>成熟度不是文件数量，而是能力是否可重复、可执行、可验证、可从失败中更新。多数个人 Skill 先做到 L1 或 L2 就已经有价值。</p></div>
+        <ol class="maturity-ladder">
+          <li><span>L0</span><div><strong>临时提示</strong><small>只解决这一次，没有稳定触发和交付定义。</small></div></li>
+          <li><span>L1</span><div><strong>可复用</strong><small>触发、输入、步骤和输出可以重复。</small></div></li>
+          <li><span>L2</span><div><strong>可执行</strong><small>能调用脚本、CLI 或连接器改变真实状态。</small></div></li>
+          <li><span>L3</span><div><strong>可验证</strong><small>有测试、质量门、人工确认或失败判定。</small></div></li>
+          <li><span>L4</span><div><strong>可改进</strong><small>保留来源和失败证据，用真实样本小幅更新。</small></div></li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="explorer-section page-section" id="explorer" aria-labelledby="explorer-title">
+      <div class="section-heading split-heading explorer-heading">
+        <div>
+          <p class="eyebrow"><span>05</span> CAPABILITY EXPLORER</p>
+          <h2 id="explorer-title">把 81 项当作能力样本，而不是安装清单</h2>
+        </div>
+        <p>先判断自己缺的是方法、工具、约束还是验证，再看具体模块。每项均保留原页面入口。</p>
+      </div>
+
+      <div class="explorer-controls" aria-label="筛选能力">
+        <label class="search-control">
+          <span>搜索模块、能力或场景</span>
+          <input id="search-input" type="search" placeholder="例如：研究、浏览器、设计系统" autocomplete="off">
+          <kbd>⌘ K</kbd>
+        </label>
+        <label>
+          <span>业务领域</span>
+          <select id="domain-filter">
+            <option value="all">全部领域</option>
+            <option value="engineering">工程开发</option>
+            <option value="design">设计与视频</option>
+            <option value="product">产品与项目</option>
+            <option value="research">研究与知识</option>
+            <option value="writing">写作与营销</option>
+            <option value="docs">文档与幻灯片</option>
+            <option value="tools">工具与元能力</option>
+          </select>
+        </label>
+        <label>
+          <span>能力形态</span>
+          <select id="shape-filter">
+            <option value="all">全部形态</option>
+            <option value="rules">行为规则</option>
+            <option value="collection">Skill 集合</option>
+            <option value="router">路由与元技能</option>
+            <option value="workflow">端到端工作流</option>
+            <option value="executor">确定性执行器</option>
+            <option value="connector">外部连接器</option>
+            <option value="assets">模板与设计系统</option>
+            <option value="evaluator">评测与治理</option>
+            <option value="knowledge">知识系统</option>
+          </select>
+        </label>
+        <label>
+          <span>采用方式</span>
+          <select id="adoption-filter">
+            <option value="all">全部采用方式</option>
+            <option value="direct">直接采用</option>
+            <option value="compose">组合使用</option>
+            <option value="adapt">借鉴改造</option>
+            <option value="integration">先做集成</option>
+          </select>
+        </label>
+        <button id="reset-filters" class="reset-button" type="button">重置筛选</button>
+      </div>
+
+      <div class="results-bar">
+        <p aria-live="polite"><strong id="result-count">81</strong> 项符合条件 <span id="filter-summary">· 当前显示全部能力</span></p>
+        <button id="show-all" type="button" aria-pressed="false">显示全部 81 项</button>
+      </div>
+
+      <div class="capability-grid" id="capability-grid"></div>
+
+      <div class="empty-state" id="empty-state" hidden>
+        <span aria-hidden="true">∅</span>
+        <h3>这组条件没有匹配项</h3>
+        <p>可能不是没有能力，而是当前分类太窄。先清空筛选，再从真实任务重新判断。</p>
+        <button type="button" id="empty-reset">显示全部能力</button>
+      </div>
+    </section>
+
+    <section class="verification-section page-section" id="verification-lab" aria-labelledby="verification-title">
+      <div class="section-heading split-heading">
+        <div>
+          <p class="eyebrow"><span>06</span> ORIGINAL SOURCE VERIFICATION</p>
+          <h2 id="verification-title">网页告诉你“值得看”，原仓库才告诉你“它到底是什么”</h2>
+        </div>
+        <p>这里从九种能力形态各取一个代表，核对真实项目类型、依赖、权限、许可证和维护信号。核验的是官方说明，不是假装已经替你安装跑通。</p>
+      </div>
+
+      <div class="verification-legend" aria-label="证据状态说明">
+        <div><span data-evidence="verified">已证实</span><p>当前官方仓库或官方文档直接支持的事实。</p></div>
+        <div><span data-evidence="unverified">未验证</span><p>介绍页或仓库的主张，尚未用独立样例复现。</p></div>
+        <div><span data-evidence="unrun">未运行</span><p>本项目没有安装这些第三方项目，也没有授予其权限。</p></div>
+      </div>
+
+      <div class="verification-layout">
+        <div class="verification-tabs" id="verification-list" role="tablist" aria-label="按能力形态查看代表项目" aria-orientation="vertical">
+          <button id="verify-tab-rules" type="button" role="tab" aria-selected="true" aria-controls="verification-detail" data-verification-shape="rules" tabindex="0"><span>01</span><strong>行为规则</strong><small>Karpathy 四原则</small></button>
+          <button id="verify-tab-collection" type="button" role="tab" aria-selected="false" aria-controls="verification-detail" data-verification-shape="collection" tabindex="-1"><span>02</span><strong>Skill 集合</strong><small>Matt Pocock Skills</small></button>
+          <button id="verify-tab-router" type="button" role="tab" aria-selected="false" aria-controls="verification-detail" data-verification-shape="router" tabindex="-1"><span>03</span><strong>路由与元技能</strong><small>qiaomu /goal</small></button>
+          <button id="verify-tab-workflow" type="button" role="tab" aria-selected="false" aria-controls="verification-detail" data-verification-shape="workflow" tabindex="-1"><span>04</span><strong>端到端工作流</strong><small>Deep Research</small></button>
+          <button id="verify-tab-executor" type="button" role="tab" aria-selected="false" aria-controls="verification-detail" data-verification-shape="executor" tabindex="-1"><span>05</span><strong>确定性执行器</strong><small>agent-browser</small></button>
+          <button id="verify-tab-connector" type="button" role="tab" aria-selected="false" aria-controls="verification-detail" data-verification-shape="connector" tabindex="-1"><span>06</span><strong>外部连接器</strong><small>Paper Search MCP</small></button>
+          <button id="verify-tab-assets" type="button" role="tab" aria-selected="false" aria-controls="verification-detail" data-verification-shape="assets" tabindex="-1"><span>07</span><strong>模板与设计系统</strong><small>shadcn/ui</small></button>
+          <button id="verify-tab-evaluator" type="button" role="tab" aria-selected="false" aria-controls="verification-detail" data-verification-shape="evaluator" tabindex="-1"><span>08</span><strong>评测与治理</strong><small>Impeccable</small></button>
+          <button id="verify-tab-knowledge" type="button" role="tab" aria-selected="false" aria-controls="verification-detail" data-verification-shape="knowledge" tabindex="-1"><span>09</span><strong>知识系统</strong><small>SwarmVault</small></button>
+        </div>
+        <article class="verification-detail" id="verification-detail" role="tabpanel" aria-labelledby="verify-tab-rules" tabindex="0" aria-live="polite">
+          <p>正在加载代表项目核验记录……</p>
+        </article>
+      </div>
+
+      <p class="verification-note"><strong>阅读规则：</strong>“官方来源支持”只证明仓库这样设计或记录，不等于本机可用、效果优秀或适合你的环境。安装前仍要固定版本、查看脚本、核对权限，并从一个可撤销的小任务开始。</p>
+    </section>
+
+    <section class="builder-section page-section" id="builder" aria-labelledby="builder-title">
+      <div class="section-heading split-heading">
+        <div>
+          <p class="eyebrow"><span>07</span> CAPABILITY → MY SKILL</p>
+          <h2 id="builder-title">把参考模式，落成你自己的最小 Skill</h2>
+        </div>
+        <p>最多选择六项，只借它们的能力结构；再用你的真实任务重写触发、步骤、交付和验证。生成结果是项目草案，不会安装第三方 Skill，也不会获得额外权限。</p>
+      </div>
+
+      <div class="builder-layout">
+        <div class="blueprint-inputs">
+          <div class="selection-panel">
+            <div><p class="micro-label">SELECTED PATTERNS</p><h3>已选能力模式 <span id="selected-count">0 / 6</span></h3></div>
+            <p id="selection-help">回到 81 项清单，点击“加入蓝图”。先选一项即可，职责互补比数量重要。</p>
+            <div class="selected-patterns" id="selected-patterns" aria-live="polite"></div>
+            <button class="clear-selection" id="clear-selection" type="button" disabled>清空选择</button>
+          </div>
+
+          <div class="selection-audit" id="selection-audit" aria-live="polite">
+            <div class="audit-heading"><div><p class="micro-label">COMPOSITION CHECK</p><h3>组合体检</h3></div><span id="audit-state">等待选择</span></div>
+            <div class="audit-metrics">
+              <div><strong id="audit-role-count">0</strong><span>工作链角色</span></div>
+              <div><strong id="audit-overlap-count">0</strong><span>重复职责</span></div>
+              <div><strong id="audit-integration-count">0</strong><span>外部依赖</span></div>
+            </div>
+            <p id="audit-summary">先选择一项能力模式。体检只判断与主要缺口的匹配、职责是否集中和是否存在外部依赖，不要求凑齐整条七段链。</p>
+            <div class="audit-signals" id="audit-signals"></div>
+            <button id="audit-suggestion" type="button" hidden>筛选最小补缺方向</button>
+          </div>
+
+          <form class="skill-form" id="skill-form" novalidate>
+            <div class="form-intro"><p class="micro-label">YOUR REAL TASK</p><h3>不是改名字，而是重写能力契约</h3><p>下面五个字段决定这个 Skill 会不会误触发、会产出什么，以及怎样证明它真的有用。</p></div>
+            <div class="form-grid">
+              <label><span>Skill 名称</span><input id="skill-name" name="skill-name" required placeholder="例如：weekly-research-brief" aria-describedby="name-help"><small id="name-help">会自动规范为小写连字符名称。</small></label>
+              <label><span>主要缺口</span><select id="skill-gap" name="skill-gap"><option value="method">缺专业方法</option><option value="tool">缺执行工具</option><option value="constraint">缺边界约束</option><option value="verification">缺质量验证</option><option value="routing">缺能力路由</option><option value="memory">缺记忆与复盘</option></select></label>
+              <label class="wide-field"><span>你反复要完成的真实任务</span><textarea id="skill-task" name="skill-task" required rows="3" placeholder="例如：每周把 8～12 个来源整理成带出处、结论和未决问题的中文研究简报"></textarea></label>
+              <label class="wide-field"><span>什么时候该用 / 不该用</span><input id="skill-trigger" name="skill-trigger" required placeholder="例如：需要多来源综合时使用；只查一个事实时不要使用"></label>
+              <label><span>最终交付物</span><input id="skill-output" name="skill-output" required placeholder="例如：Markdown 研究简报"></label>
+              <label><span>怎样证明合格</span><input id="skill-validation" name="skill-validation" required placeholder="例如：每条关键结论都有来源，链接可访问"></label>
+            </div>
+            <div class="form-actions">
+              <button class="generate-button" type="submit">生成 SKILL.md 草案 <span aria-hidden="true">→</span></button>
+              <button class="form-reset" id="reset-blueprint" type="button">重置表单</button>
+              <p class="form-status" id="builder-status" role="status" aria-live="polite">先选择能力模式并填写五个必填项。</p>
+            </div>
+          </form>
+        </div>
+
+        <aside class="skill-preview-panel" aria-labelledby="preview-title">
+          <div class="preview-heading"><div><p class="micro-label">GENERATED DRAFT</p><h3 id="preview-title">SKILL.md</h3></div><span id="preview-state">等待生成</span></div>
+          <pre><code id="skill-preview"># 你的技能蓝图会出现在这里
+
+它将包含：
+- 可发现的触发描述
+- 最小工作流
+- 验证标准
+- 权限与停止条件
+- 借鉴模式及来源</code></pre>
+          <div class="preview-actions">
+            <button id="copy-skill" type="button" disabled>复制 Markdown</button>
+            <button id="download-skill" type="button" disabled>下载 SKILL.md</button>
+          </div>
+          <div class="meta-skill-note"><p class="micro-label">PROJECT-LOCAL META SKILL</p><strong>还需要 Codex 帮你继续实现？</strong><p>项目已包含 <code>$capability-to-skill</code>，它会诊断最小能力包、检查权限边界并验证 Skill 结构。</p><a href="https://github.com/yydshly/0830_codex_project/blob/main/projects/atlasnote-skills-page-analysis/skills/capability-to-skill/SKILL.md">在 GitHub 查看元技能说明 →</a></div>
+          <p class="license-note">生成器只重组本研究的能力摘要，不复制第三方仓库指令、代码或资产。真正采用前仍要核对原仓库许可证、依赖、版本和权限。</p>
+        </aside>
+      </div>
+    </section>
+
+    <section class="compose-section page-section" id="compose" aria-labelledby="compose-title">
+      <div class="section-heading split-heading">
+        <div>
+          <p class="eyebrow"><span>08</span> COMPOSITION LAB</p>
+          <h2 id="compose-title">从真实任务出发，看能力怎样组成工作系统</h2>
+        </div>
+        <p>选择一个场景，沿着输入、症状、缺口、形态、能力、证据和 Skill 逐步演示。重点不是记住模块名称，而是理解它们为何在这里出现。</p>
+      </div>
+
+      <ol class="scenario-logic" aria-label="使用场景到个人 Skill 的对应关系">
+        <li><span>01</span><strong>真实输入</strong><small>这次到底要完成什么</small></li>
+        <li><span>02</span><strong>失败症状</strong><small>最近为何返工或卡住</small></li>
+        <li><span>03</span><strong>主要缺口</strong><small>方法、工具、约束等六选一</small></li>
+        <li><span>04</span><strong>能力形态</strong><small>选择正确的生效机制</small></li>
+        <li><span>05</span><strong>能力组合</strong><small>各自只承担一个角色</small></li>
+        <li><span>06</span><strong>完成证据</strong><small>怎样证明真的完成</small></li>
+        <li><span>07</span><strong>个人 Skill</strong><small>把有效关系固化复用</small></li>
+      </ol>
+
+      <section class="scenario-mapper" id="scenario-mapper" aria-labelledby="scenario-mapper-title">
+        <header class="mapper-heading">
+          <div><p class="micro-label">MY SCENARIO MAPPER</p><h3 id="scenario-mapper-title">把你的任务放进这张关系图</h3></div>
+          <p>工作对象决定从哪个案例开始，失败症状决定优先补哪种机制。两者不是一一绑定：研究任务也可能缺工具，软件任务也可能缺验证。</p>
+        </header>
+        <div class="mapper-layout">
+          <div class="mapper-inputs">
+            <fieldset>
+              <legend><span>01</span> 你在处理什么对象？</legend>
+              <div class="mapper-options mapper-scenarios">
+                <button type="button" data-mapper-scenario="engineering">软件与网页</button>
+                <button type="button" data-mapper-scenario="research">研究与分析</button>
+                <button type="button" data-mapper-scenario="visual">视觉与内容</button>
+                <button type="button" data-mapper-scenario="product">产品与协作</button>
+                <button type="button" data-mapper-scenario="knowledge">知识与学习</button>
+              </div>
+            </fieldset>
+            <fieldset>
+              <legend><span>02</span> 最近最常见的失败是什么？</legend>
+              <div class="mapper-options mapper-gaps">
+                <button type="button" data-mapper-gap="method">不知道专业步骤</button>
+                <button type="button" data-mapper-gap="tool">知道但无法执行</button>
+                <button type="button" data-mapper-gap="constraint">结果经常漂移</button>
+                <button type="button" data-mapper-gap="verification">完成却无法证明</button>
+                <button type="button" data-mapper-gap="routing">能力太多不会选</button>
+                <button type="button" data-mapper-gap="memory">同样问题反复发生</button>
+              </div>
+            </fieldset>
+            <label class="mapper-task-label" for="mapper-task"><span><b>03</b> 用一句话写你的任务（可选）</span><input id="mapper-task" type="text" placeholder="例如：把一个产品网页研究成可交付的能力地图" autocomplete="off"></label>
+          </div>
+          <aside class="mapper-result" aria-labelledby="mapper-result-title">
+            <p class="mapper-status-line" id="mapper-status-line"></p>
+            <h4 id="mapper-result-title"></h4>
+            <p id="mapper-result-summary"></p>
+            <dl>
+              <div><dt>主要缺口</dt><dd id="mapper-gap-result"></dd></div>
+              <div><dt>优先形态</dt><dd id="mapper-shapes"></dd></div>
+              <div><dt>最小落地物</dt><dd id="mapper-artifact"></dd></div>
+              <div><dt>完成证据</dt><dd id="mapper-evidence"></dd></div>
+              <div><dt>避免这样做</dt><dd id="mapper-avoid"></dd></div>
+            </dl>
+            <div class="mapper-capability-block"><span>最小能力组合</span><ol id="mapper-capabilities"></ol></div>
+            <div class="mapper-actions"><button type="button" id="open-mapped-demo">打开对应五步演示</button><button type="button" id="apply-mapped-builder">把定制结果带入 Builder →</button></div>
+            <p class="mapper-note">推荐只负责选择起点，不代表第三方模块已经安装、可运行或获得权限。</p>
+            <p class="visually-hidden" id="mapper-live" aria-live="polite" aria-atomic="true"></p>
+          </aside>
+        </div>
+      </section>
+
+      <div class="scenario-tabs" role="tablist" aria-label="选择能力组合场景">
+        <button id="tab-engineering" role="tab" aria-selected="true" aria-controls="scenario-panel" data-scenario="engineering" tabindex="0">软件交付</button>
+        <button id="tab-research" role="tab" aria-selected="false" aria-controls="scenario-panel" data-scenario="research" tabindex="-1">深度研究</button>
+        <button id="tab-visual" role="tab" aria-selected="false" aria-controls="scenario-panel" data-scenario="visual" tabindex="-1">视觉内容</button>
+        <button id="tab-product" role="tab" aria-selected="false" aria-controls="scenario-panel" data-scenario="product" tabindex="-1">产品推进</button>
+        <button id="tab-knowledge" role="tab" aria-selected="false" aria-controls="scenario-panel" data-scenario="knowledge" tabindex="-1">知识学习</button>
+      </div>
+      <div class="scenario-panel" id="scenario-panel" role="tabpanel" aria-labelledby="tab-engineering" tabindex="0"></div>
+    </section>
+
+    <section class="personal-section page-section" id="personal" aria-labelledby="personal-title">
+      <div class="section-heading split-heading">
+        <div>
+          <p class="eyebrow"><span>09</span> WHAT IT MEANS FOR ME</p>
+          <h2 id="personal-title">对你而言，先建立五个槽位就够了</h2>
+        </div>
+        <p>结合你把网页和开源项目持续拆成研究子项目的工作方式，最有价值的不是收藏更多，而是让每次工作都可定义、可执行、可验证、可积累。</p>
+      </div>
+
+      <ol class="personal-stack">
+        <li>
+          <span class="slot-number">01</span>
+          <div><p class="micro-label">GOAL</p><h3>目标契约</h3></div>
+          <p>把结果、验证、约束、边界、完成条件和暂停条件写清楚。</p>
+          <strong>/goal 模式</strong>
+        </li>
+        <li>
+          <span class="slot-number">02</span>
+          <div><p class="micro-label">RESEARCH</p><h3>大纲先行</h3></div>
+          <p>先建中间产物，再分头检索，最后单独综合成报告。</p>
+          <strong>研究工作流</strong>
+        </li>
+        <li>
+          <span class="slot-number">03</span>
+          <div><p class="micro-label">EXECUTE</p><h3>一个高频 Skill</h3></div>
+          <p>从每周重复的真实任务开始，只选一个边界清楚的执行流程。</p>
+          <strong>最小职责</strong>
+        </li>
+        <li>
+          <span class="slot-number">04</span>
+          <div><p class="micro-label">VERIFY</p><h3>任务质量门</h3></div>
+          <p>用测试、检查表和人工确认定义什么才算真正完成。</p>
+          <strong>可观察验收</strong>
+        </li>
+        <li>
+          <span class="slot-number">05</span>
+          <div><p class="micro-label">IMPROVE</p><h3>失败证据复盘</h3></div>
+          <p>每 5～10 次任务从真实会话找返工原因，再小幅修改 Skill。</p>
+          <strong>Skill Doctor 思路</strong>
+        </li>
+      </ol>
+
+      <div class="diagnosis-board">
+        <div>
+          <p class="micro-label">DIAGNOSE BEFORE INSTALLING</p>
+          <h3>先诊断缺口，再选择能力形态</h3>
+        </div>
+        <dl>
+          <div><dt>不知道怎样做</dt><dd>补专业方法或 Skill</dd></div>
+          <div><dt>知道但碰不到系统</dt><dd>补 CLI、脚本或 MCP</dd></div>
+          <div><dt>输出每次都漂</dt><dd>补模板、组件或设计系统</dd></div>
+          <div><dt>总说完成却无法证明</dt><dd>补测试和质量门</dd></div>
+          <div><dt>Skill 越装越乱</dt><dd>补路由和渐进加载</dd></div>
+          <div><dt>同样问题反复发生</dt><dd>补会话复盘和版本治理</dd></div>
+        </dl>
+      </div>
+
+      <div class="personal-roadmap">
+        <div class="roadmap-heading"><p class="micro-label">YOUR FIRST THREE ASSETS</p><h3>结合你现在的研究方式，优先沉淀这三项</h3><p>它们对应你已经在做的“拆网页、建子项目、做成可交付研究”，不需要先搭一个庞大的通用 Agent 平台。</p></div>
+        <ol>
+          <li><span>NOW / 01</span><h4>网页能力分析</h4><p>输入一个页面，区分界面、能力、机制、场景与证据边界。</p><dl><div><dt>触发</dt><dd>需要理解产品能力而不是截图时</dd></div><div><dt>交付</dt><dd>能力模型 + 全量分类</dd></div><div><dt>验证</dt><dd>每个判断能追到页面或来源</dd></div></dl></li>
+          <li><span>NEXT / 02</span><h4>研究转交付网页</h4><p>把 Markdown 研究重组为能搜索、筛选、比较和决策的本地网页。</p><dl><div><dt>触发</dt><dd>研究内容多到难以线性阅读时</dd></div><div><dt>交付</dt><dd>静态网页 + 验收证据</dd></div><div><dt>验证</dt><dd>关键旅程在三视口可完成</dd></div></dl></li>
+          <li><span>SCALE / 03</span><h4>能力模式转 Skill</h4><p>从重复失败中提取最小工作流、工具、验证和停止条件。</p><dl><div><dt>触发</dt><dd>同一任务重复三次以上时</dd></div><div><dt>交付</dt><dd>项目内最小 Skill 包</dd></div><div><dt>验证</dt><dd>正向任务通过，近似任务不误触发</dd></div></dl></li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="extension-section page-section" aria-labelledby="extension-title">
+      <div class="section-heading split-heading">
+        <div>
+          <p class="eyebrow"><span>10</span> WHAT COMES NEXT</p>
+          <h2 id="extension-title">从目录继续扩展，最值得做什么？</h2>
+        </div>
+        <p>方向不是继续增加卡片数量，而是把发现、组合、评测、安全和改进做成基础设施。</p>
+      </div>
+      <div class="extension-grid">
+        <article><span>01</span><h3>机器可读清单</h3><p>统一记录触发、输入、输出、依赖、权限、版本、许可证和验收。</p></article>
+        <article><span>02</span><h3>能力图谱</h3><p>表达前置、替代、互补和冲突，从热门推荐转成最小能力链。</p></article>
+        <article><span>03</span><h3>评测台</h3><p>用真实任务比较成功率、质量、时间、Token 和人工干预。</p></article>
+        <article><span>04</span><h3>安全沙箱</h3><p>脚本与写操作先 dry-run，展示变更计划，再批准真实执行。</p></article>
+        <article><span>05</span><h3>团队私有库</h3><p>增加负责人、适用项目、数据分级、审批、弃用与回滚策略。</p></article>
+        <article><span>06</span><h3>反馈闭环</h3><p>从真实会话识别误触发、步骤冗余和验收缺失，持续改进。</p></article>
+      </div>
+    </section>
+
+    <section class="closing-statement">
+      <p>最终理解</p>
+      <blockquote>能力不是一段神奇提示词，<br>而是目标、上下文、程序、工具、约束、验证和反馈的组合。</blockquote>
+      <a href="https://github.com/yydshly/0830_codex_project/blob/main/projects/atlasnote-skills-page-analysis/docs/00-capability-model.md">在 GitHub 阅读完整能力原理 →</a>
+    </section>
+  </main>
+
+  <a class="selection-fab" id="selection-fab" href="#builder" hidden><strong>0 / 6</strong><span>去生成我的 Skill</span></a>
+
+  <dialog class="detail-dialog" id="detail-dialog" aria-labelledby="dialog-title">
+    <div class="dialog-shell">
+      <button class="dialog-close" type="button" aria-label="关闭详情">×</button>
+      <div class="dialog-meta"><span id="dialog-index"></span><span id="dialog-domain"></span><span id="dialog-shape"></span></div>
+      <h2 id="dialog-title"></h2>
+      <div class="dialog-block"><span>能力本质</span><p id="dialog-essence"></p></div>
+      <div class="dialog-block"><span>适用与注意</span><p id="dialog-note"></p></div>
+      <div class="dialog-block"><span>工作链角色</span><p id="dialog-stage"></p></div>
+      <div class="dialog-block"><span>建议采用方式</span><p id="dialog-adoption"></p></div>
+      <div class="dialog-block"><span>权限与前置</span><p id="dialog-permission"></p></div>
+      <button class="dialog-select" id="dialog-select" type="button">加入技能蓝图</button>
+      <a class="dialog-source" id="dialog-source" href="#">打开 Atlasnote 原页面 <span aria-hidden="true">↗</span></a>
+    </div>
+  </dialog>
+
+  <noscript>
+    <div class="noscript-note">
+      <strong>JavaScript 已关闭。</strong>核心结论仍可阅读；完整 81 项清单请打开
+      <a href="https://github.com/yydshly/0830_codex_project/blob/main/projects/atlasnote-skills-page-analysis/docs/06-capability-inventory-81.md">GitHub Markdown 研究文档</a>。
+    </div>
+  </noscript>
+
+  <footer>
+    <div><p class="micro-label">0830 RESEARCH LAB</p><strong>Atlasnote Skills 能力地图与应用研究</strong></div>
+    <p>81 项链接核对于 2026-08-30；九类代表原仓库复核于 2026-08-31。其余条目的安装、权限和实际效果仍须逐项验证。</p>
+    <div class="footer-links"><a href="https://github.com/yydshly/0830_codex_project/tree/main/projects/atlasnote-skills-page-analysis#readme">GitHub 研究总览 ↗</a><a href="https://atlasnote.ai/zh-CN/skills">Atlasnote 原页面 ↗</a></div>
+  </footer>
+</body>
+</html>
