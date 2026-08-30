@@ -1,0 +1,93 @@
+{
+  "version": 1,
+  "catalog": [
+    {
+      "character": "忙",
+      "pinyin": "máng",
+      "decomposition": "忄＋亡",
+      "componentCut": 3,
+      "defaultScene": "culture",
+      "title": "忙而不乱，心有所向",
+      "caption": "一笔一画写下忙，也提醒自己别忘了方向。"
+    },
+    {
+      "character": "永",
+      "pinyin": "yǒng",
+      "decomposition": "五笔示范",
+      "componentCut": 0,
+      "defaultScene": "lesson",
+      "title": "跟着路径，写一个“永”",
+      "caption": "田字格、笔画编号和当前笔高亮，共同组成一段识字微课。"
+    },
+    {
+      "character": "明",
+      "pinyin": "míng",
+      "decomposition": "日＋月",
+      "componentCut": 4,
+      "defaultScene": "exhibit",
+      "title": "日月相映，看见一个“明”",
+      "caption": "先展示左右部件，再为文化解释绑定可靠来源。"
+    },
+    {
+      "character": "清",
+      "pinyin": "qīng",
+      "decomposition": "氵＋青",
+      "componentCut": 3,
+      "defaultScene": "lesson",
+      "title": "共享“青”，比较不同形旁",
+      "caption": "把清、情、晴、请放进同一组模板，建立字族记忆。"
+    },
+    {
+      "character": "安",
+      "pinyin": "ān",
+      "decomposition": "宀＋女",
+      "componentCut": 3,
+      "defaultScene": "gift",
+      "title": "愿所行皆安，所遇皆暖",
+      "caption": "把祝福语、品牌色和单字动画组合成一条个性开场。"
+    }
+  ],
+  "scenes": [
+    {"id": "culture", "label": "文化短视频", "kicker": "一字一故事", "output": "9:16 竖屏栏目"},
+    {"id": "lesson", "label": "识字课件", "kicker": "笔顺与发音", "output": "课堂投屏 / 微课"},
+    {"id": "exhibit", "label": "文化展陈", "kicker": "结构与来源", "output": "展屏循环 / 轻科普"},
+    {"id": "gift", "label": "祝福与品牌", "kicker": "个性化开场", "output": "祝福卡 / 品牌片头"}
+  ],
+  "templates": [
+    {
+      "id": "editorial",
+      "label": "编辑蓝白",
+      "background": "#eaf3f8",
+      "surface": "#f8fbff",
+      "ink": "#112b4a",
+      "muted": "#56728b",
+      "accent": "#ff735f"
+    },
+    {
+      "id": "chalk",
+      "label": "黑板粉笔",
+      "background": "#062b27",
+      "surface": "#0d3b35",
+      "ink": "#fff5d7",
+      "muted": "#c8c4ad",
+      "accent": "#f1c84b"
+    },
+    {
+      "id": "museum",
+      "label": "展陈深蓝",
+      "background": "#071a2b",
+      "surface": "#102a43",
+      "ink": "#f8fbff",
+      "muted": "#9cb5ca",
+      "accent": "#57c7e8"
+    }
+  ],
+  "sample": {
+    "character": "明",
+    "scene": "exhibit",
+    "template": "museum",
+    "title": "日月相映，看见一个“明”",
+    "caption": "结构动画先给出可见关系，解释必须带来源。",
+    "accent": "#ff735f"
+  }
+}

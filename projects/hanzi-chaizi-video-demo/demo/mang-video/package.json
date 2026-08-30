@@ -1,0 +1,30 @@
+{
+  "name": "hanzi-chaizi-mang-demo",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Our Remotion demonstrations for 忙 → 心 + 亡 and the extensible-effects laboratory.",
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "render": "remotion render src/index.ts MangHeartDirection ../../web/assets/mang-heart-direction.mp4 --codec=h264",
+    "render:effects": "remotion render src/index.ts HanziEffectsLab ../../web/assets/hanzi-effects-lab.mp4 --codec=h264",
+    "render:workbench": "remotion render src/index.ts ConfigurableHanzi ../../web/assets/workbench-config-demo.mp4 --codec=h264",
+    "render:blessing": "remotion render src/index.ts NameBlessing ../../web/assets/name-blessing-muyang.mp4 --codec=h264",
+    "render:wedding": "remotion render src/index.ts WeddingStory ../../web/assets/wedding-zhangshuai-dong.mp4 --codec=h264",
+    "render:wedding-screen": "remotion render src/index.ts WeddingScreen ../../web/assets/wedding-zhangshuai-dong-screen.mp4 --codec=h264",
+    "render:wedding-poster": "remotion still src/index.ts WeddingWelcomePoster ../../web/assets/wedding-welcome-demo.png",
+    "render:all": "npm run render && npm run render:effects && npm run render:workbench && npm run render:blessing && npm run render:wedding && npm run render:wedding-screen && npm run render:wedding-poster"
+  },
+  "dependencies": {
+    "@remotion/cli": "4.0.506",
+    "@remotion/media": "4.0.506",
+    "hanzi-writer-data": "2.0.1",
+    "react": "19.2.3",
+    "react-dom": "19.2.3",
+    "remotion": "4.0.506"
+  },
+  "devDependencies": {
+    "@types/react": "19.2.7",
+    "@types/web": "0.0.166",
+    "typescript": "5.9.3"
+  }
+}

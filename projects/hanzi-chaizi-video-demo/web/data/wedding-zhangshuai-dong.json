@@ -1,0 +1,155 @@
+{
+  "version": 1,
+  "projectId": "wedding-zhangshuai-dong-20260912",
+  "title": "两姓成礼 · 一字一生",
+  "couple": {
+    "groomDisplayName": "张帅",
+    "brideDisplayName": "董小姐",
+    "strokeCharacters": ["张", "董"]
+  },
+  "date": {
+    "iso": "2026-09-12",
+    "display": "2026.09.12"
+  },
+  "location": "延安",
+  "vow": "从此长路并肩，四季共赴。",
+  "closing": "良辰已定，敬候相见。",
+  "simulation": {
+    "status": "DEMO_ONLY",
+    "label": "演示资料 · 正式使用前请由新人确认",
+    "brideFullName": "董雅宁",
+    "ceremonyTime": "11:58",
+    "venue": "延安 · 山河礼宴厅（演示场地）",
+    "address": "宝塔区婚礼演示地址（请替换）",
+    "contact": "138 **** 0912",
+    "dressCode": "暖金 / 酒红",
+    "countdownDays": 13,
+    "timeline": [
+      {
+        "date": "2021.09",
+        "title": "初见",
+        "copy": "在朋友的秋日聚会里相遇。此段为演示故事，请替换为真实经历。"
+      },
+      {
+        "date": "2023.05",
+        "title": "并肩",
+        "copy": "从一次同行，走成许多次共同决定。此段为演示故事。"
+      },
+      {
+        "date": "2026.09",
+        "title": "成礼",
+        "copy": "在延安，把往后的四季写进同一天。日期来自当前演示假设。"
+      }
+    ],
+    "photoScenes": [
+      {
+        "id": "first-meet",
+        "eyebrow": "AI SIMULATED PHOTO 01",
+        "title": "秋日初见",
+        "caption": "AI 生成虚构人物 · 不代表真实新人照片",
+        "asset": "assets/wedding-ai/01-first-meet.webp",
+        "sourceAsset": "assets/wedding-ai/01-first-meet.png",
+        "renderAsset": "wedding-ai/01-first-meet.webp",
+        "alt": "虚构成年新人在延安风格的秋日山谷相遇，AI 模拟素材"
+      },
+      {
+        "id": "together",
+        "eyebrow": "AI SIMULATED PHOTO 02",
+        "title": "山河同行",
+        "caption": "AI 生成虚构人物 · 正式版替换授权照片",
+        "asset": "assets/wedding-ai/02-together.webp",
+        "sourceAsset": "assets/wedding-ai/02-together.png",
+        "renderAsset": "wedding-ai/02-together.webp",
+        "alt": "同一对虚构成年新人并肩走在延安风格的金色山路上，AI 模拟素材"
+      },
+      {
+        "id": "promise",
+        "eyebrow": "AI SIMULATED PHOTO 03",
+        "title": "良辰约定",
+        "caption": "AI 生成虚构人物 · 不生成或识别真人身份",
+        "asset": "assets/wedding-ai/03-promise.webp",
+        "sourceAsset": "assets/wedding-ai/03-promise.png",
+        "renderAsset": "wedding-ai/03-promise.webp",
+        "alt": "同一对虚构成年新人在酒红背景前分享戒指盒，AI 模拟素材"
+      }
+    ],
+    "mediaPolicy": {
+      "fictionalIdentity": true,
+      "aiGenerated": true,
+      "realPersonReferenceUsed": false,
+      "label": "AI 模拟素材 · 非真实新人",
+      "replacementRule": "正式交付必须替换为获得新人授权的真实照片，并重新确认展示范围。"
+    }
+  },
+  "palette": {
+    "background": "#1a0508",
+    "surface": "#310b10",
+    "ink": "#fff4df",
+    "muted": "#d7bfa9",
+    "gold": "#f2cf82",
+    "red": "#d64045",
+    "sand": "#c98e63"
+  },
+  "stages": [
+    {
+      "id": "prologue",
+      "index": "01",
+      "label": "延安序章",
+      "title": "一场婚礼，从延安的九月开始",
+      "copy": "暖砂山形与一束金光先建立地点和时间，让宾客进入这段故事。"
+    },
+    {
+      "id": "surnames",
+      "index": "02",
+      "label": "两姓入场",
+      "title": "张与董，各自成字，也彼此靠近",
+      "copy": "真实笔画先后写出两个姓氏；完整展示名负责确认人物身份。"
+    },
+    {
+      "id": "meeting",
+      "index": "03",
+      "label": "红线相遇",
+      "title": "两条路，在同一个时刻交汇",
+      "copy": "笔画尾迹延伸为红线和同心圆，表达相遇，不解释为汉字字源。"
+    },
+    {
+      "id": "ceremony",
+      "index": "04",
+      "label": "姓名成礼",
+      "title": "张帅 × 董小姐",
+      "copy": "姓名、婚期与延安共同成为婚礼主视觉，可适配请帖和现场大屏。"
+    },
+    {
+      "id": "finale",
+      "index": "05",
+      "label": "祝福定格",
+      "title": "从此长路并肩，四季共赴",
+      "copy": "以良辰邀请收束，形成可截图、可分享、可继续渲染的最终画面。"
+    }
+  ],
+  "formats": [
+    {
+      "id": "landscape",
+      "label": "婚礼大屏",
+      "ratio": "16:9",
+      "use": "酒店开场与仪式转场"
+    },
+    {
+      "id": "portrait",
+      "label": "微信请帖",
+      "ratio": "9:16",
+      "use": "朋友圈、私聊与手机播放"
+    },
+    {
+      "id": "welcome",
+      "label": "迎宾海报",
+      "ratio": "4:5",
+      "use": "签到台、立牌与电子屏"
+    }
+  ],
+  "assumptions": [
+    "年份按当前临近日期采用 2026 年，可在正式制作前修改。",
+    "董小姐是用户提供的对外展示称谓，不代表已获得其完整姓名。",
+    "未使用真实新人照片；新增人物图均为 AI 生成的虚构成年人，并与模拟电话、场地一起持续标注。"
+  ]
+}

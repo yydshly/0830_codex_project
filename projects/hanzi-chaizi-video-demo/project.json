@@ -1,0 +1,16 @@
+{
+  "slug": "hanzi-chaizi-video-demo",
+  "title": "汉字拆字视频能力演示",
+  "summary": "用七条真实视频、六场景、配置工作台、姓名祝福 MVP，以及同一对 AI 虚构人物贯穿请帖、大屏和迎宾海报的婚礼完整样例，说明笔画底座如何扩展为诚实标注、可替换的视觉交付产品。",
+  "status": "complete",
+  "tags": [
+    "remotion",
+    "hanzi",
+    "video-generation",
+    "tts",
+    "product-research"
+  ],
+  "started_at": "2026-08-30",
+  "updated_at": "2026-08-30",
+  "demo_url": "https://yydshly.github.io/0830_codex_project/demos/hanzi-chaizi-video-demo/"
+}

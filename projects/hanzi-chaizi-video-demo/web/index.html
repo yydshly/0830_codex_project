@@ -1,0 +1,1226 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="hbg-hanzi-chaizi-video 真实能力演示：七条实际视频验证逐笔写字、部件拆分、配置化内容、姓名祝福与婚礼三端创意交付。"
+    />
+    <meta name="theme-color" content="#0b2f2a" />
+    <title>汉字拆字视频 · 能力实测</title>
+    <link rel="stylesheet" href="styles.css?v=12" />
+    <script src="app.js?v=18" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">跳到主要内容</a>
+
+    <header class="site-header">
+      <a class="brand" href="#top" aria-label="返回页面顶部">
+        <span class="brand-mark" aria-hidden="true">字</span>
+        <span>
+          <strong>拆字成片</strong>
+          <small>真实仓库能力实测</small>
+        </span>
+      </a>
+      <nav aria-label="页面导航">
+        <a href="#overview">理解总览</a>
+        <a href="#scenario-lab">场景演示</a>
+        <a href="#workbench">内容工作台</a>
+        <a href="#name-blessing">姓名祝福</a>
+        <a href="#capability">能力原理</a>
+        <a href="#effects-lab">扩展效果</a>
+        <a href="#decision">产品意义</a>
+      </nav>
+      <a
+        class="source-link"
+        href="https://github.com/Mr-funny/hbg-hanzi-chaizi-video"
+        target="_blank"
+        rel="noreferrer"
+      >上游源码 <span aria-hidden="true">↗</span></a>
+    </header>
+
+    <main id="main">
+      <section class="hero section-shell" id="top">
+        <div class="hero-copy reveal">
+          <p class="eyebrow"><span class="live-dot" aria-hidden="true"></span> 已实际安装、生成并渲染</p>
+          <h1><span>一笔一画写出汉字，</span><br /><em>再把结构讲成故事。</em></h1>
+          <p class="hero-summary">
+            这是一个可运行的汉字竖屏视频样片：读取真实笔画路径，拆分字形部件，用 TTS
+            决定字幕和总时长，最后由 Remotion 渲染成 MP4。
+          </p>
+          <div class="verdict" role="note">
+            <span class="verdict-label">一句话判断</span>
+            <strong>它是做透的“懒”字模板，不是输入任意汉字就能自动出片的平台。</strong>
+          </div>
+          <div class="hero-actions">
+            <button class="button button-primary" id="play-demo" type="button">
+              <span aria-hidden="true">▶</span> 播放上游样片
+            </button>
+            <a class="button button-secondary" href="#capability">查看能力边界</a>
+          </div>
+          <dl class="proof-strip" aria-label="视频验证数据">
+            <div><dt>画布</dt><dd>1080 × 1920</dd></div>
+            <div><dt>时长</dt><dd>10.52 秒</dd></div>
+            <div><dt>视频</dt><dd>H.264 · 30fps</dd></div>
+            <div><dt>音频</dt><dd>AAC · 48kHz</dd></div>
+          </dl>
+        </div>
+
+        <div class="demo-stage reveal" aria-label="实际渲染视频">
+          <div class="stage-note stage-note-top">真实输出 · 非概念图</div>
+          <div class="phone-frame">
+            <video
+              id="demo-video"
+              controls
+              playsinline
+              preload="metadata"
+              poster="assets/poster.webp"
+              aria-describedby="video-caption"
+            >
+              <source src="assets/hanzi-chaizi-demo.mp4" type="video/mp4" />
+              当前浏览器无法播放 MP4。你可以
+              <a href="assets/hanzi-chaizi-demo.mp4" download>下载视频</a>查看。
+            </video>
+          </div>
+          <div class="video-meta" id="video-caption">
+            <span id="video-status"><span class="status-dot" aria-hidden="true"></span> 正在读取视频</span>
+            <a href="assets/hanzi-chaizi-demo.mp4" download>下载 MP4</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="proof-band" aria-label="已验证工作流">
+        <div class="section-shell pipeline">
+          <span>汉字与文案</span><i aria-hidden="true">→</i>
+          <span>笔画路径</span><i aria-hidden="true">→</i>
+          <span>部件拆分</span><i aria-hidden="true">→</i>
+          <span>TTS 时间轴</span><i aria-hidden="true">→</i>
+          <span>Remotion 出片</span>
+        </div>
+      </section>
+
+      <section class="section overview-section" id="overview">
+        <div class="section-shell">
+          <header class="overview-heading reveal">
+            <p class="kicker">库理解总览</p>
+            <h2>先用五个判断，看清这个库。</h2>
+            <p>它的价值不只是“按笔画写字”，而是把真实笔画、部件表达、声音时间轴和确定性渲染组合成一条汉字视觉内容生产链。</p>
+          </header>
+
+          <div class="overview-grid">
+            <article class="overview-card reveal">
+              <span>01 / 能力</span>
+              <h3>一字一条完整成片</h3>
+              <p>逐笔书写、部件拆分、旁白、字幕、背景音和 9:16 MP4 已经跑通。</p>
+              <a href="#capability">查看能力边界 →</a>
+            </article>
+            <article class="overview-card reveal">
+              <span>02 / 原理</span>
+              <h3>路径决定书写，声音决定时间</h3>
+              <p><code>strokes</code> 提供轮廓，<code>medians</code> 提供中心线，Remotion 逐帧合成。</p>
+              <a href="#capability">查看实现原理 →</a>
+            </article>
+            <article class="overview-card overview-card-featured reveal">
+              <span>03 / 最易商品化</span>
+              <h3>姓名祝福高光视频</h3>
+              <p>把笔画转成个性化、情绪价值和纪念仪式，是普通用户更容易理解、分享和付费的形态。</p>
+              <a href="#name-blessing">试做一份姓名祝福 →</a>
+            </article>
+            <article class="overview-card reveal">
+              <span>04 / 可扩展</span>
+              <h3>从效果到教学与输出</h3>
+              <p>可以扩展教学标注、材质、部件动画、字族比较、跟写界面和多画幅。</p>
+              <a href="#effects-lab">观看六段效果 →</a>
+            </article>
+            <article class="overview-card reveal">
+              <span>05 / 对我们的意义</span>
+              <h3>前台卖祝福，后台做生产</h3>
+              <p>先验证分享与付费，再用内容工作台、姓名字库和渲染队列提升交付效率。</p>
+              <a href="#decision">查看产品路线 →</a>
+            </article>
+          </div>
+
+          <div class="overview-engine reveal" aria-label="汉字视频生产链">
+            <div><span>输入</span><strong>汉字 · 部件 · 文案 · 音色</strong></div>
+            <i aria-hidden="true">→</i>
+            <div><span>编排引擎</span><strong>笔画路径 · 时间轴 · 布局 · 效果</strong></div>
+            <i aria-hidden="true">→</i>
+            <div><span>输出</span><strong>短视频 · 课件 · 动画素材</strong></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section our-demo-section" id="our-demo">
+        <div class="section-shell">
+          <header class="our-demo-heading reveal">
+            <div>
+              <p class="kicker">技术最贴合场景 / 汉字文化短视频栏目</p>
+              <h2>最适合它的，是<em>“一字一条”</em>文化短视频。</h2>
+            </div>
+            <p>
+              它已经直接输出带声音、字幕和视觉故事的 9:16 MP4，因此系列化汉字内容仍是最贴合底层技术的场景；若目标是用户分享和付费，后面的姓名祝福产品更有优势。
+            </p>
+          </header>
+
+          <div class="our-demo-layout">
+            <div class="second-demo-stage reveal" aria-label="我们制作的忙字演示视频">
+              <div class="second-stage-note">我们制作 · 真实渲染</div>
+              <div class="second-phone-frame">
+                <video
+                  id="mang-demo-video"
+                  controls
+                  playsinline
+                  preload="metadata"
+                  poster="assets/mang-poster.webp"
+                  aria-describedby="mang-video-caption"
+                >
+                  <source src="assets/mang-heart-direction.mp4" type="video/mp4" />
+                  当前浏览器无法播放 MP4。你可以
+                  <a href="assets/mang-heart-direction.mp4" download>下载我们的演示</a>查看。
+                </video>
+              </div>
+              <div class="second-video-meta" id="mang-video-caption">
+                <span id="mang-video-status"><span class="second-status-dot" aria-hidden="true"></span> 正在读取视频</span>
+                <a href="assets/mang-heart-direction.mp4" download>下载 MP4</a>
+              </div>
+            </div>
+
+            <div class="our-demo-copy reveal">
+              <div class="best-scene-fit">
+                <span>为什么这是最适合的场景</span>
+                <strong>“忙”字样片完整覆盖一条文化短视频所需的输入、生产和输出。</strong>
+                <dl>
+                  <div><dt>内容输入</dt><dd>一个汉字＋四句文案</dd></div>
+                  <div><dt>自动链路</dt><dd>笔画动画＋TTS＋字幕</dd></div>
+                  <div><dt>直接输出</dt><dd>12.78 秒竖屏 MP4</dd></div>
+                </dl>
+              </div>
+              <div class="our-demo-verdict">
+                <span>这次验证了什么</span>
+                <strong>同一套逐笔、拆分、TTS 和 Remotion 机制可以迁移到第二个字，但迁移还不是自动化。</strong>
+              </div>
+
+              <button class="second-play-button" id="play-mang-demo" type="button">
+                <span aria-hidden="true">▶</span> 播放我们的“忙”字演示
+              </button>
+
+              <div class="change-grid" aria-label="第二条演示的改变">
+                <article>
+                  <span>汉字与结构</span>
+                  <strong>懒 → 忙</strong>
+                  <p>6 笔，人工指定前 3 笔属于竖心旁。</p>
+                </article>
+                <article>
+                  <span>拆分联想</span>
+                  <strong>忄＋亡 → 心＋亡</strong>
+                  <p>重新配置目标字形、缩放和位置。</p>
+                </article>
+                <article>
+                  <span>声音与内容</span>
+                  <strong>小晓女声 · 4 行新文案</strong>
+                  <p>分段生成旁白，音频真实时长为 12.72 秒。</p>
+                </article>
+                <article>
+                  <span>视觉主题</span>
+                  <strong>黑板绿 → 蓝纸课堂</strong>
+                  <p>证明笔画逻辑与表现层可以分开设计。</p>
+                </article>
+              </div>
+
+              <div class="reuse-map">
+                <div>
+                  <span class="reuse-label reuse-label-good">直接复用</span>
+                  <ul>
+                    <li>笔画长度与时间分配</li>
+                    <li>SVG 中心线扫描与轮廓裁剪</li>
+                    <li>音频时长驱动总帧数</li>
+                    <li>Remotion 确定性渲染</li>
+                  </ul>
+                </div>
+                <div>
+                  <span class="reuse-label reuse-label-manual">仍需手工</span>
+                  <ul>
+                    <li>部件对应哪些笔画</li>
+                    <li>目标完整字形和拆分布局</li>
+                    <li>趣味文案与事实边界</li>
+                    <li>字幕分行、主题与声音选择</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <aside class="second-demo-conclusion reveal">
+            <span class="conclusion-index">02 个字已跑通</span>
+            <p><strong>证据升级：</strong>我们现在可以说“方法可迁移”，仍不能说“输入任意汉字即可自动生成”。下一步应优先把这些手工项提取成结构化配置。</p>
+          </aside>
+        </div>
+      </section>
+
+      <section class="section section-shell" id="capability">
+        <header class="section-heading reveal">
+          <p class="kicker">01 / 能力边界</p>
+          <h2>它真正做到了什么？</h2>
+          <p>把“仓库介绍”与“实际运行结果”分开看，结论会更准确。</p>
+        </header>
+
+        <div class="boundary-grid">
+          <article class="boundary-card boundary-card-positive reveal">
+            <div class="card-label">现在已经能做</div>
+            <ul class="check-list">
+              <li><strong>真实笔顺书写</strong><span>使用每笔轮廓与中心线，不是字体淡入。</span></li>
+              <li><strong>按长度分配节奏</strong><span>长笔画写得久，最后一笔随旁白结束。</span></li>
+              <li><strong>部件拆分表达</strong><span>“懒”拆成“忄＋赖”，再定格为“心＋赖”。</span></li>
+              <li><strong>旁白与单行字幕</strong><span>Edge TTS 词语边界驱动字幕切换。</span></li>
+              <li><strong>确定性竖屏渲染</strong><span>同一输入可重复得到一致的 9:16 成片。</span></li>
+            </ul>
+          </article>
+
+          <article class="boundary-card boundary-card-limit reveal">
+            <div class="card-label">现在还不能直接做</div>
+            <ul class="limit-list">
+              <li><strong>任意汉字自动出片</strong><span>目标字、路径导入、位置和文件名均有硬编码。</span></li>
+              <li><strong>自动识别部件笔画</strong><span>“前 3 笔属于忄”由作者人工指定。</span></li>
+              <li><strong>自动生成可靠字源</strong><span>当前是趣味联想，不能替代汉字学考据。</span></li>
+              <li><strong>批量生产与管理</strong><span>没有表格导入、任务队列、失败重试或资产库。</span></li>
+              <li><strong>网页编辑和 API</strong><span>它是源码工程，不是面向普通用户的产品。</span></li>
+            </ul>
+          </article>
+        </div>
+
+        <div class="mechanism reveal" aria-labelledby="mechanism-title">
+          <div class="mechanism-intro">
+            <p class="kicker">核心原理</p>
+            <h3 id="mechanism-title">声音决定时间，路径决定书写。</h3>
+            <p>
+              动画不是录屏，而是每一帧由代码计算。真正的结构数据和创意表达各司其职。
+            </p>
+          </div>
+          <ol class="mechanism-steps">
+            <li>
+              <span class="step-number">1</span>
+              <div><strong>读取 strokes / medians</strong><p>轮廓负责字形，中心线负责“写到哪里”。</p></div>
+            </li>
+            <li>
+              <span class="step-number">2</span>
+              <div><strong>SVG 描边＋轮廓裁剪</strong><p>用 dashoffset 扫过中心线，再裁剪到真实笔画形状。</p></div>
+            </li>
+            <li>
+              <span class="step-number">3</span>
+              <div><strong>人工笔画分组</strong><p>让不同部件平移，并交叉淡化成独立汉字。</p></div>
+            </li>
+            <li>
+              <span class="step-number">4</span>
+              <div><strong>TTS 词界＋音频时长</strong><p>生成字幕 JSON，并把真实音频长度转换为总帧数。</p></div>
+            </li>
+          </ol>
+        </div>
+      </section>
+
+      <section class="section section-tinted" id="scenarios">
+        <div class="section-shell">
+          <header class="section-heading reveal">
+            <p class="kicker">02 / 使用场景演示</p>
+            <h2>不只列方向，直接看六种场景怎样使用它。</h2>
+            <p>选择一个场景，查看它需要什么输入、能产出什么，以及目前还缺什么。网页预览用于说明产品形态，媒体按钮会直接播放从现有演示片裁出的对应证据短片。</p>
+          </header>
+
+          <div class="scenario-lab reveal" id="scenario-lab">
+            <div class="scenario-lab-topline">
+              <div>
+                <span>SCENARIO PLAYER / 06</span>
+                <strong>场景示例不是六个新产品，而是同一渲染底座的六种包装方式。</strong>
+              </div>
+              <div class="scenario-legend" aria-label="场景示例成熟度">
+                <span><i class="legend-real" aria-hidden="true"></i>真实媒体</span>
+                <span><i class="legend-concept" aria-hidden="true"></i>视觉概念</span>
+                <span><i class="legend-needed" aria-hidden="true"></i>需新增能力</span>
+              </div>
+            </div>
+
+            <div class="scenario-lab-layout">
+              <div class="scenario-tabs" role="tablist" aria-label="选择使用场景">
+                <button class="scenario-tab is-selected" id="scenario-tab-culture" type="button" role="tab" aria-selected="true" aria-controls="scenario-panel" data-scenario="culture">
+                  <span>01</span><strong>文化短视频</strong><small>当前最适合</small>
+                </button>
+                <button class="scenario-tab" id="scenario-tab-lesson" type="button" role="tab" aria-selected="false" aria-controls="scenario-panel" data-scenario="lesson" tabindex="-1">
+                  <span>02</span><strong>识字课件</strong><small>教学视觉</small>
+                </button>
+                <button class="scenario-tab" id="scenario-tab-gift" type="button" role="tab" aria-selected="false" aria-controls="scenario-panel" data-scenario="gift" tabindex="-1">
+                  <span>03</span><strong>祝福与品牌</strong><small>个性内容</small>
+                </button>
+                <button class="scenario-tab" id="scenario-tab-exhibit" type="button" role="tab" aria-selected="false" aria-controls="scenario-panel" data-scenario="exhibit" tabindex="-1">
+                  <span>04</span><strong>文化展陈</strong><small>来源审核</small>
+                </button>
+                <button class="scenario-tab" id="scenario-tab-family" type="button" role="tab" aria-selected="false" aria-controls="scenario-panel" data-scenario="family" tabindex="-1">
+                  <span>05</span><strong>字族内容</strong><small>系列课程</small>
+                </button>
+                <button class="scenario-tab" id="scenario-tab-practice" type="button" role="tab" aria-selected="false" aria-controls="scenario-panel" data-scenario="practice" tabindex="-1">
+                  <span>06</span><strong>互动跟写</strong><small>产品概念</small>
+                </button>
+              </div>
+
+              <article class="scenario-panel" id="scenario-panel" role="tabpanel" aria-labelledby="scenario-tab-culture">
+                <div class="scenario-panel-copy">
+                  <div class="scenario-panel-meta">
+                    <span class="scenario-maturity" id="scenario-maturity">真实成片已验证</span>
+                    <span id="scenario-audience">内容创作者 / 教师</span>
+                  </div>
+                  <p class="scenario-number" id="scenario-number">场景 01</p>
+                  <h3 id="scenario-title">“忙”字一字一条文化短视频</h3>
+                  <p class="scenario-description" id="scenario-description">把一个汉字、四句脚本、逐笔动画、趣味拆分、旁白和字幕组合成可直接发布的竖屏内容。</p>
+
+                  <dl class="scenario-io">
+                    <div><dt>输入</dt><dd id="scenario-input">“忙”＋四句文案＋音色</dd></div>
+                    <div><dt>输出</dt><dd id="scenario-output">12.78 秒 9:16 MP4</dd></div>
+                    <div><dt>仍需</dt><dd id="scenario-needed">批量选字、审核和栏目模板</dd></div>
+                  </dl>
+
+                  <div class="scenario-actions">
+                    <button class="scenario-preview-button" id="play-scenario-preview" type="button">
+                      <span aria-hidden="true">▶</span> 播放网页示例
+                    </button>
+                    <button class="scenario-proof-button" id="play-scenario-proof" type="button">
+                      查看真实视频证据 <span aria-hidden="true">↘</span>
+                    </button>
+                  </div>
+                  <p class="scenario-action-status" id="scenario-action-status" role="status" aria-live="polite">当前示例对应我们的“忙”字真实成片。</p>
+                </div>
+
+                <div class="scenario-preview" id="scenario-preview" data-scene="culture" aria-label="文化短视频网页示例">
+                  <div class="scenario-preview-head">
+                    <span id="scenario-preview-label">竖屏栏目样片</span>
+                    <span>00:<b id="scenario-preview-time">12</b></span>
+                  </div>
+                  <div class="scenario-canvas">
+                    <div class="scenario-grid-lines" aria-hidden="true"></div>
+                    <span class="scenario-canvas-kicker" id="scenario-canvas-kicker">今日汉字 / 忙</span>
+                    <div class="scenario-main-char" id="scenario-main-char">忙</div>
+                    <div class="scenario-components" id="scenario-components" aria-label="示例变化">忄＋亡 → 心＋亡</div>
+                    <p class="scenario-caption" id="scenario-caption">心有所向，虽忙不茫。</p>
+                    <div class="scenario-feedback" id="scenario-feedback">逐笔书写 · 拆分 · TTS · 字幕</div>
+                  </div>
+                  <div class="scenario-timeline" aria-hidden="true"><span></span></div>
+                  <div class="scenario-proof-media" id="scenario-proof-media" hidden>
+                    <video
+                      id="scenario-proof-video"
+                      controls
+                      playsinline
+                      preload="metadata"
+                      src="assets/mang-heart-direction.mp4"
+                      poster="assets/mang-poster.webp"
+                      aria-describedby="scenario-proof-caption"
+                    >
+                      当前浏览器无法播放场景证据视频。
+                    </video>
+                    <span id="scenario-proof-caption">真实媒体证据 · “忙”字完整成片</span>
+                  </div>
+                </div>
+              </article>
+            </div>
+
+            <p class="scenario-lab-boundary"><strong>演示边界：</strong><span id="scenario-boundary">这是现有“忙”字真实成片的网页缩略表达；趣味拆字仍需明确标注，不等于历史字源。</span></p>
+          </div>
+
+          <div class="scenario-grid" aria-label="六类使用场景总结">
+            <article class="scenario-card reveal"><span class="scenario-index">01</span><h3>文化短视频栏目</h3><p>一字一条，适合视频号、抖音、小红书和课程预热。</p><span class="fit">已有真实成片</span></article>
+            <article class="scenario-card reveal"><span class="scenario-index">02</span><h3>识字与对外汉语</h3><p>组合笔顺、拼音、结构标注和听说内容。</p><span class="fit">已有视觉效果</span></article>
+            <article class="scenario-card reveal"><span class="scenario-index">03</span><h3>祝福与品牌开场</h3><p>将姓名或品牌字包装成个性祝福卡和开场片。</p><span class="fit fit-concept">视觉概念</span></article>
+            <article class="scenario-card reveal"><span class="scenario-index">04</span><h3>文化机构展陈</h3><p>把结构动画用于展项、出版物二维码和轻科普。</p><span class="fit fit-caution">需要来源审核</span></article>
+            <article class="scenario-card reveal"><span class="scenario-index">05</span><h3>偏旁与字族内容</h3><p>比较清、情、晴、请等共享部件，形成系列课。</p><span class="fit">已有视觉效果</span></article>
+            <article class="scenario-card reveal"><span class="scenario-index">06</span><h3>互动跟写练习</h3><p>从示范路径延伸到用户笔迹、偏差和纠错反馈。</p><span class="fit fit-concept">界面概念</span></article>
+          </div>
+
+          <aside class="warning-note reveal">
+            <span class="warning-mark" aria-hidden="true">!</span>
+            <div>
+              <strong>关键内容边界</strong>
+              <p>“心里住进一个赖”是现代趣味联想，不是“懒”的历史造字本义。产品中应明确标注“趣味拆字”，并为严肃解释绑定权威来源。</p>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="section workbench-section" id="workbench">
+        <div class="section-shell">
+          <header class="workbench-heading reveal">
+            <div>
+              <p class="kicker">03 / 最小内容工作台</p>
+              <h2>选字、改文案、换模板，不改组件代码。</h2>
+            </div>
+            <p>网页负责配置和即时预览；同一份 JSON 目录也被独立 Remotion Composition 读取。右侧“明”字视频是配置驱动的真实成片，不是网页预览录屏。</p>
+          </header>
+
+          <div class="workbench-shell reveal">
+            <form class="workbench-controls" id="workbench-form" novalidate>
+              <div class="workbench-status" id="workbench-load-status" role="status" aria-live="polite">
+                <span aria-hidden="true"></span> 正在读取汉字配置目录
+              </div>
+
+              <label class="workbench-field">
+                <span>01 / 选择汉字</span>
+                <select id="workbench-character" name="character" disabled>
+                  <option>正在读取目录…</option>
+                </select>
+              </label>
+
+              <div class="workbench-field-row">
+                <label class="workbench-field">
+                  <span>02 / 使用场景</span>
+                  <select id="workbench-scene" name="scene" disabled><option>正在读取…</option></select>
+                </label>
+                <label class="workbench-field">
+                  <span>03 / 视觉模板</span>
+                  <select id="workbench-template" name="template" disabled><option>正在读取…</option></select>
+                </label>
+              </div>
+
+              <label class="workbench-field">
+                <span>04 / 视频标题</span>
+                <input id="workbench-title" name="title" type="text" maxlength="32" required disabled value="正在读取配置" />
+              </label>
+
+              <label class="workbench-field">
+                <span>05 / 核心文案</span>
+                <textarea id="workbench-caption" name="caption" rows="4" maxlength="60" required disabled>正在读取配置</textarea>
+              </label>
+
+              <label class="workbench-color-field">
+                <span><b>06 / 强调色</b><output id="workbench-color-value">#ff735f</output></span>
+                <input id="workbench-accent" name="accent" type="color" value="#ff735f" disabled />
+              </label>
+
+              <div class="workbench-actions">
+                <button id="reset-workbench" type="button" disabled>恢复目录默认值</button>
+                <button id="download-workbench-config" type="button" disabled>下载配置 JSON</button>
+              </div>
+              <button class="workbench-retry" id="retry-workbench-catalog" type="button" data-catalog-url="data/hanzi-workbench.json?v=1" hidden>重新读取目录</button>
+              <p class="workbench-form-status" id="workbench-form-status" role="status" aria-live="polite">配置加载后即可编辑。</p>
+            </form>
+
+            <div class="workbench-preview-column">
+              <div class="workbench-preview" id="workbench-preview" data-template="museum" aria-label="汉字内容即时预览">
+                <div class="workbench-preview-top">
+                  <span>LIVE CONFIG PREVIEW</span>
+                  <span id="workbench-preview-output">展屏循环 / 轻科普</span>
+                </div>
+                <div class="workbench-preview-body">
+                  <span class="workbench-preview-kicker" id="workbench-preview-kicker">结构与来源 / 文化展陈</span>
+                  <h3 id="workbench-preview-title">日月相映，看见一个“明”</h3>
+                  <div class="workbench-preview-paper">
+                    <span id="workbench-preview-pinyin">míng</span>
+                    <strong id="workbench-preview-character">明</strong>
+                    <small id="workbench-preview-decomposition">日＋月</small>
+                  </div>
+                  <p id="workbench-preview-caption">结构动画先给出可见关系，解释必须带来源。</p>
+                </div>
+                <div class="workbench-preview-foot">
+                  <span id="workbench-preview-scene">文化展陈</span>
+                  <span id="workbench-preview-template">展陈深蓝</span>
+                  <span id="workbench-preview-accent">#ff735f</span>
+                </div>
+              </div>
+
+              <div class="workbench-json-preview" aria-label="当前配置摘要">
+                <span>当前配置</span>
+                <code id="workbench-config-summary">明 · exhibit · museum · #ff735f</code>
+              </div>
+              <p class="workbench-boundary"><strong>能力边界：</strong>这里可以编辑和导出配置，但静态网页不能直接运行 Remotion。真实 MP4 仍需在本地或未来的渲染服务中生成。</p>
+            </div>
+
+            <aside class="workbench-result-card" aria-label="配置驱动真实样片">
+              <div class="workbench-result-heading">
+                <span>真实渲染证据</span>
+                <strong>配置目录中的“明”</strong>
+                <p>同一 Composition 读取字符、场景、模板、标题、文案和强调色。</p>
+              </div>
+              <div class="workbench-video-frame">
+                <video id="workbench-demo-video" controls playsinline preload="metadata" poster="assets/workbench-poster.webp" aria-describedby="workbench-video-status">
+                  <source src="assets/workbench-config-demo.mp4" type="video/mp4" />
+                  当前浏览器无法播放工作台样片。
+                </video>
+              </div>
+              <button id="play-workbench-demo" type="button"><span aria-hidden="true">▶</span> 播放配置样片</button>
+              <p id="workbench-video-status" role="status"><span aria-hidden="true"></span> 正在读取样片</p>
+              <dl class="workbench-proof">
+                <div><dt>目录字</dt><dd>5 个</dd></div>
+                <div><dt>模板</dt><dd>3 套</dd></div>
+                <div><dt>成片</dt><dd>8.55 秒</dd></div>
+              </dl>
+            </aside>
+          </div>
+
+          <div class="workbench-pipeline" aria-label="工作台与真实渲染关系">
+            <span>网页表单</span><i aria-hidden="true">→</i><span>配置 JSON</span><i aria-hidden="true">→</i><span>ConfigurableHanzi</span><i aria-hidden="true">→</i><span>9:16 MP4</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="section name-product-section" id="name-blessing">
+        <div class="section-shell">
+          <header class="name-product-heading reveal">
+            <div>
+              <p class="kicker">04 / 落地产品 · 姓名祝福生成器</p>
+              <h2>不是展示“会写字”，而是让一个名字拥有专属的高光时刻。</h2>
+            </div>
+            <div class="name-product-intro">
+              <span>可操作 MVP · REAL SAMPLE</span>
+              <p>输入姓名、选择祝福场景和视觉风格，编辑一句只属于对方的话。网页给出即时预览，右侧“沐阳”视频验证双字逐笔与绚丽成片。</p>
+            </div>
+          </header>
+
+          <div class="name-product-shell reveal">
+            <form class="name-product-form" id="name-blessing-form" novalidate>
+              <div class="name-product-status" id="name-product-load-status" role="status" aria-live="polite">
+                <span aria-hidden="true"></span> 正在读取祝福产品配置
+              </div>
+
+              <label class="name-field">
+                <span>01 / 姓名（2–4 个汉字）</span>
+                <input id="name-product-name" name="name" type="text" maxlength="4" autocomplete="off" required disabled value="沐阳" />
+              </label>
+
+              <div class="name-field-row">
+                <label class="name-field">
+                  <span>02 / 祝福场景</span>
+                  <select id="name-product-occasion" name="occasion" disabled><option>正在读取…</option></select>
+                </label>
+                <label class="name-field">
+                  <span>03 / 绚丽风格</span>
+                  <select id="name-product-style" name="style" disabled><option>正在读取…</option></select>
+                </label>
+              </div>
+
+              <label class="name-field">
+                <span>04 / 专属祝福</span>
+                <textarea id="name-product-blessing" name="blessing" rows="3" maxlength="30" required disabled>愿心有清泉，所行有光。</textarea>
+              </label>
+
+              <div class="name-field-row">
+                <label class="name-field">
+                  <span>05 / 署名</span>
+                  <input id="name-product-signature" name="signature" type="text" maxlength="20" required disabled value="赠予每一个闪闪发光的你" />
+                </label>
+                <label class="name-field">
+                  <span>06 / 纪念日期</span>
+                  <input id="name-product-date" name="date" type="text" maxlength="12" inputmode="numeric" disabled value="2026.08.30" />
+                </label>
+              </div>
+
+              <label class="name-color-field">
+                <span><b>07 / 高光颜色</b><output id="name-product-color-value">#f6d47a</output></span>
+                <input id="name-product-accent" name="accent" type="color" value="#f6d47a" disabled />
+              </label>
+
+              <div class="name-product-actions">
+                <button id="replay-name-preview" type="button" disabled><span aria-hidden="true">↻</span> 重播高光</button>
+                <button id="reset-name-product" type="button" disabled>恢复“沐阳”示例</button>
+                <button id="download-name-product" type="button" disabled>下载制作配置</button>
+              </div>
+              <button class="name-product-retry" id="retry-name-product" type="button" data-catalog-url="data/name-blessing.json?v=1" hidden>重新读取产品配置</button>
+              <p class="name-product-form-status" id="name-product-form-status" role="status" aria-live="polite">配置加载后即可编辑。</p>
+            </form>
+
+            <div class="name-preview-column">
+              <div class="name-preview is-playing" id="name-preview" data-style="aurora" aria-label="姓名祝福即时视觉预览">
+                <div class="name-preview-stars" id="name-preview-stars" aria-hidden="true"></div>
+                <div class="name-preview-orbit" aria-hidden="true"></div>
+                <div class="name-preview-topline">
+                  <span>NAME BLESSING · LIVE PREVIEW</span>
+                  <span id="name-preview-style">鎏金星河</span>
+                </div>
+                <div class="name-preview-content">
+                  <span class="name-preview-kicker" id="name-preview-kicker">为你的名字点亮这一岁</span>
+                  <p id="name-preview-title">为「沐阳」写一束专属的光</p>
+                  <div class="name-preview-characters" id="name-preview-characters" aria-label="姓名：沐阳"><span>沐</span><span>阳</span></div>
+                  <blockquote id="name-preview-blessing">愿心有清泉，所行有光。</blockquote>
+                </div>
+                <div class="name-preview-footer">
+                  <span id="name-preview-signature">赠予每一个闪闪发光的你</span>
+                  <span id="name-preview-date">2026.08.30</span>
+                </div>
+              </div>
+
+              <div class="name-preview-summary">
+                <span>本次制作配置</span>
+                <code id="name-product-config-summary">沐阳 · birthday · aurora · #f6d47a</code>
+              </div>
+              <p class="name-product-boundary"><strong>诚实边界：</strong>即时预览用网页字体表达任意 2–4 字姓名；右侧真实视频才使用“沐、阳”的逐笔路径。目录外姓名要补齐笔画数据与多字布局后才能真实渲染。</p>
+            </div>
+
+            <aside class="name-product-video-card" aria-label="姓名祝福真实样片">
+              <div class="name-product-video-heading">
+                <span>真实落地效果</span>
+                <strong>“沐阳”名字高光时刻</strong>
+                <p>双字真实笔画、部件分色、程序化星光、组合高光、祝福与署名。</p>
+              </div>
+              <div class="name-product-video-frame">
+                <video id="name-blessing-video" controls playsinline preload="metadata" poster="assets/name-blessing-poster.webp" aria-describedby="name-blessing-video-status">
+                  <source src="assets/name-blessing-muyang.mp4" type="video/mp4" />
+                  当前浏览器无法播放姓名祝福样片。
+                </video>
+              </div>
+              <button id="play-name-blessing" type="button"><span aria-hidden="true">▶</span> 播放“沐阳”真实样片</button>
+              <p id="name-blessing-video-status" role="status"><span class="name-video-dot" aria-hidden="true"></span> 正在读取样片</p>
+              <dl class="name-product-proof">
+                <div><dt>姓名</dt><dd>双字</dd></div>
+                <div><dt>路径</dt><dd>13 笔</dd></div>
+                <div><dt>成片</dt><dd>12.54 秒</dd></div>
+              </dl>
+            </aside>
+          </div>
+
+          <div class="name-product-flow" aria-label="姓名祝福产品闭环">
+            <span>姓名与纪念日</span><i aria-hidden="true">→</i><span>场景与绚丽模板</span><i aria-hidden="true">→</i><span>逐笔与祝福编排</span><i aria-hidden="true">→</i><span>下载 / 分享 / 赠送</span>
+          </div>
+
+          <div class="name-product-opportunities" aria-label="姓名祝福产品落地场景">
+            <article><span>01</span><strong>生日与新生</strong><p>一份有姓名、有日期、有专属文案的数字纪念礼物。</p></article>
+            <article><span>02</span><strong>婚礼双人姓名</strong><p>两个人的名字逐笔出现、交汇，成为请柬和大屏开场。</p></article>
+            <article><span>03</span><strong>节日批量祝福</strong><p>教师、社群和企业可用名单批量生成不同名字的祝福。</p></article>
+            <article><span>04</span><strong>品牌高光片头</strong><p>把品牌名、开业日期和视觉色组合成可复用的发布开场。</p></article>
+          </div>
+
+          <article class="wedding-case reveal" id="wedding-case" aria-labelledby="wedding-case-title">
+            <header class="wedding-case-heading">
+              <div>
+                <span class="wedding-case-badge">真实朋友案例 · 2026.09.12</span>
+                <p class="kicker">CASE 01 / 延安婚礼视觉项目</p>
+                <h3 id="wedding-case-title">张帅 × 董小姐<br /><em>两姓成礼 · 一字一生</em></h3>
+              </div>
+              <div class="wedding-case-lead">
+                <strong>把“姓名祝福”扩展成一套婚礼叙事，而不是只换两行名字。</strong>
+                <p>“张／董”用真实笔画入场，红线完成相遇，完整展示名、婚期和延安共同形成主视觉。先验证微信请帖，再复用到婚礼大屏与迎宾屏。</p>
+              </div>
+            </header>
+
+            <div class="wedding-case-layout">
+              <section class="wedding-story-controls" aria-label="婚礼分镜控制">
+                <div class="wedding-load-status" id="wedding-load-status" role="status" aria-live="polite">
+                  <span aria-hidden="true"></span> 正在读取婚礼项目配置
+                </div>
+
+                <dl class="wedding-facts">
+                  <div><dt>新人</dt><dd id="wedding-fact-couple">张帅 × 董小姐</dd></div>
+                  <div><dt>婚期</dt><dd id="wedding-fact-date">2026.09.12</dd></div>
+                  <div><dt>地点</dt><dd id="wedding-fact-location">延安</dd></div>
+                </dl>
+
+                <div class="wedding-format-control">
+                  <span>01 / 预览画幅</span>
+                  <div role="group" aria-label="选择婚礼预览画幅">
+                    <button type="button" data-wedding-format="portrait" aria-pressed="true">9:16 微信请帖</button>
+                    <button type="button" data-wedding-format="landscape" aria-pressed="false">16:9 婚礼大屏</button>
+                  </div>
+                </div>
+
+                <div class="wedding-scenes-label">02 / 五幕婚礼故事</div>
+                <div class="wedding-scene-tabs" id="wedding-scene-tabs" role="tablist" aria-label="婚礼五幕分镜">
+                  <button type="button" role="tab" aria-selected="true" data-wedding-stage="prologue"><span>01</span>延安序章</button>
+                  <button type="button" role="tab" aria-selected="false" data-wedding-stage="surnames"><span>02</span>两姓入场</button>
+                  <button type="button" role="tab" aria-selected="false" data-wedding-stage="meeting"><span>03</span>红线相遇</button>
+                  <button type="button" role="tab" aria-selected="false" data-wedding-stage="ceremony"><span>04</span>姓名成礼</button>
+                  <button type="button" role="tab" aria-selected="false" data-wedding-stage="finale"><span>05</span>祝福定格</button>
+                </div>
+
+                <div class="wedding-story-actions">
+                  <button id="play-wedding-storyboard" type="button"><span aria-hidden="true">▶</span> 播放五幕创意</button>
+                  <button id="pause-wedding-storyboard" type="button" disabled>暂停</button>
+                  <button id="replay-wedding-storyboard" type="button">从序章重播</button>
+                  <button id="download-wedding-project" type="button" disabled>下载婚礼制作配置</button>
+                </div>
+                <button class="wedding-project-retry" id="retry-wedding-project" type="button" data-catalog-url="data/wedding-zhangshuai-dong.json?v=3" hidden>重新读取婚礼项目配置</button>
+                <p class="wedding-story-status" id="wedding-story-status" role="status" aria-live="polite">配置加载后即可体验完整分镜。</p>
+
+                <p class="wedding-privacy-note"><strong>信息边界：</strong>上方基础案例只使用用户提供的“张帅、董小姐、9 月 12 日、延安”。下方完整交付包中的姓名、场地、时间、故事和联系方式均为醒目标注的模拟资料。</p>
+              </section>
+
+              <div class="wedding-stage-column">
+                <div class="wedding-stage is-portrait" id="wedding-stage" data-stage="prologue" role="tabpanel" aria-live="polite" aria-label="婚礼故事即时预览">
+                  <div class="wedding-stage-grain" aria-hidden="true"></div>
+                  <div class="wedding-stage-mountains" aria-hidden="true"><i></i><i></i><i></i></div>
+                  <div class="wedding-stage-topline"><span>WEDDING STORY · YAN'AN</span><span id="wedding-stage-format">9:16</span></div>
+                  <div class="wedding-stage-copy">
+                    <span id="wedding-stage-label">01 / 延安序章</span>
+                    <h4 id="wedding-stage-title">一场婚礼，从延安的九月开始</h4>
+                    <p id="wedding-stage-description">暖砂山形与一束金光先建立地点和时间，让宾客进入这段故事。</p>
+                  </div>
+                  <div class="wedding-stage-symbol" aria-hidden="true">
+                    <div class="wedding-stage-name wedding-stage-name-left"><b>张</b><small>张帅</small></div>
+                    <svg viewBox="0 0 420 150" preserveAspectRatio="none"><path d="M5 82C110 10 142 142 210 76C278 10 310 140 415 66" /></svg>
+                    <div class="wedding-stage-rings"><i></i><i></i></div>
+                    <div class="wedding-stage-name wedding-stage-name-right"><b>董</b><small>董小姐</small></div>
+                  </div>
+                  <div class="wedding-stage-finale">
+                    <strong>张帅 <i>×</i> 董小姐</strong>
+                    <blockquote id="wedding-stage-vow">从此长路并肩，四季共赴。</blockquote>
+                  </div>
+                  <div class="wedding-stage-footer"><span id="wedding-stage-date">2026.09.12</span><span id="wedding-stage-location">延安</span></div>
+                </div>
+                <div class="wedding-stage-caption"><span id="wedding-stage-progress">第 1 幕，共 5 幕</span><strong id="wedding-stage-caption-title">延安序章</strong></div>
+              </div>
+            </div>
+
+            <div class="wedding-real-output">
+              <div class="wedding-output-copy">
+                <span>REAL OUTPUT / 真实成片</span>
+                <h4>不是概念图：我们把“张／董”真实笔画渲染成了婚礼请帖样片。</h4>
+                <p>竖版样片用于微信分享；同一份配置可以进一步渲染 16:9 酒店大屏。红线相遇是视觉叙事，不作为汉字字源解释。</p>
+                <dl>
+                  <div><dt>真实路径</dt><dd>张／董</dd></div>
+                  <div><dt>画幅</dt><dd>1080 × 1920</dd></div>
+                  <div><dt>时长</dt><dd>20 秒</dd></div>
+                </dl>
+              </div>
+              <aside class="wedding-video-card" aria-label="张帅和董小姐婚礼真实样片">
+                <div class="wedding-video-frame">
+                  <video id="wedding-story-video" controls playsinline preload="metadata" poster="assets/wedding-zhangshuai-dong-poster.webp" aria-describedby="wedding-story-video-status">
+                    <source src="assets/wedding-zhangshuai-dong.mp4" type="video/mp4" />
+                    当前浏览器无法播放婚礼样片。
+                  </video>
+                </div>
+                <button id="play-wedding-story-video" type="button"><span aria-hidden="true">▶</span> 播放婚礼真实样片</button>
+                <p id="wedding-story-video-status" role="status"><span class="wedding-video-dot" aria-hidden="true"></span> 正在读取婚礼样片</p>
+              </aside>
+            </div>
+
+            <div class="wedding-delivery-pack" aria-label="婚礼项目三端交付包">
+              <article><span>01 / SCREEN</span><strong>婚礼大屏开场</strong><p>16:9 横版，强化双方姓名、婚期和仪式倒计时；适合酒店 LED 与开场转场。</p><small>已补全：25 秒 1920 × 1080 真实成片</small></article>
+              <article><span>02 / INVITATION</span><strong>微信动态请帖</strong><p>9:16 竖版，当前真实样片已经覆盖；继续加入故事照片、导航信息与 RSVP。</p><small>已补全：可替换资料与本地回执交互</small></article>
+              <article><span>03 / WELCOME</span><strong>迎宾屏与回礼</strong><p>4:5 海报定格，并可批量生成宾客姓名感谢短片，形成婚后数字回礼。</p><small>已补全：1080 × 1350 可下载海报</small></article>
+            </div>
+
+            <section class="wedding-complete-pack" id="wedding-complete-pack" aria-labelledby="wedding-complete-title">
+              <header class="wedding-complete-heading">
+                <div>
+                  <span>SIMULATION / COMPLETE DELIVERY DEMO</span>
+                  <h4 id="wedding-complete-title">把缺失资料补成一份<em>可替换的完整请帖</em></h4>
+                </div>
+                <p>以下内容模拟了一次从线上邀请、现场大屏到迎宾海报的完整交付。它用于验证产品形态，不代表新人的真实姓名、经历或婚礼安排。</p>
+              </header>
+
+              <div class="wedding-simulation-warning" role="note">
+                <strong>演示资料，正式使用前必须由新人确认</strong>
+                <span>董雅宁、11:58、山河礼宴厅、地址、电话与三段故事均由我们模拟；三张照片为同一对虚构成年人的 AI 生成素材，不指向或冒充任何真人。</span>
+              </div>
+
+              <div class="wedding-complete-grid">
+                <article class="sim-invitation" aria-label="模拟照片版动态婚礼请帖">
+                  <div class="sim-invitation-topline"><span>DYNAMIC INVITATION</span><b>距离良辰 <i id="sim-countdown">13</i> 天</b></div>
+                  <div class="sim-invitation-title">
+                    <small>两姓成礼 · 一字一生</small>
+                    <h5><span id="sim-groom-name">张帅</span><i>×</i><span id="sim-bride-name">董雅宁</span></h5>
+                    <p>新娘完整姓名为模拟值</p>
+                  </div>
+
+                  <div class="sim-photo-story" aria-label="三张模拟照片占位">
+                    <article data-sim-photo="0"><span>AI SIMULATED PHOTO 01</span><img src="assets/wedding-ai/01-first-meet.webp" alt="虚构成年新人在延安风格的秋日山谷相遇，AI 模拟素材" width="720" height="900" loading="lazy" /><div aria-hidden="true"><i></i><i></i></div><strong>秋日初见</strong><small>AI 生成虚构人物 · 不代表真实新人照片</small></article>
+                    <article data-sim-photo="1"><span>AI SIMULATED PHOTO 02</span><img src="assets/wedding-ai/02-together.webp" alt="同一对虚构成年新人并肩走在延安风格的金色山路上，AI 模拟素材" width="720" height="900" loading="lazy" /><div aria-hidden="true"><i></i><i></i></div><strong>山河同行</strong><small>AI 生成虚构人物 · 正式版替换授权照片</small></article>
+                    <article data-sim-photo="2"><span>AI SIMULATED PHOTO 03</span><img src="assets/wedding-ai/03-promise.webp" alt="同一对虚构成年新人在酒红背景前分享戒指盒，AI 模拟素材" width="720" height="900" loading="lazy" /><div aria-hidden="true"><i></i><i></i></div><strong>良辰约定</strong><small>AI 生成虚构人物 · 不生成或识别真人身份</small></article>
+                  </div>
+
+                  <dl class="sim-event-facts">
+                    <div><dt>良辰</dt><dd><span id="sim-date">2026.09.12</span> · <span id="sim-time">11:58</span></dd></div>
+                    <div><dt>场地</dt><dd id="sim-venue">延安 · 山河礼宴厅（演示场地）</dd></div>
+                    <div><dt>地址</dt><dd id="sim-address">宝塔区婚礼演示地址（请替换）</dd></div>
+                    <div><dt>着装</dt><dd id="sim-dress">暖金 / 酒红</dd></div>
+                  </dl>
+
+                  <ol class="sim-timeline" aria-label="模拟恋爱时间线">
+                    <li><time id="sim-timeline-date-0">2021.09</time><div><strong id="sim-timeline-title-0">初见</strong><p id="sim-timeline-copy-0">在朋友的秋日聚会里相遇。此段为演示故事，请替换为真实经历。</p></div></li>
+                    <li><time id="sim-timeline-date-1">2023.05</time><div><strong id="sim-timeline-title-1">并肩</strong><p id="sim-timeline-copy-1">从一次同行，走成许多次共同决定。此段为演示故事。</p></div></li>
+                    <li><time id="sim-timeline-date-2">2026.09</time><div><strong id="sim-timeline-title-2">成礼</strong><p id="sim-timeline-copy-2">在延安，把往后的四季写进同一天。日期来自当前演示假设。</p></div></li>
+                  </ol>
+
+                  <footer><span>礼仪咨询（演示）</span><strong id="sim-contact">138 **** 0912</strong></footer>
+                </article>
+
+                <aside class="wedding-screen-output" aria-label="婚礼大屏真实横版成片">
+                  <header><span>REAL 16:9 OUTPUT</span><strong>酒店大屏开场片</strong><p>真实笔画、三张 AI 虚构人物照片、婚礼信息和常驻 DEMO 标识已渲染进 25 秒 MP4。</p></header>
+                  <div class="wedding-screen-frame">
+                    <video id="wedding-screen-video" controls playsinline preload="metadata" poster="assets/wedding-zhangshuai-dong-screen-poster.webp" aria-describedby="wedding-screen-video-status">
+                      <source src="assets/wedding-zhangshuai-dong-screen.mp4" type="video/mp4" />
+                      当前浏览器无法播放婚礼大屏成片。
+                    </video>
+                  </div>
+                  <button id="play-wedding-screen-video" type="button"><span aria-hidden="true">▶</span> 播放 16:9 大屏成片</button>
+                  <p id="wedding-screen-video-status" role="status"><span class="wedding-screen-video-dot" aria-hidden="true"></span> 正在读取大屏成片</p>
+                  <dl><div><dt>画布</dt><dd>1920 × 1080</dd></div><div><dt>时长</dt><dd>25 秒</dd></div><div><dt>笔画</dt><dd>张／董</dd></div></dl>
+                  <a href="assets/wedding-zhangshuai-dong-screen.mp4" download>下载大屏 MP4</a>
+                </aside>
+              </div>
+
+              <div class="wedding-welcome-rsvp">
+                <article class="wedding-welcome-card">
+                  <header><span>DOWNLOADABLE 4:5 STILL</span><strong>迎宾屏 / 签到立牌</strong><p>1080 × 1350 静态交付，文件内也保留模拟资料标识。</p></header>
+                  <figure>
+                    <img id="wedding-welcome-image" src="assets/wedding-welcome-demo.webp" alt="张帅与模拟姓名董雅宁的酒红金色婚礼迎宾海报，顶部标注演示资料" width="1080" height="1350" loading="lazy" />
+                    <figcaption>AI 生成的虚构成年人物，不是新人本人或真人合成照片。</figcaption>
+                  </figure>
+                  <a class="wedding-download-link" href="assets/wedding-welcome-demo.png" download>下载高清迎宾海报 PNG</a>
+                </article>
+
+                <section class="wedding-rsvp-card" aria-labelledby="wedding-rsvp-title">
+                  <header><span>LOCAL RSVP PROTOTYPE</span><strong id="wedding-rsvp-title">模拟宾客回执</strong><p>只在当前页面生成确认结果，不联网、不发送、不保存。</p></header>
+                  <form id="wedding-rsvp" novalidate>
+                    <label for="rsvp-name">您的称呼</label>
+                    <input id="rsvp-name" name="guestName" type="text" autocomplete="name" maxlength="24" placeholder="例如：王明" aria-describedby="rsvp-name-hint" />
+                    <small id="rsvp-name-hint">演示时可填写任意测试称呼。</small>
+
+                    <fieldset id="rsvp-attendance-group">
+                      <legend>是否到场</legend>
+                      <label><input type="radio" name="attendance" value="yes" /> 欣然赴约</label>
+                      <label><input type="radio" name="attendance" value="no" /> 遥寄祝福</label>
+                    </fieldset>
+
+                    <label for="rsvp-party-size">到场人数</label>
+                    <select id="rsvp-party-size" name="partySize"><option value="1">1 位</option><option value="2">2 位</option><option value="3">3 位</option><option value="4">4 位</option></select>
+
+                    <label for="rsvp-blessing">给新人的祝福 <span>选填</span></label>
+                    <textarea id="rsvp-blessing" name="blessing" rows="3" maxlength="120" placeholder="愿长路并肩，四季共赴。"></textarea>
+
+                    <div class="wedding-rsvp-actions"><button type="submit">生成本地回执</button><button id="reset-wedding-rsvp" type="reset">重新填写</button></div>
+                    <p id="wedding-rsvp-status" role="status" aria-live="polite">请选择是否到场并填写称呼。</p>
+                  </form>
+                  <div class="wedding-rsvp-result" id="wedding-rsvp-result" tabindex="-1" hidden>
+                    <span>LOCAL DEMO RECEIPT</span><strong id="wedding-rsvp-result-title">回执已生成</strong><p id="wedding-rsvp-result-copy"></p><small>仅本页模拟，未发送或保存。</small>
+                  </div>
+                </section>
+              </div>
+
+              <div class="wedding-replace-checklist" aria-label="正式交付前替换清单">
+                <span>正式发布前替换清单</span>
+                <ul><li>新娘完整姓名与称谓</li><li>准确仪式时间、酒店与地址</li><li>授权照片及两人真实故事</li><li>联系电话、导航和 RSVP 接收端</li><li>现场屏幕参数与音乐授权</li></ul>
+              </div>
+
+              <section class="wedding-asset-exploration" id="wedding-asset-exploration" aria-labelledby="wedding-assets-title">
+                <header>
+                  <div><span>R10 / COMPLETE SAMPLE EXPLORATION</span><h5 id="wedding-assets-title">从一对虚构人物，探索一套<em>一致的婚礼素材链</em></h5></div>
+                  <p>先生成身份锚点，再延展同行与约定，最后把同一视觉系统消费到动态请帖、横版大屏和 4:5 迎宾海报。素材只验证生产方法，不用于代替新人授权照片。</p>
+                </header>
+
+                <div class="wedding-asset-gallery" aria-label="AI 模拟婚礼故事素材">
+                  <figure>
+                    <div><img src="assets/wedding-ai/01-first-meet.webp" alt="虚构成年新人在秋日山谷相遇" width="720" height="900" loading="lazy" /><span>AI SIMULATED / 01</span></div>
+                    <figcaption><strong>秋日初见</strong><p>身份与色彩锚点：暖白服装、酒红围巾、延安风格山谷。</p><a href="assets/wedding-ai/01-first-meet.png" download>下载源图 PNG</a></figcaption>
+                  </figure>
+                  <figure>
+                    <div><img src="assets/wedding-ai/02-together.webp" alt="同一对虚构成年新人并肩走在金色山路" width="720" height="900" loading="lazy" /><span>AI SIMULATED / 02</span></div>
+                    <figcaption><strong>山河同行</strong><p>连续性测试：保持人物、服装和色彩，改变机位与叙事动作。</p><a href="assets/wedding-ai/02-together.png" download>下载源图 PNG</a></figcaption>
+                  </figure>
+                  <figure>
+                    <div><img src="assets/wedding-ai/03-promise.webp" alt="同一对虚构成年新人分享戒指盒" width="720" height="900" loading="lazy" /><span>AI SIMULATED / 03</span></div>
+                    <figcaption><strong>良辰约定</strong><p>仪式高潮测试：酒红背景与戒指细节适配请帖收束和迎宾海报。</p><a href="assets/wedding-ai/03-promise.png" download>下载源图 PNG</a></figcaption>
+                  </figure>
+                </div>
+
+                <div class="wedding-exploration-result">
+                  <article><span>01 / 生成策略</span><strong>身份锚点 → 连续场景</strong><p>先确定完全虚构的成年人物，再用参考图约束后两张，降低三张照片像三个项目的割裂感。</p></article>
+                  <article><span>02 / 多端消费</span><strong>一套素材，三个画幅</strong><p>同一批图片进入网页请帖、1920×1080 大屏片与 1080×1350 迎宾海报，减少重复制作。</p></article>
+                  <article><span>03 / 诚实边界</span><strong>AI 标签与替换规则</strong><p>图片、配置、成片和下载素材同时标注模拟身份；正式版必须替换新人授权照片。</p></article>
+                  <article><span>04 / 产品结论</span><strong>可卖的是交付闭环</strong><p>笔画形成独特开场，照片承担情绪故事，三端成品和现场保障才组成完整服务。</p></article>
+                </div>
+
+                <div class="wedding-asset-actions">
+                  <a href="data/wedding-sample-delivery.json" download>下载完整样例素材清单 JSON</a>
+                  <a href="assets/wedding-zhangshuai-dong-screen.mp4" download>下载照片版大屏成片</a>
+                  <a href="assets/wedding-welcome-demo.png" download>下载照片版迎宾海报</a>
+                </div>
+              </section>
+            </section>
+          </article>
+        </div>
+      </section>
+
+      <section class="section effects-lab-section" id="effects-lab">
+        <div class="section-shell">
+          <header class="effects-lab-heading reveal">
+            <div>
+              <p class="kicker">05 / 扩展效果实验室</p>
+              <h2>这些扩展，不只停留在建议里。</h2>
+            </div>
+            <p>我们又渲染了一条 31.59 秒的综合实验片，把可直接实现的表现效果和仍需产品化的方向放在同一条时间轴里。</p>
+          </header>
+
+          <div class="effects-lab-layout">
+            <div class="effects-lab-copy reveal">
+              <div class="effects-verdict">
+                <span>第三次验证</span>
+                <strong>笔画路径可以成为视觉效果、教学标注、结构动画和字族内容的共同底座。</strong>
+                <p>互动识别、透明导出和批量生产仍只是界面或输出概念，视频中已用红色“概念验证”明确标注。</p>
+              </div>
+
+              <button class="effects-play-button" id="play-effects-demo" type="button">
+                <span aria-hidden="true">▶</span> 播放扩展效果实验室
+              </button>
+
+              <div class="effect-capability-grid" aria-label="扩展能力成熟度">
+                <article>
+                  <span class="effect-status effect-status-demo">已演示</span>
+                  <h3>笔顺教学</h3>
+                  <p>田字格、笔画编号、当前笔高亮和方向光标。</p>
+                </article>
+                <article>
+                  <span class="effect-status effect-status-demo">已演示</span>
+                  <h3>书写质感</h3>
+                  <p>同一“永”字路径切换墨迹、粉笔和霓虹表现层。</p>
+                </article>
+                <article>
+                  <span class="effect-status effect-status-demo">已演示</span>
+                  <h3>部件动画</h3>
+                  <p>“明”的日、月分色拆开，再以缓动磁吸组合。</p>
+                </article>
+                <article>
+                  <span class="effect-status effect-status-demo">已演示</span>
+                  <h3>字族比较</h3>
+                  <p>清、情、晴、请共享青声旁，不同形旁分色比较。</p>
+                </article>
+                <article>
+                  <span class="effect-status effect-status-demo">已演示</span>
+                  <h3>声音设计</h3>
+                  <p>六段小晓旁白、逐段字幕和程序化背景音乐同步。</p>
+                </article>
+                <article>
+                  <span class="effect-status effect-status-concept">概念验证</span>
+                  <h3>互动跟写</h3>
+                  <p>演示路径跟随和反馈界面；尚无真实笔迹输入与识别。</p>
+                </article>
+                <article>
+                  <span class="effect-status effect-status-concept">概念验证</span>
+                  <h3>多场景输出</h3>
+                  <p>演示 9:16、16:9 和透明素材形态；尚无批量导出队列。</p>
+                </article>
+                <article>
+                  <span class="effect-status effect-status-product">待产品化</span>
+                  <h3>字形演变</h3>
+                  <p>需要可靠古文字数据、来源版本和专家审核后再做。</p>
+                </article>
+              </div>
+            </div>
+
+            <div class="effects-video-stage reveal" aria-label="扩展效果实验室视频">
+              <div class="effects-stage-note">六段效果 · 真实渲染</div>
+              <div class="effects-phone-frame">
+                <video
+                  id="effects-demo-video"
+                  controls
+                  playsinline
+                  preload="metadata"
+                  poster="assets/effects-poster.webp"
+                  aria-describedby="effects-video-caption"
+                >
+                  <source src="assets/hanzi-effects-lab.mp4" type="video/mp4" />
+                  当前浏览器无法播放 MP4。你可以
+                  <a href="assets/hanzi-effects-lab.mp4" download>下载效果实验室视频</a>查看。
+                </video>
+              </div>
+              <div class="effects-video-meta" id="effects-video-caption">
+                <span id="effects-video-status"><span class="effects-status-dot" aria-hidden="true"></span> 正在读取视频</span>
+                <a href="assets/hanzi-effects-lab.mp4" download>下载 MP4</a>
+              </div>
+              <dl class="effects-proof" aria-label="扩展视频验证数据">
+                <div><dt>章节</dt><dd>6 段</dd></div>
+                <div><dt>时长</dt><dd>31.59 秒</dd></div>
+                <div><dt>实际帧数</dt><dd>946 帧</dd></div>
+              </dl>
+            </div>
+          </div>
+
+          <aside class="effects-boundary-note reveal">
+            <strong>成熟度不是一个状态。</strong>
+            <p><span>已演示</span>表示本项目已有真实媒体证据；<span>概念验证</span>表示仅做了前端视觉形态；<span>待产品化</span>表示还需要数据、后端或审核系统。</p>
+          </aside>
+        </div>
+      </section>
+
+      <section class="section section-shell" id="extension">
+        <header class="section-heading reveal">
+          <p class="kicker">06 / 技术扩展</p>
+          <h2>从单字样片，到数据驱动的视频引擎。</h2>
+          <p>优先解决重复劳动，再解决规模和视觉丰富度。</p>
+        </header>
+
+        <div class="roadmap" role="list">
+          <article class="roadmap-item reveal" role="listitem">
+            <div class="roadmap-phase"><span>P0</span><strong>配置化</strong></div>
+            <div class="roadmap-copy">
+              <h3>换字不再改源码</h3>
+              <p>将汉字、旁白、字幕、笔画分组、布局、配色和音色提取为 JSON Schema。</p>
+              <ul><li>统一配置文件</li><li>参数校验</li><li>模板预设</li></ul>
+            </div>
+            <span class="roadmap-value">降低单条制作成本</span>
+          </article>
+          <article class="roadmap-item reveal" role="listitem">
+            <div class="roadmap-phase"><span>P1</span><strong>结构化</strong></div>
+            <div class="roadmap-copy">
+              <h3>建立汉字部件数据层</h3>
+              <p>整合拆字数据，自动计算部件包围盒和建议布局，同时保留人工覆盖。</p>
+              <ul><li>笔画归属</li><li>结构类型</li><li>异常回退</li></ul>
+            </div>
+            <span class="roadmap-value">形成核心数据资产</span>
+          </article>
+          <article class="roadmap-item reveal" role="listitem">
+            <div class="roadmap-phase"><span>P2</span><strong>生产化</strong></div>
+            <div class="roadmap-copy">
+              <h3>让一批内容稳定出片</h3>
+              <p>支持表格导入、音频缓存、并行渲染、失败重试、多画幅和封面输出。</p>
+              <ul><li>批量任务</li><li>资产管理</li><li>云端渲染</li></ul>
+            </div>
+            <span class="roadmap-value">获得内容规模效应</span>
+          </article>
+          <article class="roadmap-item reveal" role="listitem">
+            <div class="roadmap-phase"><span>P3</span><strong>可信化</strong></div>
+            <div class="roadmap-copy">
+              <h3>把质量检查写进流程</h3>
+              <p>增加字源来源、文案审核、音量标准、缺失素材检查和视觉回归测试。</p>
+              <ul><li>来源字段</li><li>审核状态</li><li>自动 QA</li></ul>
+            </div>
+            <span class="roadmap-value">从能用走向可交付</span>
+          </article>
+        </div>
+      </section>
+
+      <section class="section product-section" id="products">
+        <div class="section-shell">
+          <header class="section-heading reveal">
+            <p class="kicker">07 / 可扩展产品方向</p>
+            <h2>代码不是壁垒，内容数据和生产闭环才是。</h2>
+            <p>同一技术内核可以长成五类产品；本次已经把“姓名祝福”从方向清单推进为可操作 MVP。</p>
+          </header>
+
+          <div class="product-grid">
+            <details class="product-card reveal" open>
+              <summary>
+                <span class="product-tag">已构建 MVP · 消费产品</span>
+                <strong>姓名祝福视频生成器</strong>
+                <span class="summary-icon" aria-hidden="true"></span>
+              </summary>
+              <div class="product-body">
+                <p>输入姓名、纪念日和一句祝福，选择绚丽风格，生成可赠送、可分享的专属视频。</p>
+                <dl><div><dt>用户</dt><dd>个人、婚礼／生日服务商、企业 HR</dd></div><div><dt>收费</dt><dd>单次付费＋模板包＋企业批量</dd></div></dl>
+              </div>
+            </details>
+            <details class="product-card reveal">
+              <summary>
+                <span class="product-tag">生产底座</span>
+                <strong>汉字短视频工作台</strong>
+                <span class="summary-icon" aria-hidden="true"></span>
+              </summary>
+              <div class="product-body">
+                <p>选字、写文案、预览拆分、调节音色与模板，为单次订单和名单批量出片提供生产能力。</p>
+                <dl><div><dt>用户</dt><dd>文化博主、MCN、教师、服务商</dd></div><div><dt>收费</dt><dd>订阅＋渲染额度</dd></div></dl>
+              </div>
+            </details>
+            <details class="product-card reveal">
+              <summary>
+                <span class="product-tag">教育产品</span>
+                <strong>互动识字与笔顺课件</strong>
+                <span class="summary-icon" aria-hidden="true"></span>
+              </summary>
+              <div class="product-body">
+                <p>把视频时间轴变成交互时间轴，支持跟写、笔顺纠错、部件拼合和课堂投屏。</p>
+                <dl><div><dt>用户</dt><dd>学校、培训机构、家庭</dd></div><div><dt>收费</dt><dd>课程包＋机构授权</dd></div></dl>
+              </div>
+            </details>
+            <details class="product-card reveal">
+              <summary>
+                <span class="product-tag">基础设施</span>
+                <strong>汉字动画 API / SDK</strong>
+                <span class="summary-icon" aria-hidden="true"></span>
+              </summary>
+              <div class="product-body">
+                <p>向教育 App、内容平台和营销系统提供 SVG 动画、透明视频或完整 MP4。</p>
+                <dl><div><dt>用户</dt><dd>开发团队与内容平台</dd></div><div><dt>收费</dt><dd>调用量＋企业授权</dd></div></dl>
+              </div>
+            </details>
+            <details class="product-card reveal">
+              <summary>
+                <span class="product-tag">数据资产</span>
+                <strong>可信汉字知识库</strong>
+                <span class="summary-icon" aria-hidden="true"></span>
+              </summary>
+              <div class="product-body">
+                <p>沉淀笔画、部件、字源、常见误解、趣味联想和可视化脚本，并保留来源链。</p>
+                <dl><div><dt>用户</dt><dd>教育、出版、文化机构</dd></div><div><dt>收费</dt><dd>数据许可＋定制服务</dd></div></dl>
+              </div>
+            </details>
+          </div>
+
+          <div class="moat reveal">
+            <p class="kicker">真正的护城河</p>
+            <div class="moat-list">
+              <span>高质量部件标注</span>
+              <span>可信来源链</span>
+              <span>好文案与审核体系</span>
+              <span>自动布局与 QA</span>
+              <span>内容效果数据</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section-shell decision-section" id="decision">
+        <header class="section-heading reveal">
+          <p class="kicker">08 / 对我们的意义</p>
+          <h2>先用姓名祝福验证分享与付费，再把工作台升级为生产底座。</h2>
+          <p>普通用户购买的不是笔画技术，而是个性化、情绪价值和仪式感；真正的长期壁垒仍来自字符覆盖、模板质量、渲染成功率和使用反馈。</p>
+        </header>
+        <div class="decision-grid">
+          <article class="decision-card reveal">
+            <span class="decision-state decision-go">近期目标</span>
+            <h3>姓名祝福视频 MVP</h3>
+            <p>用生日、婚礼、新生和品牌纪念验证配置完成率、重播率、分享意愿和付费意愿。</p>
+          </article>
+          <article class="decision-card reveal">
+            <span class="decision-state decision-build">中期资产</span>
+            <h3>姓名字库与生产工作台</h3>
+            <p>积累高频姓名字路径、多字布局、授权模板，并接入真实渲染任务和批量名单。</p>
+          </article>
+          <article class="decision-card reveal">
+            <span class="decision-state decision-stop">现在不做</span>
+            <h3>完整教育 App 或全功能 SaaS</h3>
+            <p>当前没有支付、订单、隐私存储、长尾字覆盖、批量任务、课程体系或生产级 QA。</p>
+          </article>
+        </div>
+        <div class="meaning-path reveal" aria-label="建议产品演进路线">
+          <span>前台：姓名祝福商品</span><i aria-hidden="true">→</i>
+          <span>后台：内容工作台＋渲染队列</span><i aria-hidden="true">→</i>
+          <span>扩展：企业批量／动画 API／教育</span>
+        </div>
+      </section>
+
+      <section class="section evidence-section">
+        <div class="section-shell evidence-grid">
+          <div class="reveal">
+            <p class="kicker">实验依据</p>
+            <h2>不是看 README 得出的结论。</h2>
+            <p>本页对应固定上游提交、我们的六个补充视频 Composition、一个迎宾 Still 与三张 AI 虚构人物故事素材，已在 Windows 环境完成依赖安装、Edge TTS、类型检查、Remotion 渲染、ffprobe 检查和二十四份视觉证据。</p>
+          </div>
+          <dl class="evidence-list reveal">
+            <div><dt>上游提交</dt><dd><code>53e69d14aff1</code></dd></div>
+            <div><dt>视频 Composition</dt><dd>7 个</dd></div>
+            <div><dt>实际帧数</dt><dd>3,622 帧</dd></div>
+            <div><dt>实际文件</dt><dd>七条主片约 15.59 MB</dd></div>
+            <div><dt>视觉证据</dt><dd>24 份</dd></div>
+            <div><dt>代码检查</dt><dd>ESLint ＋ TypeScript 通过</dd></div>
+          </dl>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="section-shell footer-inner">
+        <div>
+          <strong>汉字拆字视频能力演示</strong>
+          <p>研究结论针对固定提交；趣味拆字不等于历史字源。</p>
+        </div>
+        <div class="footer-links">
+          <a href="https://github.com/Mr-funny/hbg-hanzi-chaizi-video" target="_blank" rel="noreferrer">上游项目</a>
+          <a href="https://github.com/yydshly/0830_codex_project/tree/main/projects/hanzi-chaizi-video-demo" target="_blank" rel="noreferrer">研究记录</a>
+          <a href="#top">回到顶部 ↑</a>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

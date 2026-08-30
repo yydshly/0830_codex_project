@@ -1,0 +1,47 @@
+{
+  "backend": "edge-tts",
+  "voice": "zh-CN-XiaoxiaoNeural",
+  "rate": "-5%",
+  "audioFile": "audio/effects-narration.wav",
+  "bgmFile": "audio/effects-background.mp3",
+  "audioDuration": 31.512,
+  "videoDuration": 31.512,
+  "segments": [
+    {
+      "index": 0,
+      "text": "笔顺教学：数字、方向和田字格",
+      "startMs": 0,
+      "endMs": 4968
+    },
+    {
+      "index": 1,
+      "text": "书写质感：墨迹、粉笔与霓虹",
+      "startMs": 4968,
+      "endMs": 10416
+    },
+    {
+      "index": 2,
+      "text": "结构动画：部件拆开，再磁吸组合",
+      "startMs": 10416,
+      "endMs": 14472
+    },
+    {
+      "index": 3,
+      "text": "字族比较：相同声旁，不同形旁",
+      "startMs": 14472,
+      "endMs": 18864
+    },
+    {
+      "index": 4,
+      "text": "互动跟写：这是界面概念验证",
+      "startMs": 18864,
+      "endMs": 24840
+    },
+    {
+      "index": 5,
+      "text": "多种输出：短视频、课件与透明素材",
+      "startMs": 24840,
+      "endMs": 31512
+    }
+  ]
+}

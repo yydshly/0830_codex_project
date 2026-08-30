@@ -1,0 +1,74 @@
+{
+  "version": 1,
+  "supportedCharacters": ["沐", "阳"],
+  "occasions": [
+    {
+      "id": "birthday",
+      "label": "生日纪念",
+      "kicker": "为你的名字点亮这一岁",
+      "defaultBlessing": "愿心有清泉，所行有光。"
+    },
+    {
+      "id": "wedding",
+      "label": "婚礼祝福",
+      "kicker": "两个人的名字，一段共同的路",
+      "defaultBlessing": "愿并肩看尽山河，共赴长久。"
+    },
+    {
+      "id": "newborn",
+      "label": "新生纪念",
+      "kicker": "欢迎你的名字来到这个世界",
+      "defaultBlessing": "愿一生有爱，眼里有光。"
+    },
+    {
+      "id": "brand",
+      "label": "开业与品牌",
+      "kicker": "让品牌的名字拥有第一束光",
+      "defaultBlessing": "愿一路生长，所向皆成。"
+    }
+  ],
+  "styles": [
+    {
+      "id": "aurora",
+      "label": "鎏金星河",
+      "background": "#080d28",
+      "surface": "#121a3f",
+      "ink": "#fff7dc",
+      "muted": "#a8b4dc",
+      "primary": "#f6d47a",
+      "secondary": "#8dd9ff",
+      "accent": "#ff6f91"
+    },
+    {
+      "id": "ink",
+      "label": "水墨流光",
+      "background": "#e8eee9",
+      "surface": "#f8faf5",
+      "ink": "#112c2d",
+      "muted": "#607677",
+      "primary": "#196f73",
+      "secondary": "#81b8a9",
+      "accent": "#d9634c"
+    },
+    {
+      "id": "fireworks",
+      "label": "烟火绮梦",
+      "background": "#200824",
+      "surface": "#35103a",
+      "ink": "#fff0f7",
+      "muted": "#d5a9ca",
+      "primary": "#ffcb6b",
+      "secondary": "#ff7eb6",
+      "accent": "#8ee3ef"
+    }
+  ],
+  "sample": {
+    "name": "沐阳",
+    "occasion": "birthday",
+    "style": "aurora",
+    "blessing": "愿心有清泉，所行有光。",
+    "signature": "赠予每一个闪闪发光的你",
+    "date": "2026.08.30",
+    "accent": "#f6d47a"
+  }
+}

@@ -1,0 +1,77 @@
+{
+  "version": 1,
+  "status": "EXPLORATION_SAMPLE",
+  "sampleId": "yanan-wedding-fictional-r10",
+  "title": "张帅 × 董雅宁（模拟）婚礼三端交付探索",
+  "identityPolicy": {
+    "coupleIsFictionalVisual": true,
+    "realPersonReferenceUsed": false,
+    "displayRule": "所有生成图片必须与 AI 模拟标签同屏，不得称为张帅或董小姐本人照片。"
+  },
+  "simulatedInformation": {
+    "groomDisplayName": "张帅",
+    "brideFullName": "董雅宁",
+    "date": "2026.09.12",
+    "ceremonyTime": "11:58",
+    "city": "延安",
+    "venue": "延安 · 山河礼宴厅（演示场地）",
+    "address": "宝塔区婚礼演示地址（请替换）",
+    "contact": "138 **** 0912",
+    "dressCode": "暖金 / 酒红"
+  },
+  "storyAssets": [
+    {
+      "chapter": "秋日初见",
+      "web": "assets/wedding-ai/01-first-meet.webp",
+      "source": "assets/wedding-ai/01-first-meet.png",
+      "status": "AI_SIMULATED"
+    },
+    {
+      "chapter": "山河同行",
+      "web": "assets/wedding-ai/02-together.webp",
+      "source": "assets/wedding-ai/02-together.png",
+      "status": "AI_SIMULATED"
+    },
+    {
+      "chapter": "良辰约定",
+      "web": "assets/wedding-ai/03-promise.webp",
+      "source": "assets/wedding-ai/03-promise.png",
+      "status": "AI_SIMULATED"
+    }
+  ],
+  "deliverables": [
+    {
+      "id": "invitation",
+      "format": "responsive web",
+      "status": "DEMO_READY",
+      "entry": "#wedding-complete-pack"
+    },
+    {
+      "id": "screen",
+      "format": "1920x1080 H.264 + AAC",
+      "status": "DEMO_READY",
+      "file": "assets/wedding-zhangshuai-dong-screen.mp4"
+    },
+    {
+      "id": "welcome",
+      "format": "1080x1350 PNG",
+      "status": "DEMO_READY",
+      "file": "assets/wedding-welcome-demo.png"
+    },
+    {
+      "id": "rsvp",
+      "format": "local-only web form",
+      "status": "PROTOTYPE_ONLY",
+      "boundary": "不发送、不保存、刷新即丢失"
+    }
+  ],
+  "formalReplacementChecklist": [
+    "新人姓名、称谓与公开展示授权",
+    "授权真人照片及修图范围",
+    "真实相识故事与文案审核",
+    "仪式时间、酒店、宴会厅、地址、电话与导航",
+    "LED 像素、播放器、编码和现场联调",
+    "音乐、字体、肖像、照片和印刷授权",
+    "RSVP 接收端、隐私说明、保留期限与通知策略"
+  ]
+}
