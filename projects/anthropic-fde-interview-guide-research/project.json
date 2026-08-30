@@ -1,0 +1,16 @@
+{
+  "slug": "anthropic-fde-interview-guide-research",
+  "title": "Anthropic FDE 面试指南深度研究",
+  "summary": "从 FDE 概念、企业 AI 交付原理与岗位能力出发，对 Chill Interview 指南做逐节核验，并形成面试路线与可验证实践方案。",
+  "status": "complete",
+  "tags": [
+    "fde",
+    "anthropic",
+    "agentic-ai",
+    "interview-research",
+    "enterprise-ai"
+  ],
+  "started_at": "2026-08-30",
+  "updated_at": "2026-08-31",
+  "demo_url": "https://yydshly.github.io/0830_codex_project/demos/anthropic-fde-interview-guide-research/"
+}

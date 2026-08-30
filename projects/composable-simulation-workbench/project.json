@@ -1,0 +1,16 @@
+{
+  "slug": "composable-simulation-workbench",
+  "title": "可组合红蓝仿真工作台",
+  "summary": "面向合成、封闭环境的双阵营多实体仿真产品前置设计：模型、地图、场景、指令、运动、态势显示、回放与插件扩展。",
+  "status": "paused",
+  "tags": [
+    "simulation-platform",
+    "architecture",
+    "scenario-editor",
+    "situation-display",
+    "deterministic-replay"
+  ],
+  "started_at": "2026-08-30",
+  "updated_at": "2026-08-31",
+  "demo_url": ""
+}

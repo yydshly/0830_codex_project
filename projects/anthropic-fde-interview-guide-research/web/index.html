@@ -1,0 +1,825 @@
+<!doctype html>
+<html lang="zh-CN" data-theme="light">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Anthropic FDE 深度研究可视化：从岗位概念、企业 Agent 原理、客服样例到面试准备与证据边界。"
+    />
+    <meta name="theme-color" content="#f2efe8" />
+    <title>FDE Field Guide · 从模型到业务结果</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script>
+      document.documentElement.classList.add("js");
+      try {
+        const savedTheme = localStorage.getItem("fde-theme");
+        const preferredTheme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+        document.documentElement.dataset.theme = savedTheme || preferredTheme;
+      } catch (_) {}
+    </script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">跳到主要内容</a>
+    <div class="read-progress" aria-hidden="true"><span id="read-progress-bar"></span></div>
+
+    <header class="site-header" aria-label="主导航">
+      <a class="brand" href="#top" aria-label="返回 FDE Field Guide 顶部">
+        <span class="brand-mark" aria-hidden="true">FD</span>
+        <span class="brand-copy"><strong>FDE FIELD GUIDE</strong><small>研究快照 · 2026.08</small></span>
+      </a>
+      <nav class="top-nav" aria-label="章节">
+        <a href="#concept">概念</a>
+        <a href="#loop">闭环</a>
+        <a href="#architecture">架构</a>
+        <a href="#case">样例</a>
+        <a href="#landscape">场景</a>
+        <a href="#growth">进阶</a>
+        <a href="#guide">指南</a>
+        <a href="#roadmap">路线</a>
+      </nav>
+      <button class="theme-toggle" id="theme-toggle" type="button" aria-label="切换为深色主题">
+        <span class="theme-icon theme-icon-light" aria-hidden="true">☼</span>
+        <span class="theme-icon theme-icon-dark" aria-hidden="true">◐</span>
+      </button>
+    </header>
+
+    <main id="main">
+      <section class="hero page-shell" id="top" aria-labelledby="hero-title">
+        <div class="hero-copy reveal">
+          <p class="kicker"><span>FIELD NOTE 01</span> / Anthropic FDE 深度研究</p>
+          <h1 id="hero-title">不是把模型卖给客户，<br /><em>而是把模型变成业务结果。</em></h1>
+          <p class="hero-lede">
+            Forward Deployed Engineer 进入客户真实环境，把模糊需求、Claude、企业数据、权限、安全和上线运营连接成一个可以被信任的生产系统。
+          </p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="#loop">先看 7 步工作闭环</a>
+            <a class="button button-quiet" href="#case">直接看客服样例</a>
+          </div>
+          <ul class="hero-facts" aria-label="三个核心事实">
+            <li><strong>不是</strong><span>单纯 SWE</span></li>
+            <li><strong>不是</strong><span>Prompt 顾问</span></li>
+            <li><strong>而是</strong><span>端到端落地者</span></li>
+          </ul>
+        </div>
+
+        <figure class="hero-map reveal" aria-labelledby="hero-map-caption">
+          <div class="map-orbit map-orbit-one" aria-hidden="true"></div>
+          <div class="map-orbit map-orbit-two" aria-hidden="true"></div>
+          <div class="map-node map-center"><strong>FDE</strong><span>业务结果</span></div>
+          <div class="map-node map-engineering"><span>01</span><strong>生产工程</strong></div>
+          <div class="map-node map-agent"><span>02</span><strong>Agent 系统</strong></div>
+          <div class="map-node map-customer"><span>03</span><strong>客户发现</strong></div>
+          <div class="map-node map-safety"><span>04</span><strong>安全评测</strong></div>
+          <div class="map-node map-delivery"><span>05</span><strong>部署采用</strong></div>
+          <figcaption id="hero-map-caption">
+            <span class="legend-dot"></span> 五种能力围绕同一个中心：可验证的客户结果
+          </figcaption>
+        </figure>
+      </section>
+
+      <section class="definition-band" aria-label="一句话定义">
+        <div class="page-shell definition-grid">
+          <p class="definition-label">MENTAL MODEL</p>
+          <p class="definition-equation">
+            <span>软件工程师</span><b>+</b><span>Applied AI Builder</span><b>+</b><span>企业部署者</span><b>+</b><span>客户发现负责人</span>
+          </p>
+          <p class="definition-result">= 安全感知的现场产品工程师</p>
+        </div>
+      </section>
+
+      <section class="section page-shell" id="concept" aria-labelledby="concept-title">
+        <div class="section-heading reveal">
+          <p class="kicker"><span>01</span> / 先把角色边界画清楚</p>
+          <h2 id="concept-title">FDE 的特别之处，<br />是对“最后是否工作”负责。</h2>
+          <p>相邻角色都可能具备其中一部分能力；FDE 的稀缺性来自从问题发现一直走到生产结果。</p>
+        </div>
+
+        <div class="role-explorer reveal">
+          <div class="role-tabs" role="tablist" aria-label="比较 FDE 与相邻角色" data-tabs="roles">
+            <button id="role-fde-tab" class="role-tab is-active" type="button" role="tab" aria-selected="true" aria-controls="role-fde" tabindex="0" data-target="role-fde">
+              <span>FDE</span><small>结果闭环</small>
+            </button>
+            <button id="role-swe-tab" class="role-tab" type="button" role="tab" aria-selected="false" aria-controls="role-swe" tabindex="-1" data-target="role-swe">
+              <span>SWE</span><small>产品质量</small>
+            </button>
+            <button id="role-sa-tab" class="role-tab" type="button" role="tab" aria-selected="false" aria-controls="role-sa" tabindex="-1" data-target="role-sa">
+              <span>Solutions Architect</span><small>方案与采用</small>
+            </button>
+            <button id="role-consulting-tab" class="role-tab" type="button" role="tab" aria-selected="false" aria-controls="role-consulting" tabindex="-1" data-target="role-consulting">
+              <span>技术咨询</span><small>项目成功</small>
+            </button>
+          </div>
+
+          <div class="role-panels">
+            <article id="role-fde" class="role-panel is-active" role="tabpanel" aria-labelledby="role-fde-tab">
+              <div><p class="panel-index">01 / FDE</p><h3>从发现到生产，亲自跨越断层</h3></div>
+              <dl class="role-metrics">
+                <div><dt>写生产代码</dt><dd><span style="--score: 100%"></span><b>高</b></dd></div>
+                <div><dt>客户发现</dt><dd><span style="--score: 100%"></span><b>高</b></dd></div>
+                <div><dt>进入客户环境</dt><dd><span style="--score: 100%"></span><b>高</b></dd></div>
+                <div><dt>反馈产品模式</dt><dd><span style="--score: 100%"></span><b>高</b></dd></div>
+              </dl>
+              <p class="role-takeaway"><strong>判断问题：</strong>这个人是否能把模糊愿望变成有权限边界、有评测、有采用结果的生产系统？</p>
+            </article>
+            <article id="role-swe" class="role-panel" role="tabpanel" aria-labelledby="role-swe-tab">
+              <div><p class="panel-index">02 / SWE</p><h3>主要优化内部产品和平台质量</h3></div>
+              <dl class="role-metrics">
+                <div><dt>写生产代码</dt><dd><span style="--score: 100%"></span><b>高</b></dd></div>
+                <div><dt>客户发现</dt><dd><span style="--score: 35%"></span><b>低</b></dd></div>
+                <div><dt>进入客户环境</dt><dd><span style="--score: 25%"></span><b>低</b></dd></div>
+                <div><dt>反馈产品模式</dt><dd><span style="--score: 65%"></span><b>中</b></dd></div>
+              </dl>
+              <p class="role-takeaway"><strong>典型边界：</strong>可以非常懂系统，但不一定负责现场发现、组织采用和跨客户复用。</p>
+            </article>
+            <article id="role-sa" class="role-panel" role="tabpanel" aria-labelledby="role-sa-tab">
+              <div><p class="panel-index">03 / SA</p><h3>主要优化架构可行性和客户采用</h3></div>
+              <dl class="role-metrics">
+                <div><dt>写生产代码</dt><dd><span style="--score: 55%"></span><b>中</b></dd></div>
+                <div><dt>客户发现</dt><dd><span style="--score: 100%"></span><b>高</b></dd></div>
+                <div><dt>进入客户环境</dt><dd><span style="--score: 90%"></span><b>高</b></dd></div>
+                <div><dt>反馈产品模式</dt><dd><span style="--score: 75%"></span><b>中高</b></dd></div>
+              </dl>
+              <p class="role-takeaway"><strong>典型边界：</strong>更侧重方案、采用和技术信任；是否亲自承担关键生产代码因公司而异。</p>
+            </article>
+            <article id="role-consulting" class="role-panel" role="tabpanel" aria-labelledby="role-consulting-tab">
+              <div><p class="panel-index">04 / CONSULTING</p><h3>主要优化合同范围内的项目成功</h3></div>
+              <dl class="role-metrics">
+                <div><dt>写生产代码</dt><dd><span style="--score: 55%"></span><b>不定</b></dd></div>
+                <div><dt>客户发现</dt><dd><span style="--score: 100%"></span><b>高</b></dd></div>
+                <div><dt>进入客户环境</dt><dd><span style="--score: 100%"></span><b>高</b></dd></div>
+                <div><dt>反馈产品模式</dt><dd><span style="--score: 55%"></span><b>中</b></dd></div>
+              </dl>
+              <p class="role-takeaway"><strong>典型边界：</strong>项目和客户管理很强，但未必持续影响模型平台或承担长期产品反馈。</p>
+            </article>
+          </div>
+        </div>
+        <p class="micro-note">这些是典型重心，不是严格职位定义；不同公司的角色边界会重叠。</p>
+      </section>
+
+      <section class="section section-tint" id="loop" aria-labelledby="loop-title">
+        <div class="page-shell">
+          <div class="section-heading reveal">
+            <p class="kicker"><span>02</span> / FDE 工作闭环</p>
+            <h2 id="loop-title">七步走完，Demo 才变成部署。</h2>
+            <p>点选每一步，观察目标、关键问题和产出如何向下一步传递。</p>
+          </div>
+
+          <div class="loop-explorer reveal">
+            <div class="loop-path" role="tablist" aria-label="FDE 七步工作闭环" data-tabs="loop">
+              <button id="loop-discover-tab" class="loop-step is-active" type="button" role="tab" aria-selected="true" aria-controls="loop-discover" tabindex="0" data-target="loop-discover"><span>01</span><strong>发现</strong><small>真实工作</small></button>
+              <button id="loop-scope-tab" class="loop-step" type="button" role="tab" aria-selected="false" aria-controls="loop-scope" tabindex="-1" data-target="loop-scope"><span>02</span><strong>界定</strong><small>范围风险</small></button>
+              <button id="loop-design-tab" class="loop-step" type="button" role="tab" aria-selected="false" aria-controls="loop-design" tabindex="-1" data-target="loop-design"><span>03</span><strong>设计</strong><small>最简架构</small></button>
+              <button id="loop-build-tab" class="loop-step" type="button" role="tab" aria-selected="false" aria-controls="loop-build" tabindex="-1" data-target="loop-build"><span>04</span><strong>构建</strong><small>工具边界</small></button>
+              <button id="loop-eval-tab" class="loop-step" type="button" role="tab" aria-selected="false" aria-controls="loop-eval" tabindex="-1" data-target="loop-eval"><span>05</span><strong>评测</strong><small>证明可靠</small></button>
+              <button id="loop-rollout-tab" class="loop-step" type="button" role="tab" aria-selected="false" aria-controls="loop-rollout" tabindex="-1" data-target="loop-rollout"><span>06</span><strong>上线</strong><small>分级授权</small></button>
+              <button id="loop-scale-tab" class="loop-step" type="button" role="tab" aria-selected="false" aria-controls="loop-scale" tabindex="-1" data-target="loop-scale"><span>07</span><strong>复用</strong><small>反馈产品</small></button>
+            </div>
+
+            <div class="loop-details" aria-live="polite">
+              <article id="loop-discover" class="loop-detail is-active" role="tabpanel" aria-labelledby="loop-discover-tab">
+                <p class="detail-number">01</p><div><p class="detail-label">DISCOVER</p><h3>先观察谁在怎样完成工作</h3><p>不要从“客户想要一个 Agent”开始。找到高频步骤、事实来源、交接点和失败成本。</p></div>
+                <dl><div><dt>关键问题</dt><dd>谁做？多久一次？错了会怎样？</dd></div><div><dt>产出</dt><dd>工作流地图 + 当前基线</dd></div></dl>
+              </article>
+              <article id="loop-scope" class="loop-detail" role="tabpanel" aria-labelledby="loop-scope-tab">
+                <p class="detail-number">02</p><div><p class="detail-label">SCOPE</p><h3>把宏大愿望压缩成窄 Pilot</h3><p>选一个高频、可观察、失败可控的工作流，明确读、写、审批和禁止动作。</p></div>
+                <dl><div><dt>关键问题</dt><dd>最小价值单元是什么？</dd></div><div><dt>产出</dt><dd>范围 + 指标 + 风险边界</dd></div></dl>
+              </article>
+              <article id="loop-design" class="loop-detail" role="tabpanel" aria-labelledby="loop-design-tab">
+                <p class="detail-number">03</p><div><p class="detail-label">DESIGN</p><h3>固定 Workflow 能完成，就不急着上 Agent</h3><p>让复杂度服从业务价值。只有任务路径无法预先定义时，才增加自主循环或子 Agent。</p></div>
+                <dl><div><dt>关键问题</dt><dd>模型必须动态决策什么？</dd></div><div><dt>产出</dt><dd>架构决策记录</dd></div></dl>
+              </article>
+              <article id="loop-build" class="loop-detail" role="tabpanel" aria-labelledby="loop-build-tab">
+                <p class="detail-number">04</p><div><p class="detail-label">BUILD</p><h3>模型负责推理，代码负责硬边界</h3><p>实现工具/MCP、权限、验证、重试、幂等、审计和人工审批，而不只是 Prompt。</p></div>
+                <dl><div><dt>关键问题</dt><dd>哪些规则必须 100% 执行？</dd></div><div><dt>产出</dt><dd>可测试的生产组件</dd></div></dl>
+              </article>
+              <article id="loop-eval" class="loop-detail" role="tabpanel" aria-labelledby="loop-eval-tab">
+                <p class="detail-number">05</p><div><p class="detail-label">EVALUATE</p><h3>检查结果、轨迹和真实最终状态</h3><p>从 20–50 个真实案例开始，组合代码、模型和人工评分器，多次运行观察一致性。</p></div>
+                <dl><div><dt>关键问题</dt><dd>怎样证明它真的完成了任务？</dd></div><div><dt>产出</dt><dd>Eval Suite + 上线门槛</dd></div></dl>
+              </article>
+              <article id="loop-rollout" class="loop-detail" role="tabpanel" aria-labelledby="loop-rollout-tab">
+                <p class="detail-number">06</p><div><p class="detail-label">ROLLOUT</p><h3>影子 → 只读 → 草稿 → 审批写入</h3><p>逐级开放能力，观察采用、成本和事故信号；每一级都有暂停和回滚条件。</p></div>
+                <dl><div><dt>关键问题</dt><dd>何时扩大，何时退回？</dd></div><div><dt>产出</dt><dd>上线与运营计划</dd></div></dl>
+              </article>
+              <article id="loop-scale" class="loop-detail" role="tabpanel" aria-labelledby="loop-scale-tab">
+                <p class="detail-number">07</p><div><p class="detail-label">CODIFY</p><h3>把一次项目变成产品能力</h3><p>识别可复用的连接器、Skill、Eval、权限策略和平台缺口，反馈给产品与工程。</p></div>
+                <dl><div><dt>关键问题</dt><dd>下一位客户能少做什么？</dd></div><div><dt>产出</dt><dd>复用资产 + 产品反馈</dd></div></dl>
+              </article>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section page-shell" id="architecture" aria-labelledby="architecture-title">
+        <div class="section-heading reveal">
+          <p class="kicker"><span>03</span> / 企业 Agent 原理</p>
+          <h2 id="architecture-title">Claude 是推理内核，<br />不是整个生产系统。</h2>
+          <p>点击架构层，理解模型、上下文、工具和确定性边界各自负责什么。</p>
+        </div>
+
+        <div class="architecture-workbench reveal">
+          <div class="architecture-diagram" role="tablist" aria-label="企业 Agent 架构分层" data-tabs="architecture">
+            <button id="arch-user-tab" class="arch-layer is-active" type="button" role="tab" aria-selected="true" aria-controls="arch-user" tabindex="0" data-target="arch-user">
+              <span class="arch-code">L1</span><span><strong>用户与业务结果</strong><small>任务 · 失败成本 · 成功指标</small></span><i aria-hidden="true">→</i>
+            </button>
+            <button id="arch-boundary-tab" class="arch-layer" type="button" role="tab" aria-selected="false" aria-controls="arch-boundary" tabindex="-1" data-target="arch-boundary">
+              <span class="arch-code">L2</span><span><strong>身份与确定性边界</strong><small>权限 · Schema · 审批 · 审计</small></span><i aria-hidden="true">→</i>
+            </button>
+            <button id="arch-model-tab" class="arch-layer arch-layer-core" type="button" role="tab" aria-selected="false" aria-controls="arch-model" tabindex="-1" data-target="arch-model">
+              <span class="arch-code">L3</span><span><strong>Claude / Workflow / Agent</strong><small>理解 · 规划 · 工具选择 · 生成</small></span><i aria-hidden="true">→</i>
+            </button>
+            <button id="arch-context-tab" class="arch-layer" type="button" role="tab" aria-selected="false" aria-controls="arch-context" tabindex="-1" data-target="arch-context">
+              <span class="arch-code">L4</span><span><strong>上下文与 Tools / MCP</strong><small>按需检索 · 窄接口 · 错误语义</small></span><i aria-hidden="true">→</i>
+            </button>
+            <button id="arch-eval-tab" class="arch-layer" type="button" role="tab" aria-selected="false" aria-controls="arch-eval" tabindex="-1" data-target="arch-eval">
+              <span class="arch-code">L5</span><span><strong>Evals 与生产运营</strong><small>Trace · Outcome · 监控 · 回滚</small></span><i aria-hidden="true">→</i>
+            </button>
+          </div>
+
+          <div class="architecture-panels" aria-live="polite">
+            <article id="arch-user" class="architecture-panel is-active" role="tabpanel" aria-labelledby="arch-user-tab">
+              <p class="panel-index">LAYER 01</p><h3>技术选择从业务结果倒推</h3><p>如果没有用户、基线、失败成本和成功指标，就无法判断是否需要 Agent，也无法设计评测。</p>
+              <div class="rule-card"><span>先问</span><strong>谁要完成什么任务？错误会造成什么？</strong></div>
+            </article>
+            <article id="arch-boundary" class="architecture-panel" role="tabpanel" aria-labelledby="arch-boundary-tab">
+              <p class="panel-index">LAYER 02</p><h3>必须 100% 执行的规则交给代码</h3><p>身份、ACL、字段白名单、重试、幂等和审批不应只写在 Prompt 中；模型不能成为权限系统。</p>
+              <div class="rule-card"><span>原则</span><strong>概率推理内核 + 确定性安全边界</strong></div>
+            </article>
+            <article id="arch-model" class="architecture-panel" role="tabpanel" aria-labelledby="arch-model-tab">
+              <p class="panel-index">LAYER 03</p><h3>先 Workflow，必要时才 Agent</h3><p>固定路径提供可预测性；开放任务才让 Claude 根据环境反馈动态决定步骤。Agent 用成本和风险换灵活性。</p>
+              <div class="rule-card"><span>选择</span><strong>简单调用 → Workflow → Agent → 子 Agent</strong></div>
+            </article>
+            <article id="arch-context" class="architecture-panel" role="tabpanel" aria-labelledby="arch-context-tab">
+              <p class="panel-index">LAYER 04</p><h3>MCP 负责连接，上下文工程负责选择</h3><p>MCP 让 AI 接入外部系统，但不自动解决权限和质量。上下文要少而相关，工具要职责清晰且返回 Token 高效。</p>
+              <div class="rule-card"><span>提醒</span><strong>连接更多数据 ≠ 获得更好答案</strong></div>
+            </article>
+            <article id="arch-eval" class="architecture-panel" role="tabpanel" aria-labelledby="arch-eval-tab">
+              <p class="panel-index">LAYER 05</p><h3>不能只检查模型最后说了什么</h3><p>同时检查完整轨迹、工具调用和外部系统最终状态，并用多次 Trial 衡量非确定性系统的一致性。</p>
+              <div class="rule-card"><span>证据</span><strong>Task + Trial + Grader + Trace + Outcome</strong></div>
+            </article>
+          </div>
+        </div>
+
+        <div class="principle-strip reveal" aria-label="三个技术原则">
+          <article><span>01</span><h3>最小复杂度</h3><p>只有 Evals 证明价值时才增加 Agent 层级。</p></article>
+          <article><span>02</span><h3>最小上下文</h3><p>按需加载高信号信息，避免上下文污染。</p></article>
+          <article><span>03</span><h3>最小权限</h3><p>读取、草稿、写入和外发必须分级授权。</p></article>
+        </div>
+      </section>
+
+      <section class="section case-section" id="case" aria-labelledby="case-title">
+        <div class="page-shell">
+          <div class="section-heading reveal">
+            <p class="kicker"><span>04</span> / 端到端样例</p>
+            <h2 id="case-title">同一个“客服 Agent”，<br />Demo 和 FDE 方案差在哪里？</h2>
+            <p>用“账户访问问题”样例，把抽象原理放回真实工作流。</p>
+          </div>
+
+          <div class="case-workbench reveal">
+            <div class="case-context">
+              <p class="case-label">INCOMING TICKET / #AC-1048</p>
+              <blockquote>“我换了手机后无法登录。请帮我恢复账户，我很着急。”</blockquote>
+              <div class="case-meta"><span>企业客户</span><span>含身份风险</span><span>需要查 CRM 与政策</span></div>
+            </div>
+
+            <div class="case-tabs" role="tablist" aria-label="比较 Demo 与 FDE 方案" data-tabs="case">
+              <button id="case-demo-tab" class="case-tab" type="button" role="tab" aria-selected="false" aria-controls="case-demo" tabindex="-1" data-target="case-demo"><span>✕</span><strong>弱 Demo</strong><small>Prompt → 一段回答</small></button>
+              <button id="case-fde-tab" class="case-tab is-active" type="button" role="tab" aria-selected="true" aria-controls="case-fde" tabindex="0" data-target="case-fde"><span>✓</span><strong>FDE 方案</strong><small>受控 Workflow → 证据</small></button>
+            </div>
+
+            <div class="case-panels">
+              <article id="case-demo" class="case-panel case-panel-demo" role="tabpanel" aria-labelledby="case-demo-tab">
+                <div class="case-flow case-flow-short">
+                  <div class="flow-node"><span>01</span><strong>整段 Prompt</strong><small>塞入工单和大量文档</small></div><i aria-hidden="true">→</i>
+                  <div class="flow-node"><span>02</span><strong>Claude 回答</strong><small>看起来合理</small></div><i aria-hidden="true">→</i>
+                  <div class="flow-node flow-node-risk"><span>03</span><strong>直接发送</strong><small>无权限与审批</small></div>
+                </div>
+                <div class="case-outcome"><p class="outcome-title">为什么危险</p><ul><li>无法证明引用来自有效政策</li><li>可能泄漏其他客户信息</li><li>模型声称完成，不代表 CRM 真的改变</li><li>没有可重复的 Eval 与回滚门槛</li></ul></div>
+              </article>
+
+              <article id="case-fde" class="case-panel is-active" role="tabpanel" aria-labelledby="case-fde-tab">
+                <div class="case-flow">
+                  <div class="flow-node"><span>01</span><strong>身份与范围</strong><small>租户 + ACL</small></div><i aria-hidden="true">→</i>
+                  <div class="flow-node"><span>02</span><strong>窄工具检索</strong><small>CRM + 有效政策</small></div><i aria-hidden="true">→</i>
+                  <div class="flow-node"><span>03</span><strong>结构化草稿</strong><small>回复 + 引用 + 风险</small></div><i aria-hidden="true">→</i>
+                  <div class="flow-node"><span>04</span><strong>规则校验</strong><small>Schema + 引用 ID</small></div><i aria-hidden="true">→</i>
+                  <div class="flow-node flow-node-human"><span>05</span><strong>人工审批</strong><small>高风险升级</small></div>
+                </div>
+                <div class="case-evidence-grid">
+                  <div class="evidence-card"><p>TOOL RESULT</p><strong>仅返回当前租户 3 个必要字段</strong><span>服务端执行 ACL</span></div>
+                  <div class="evidence-card"><p>MODEL OUTPUT</p><strong>草稿 + 2 个来源 + SECURITY_REVIEW</strong><span>严格 JSON Schema</span></div>
+                  <div class="evidence-card"><p>EVAL OUTCOME</p><strong>检查是否正确升级，而非是否“说得像”</strong><span>多次 Trial + 最终状态</span></div>
+                </div>
+              </article>
+            </div>
+
+            <aside class="case-lesson">
+              <span class="lesson-mark">!</span><p><strong>样例结论：</strong>FDE 的价值不在“回答更华丽”，而在权限、证据、动作边界和上线方法都可解释、可测试、可回滚。</p>
+            </aside>
+          </div>
+
+          <div class="delivery-ops reveal">
+            <div class="subsection-heading"><p class="panel-index">DELIVERY ARTIFACTS</p><h3>真实 FDE 项目会留下什么，而不只是“做了一个 Demo”</h3><p>岗位能力最终要沉淀成团队能够审阅、复用和运营的工件。</p></div>
+            <div class="artifact-chain" aria-label="FDE 五项核心交付物">
+              <article><span>01</span><strong>发现简报</strong><p>用户、现状、基线、失败成本</p><small>回答“为什么做”</small></article><i aria-hidden="true">→</i>
+              <article><span>02</span><strong>范围与风险表</strong><p>边界、权限、升级、停止条件</p><small>回答“什么不能做”</small></article><i aria-hidden="true">→</i>
+              <article><span>03</span><strong>工具契约</strong><p>Schema、错误、ACL、幂等</p><small>回答“怎样安全执行”</small></article><i aria-hidden="true">→</i>
+              <article><span>04</span><strong>Eval Suite</strong><p>任务、Trial、Grader、Outcome</p><small>回答“如何证明有效”</small></article><i aria-hidden="true">→</i>
+              <article><span>05</span><strong>上线运行手册</strong><p>灰度、监控、回滚、负责人</p><small>回答“出事怎么办”</small></article>
+            </div>
+
+            <div class="failure-clinic">
+              <div class="failure-intro"><p class="panel-index">FAILURE CLINIC</p><h3>看到失败，先判断它属于哪一层</h3><p>把所有问题都归因于 Prompt，会错过更常见的系统与采用问题。</p></div>
+              <div class="failure-tabs" role="tablist" aria-label="选择失败类型" data-tabs="failures">
+                <button id="failure-model-tab" class="failure-tab is-active" type="button" role="tab" aria-selected="true" aria-controls="failure-model" tabindex="0"><span>01</span>模型行为</button>
+                <button id="failure-system-tab" class="failure-tab" type="button" role="tab" aria-selected="false" aria-controls="failure-system" tabindex="-1"><span>02</span>系统边界</button>
+                <button id="failure-adoption-tab" class="failure-tab" type="button" role="tab" aria-selected="false" aria-controls="failure-adoption" tabindex="-1"><span>03</span>采用与价值</button>
+              </div>
+              <div class="failure-panels">
+                <article id="failure-model" class="failure-panel is-active" role="tabpanel" aria-labelledby="failure-model-tab"><div><span>症状</span><strong>幻觉、遗漏、循环、工具选错</strong></div><div><span>先查</span><strong>Trace、上下文、工具描述、任务分解</strong></div><div><span>证据</span><strong>失败集 + 多次 Trial + 轨迹评分</strong></div></article>
+                <article id="failure-system" class="failure-panel" role="tabpanel" aria-labelledby="failure-system-tab"><div><span>症状</span><strong>串租户、重复写入、旧政策、动作未生效</strong></div><div><span>先查</span><strong>身份、ACL、版本、幂等、真实 Outcome</strong></div><div><span>证据</span><strong>集成测试 + 审计日志 + 回滚演练</strong></div></article>
+                <article id="failure-adoption" class="failure-panel" role="tabpanel" aria-labelledby="failure-adoption-tab"><div><span>症状</span><strong>用户不用、修改过多、节省时间不明显</strong></div><div><span>先查</span><strong>工作流摩擦、问题选择、信任与培训</strong></div><div><span>证据</span><strong>采用率 + 修改量 + 周期与定性访谈</strong></div></article>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section page-shell" id="landscape" aria-labelledby="landscape-title">
+        <div class="section-heading reveal">
+          <p class="kicker"><span>05</span> / 使用场景与扩展方向</p>
+          <h2 id="landscape-title">不是所有工作都需要 Agent，<br />但所有落地都需要边界。</h2>
+          <p>先看任务是否开放、结果是否可验证、动作是否可逆，再决定自治程度和扩展路线。</p>
+        </div>
+
+        <form class="fit-lab reveal" id="fit-lab">
+          <div class="fit-lab-copy"><p class="panel-index">AGENT FIT CHECK</p><h3>先判断任务形状，再选择技术形状</h3><p>这不是分数测验。前 3 项判断是否需要动态决策，后 3 项判断能否安全试点。</p><button class="text-button" id="fit-reset" type="button">清空判断</button></div>
+          <fieldset class="fit-checks">
+            <legend>选择符合当前任务的条件</legend>
+            <label><input type="checkbox" data-fit="dynamic" /><span><strong>输入和例外很多</strong><small>每次任务的材料、约束或目标明显不同</small></span></label>
+            <label><input type="checkbox" data-fit="dynamic" /><span><strong>无法预先写死步骤</strong><small>必须根据中间结果决定下一步</small></span></label>
+            <label><input type="checkbox" data-fit="dynamic" /><span><strong>需要组合多个工具</strong><small>查找、比较、转换或执行路径会变化</small></span></label>
+            <label><input type="checkbox" data-fit="verifiable" /><span><strong>最终结果可验证</strong><small>能检查事实、字段、测试或外部最终状态</small></span></label>
+            <label><input type="checkbox" data-fit="reversible" /><span><strong>动作可逆或可审批</strong><small>出错时能撤销、拦截或人工确认</small></span></label>
+            <label><input type="checkbox" data-fit="tolerable" /><span><strong>试点失败成本可控</strong><small>可以从只读、草稿或小流量开始</small></span></label>
+          </fieldset>
+          <output class="fit-result" id="fit-result" aria-live="polite" data-state="empty">
+            <span id="fit-result-label">尚未判断</span><strong id="fit-result-title">先勾选任务的真实条件</strong><p id="fit-result-copy">不要从“我想做 Agent”开始；从任务是否开放、可验证和可控开始。</p>
+          </output>
+        </form>
+
+        <div class="scenario-workbench reveal">
+          <div class="scenario-tabs" role="tablist" aria-label="选择一个 FDE 场景原型" data-tabs="scenarios">
+            <button id="scenario-cs-tab" class="scenario-tab is-active" type="button" role="tab" aria-selected="true" aria-controls="scenario-cs" tabindex="0"><span>01 / CS</span><strong>企业客服</strong><small>Workflow · 草稿</small></button>
+            <button id="scenario-dev-tab" class="scenario-tab" type="button" role="tab" aria-selected="false" aria-controls="scenario-dev" tabindex="-1"><span>02 / DEV</span><strong>代码现代化</strong><small>Agent · 沙箱</small></button>
+            <button id="scenario-reg-tab" class="scenario-tab" type="button" role="tab" aria-selected="false" aria-controls="scenario-reg" tabindex="-1"><span>03 / REG</span><strong>受监管报告</strong><small>Workflow · 审计</small></button>
+            <button id="scenario-research-tab" class="scenario-tab" type="button" role="tab" aria-selected="false" aria-controls="scenario-research" tabindex="-1"><span>04 / R&amp;D</span><strong>研究与尽调</strong><small>Agent · 引用</small></button>
+            <button id="scenario-ops-tab" class="scenario-tab" type="button" role="tab" aria-selected="false" aria-controls="scenario-ops" tabindex="-1"><span>05 / OPS</span><strong>内部运营</strong><small>Router · 审批</small></button>
+            <button id="scenario-data-tab" class="scenario-tab" type="button" role="tab" aria-selected="false" aria-controls="scenario-data" tabindex="-1"><span>06 / DATA</span><strong>分析辅助</strong><small>Tool Use · 只读</small></button>
+          </div>
+
+          <div class="scenario-panels">
+            <article id="scenario-cs" class="scenario-panel is-active" role="tabpanel" aria-labelledby="scenario-cs-tab">
+              <header class="scenario-panel-top">
+                <div class="scenario-identity"><p class="panel-index">PROTOTYPE 01 / CUSTOMER SUPPORT</p><h3>账户访问工单协作</h3><p>帮助企业客服跨工单、CRM 和政策库生成可引用草稿，同时把身份风险留给人。</p></div>
+                <dl class="scenario-facts"><div><dt>核心用户</dt><dd>B2B 客服专员</dd></div><div><dt>业务结果</dt><dd>缩短处理时间，零高风险漏升级</dd></div><div><dt>最小版本</dt><dd>只读检索 + 引用草稿</dd></div></dl>
+              </header>
+              <div class="prototype-flow" aria-label="企业客服五步工作流"><div><span>01</span><strong>接收工单</strong></div><i>→</i><div><span>02</span><strong>识别身份风险</strong></div><i>→</i><div><span>03</span><strong>检索 CRM / 政策</strong></div><i>→</i><div><span>04</span><strong>生成草稿与引用</strong></div><i>→</i><div><span>05</span><strong>审批或升级</strong></div></div>
+              <div class="capability-grid">
+                <article><span>PATTERN</span><h4>固定 Workflow 优先</h4><p>模型理解问题、选择窄检索工具和起草；发送与身份动作不自治。</p></article>
+                <article><span>TOOLS / DATA</span><h4>三类只读接口</h4><p><code>ticket.read</code> · <code>crm.customer.read</code> · <code>policy.search</code></p></article>
+                <article><span>BOUNDARY</span><h4>租户与身份双边界</h4><p>服务端 ACL、禁止自动重置身份、高风险必须人工升级。</p></article>
+                <article><span>EVALS</span><h4>引用 + 升级 + 修改量</h4><p>事实支持率、风险召回率、人工编辑距离、平均处理时间。</p></article>
+                <article><span>ARTIFACTS</span><h4>五项可审阅工件</h4><p>风险表、Tool Schema、历史工单集、上线门槛、回滚手册。</p></article>
+                <article><span>ADOPTION</span><h4>是否真的进入工作流</h4><p>草稿采用率、修改量、周活跃客服数和处理时间变化。</p></article>
+              </div>
+              <footer class="scenario-proof"><div><span>面试证据句</span><p>“我把身份风险从 Prompt 移到确定性规则，并用历史工单验证漏升级为 0。”</p></div><div><span>下一扩展</span><p>先开放审批后的 CRM 状态写入，再评估低风险自动回复。</p></div></footer>
+            </article>
+
+            <article id="scenario-dev" class="scenario-panel" role="tabpanel" aria-labelledby="scenario-dev-tab">
+              <header class="scenario-panel-top">
+                <div class="scenario-identity"><p class="panel-index">PROTOTYPE 02 / CODE MODERNIZATION</p><h3>遗留模块迁移 PR 助手</h3><p>理解大型代码库，提出小范围迁移计划，在隔离环境中修改并用测试证明没有回归。</p></div>
+                <dl class="scenario-facts"><div><dt>核心用户</dt><dd>资深维护工程师</dd></div><div><dt>业务结果</dt><dd>缩短迁移周期，降低回归风险</dd></div><div><dt>最小版本</dt><dd>影响分析 + Patch 草案</dd></div></dl>
+              </header>
+              <div class="prototype-flow" aria-label="代码现代化五步工作流"><div><span>01</span><strong>限定仓库范围</strong></div><i>→</i><div><span>02</span><strong>建立依赖地图</strong></div><i>→</i><div><span>03</span><strong>生成迁移计划</strong></div><i>→</i><div><span>04</span><strong>修改并运行测试</strong></div><i>→</i><div><span>05</span><strong>工程师审查</strong></div></div>
+              <div class="capability-grid">
+                <article><span>PATTERN</span><h4>受限循环 Coding Agent</h4><p>允许“读—改—测—修”循环，但限定目录、次数、时间和退出条件。</p></article>
+                <article><span>TOOLS / DATA</span><h4>代码与测试工具链</h4><p><code>code.search</code> · <code>patch.write</code> · <code>test.run</code> · <code>git.diff</code></p></article>
+                <article><span>BOUNDARY</span><h4>沙箱，不直接合并</h4><p>临时环境、秘密隔离、Diff 大小限制、禁止直接写主分支。</p></article>
+                <article><span>EVALS</span><h4>测试 + 回归 + 审查</h4><p>公开/隐藏测试、行为等价、审查拒绝率、迭代次数与周期。</p></article>
+                <article><span>ARTIFACTS</span><h4>让改动可追溯</h4><p>依赖图、迁移计划、测试矩阵、失败语料、沙箱运行手册。</p></article>
+                <article><span>ADOPTION</span><h4>进入现有 PR 流程</h4><p>PR 接受率、人工返工、Review 轮次和单模块迁移周期。</p></article>
+              </div>
+              <footer class="scenario-proof"><div><span>面试证据句</span><p>“我没有让 Agent 直接重写仓库，而是用目录范围、测试门槛和 Diff 审查约束每次循环。”</p></div><div><span>下一扩展</span><p>对相互独立的模块使用并行子 Agent，合并仍由工程师完成。</p></div></footer>
+            </article>
+
+            <article id="scenario-reg" class="scenario-panel" role="tabpanel" aria-labelledby="scenario-reg-tab">
+              <header class="scenario-panel-top">
+                <div class="scenario-identity"><p class="panel-index">PROTOTYPE 03 / REGULATED REPORTING</p><h3>月度监管报告草稿</h3><p>冻结数据版本，按规则提取与校验字段，再生成带来源的叙述并交给合规人员签核。</p></div>
+                <dl class="scenario-facts"><div><dt>核心用户</dt><dd>合规分析师</dd></div><div><dt>业务结果</dt><dd>提高字段正确率，缩短复核时间</dd></div><div><dt>最小版本</dt><dd>确定性 Workflow + 叙述生成</dd></div></dl>
+              </header>
+              <div class="prototype-flow" aria-label="受监管报告五步工作流"><div><span>01</span><strong>冻结来源版本</strong></div><i>→</i><div><span>02</span><strong>提取字段</strong></div><i>→</i><div><span>03</span><strong>规则与对账校验</strong></div><i>→</i><div><span>04</span><strong>生成叙述与来源</strong></div><i>→</i><div><span>05</span><strong>签核与归档</strong></div></div>
+              <div class="capability-grid">
+                <article><span>PATTERN</span><h4>固定 Workflow，不需要 Agent</h4><p>关键步骤和审批路径预先定义；模型只处理解释与叙述。</p></article>
+                <article><span>TOOLS / DATA</span><h4>版本化数据管道</h4><p><code>data.snapshot</code> · <code>schema.validate</code> · <code>source.cite</code> · <code>report.render</code></p></article>
+                <article><span>BOUNDARY</span><h4>版本、规则、审批、审计</h4><p>锁定来源版本，字段规则由代码执行，禁止模型自行报送。</p></article>
+                <article><span>EVALS</span><h4>精确字段与完整血缘</h4><p>字段准确率、来源覆盖、对账差异、修订次数和复核时间。</p></article>
+                <article><span>ARTIFACTS</span><h4>合规可以签字的材料</h4><p>数据字典、血缘图、验证规则、Golden Report、签核记录。</p></article>
+                <article><span>ADOPTION</span><h4>减少复核而非绕开复核</h4><p>复核耗时、修订字段数、按时提交率与审计问题数。</p></article>
+              </div>
+              <footer class="scenario-proof"><div><span>面试证据句</span><p>“我把字段与对账留给确定性代码，只让模型生成带来源的叙述，最终仍由合规签核。”</p></div><div><span>下一扩展</span><p>通过规则包和 Skill 扩展新地区，而不是提高自治等级。</p></div></footer>
+            </article>
+
+            <article id="scenario-research" class="scenario-panel" role="tabpanel" aria-labelledby="scenario-research-tab">
+              <header class="scenario-panel-top">
+                <div class="scenario-identity"><p class="panel-index">PROTOTYPE 04 / RESEARCH &amp; DILIGENCE</p><h3>企业尽调证据简报</h3><p>围绕明确问题搜索限定来源，记录主张与证据，处理来源冲突并标记不确定性。</p></div>
+                <dl class="scenario-facts"><div><dt>核心用户</dt><dd>投资 / 战略研究员</dd></div><div><dt>业务结果</dt><dd>提高证据覆盖，缩短初步研究周期</dd></div><div><dt>最小版本</dt><dd>只读研究 Agent</dd></div></dl>
+              </header>
+              <div class="prototype-flow" aria-label="研究与尽调五步工作流"><div><span>01</span><strong>定义研究问题</strong></div><i>→</i><div><span>02</span><strong>搜索限定来源</strong></div><i>→</i><div><span>03</span><strong>提取主张与引用</strong></div><i>→</i><div><span>04</span><strong>核对冲突</strong></div><i>→</i><div><span>05</span><strong>综合并停止</strong></div></div>
+              <div class="capability-grid">
+                <article><span>PATTERN</span><h4>带停止条件的检索 Agent</h4><p>路径随证据变化；达到覆盖、时间或成本门槛后必须停止。</p></article>
+                <article><span>TOOLS / DATA</span><h4>搜索、读取、证据账本</h4><p><code>search</code> · <code>source.fetch</code> · <code>claim.extract</code> · <code>ledger.write</code></p></article>
+                <article><span>BOUNDARY</span><h4>来源范围与不确定性</h4><p>域名/日期白名单、逐主张引用、冲突显式化、禁止无支持结论。</p></article>
+                <article><span>EVALS</span><h4>覆盖率不是篇幅</h4><p>主张支持率、来源覆盖、冲突召回、重复运行一致性与成本。</p></article>
+                <article><span>ARTIFACTS</span><h4>可以复核的证据链</h4><p>研究计划、来源白名单、Claim Ledger、Eval Set、复核指南。</p></article>
+                <article><span>ADOPTION</span><h4>研究员是否信任并复用</h4><p>删除无支持主张数、人工补源、采用率和初稿时间。</p></article>
+              </div>
+              <footer class="scenario-proof"><div><span>面试证据句</span><p>“我用 Claim Ledger 让每个结论都能回到来源，并把来源冲突纳入 Eval，而不是只评文风。”</p></div><div><span>下一扩展</span><p>对财务、市场、法律等独立问题并行子 Agent，再由主流程合并证据。</p></div></footer>
+            </article>
+
+            <article id="scenario-ops" class="scenario-panel" role="tabpanel" aria-labelledby="scenario-ops-tab">
+              <header class="scenario-panel-top">
+                <div class="scenario-identity"><p class="panel-index">PROTOTYPE 05 / INTERNAL OPERATIONS</p><h3>采购请求路由与材料包</h3><p>识别采购请求类型，收集政策与供应商资料，生成完整材料包并经审批写入工单。</p></div>
+                <dl class="scenario-facts"><div><dt>核心用户</dt><dd>采购 / 运营协调员</dd></div><div><dt>业务结果</dt><dd>减少交接与补件，缩短处理周期</dd></div><div><dt>最小版本</dt><dd>路由 + 材料草稿</dd></div></dl>
+              </header>
+              <div class="prototype-flow" aria-label="内部运营五步工作流"><div><span>01</span><strong>接收请求</strong></div><i>→</i><div><span>02</span><strong>分类与路由</strong></div><i>→</i><div><span>03</span><strong>检索政策 / 供应商</strong></div><i>→</i><div><span>04</span><strong>生成材料包</strong></div><i>→</i><div><span>05</span><strong>审批后写入</strong></div></div>
+              <div class="capability-grid">
+                <article><span>PATTERN</span><h4>Router + 多条固定 Workflow</h4><p>模型负责分类与材料缺口判断，各类采购路径保持可预测。</p></article>
+                <article><span>TOOLS / DATA</span><h4>文档、政策、供应商、工单</h4><p><code>docs.read</code> · <code>policy.search</code> · <code>vendor.lookup</code> · <code>ticket.create</code></p></article>
+                <article><span>BOUNDARY</span><h4>字段白名单与职责分离</h4><p>写入审批、幂等键、金额阈值和发起/批准角色分离。</p></article>
+                <article><span>EVALS</span><h4>路由、完整性、重复动作</h4><p>分类准确率、材料完整率、重复写入为 0、处理周期。</p></article>
+                <article><span>ARTIFACTS</span><h4>流程规则可由运营维护</h4><p>流程图、路由规则、字段 Schema、测试夹具、异常手册。</p></article>
+                <article><span>ADOPTION</span><h4>减少来回沟通</h4><p>一次完成率、人工交接数、SLA 达成率与平均处理时间。</p></article>
+              </div>
+              <footer class="scenario-proof"><div><span>面试证据句</span><p>“我用 Router 选择确定性流程，并通过幂等键和职责分离控制工单写入。”</p></div><div><span>下一扩展</span><p>只对低金额、可逆动作开放有限自治，再连接相邻运营流程。</p></div></footer>
+            </article>
+
+            <article id="scenario-data" class="scenario-panel" role="tabpanel" aria-labelledby="scenario-data-tab">
+              <header class="scenario-panel-top">
+                <div class="scenario-identity"><p class="panel-index">PROTOTYPE 06 / ANALYTICS ASSISTANCE</p><h3>自助指标解释与查询</h3><p>澄清业务问题，选择正确数据源，在只读环境执行查询，并用指标定义与查询证据解释答案。</p></div>
+                <dl class="scenario-facts"><div><dt>核心用户</dt><dd>产品 / 运营负责人</dd></div><div><dt>业务结果</dt><dd>缩短取数时间，保持指标口径一致</dd></div><div><dt>最小版本</dt><dd>只读 Tool Use</dd></div></dl>
+              </header>
+              <div class="prototype-flow" aria-label="分析辅助五步工作流"><div><span>01</span><strong>澄清指标问题</strong></div><i>→</i><div><span>02</span><strong>选择语义与数据源</strong></div><i>→</i><div><span>03</span><strong>生成受限查询</strong></div><i>→</i><div><span>04</span><strong>只读执行与校验</strong></div><i>→</i><div><span>05</span><strong>解释并附证据</strong></div></div>
+              <div class="capability-grid">
+                <article><span>PATTERN</span><h4>Workflow + Tool Use</h4><p>常规问答走固定路径；只有多步探索才使用受限 Agent。</p></article>
+                <article><span>TOOLS / DATA</span><h4>目录、Schema、SQL、指标定义</h4><p><code>catalog.search</code> · <code>schema.read</code> · <code>sql.query</code> · <code>metric.get</code></p></article>
+                <article><span>BOUNDARY</span><h4>只读与行级权限</h4><p>RLS、查询配额、PII 屏蔽、数据时效提示和禁止写操作。</p></article>
+                <article><span>EVALS</span><h4>查询与口径双正确</h4><p>SQL 正确率、指标定义命中、数值一致、解释稳定性与延迟。</p></article>
+                <article><span>ARTIFACTS</span><h4>把口径变成产品资产</h4><p>语义层、查询策略、基准问题集、审计日志、反馈分类。</p></article>
+                <article><span>ADOPTION</span><h4>是否减少数据团队负担</h4><p>答案接受率、纠错率、自助完成率和取数时间。</p></article>
+              </div>
+              <footer class="scenario-proof"><div><span>面试证据句</span><p>“我把指标定义和查询证据一起返回，并用只读账户与 RLS 保证模型不能越过数据权限。”</p></div><div><span>下一扩展</span><p>加入经过审批的情景模拟；真实业务动作仍与分析系统分离。</p></div></footer>
+            </article>
+          </div>
+        </div>
+
+        <div class="mission-lab reveal" aria-labelledby="mission-lab-title">
+          <div class="mission-lab-heading">
+            <div>
+              <p class="panel-index">HIGH-CONSTRAINT BUSINESS LAB</p>
+              <h3 id="mission-lab-title">在高约束行业里，<br />先选业务结果，<br />再选智能形态。</h3>
+            </div>
+            <div class="mission-lab-intro">
+              <p>军工不是一个单一“AI 场景”。作战辅助、训练推演、防护验证、物理仿真、多模态处理和装备保障追求不同结果；模型、Agent 和仿真引擎只能从结果反推。</p>
+              <ul class="mission-constraints" aria-label="所有业务目标共享的横切约束">
+                <li>网络隔离</li><li>数据分级</li><li>低容错</li><li>本地审计</li><li>人类授权</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="business-cascade" aria-label="从业务结果反推系统设计的五步路径">
+            <div><span>01</span><strong>业务结果</strong><small>先定义要改善什么</small></div><i>→</i>
+            <div><span>02</span><strong>现场瓶颈</strong><small>找到时间与风险基线</small></div><i>→</i>
+            <div><span>03</span><strong>最小闭环</strong><small>只做可验证的一段</small></div><i>→</i>
+            <div><span>04</span><strong>系统选择</strong><small>Workflow、Agent 或仿真</small></div><i>→</i>
+            <div><span>05</span><strong>采用证据</strong><small>证明进入真实工作流</small></div>
+          </div>
+
+          <div class="mission-workbench">
+            <div class="mission-tabs" role="tablist" aria-label="选择一个高约束业务目标" data-tabs="missions">
+              <button id="mission-decision-tab" class="mission-tab is-active" type="button" role="tab" aria-selected="true" aria-controls="mission-decision" tabindex="0"><span>01 / DECISION</span><strong>缩短决策准备</strong><small>完整 · 及时 · 可追溯</small></button>
+              <button id="mission-training-tab" class="mission-tab" type="button" role="tab" aria-selected="false" aria-controls="mission-training" tabindex="-1"><span>02 / TRAINING</span><strong>提高训练覆盖</strong><small>可重复 · 可复盘</small></button>
+              <button id="mission-resilience-tab" class="mission-tab" type="button" role="tab" aria-selected="false" aria-controls="mission-resilience" tabindex="-1"><span>03 / RESILIENCE</span><strong>验证防护韧性</strong><small>授权靶场 · 零外溢</small></button>
+              <button id="mission-simulation-tab" class="mission-tab" type="button" role="tab" aria-selected="false" aria-controls="mission-simulation" tabindex="-1"><span>04 / SIMULATION</span><strong>缩短仿真周期</strong><small>误差 · 复现 · 不确定性</small></button>
+              <button id="mission-multimodal-tab" class="mission-tab" type="button" role="tab" aria-selected="false" aria-controls="mission-multimodal" tabindex="-1"><span>05 / MULTIMODAL</span><strong>提升信息处理</strong><small>时序 · 误报 · 实时</small></button>
+              <button id="mission-support-tab" class="mission-tab" type="button" role="tab" aria-selected="false" aria-controls="mission-support" tabindex="-1"><span>06 / SUPPORT</span><strong>降低保障停机</strong><small>诊断 · 知识 · 闭环</small></button>
+            </div>
+
+            <div class="mission-panels">
+              <article id="mission-decision" class="mission-panel is-active" role="tabpanel" aria-labelledby="mission-decision-tab">
+                <header class="mission-panel-top">
+                  <div class="mission-identity"><p class="panel-index">BUSINESS GOAL 01 / DECISION PREPARATION</p><h4>让授权人员更快获得完整、带来源的决策材料</h4><p>业务目标是减少多源材料整理与方案比较时间，不是让模型代替人做最终决定。</p></div>
+                  <dl class="mission-facts"><div><dt>核心用户</dt><dd>决策支持 / 任务规划人员</dd></div><div><dt>当前瓶颈</dt><dd>材料分散、口径不一、时效压力高</dd></div><div><dt>结果指标</dt><dd>准备周期、来源覆盖、无支持结论数</dd></div></dl>
+                </header>
+                <div class="mission-reverse-flow" aria-label="决策准备业务闭环"><div><span>结果</span><strong>缩短准备周期</strong></div><i>←</i><div><span>证据</span><strong>每个主张可回源</strong></div><i>←</i><div><span>系统</span><strong>检索 Workflow</strong></div><i>←</i><div><span>MVP</span><strong>只读汇总与比较</strong></div><i>←</i><div><span>瓶颈</span><strong>多源材料人工对齐</strong></div></div>
+                <div class="mission-decision-grid">
+                  <article><span>MINIMUM LOOP</span><h5>问题—材料—主张—引用—人工签核</h5><p>先把授权材料的检索、时间线对齐和引用草稿做成可重复闭环。</p></article>
+                  <article><span>SYSTEM &amp; BOUNDARY</span><h5>Workflow + 只读 Tool Use</h5><p>来源白名单、权限继承、不生成执行指令、不连接真实动作系统。</p></article>
+                  <article><span>EVALS &amp; ADOPTION</span><h5>支持率、漏项与采用时间</h5><p>检查主张支持率、关键材料漏项、人工否决原因和准备周期变化。</p></article>
+                </div>
+                <footer class="mission-proof"><div><span>个人证据桥</span><p>可用隔离环境中的数据接入、口径治理、日志与权限经验，证明你理解“可信材料”如何形成。</p></div><div><span>扩展门槛</span><p>只有来源覆盖和人工采用稳定后，才在封闭推演环境增加方案比较。</p></div></footer>
+              </article>
+
+              <article id="mission-training" class="mission-panel" role="tabpanel" aria-labelledby="mission-training-tab">
+                <header class="mission-panel-top">
+                  <div class="mission-identity"><p class="panel-index">BUSINESS GOAL 02 / TRAINING COVERAGE</p><h4>用更低的准备成本覆盖更多训练条件，并提高复盘质量</h4><p>训练价值来自可重复、可解释和可比较，不来自生成更多看似复杂的情节。</p></div>
+                  <dl class="mission-facts"><div><dt>核心用户</dt><dd>训练设计者 / 教员 / 参训人员</dd></div><div><dt>当前瓶颈</dt><dd>案例制作慢、条件覆盖窄、复盘依赖人工</dd></div><div><dt>结果指标</dt><dd>条件覆盖、复用率、复盘时间、教员采用</dd></div></dl>
+                </header>
+                <div class="mission-reverse-flow" aria-label="训练推演业务闭环"><div><span>结果</span><strong>提高训练覆盖</strong></div><i>←</i><div><span>证据</span><strong>过程轨迹可复盘</strong></div><i>←</i><div><span>系统</span><strong>仿真引擎 + 受限角色</strong></div><i>←</i><div><span>MVP</span><strong>合成案例与复盘草稿</strong></div><i>←</i><div><span>瓶颈</span><strong>案例准备与复盘耗时</strong></div></div>
+                <div class="mission-decision-grid">
+                  <article><span>MINIMUM LOOP</span><h5>教学目标—条件组合—运行—轨迹—复盘</h5><p>从合成或脱敏数据开始，保留随机种子和运行配置，确保同一案例可复现。</p></article>
+                  <article><span>SYSTEM &amp; BOUNDARY</span><h5>仿真引擎是真值，Agent 只扮演角色</h5><p>角色行为受规则和资源边界限制；不映射真实部署参数或实际行动系统。</p></article>
+                  <article><span>EVALS &amp; ADOPTION</span><h5>多样性、规则符合与复盘价值</h5><p>评估条件覆盖、重复运行一致性、越界行为、教员修改量和案例复用率。</p></article>
+                </div>
+                <footer class="mission-proof"><div><span>个人证据桥</span><p>软件平台、模拟系统和交互设计经验可转化为场景配置、轨迹记录、可重复运行与复盘产品能力。</p></div><div><span>扩展门槛</span><p>先证明单一训练目标有效，再扩展角色数量、条件组合和跨轮次对比。</p></div></footer>
+              </article>
+
+              <article id="mission-resilience" class="mission-panel" role="tabpanel" aria-labelledby="mission-resilience-tab">
+                <header class="mission-panel-top">
+                  <div class="mission-identity"><p class="panel-index">BUSINESS GOAL 03 / DEFENSIVE RESILIENCE</p><h4>在授权靶场里更早发现防护盲区，并缩短验证闭环</h4><p>红蓝对抗在这里被定义为防护验证：只在隔离、授权、可停止的测试环境中运行。</p></div>
+                  <dl class="mission-facts"><div><dt>核心用户</dt><dd>安全测试 / 防护运营 / 平台工程人员</dd></div><div><dt>当前瓶颈</dt><dd>测试案例有限、证据分散、修复后回归慢</dd></div><div><dt>结果指标</dt><dd>测试覆盖、检测召回、恢复时间、零外溢</dd></div></dl>
+                </header>
+                <div class="mission-reverse-flow" aria-label="防护韧性验证业务闭环"><div><span>结果</span><strong>提高防护韧性</strong></div><i>←</i><div><span>证据</span><strong>发现—修复—回归</strong></div><i>←</i><div><span>系统</span><strong>规则 Workflow + 受限对抗角色</strong></div><i>←</i><div><span>MVP</span><strong>授权测试用例生成</strong></div><i>←</i><div><span>瓶颈</span><strong>覆盖不足与回归缓慢</strong></div></div>
+                <div class="mission-decision-grid">
+                  <article><span>MINIMUM LOOP</span><h5>授权目标—用例—靶场运行—防护证据—回归</h5><p>先自动整理用例与防护日志，不从真实系统或开放网络开始。</p></article>
+                  <article><span>SYSTEM &amp; BOUNDARY</span><h5>隔离靶场、白名单、停止开关</h5><p>限定目标、工具、时间和网络出口；禁止提供真实攻击路径或外部执行能力。</p></article>
+                  <article><span>EVALS &amp; ADOPTION</span><h5>覆盖、检测、误报与恢复时间</h5><p>评估用例覆盖、防护检测召回、误报、修复回归通过率以及外溢为零。</p></article>
+                </div>
+                <footer class="mission-proof"><div><span>个人证据桥</span><p>可公开讲授权、隔离、审计、回归和停止条件的设计判断，不讲真实目标、拓扑、漏洞或操作细节。</p></div><div><span>扩展门槛</span><p>只有靶场边界和回归基线稳定后，才增加更多合成测试类别。</p></div></footer>
+              </article>
+
+              <article id="mission-simulation" class="mission-panel" role="tabpanel" aria-labelledby="mission-simulation-tab">
+                <header class="mission-panel-top">
+                  <div class="mission-identity"><p class="panel-index">BUSINESS GOAL 04 / PHYSICS SIMULATION</p><h4>缩短试验设计与结果分析周期，同时守住物理有效性</h4><p>语言模型适合编排与解释，数值求解器、边界条件和工程师复核才是结果依据。</p></div>
+                  <dl class="mission-facts"><div><dt>核心用户</dt><dd>仿真工程师 / 设计与试验人员</dd></div><div><dt>当前瓶颈</dt><dd>参数配置繁琐、批量实验慢、结果比较成本高</dd></div><div><dt>结果指标</dt><dd>试验周期、数值误差、复现率、无效运行数</dd></div></dl>
+                </header>
+                <div class="mission-reverse-flow" aria-label="物理仿真业务闭环"><div><span>结果</span><strong>缩短仿真周期</strong></div><i>←</i><div><span>证据</span><strong>误差与不确定性可见</strong></div><i>←</i><div><span>系统</span><strong>确定性编排 + 求解器</strong></div><i>←</i><div><span>MVP</span><strong>参数校验与批量比较</strong></div><i>←</i><div><span>瓶颈</span><strong>配置、运行、比较割裂</strong></div></div>
+                <div class="mission-decision-grid">
+                  <article><span>MINIMUM LOOP</span><h5>参数空间—校验—求解—比较—工程师复核</h5><p>先把单位、范围、依赖和运行环境结构化，再自动批量执行与汇总。</p></article>
+                  <article><span>SYSTEM &amp; BOUNDARY</span><h5>求解器是真值，LLM 不生成数值结论</h5><p>Schema、单位和参数范围由代码验证；禁止把模型解释伪装成仿真输出。</p></article>
+                  <article><span>EVALS &amp; ADOPTION</span><h5>误差、约束违反、复现与节省时间</h5><p>与基准算例比较数值误差，记录环境、版本、随机性和工程师否决原因。</p></article>
+                </div>
+                <footer class="mission-proof"><div><span>个人证据桥</span><p>实时音视频、性能调优和复杂数据管道经验，可证明你理解时序、精度、吞吐与复现实验。</p></div><div><span>扩展门槛</span><p>先覆盖稳定参数域，再考虑代理模型；超出适用域必须回到原求解器。</p></div></footer>
+              </article>
+
+              <article id="mission-multimodal" class="mission-panel" role="tabpanel" aria-labelledby="mission-multimodal-tab">
+                <header class="mission-panel-top">
+                  <div class="mission-identity"><p class="panel-index">BUSINESS GOAL 05 / MULTIMODAL TRIAGE</p><h4>缩短音视频与多源数据筛查时间，同时控制漏报和误报</h4><p>价值不是“看懂视频”，而是把授权数据变成带时间、来源和置信信息的可复核证据。</p></div>
+                  <dl class="mission-facts"><div><dt>核心用户</dt><dd>多模态分析 / 测试 / 运行保障人员</dd></div><div><dt>当前瓶颈</dt><dd>数据量大、时间轴不齐、人工筛查与关联慢</dd></div><div><dt>结果指标</dt><dd>筛查时间、漏报、误报、时间同步误差</dd></div></dl>
+                </header>
+                <div class="mission-reverse-flow" aria-label="多模态处理业务闭环"><div><span>结果</span><strong>提升信息处理效率</strong></div><i>←</i><div><span>证据</span><strong>事件可回到时间与来源</strong></div><i>←</i><div><span>系统</span><strong>边缘模型 + 多模态 Workflow</strong></div><i>←</i><div><span>MVP</span><strong>检测、检索与引用片段</strong></div><i>←</i><div><span>瓶颈</span><strong>海量数据人工筛查</strong></div></div>
+                <div class="mission-decision-grid">
+                  <article><span>MINIMUM LOOP</span><h5>接入—质检—时间对齐—检测/检索—人工确认</h5><p>先处理一类明确事件，保留原始片段、时间戳、模型版本和判定依据。</p></article>
+                  <article><span>SYSTEM &amp; BOUNDARY</span><h5>本地推理、分级访问、有限留存</h5><p>数据不出域，权限沿用来源系统；高风险事件只提示，不自动触发外部动作。</p></article>
+                  <article><span>EVALS &amp; ADOPTION</span><h5>漏报、误报、延迟与证据完整性</h5><p>按场景分层评测，关注长尾漏报、时间同步、处理延迟和人工确认率。</p></article>
+                </div>
+                <footer class="mission-proof"><div><span>个人证据桥</span><p>音视频编解码、实时链路、边缘计算和质量评估是你的直接差异化证据。</p></div><div><span>扩展门槛</span><p>先做好单模态时间证据，再增加跨模态关联和受限多步分析。</p></div></footer>
+              </article>
+
+              <article id="mission-support" class="mission-panel" role="tabpanel" aria-labelledby="mission-support-tab">
+                <header class="mission-panel-top">
+                  <div class="mission-identity"><p class="panel-index">BUSINESS GOAL 06 / EQUIPMENT SUPPORT</p><h4>缩短故障定位与知识交接时间，降低重复停机</h4><p>从只读资料、日志和历史处置记录开始，让工程师更快形成可检查的排查路径。</p></div>
+                  <dl class="mission-facts"><div><dt>核心用户</dt><dd>现场保障 / 测试 / 软件维护人员</dd></div><div><dt>当前瓶颈</dt><dd>资料分散、经验依赖个人、隔离现场协作困难</dd></div><div><dt>结果指标</dt><dd>定位时间、一次修复率、引用率、重复故障</dd></div></dl>
+                </header>
+                <div class="mission-reverse-flow" aria-label="装备保障业务闭环"><div><span>结果</span><strong>降低保障停机</strong></div><i>←</i><div><span>证据</span><strong>诊断与处置可追溯</strong></div><i>←</i><div><span>系统</span><strong>只读 Workflow 优先</strong></div><i>←</i><div><span>MVP</span><strong>资料检索与排查草稿</strong></div><i>←</i><div><span>瓶颈</span><strong>知识碎片与远程受限</strong></div></div>
+                <div class="mission-decision-grid">
+                  <article><span>MINIMUM LOOP</span><h5>日志/配置—风险分类—案例检索—排查草稿—确认</h5><p>将故障现象、环境、版本、采取动作和最终结果写回本地知识闭环。</p></article>
+                  <article><span>SYSTEM &amp; BOUNDARY</span><h5>只读工具、人工审批、离线更新</h5><p>不自动修改配置或下发指令；更新包经过签名、检查、导入和回滚流程。</p></article>
+                  <article><span>EVALS &amp; ADOPTION</span><h5>诊断命中、引用、MTTR 与知识复用</h5><p>用历史故障验证建议命中和风险召回，并测量平均恢复时间与采用率。</p></article>
+                </div>
+                <footer class="mission-proof"><div><span>个人证据桥</span><p>军工现场约束、软件交付、版本治理和音视频系统排障可以合并成一条完整 FDE 故事。</p></div><div><span>扩展门槛</span><p>只在诊断稳定、动作可逆且审批明确后，开放少量经过验证的检查工具。</p></div></footer>
+              </article>
+            </div>
+          </div>
+
+          <aside class="mission-safety-note"><span>公开表达边界</span><p>只讨论业务目标、抽象流程、验证方法与安全控制；不包含真实组织、任务、目标、网络拓扑、漏洞、参数或操作细节。</p></aside>
+        </div>
+
+        <div class="autonomy-map reveal">
+          <div class="subsection-heading"><p class="panel-index">AUTONOMY LADDER</p><h3>自治不是开关，而是一段逐级开放的阶梯</h3><p>越靠右，越需要可逆动作、稳定 Evals 和更强运营能力。</p></div>
+          <div class="autonomy-track" aria-label="Agent 自治五级阶梯">
+            <article><span>0</span><div><strong>影子模式</strong><small>只比较，不展示</small></div><b>风险最低</b></article>
+            <article><span>1</span><div><strong>只读辅助</strong><small>检索、总结、引用</small></div><b>建立信任</b></article>
+            <article><span>2</span><div><strong>草稿模式</strong><small>人决定是否提交</small></div><b>最常用起点</b></article>
+            <article><span>3</span><div><strong>审批写入</strong><small>提议动作，人确认</small></div><b>开始改变状态</b></article>
+            <article><span>4</span><div><strong>有限自治</strong><small>低风险、可逆动作</small></div><b>持续监控</b></article>
+          </div>
+        </div>
+
+        <div class="expansion-map reveal">
+          <div class="subsection-heading"><p class="panel-index">EXPANSION FLYWHEEL</p><h3>FDE 的扩展，不是简单增加更多 Agent</h3><p>真正的复利来自把现场经验变成下一次部署可以复用的资产。</p></div>
+          <div class="flywheel" aria-label="FDE 四阶段扩展飞轮">
+            <article><span>01</span><strong>单点 Pilot</strong><p>一个用户、一个流程、一个明确指标。</p></article><i aria-hidden="true">→</i>
+            <article><span>02</span><strong>可复用组件</strong><p>MCP、Skill、Eval、权限与上线模板。</p></article><i aria-hidden="true">→</i>
+            <article><span>03</span><strong>行业方案</strong><p>金融、医疗、制造的领域规则与测试集。</p></article><i aria-hidden="true">→</i>
+            <article><span>04</span><strong>平台与产品反馈</strong><p>统一身份、观测、模型路由和平台缺口。</p></article>
+            <div class="flywheel-return"><span aria-hidden="true">↺</span><p>更多客户反馈回到下一轮产品能力</p></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section-tint growth-section" id="growth" aria-labelledby="growth-title">
+        <div class="page-shell">
+          <div class="section-heading reveal">
+            <p class="kicker"><span>06</span> / 对你的意义与面试表达</p>
+            <h2 id="growth-title">你不需要先成为“全栈 FDE”，<br />但要知道下一块证据在哪里。</h2>
+            <p>从自己的强项出发补齐闭环，再用真实案例表达，而不是背诵术语。</p>
+          </div>
+
+          <div class="path-explorer reveal">
+            <div class="path-tabs" role="tablist" aria-label="选择当前能力起点" data-tabs="paths">
+              <button id="path-swe-tab" class="path-tab is-active" type="button" role="tab" aria-selected="true" aria-controls="path-swe" tabindex="0" data-target="path-swe"><span>01</span><strong>我是工程师</strong><small>SWE / Backend / Platform</small></button>
+              <button id="path-sa-tab" class="path-tab" type="button" role="tab" aria-selected="false" aria-controls="path-sa" tabindex="-1" data-target="path-sa"><span>02</span><strong>我做解决方案</strong><small>SA / Consulting / Pre-sales</small></button>
+              <button id="path-ai-tab" class="path-tab" type="button" role="tab" aria-selected="false" aria-controls="path-ai" tabindex="-1" data-target="path-ai"><span>03</span><strong>我做 AI 应用</strong><small>Prompt / RAG / Agent Builder</small></button>
+            </div>
+            <div class="path-panels">
+              <article id="path-swe" class="path-panel is-active" role="tabpanel" aria-labelledby="path-swe-tab">
+                <div><p class="panel-index">YOUR ADVANTAGE</p><h3>可靠代码、系统边界和调试纪律</h3><p>你最容易证明“能做生产”，但可能只从技术需求开始，缺少客户发现与采用证据。</p></div>
+                <div class="path-actions"><p><span>优先补齐</span><strong>客户发现 + 业务指标 + 上线采用</strong></p><p><span>下一项目</span><strong>和真实用户共同收窄一个 AI Pilot</strong></p><p><span>面试提醒</span><strong>不要只讲架构，要讲为什么有人使用</strong></p></div>
+              </article>
+              <article id="path-sa" class="path-panel" role="tabpanel" aria-labelledby="path-sa-tab">
+                <div><p class="panel-index">YOUR ADVANTAGE</p><h3>客户信任、范围判断和跨组织沟通</h3><p>你最容易证明“能找到问题”，但需要用亲自实现、测试和事故处理证明工程深度。</p></div>
+                <div class="path-actions"><p><span>优先补齐</span><strong>Python / TypeScript + Tool + Eval Harness</strong></p><p><span>下一项目</span><strong>独立完成一个带权限测试的 MCP 工具</strong></p><p><span>面试提醒</span><strong>清楚区分自己写的代码与团队贡献</strong></p></div>
+              </article>
+              <article id="path-ai" class="path-panel" role="tabpanel" aria-labelledby="path-ai-tab">
+                <div><p class="panel-index">YOUR ADVANTAGE</p><h3>模型行为、上下文和快速原型能力</h3><p>你最容易展示能力上限，但要证明系统能处理权限、失败、非确定性和长期运营。</p></div>
+                <div class="path-actions"><p><span>优先补齐</span><strong>企业集成 + Evals + 安全与回滚</strong></p><p><span>下一项目</span><strong>把一个 Demo 改造成分级授权 Workflow</strong></p><p><span>面试提醒</span><strong>不要用“优化 Prompt”解释所有失败</strong></p></div>
+              </article>
+            </div>
+          </div>
+
+          <div class="answer-lab reveal">
+            <div class="subsection-heading"><p class="panel-index">ANSWER LAB</p><h3>样例：介绍一个你做过的生产 AI 项目</h3><p>切换弱/强回答，观察强回答怎样同时提供业务、工程、安全和结果证据。</p></div>
+            <div class="answer-tabs" role="tablist" aria-label="比较面试弱回答与强回答" data-tabs="answers">
+              <button id="answer-weak-tab" class="answer-tab" type="button" role="tab" aria-selected="false" aria-controls="answer-weak" tabindex="-1" data-target="answer-weak"><span>✕</span>弱回答</button>
+              <button id="answer-strong-tab" class="answer-tab is-active" type="button" role="tab" aria-selected="true" aria-controls="answer-strong" tabindex="0" data-target="answer-strong"><span>✓</span>强回答</button>
+            </div>
+            <div class="answer-panels">
+              <article id="answer-weak" class="answer-panel answer-panel-weak" role="tabpanel" aria-labelledby="answer-weak-tab">
+                <blockquote>“我用 Claude 和 RAG 做了一个客服机器人，加入了向量数据库和 Agent。经过 Prompt 优化后效果很好，客户也很满意。”</blockquote>
+                <ul><li>没有具体用户和工作流</li><li>没有说明自己亲自做了什么</li><li>没有权限、失败和上线边界</li><li>“效果很好”无法验证</li></ul>
+              </article>
+              <article id="answer-strong" class="answer-panel is-active" role="tabpanel" aria-labelledby="answer-strong-tab">
+                <blockquote>
+                  <mark class="answer-business">业务</mark>“客服平均需要 11 分钟跨三个系统处理账户访问工单；我们先限定一个高频类别，目标是把查找和起草时间降低 30%。”
+                  <mark class="answer-engineering">工程</mark>“我实现了带租户 ACL 的知识检索工具、结构化回复 Schema 和重试/Trace，并用固定 Workflow 保持路径可审计。”
+                  <mark class="answer-safety">安全</mark>“首版只读并生成草稿，身份风险必须升级；任何 CRM 更新都需要人工审批和幂等键。”
+                  <mark class="answer-result">结果</mark>“我们用 42 个历史案例建立 Eval Suite，引用支持率达到 93%，高风险漏升级为 0；Pilot 后平均处理时间下降 36%。”
+                </blockquote>
+                <div class="answer-legend"><span class="legend-business">业务证据</span><span class="legend-engineering">工程证据</span><span class="legend-safety">安全证据</span><span class="legend-result">结果证据</span></div>
+              </article>
+            </div>
+          </div>
+
+          <div class="glossary reveal">
+            <div class="glossary-header">
+              <div class="subsection-heading"><p class="panel-index">GLOSSARY</p><h3>12 个术语，够你恢复整套心智模型</h3><p>输入中文或英文，例如 “权限”“MCP”“评测”。</p></div>
+              <label class="glossary-search"><span>搜索术语</span><input id="glossary-query" type="search" placeholder="搜索：MCP / 权限 / 轨迹…" autocomplete="off" aria-controls="glossary-list" /></label>
+            </div>
+            <div class="glossary-list" id="glossary-list" aria-live="polite">
+              <article data-glossary="workflow 工作流 固定 路径"><span>01</span><h4>Workflow</h4><p>模型和工具沿预先定义的代码路径执行；适合步骤明确、要求稳定的任务。</p></article>
+              <article data-glossary="agent 智能体 自主 循环"><span>02</span><h4>Agent</h4><p>模型根据环境反馈动态决定下一步和工具；用成本与风险换灵活性。</p></article>
+              <article data-glossary="mcp model context protocol 连接 工具"><span>03</span><h4>MCP</h4><p>连接 AI 应用与外部数据、工具和工作流的开放标准；它不是权限系统。</p></article>
+              <article data-glossary="tool 工具 接口 schema"><span>04</span><h4>Tool</h4><p>确定性系统与非确定性 Agent 的契约；职责、输入、错误和权限必须清晰。</p></article>
+              <article data-glossary="context engineering 上下文 工程 token"><span>05</span><h4>Context Engineering</h4><p>选择模型当前最需要的指令、工具、数据、历史和状态，而不是塞入全部信息。</p></article>
+              <article data-glossary="skill 技能 领域 流程"><span>06</span><h4>Agent Skill</h4><p>可复用的领域指令、流程知识、参考材料和代码，描述某类任务应怎样完成。</p></article>
+              <article data-glossary="subagent 子智能体 隔离 并行"><span>07</span><h4>Subagent</h4><p>为专业子任务隔离上下文和工具；只有并行或专业化收益大于通信成本时才使用。</p></article>
+              <article data-glossary="eval evaluation 评测 测试"><span>08</span><h4>Eval</h4><p>给系统任务并用评分逻辑判断成功；它把模糊的“效果好”变成可回归的证据。</p></article>
+              <article data-glossary="trace transcript 轨迹 工具调用"><span>09</span><h4>Trace</h4><p>一次运行的完整过程，包括模型输出、工具调用、中间结果和错误恢复。</p></article>
+              <article data-glossary="outcome 最终状态 结果"><span>10</span><h4>Outcome</h4><p>任务结束后外部环境的真实状态；Agent 说“完成”不等于 Outcome 成功。</p></article>
+              <article data-glossary="human in the loop 人工 审批"><span>11</span><h4>Human-in-the-loop</h4><p>人在高风险判断或动作前确认，不是简单地在流程末尾看一眼。</p></article>
+              <article data-glossary="least privilege 最小权限 acl 安全"><span>12</span><h4>Least Privilege</h4><p>只提供完成当前任务所需的最小数据和动作能力，并在工具端再次强制执行。</p></article>
+            </div>
+            <p class="glossary-empty" id="glossary-empty" hidden>没有匹配术语。尝试“工具”“Agent”“评测”或“权限”。</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section page-shell" id="guide" aria-labelledby="guide-title">
+        <div class="section-heading reveal">
+          <p class="kicker"><span>07</span> / 如何读原网页</p>
+          <h2 id="guide-title">用它决定“练什么”，<br />不要用它断言“必考什么”。</h2>
+          <p>第三方指南的最大价值是能力地图；其最大风险是把合理推测误读成官方流程。</p>
+        </div>
+
+        <div class="evidence-map reveal">
+          <div class="evidence-axis" aria-label="证据可信度从高到低">
+            <span>可确认</span><i></i><span>需核验</span><i></i><span>仅建议</span>
+          </div>
+          <article class="evidence-tier evidence-tier-a"><div><span>A</span><p>OFFICIAL</p></div><h3>Anthropic 官方事实</h3><ul><li>客户嵌入与生产应用</li><li>MCP、子 Agent、Skills</li><li>候选人 AI 使用规则</li></ul><strong>可以作为事实基线</strong></article>
+          <article class="evidence-tier evidence-tier-b"><div><span>B</span><p>THIRD-PARTY</p></div><h3>Chill Interview 公开正文</h3><ul><li>能力信号与题型地图</li><li>弱/强回答结构</li><li>系统设计十步框架</li></ul><strong>可以作为练习清单</strong></article>
+          <article class="evidence-tier evidence-tier-d"><div><span>D</span><p>INFERENCE</p></div><h3>本研究的行动建议</h3><ul><li>六区块设计表达</li><li>四周学习路线</li><li>客服 Agent 作品规格</li></ul><strong>需要用实践验证</strong></article>
+        </div>
+
+        <div class="guide-boundary reveal">
+          <div class="guide-public">
+            <p class="panel-index">PUBLIC CONTENT</p><h3>公开正文实际覆盖</h3>
+            <div class="stage-list"><span>岗位画像</span><span>核心信号</span><span>可能流程</span><span>Recruiter</span><span>Coding</span><span>Applied AI</span><span>系统设计框架</span></div>
+          </div>
+          <div class="boundary-gate" aria-label="注册或付费边界"><span>LOCKED</span><i></i><strong>注册 / 付费墙</strong></div>
+          <div class="guide-locked">
+            <p class="panel-index">OUTLINE ONLY</p><h3>目录可见，但未读取正文</h3>
+            <div class="stage-list"><span>客户发现</span><span>价值观/安全</span><span>行为面试</span><span>职级</span><span>四周计划</span><span>薪酬与 FAQ</span></div>
+          </div>
+        </div>
+
+        <div class="interview-signals reveal">
+          <div class="signal-radar" aria-labelledby="radar-title">
+            <svg viewBox="0 0 420 420" role="img" aria-labelledby="radar-title radar-desc">
+              <title id="radar-title">FDE 五维能力平衡图</title>
+              <desc id="radar-desc">生产工程、Agent 深度、客户发现、安全可靠性和高主动性五个维度都需要较强能力。</desc>
+              <g class="radar-grid">
+                <polygon points="210,56 356,162 300,334 120,334 64,162"></polygon>
+                <polygon points="210,100 314,176 274,298 146,298 106,176"></polygon>
+                <polygon points="210,144 272,189 248,262 172,262 148,189"></polygon>
+                <line x1="210" y1="210" x2="210" y2="56"></line><line x1="210" y1="210" x2="356" y2="162"></line><line x1="210" y1="210" x2="300" y2="334"></line><line x1="210" y1="210" x2="120" y2="334"></line><line x1="210" y1="210" x2="64" y2="162"></line>
+              </g>
+              <polygon class="radar-value" points="210,70 337,169 291,321 132,317 79,167"></polygon>
+              <g class="radar-points"><circle cx="210" cy="70" r="6"></circle><circle cx="337" cy="169" r="6"></circle><circle cx="291" cy="321" r="6"></circle><circle cx="132" cy="317" r="6"></circle><circle cx="79" cy="167" r="6"></circle></g>
+              <g class="radar-labels"><text x="210" y="34" text-anchor="middle">生产工程</text><text x="371" y="155" text-anchor="start">Agent 深度</text><text x="314" y="365" text-anchor="middle">客户发现</text><text x="104" y="365" text-anchor="middle">安全可靠</text><text x="48" y="155" text-anchor="end">高主动性</text></g>
+            </svg>
+            <p>这不是个人评分，而是岗位提醒：只突出一个维度，会显得像相邻角色而非 FDE。</p>
+          </div>
+          <div class="signal-list">
+            <p class="panel-index">STRONG SIGNALS</p><h3>一个强案例应同时给出四种证据</h3>
+            <ol><li><span>01</span><div><strong>业务证据</strong><p>谁的什么问题，基线是什么？</p></div></li><li><span>02</span><div><strong>工程证据</strong><p>你亲自构建和调试了什么？</p></div></li><li><span>03</span><div><strong>安全证据</strong><p>哪些动作被限制、审批和审计？</p></div></li><li><span>04</span><div><strong>结果证据</strong><p>如何评测、上线、采用与复盘？</p></div></li></ol>
+          </div>
+        </div>
+      </section>
+
+      <section class="section roadmap-section" id="roadmap" aria-labelledby="roadmap-title">
+        <div class="page-shell">
+          <div class="section-heading reveal">
+            <p class="kicker"><span>08</span> / 后期复习路线</p>
+            <h2 id="roadmap-title">四周，把“知道术语”变成“拿得出证据”。</h2>
+            <p>每周只保留一个清晰产出，避免在概念列表里无限扩张。</p>
+          </div>
+
+          <div class="roadmap-grid reveal">
+            <article><p><span>WEEK</span><strong>01</strong></p><h3>岗位与证据</h3><ul><li>阅读官方职位和政策</li><li>建立个人能力证据表</li><li>准备 Why FDE 与真实故事</li></ul><footer>产出 / 故事索引</footer></article>
+            <article><p><span>WEEK</span><strong>02</strong></p><h3>编码与工具</h3><ul><li>API、权限、重试、Trace</li><li>实现一个窄 Tool / MCP</li><li>写 Schema、错误和测试</li></ul><footer>产出 / 可运行工具</footer></article>
+            <article><p><span>WEEK</span><strong>03</strong></p><h3>Agent 与 Evals</h3><ul><li>实现一个固定 Workflow</li><li>建立 20–50 个真实任务</li><li>威胁模型与上线门槛</li></ul><footer>产出 / Eval 报告</footer></article>
+            <article><p><span>WEEK</span><strong>04</strong></p><h3>模拟与压缩</h3><ul><li>Coding + System Design</li><li>Customer Discovery Mock</li><li>2 分钟与 8 分钟故事版</li></ul><footer>产出 / 项目演示</footer></article>
+          </div>
+
+          <form class="readiness-lab reveal" id="readiness-lab">
+            <div class="readiness-summary">
+              <p class="panel-index">EVIDENCE CHECK</p><h3>你的准备度，不看“学过多少”，看“能展示什么”</h3><p>只勾选你现在能打开、演示或具体讲清的证据；选择会保存在当前浏览器。</p>
+              <div class="readiness-meter"><div><strong id="readiness-score">0/6</strong><span id="readiness-label">从第一项真实证据开始</span></div><div class="readiness-track" role="progressbar" aria-label="FDE 准备证据完成度" aria-valuemin="0" aria-valuemax="6" aria-valuenow="0"><span id="readiness-bar"></span></div></div>
+            </div>
+            <fieldset class="readiness-checklist">
+              <legend>选择已经具备的证据</legend>
+              <label data-next="完成一个包含认证、错误处理和测试的生产式 API"><input id="evidence-engineering" type="checkbox" data-readiness /><span><b>01</b><strong>生产工程</strong><small>可运行 API / 服务，含认证、错误与测试</small></span></label>
+              <label data-next="让模型通过窄工具完成一个端到端 Workflow"><input id="evidence-agent" type="checkbox" data-readiness /><span><b>02</b><strong>Agent 系统</strong><small>模型、工具、状态与停止条件组成闭环</small></span></label>
+              <label data-next="用 20–50 个真实任务建立回归 Eval Suite"><input id="evidence-eval" type="checkbox" data-readiness /><span><b>03</b><strong>评测证据</strong><small>任务集、评分器、Trace 与 Outcome 报告</small></span></label>
+              <label data-next="访谈真实用户并写出问题、基线与成功指标"><input id="evidence-discovery" type="checkbox" data-readiness /><span><b>04</b><strong>客户发现</strong><small>真实用户、现状基线、范围和成功指标</small></span></label>
+              <label data-next="为作品补一份威胁模型、权限边界和回滚方案"><input id="evidence-safety" type="checkbox" data-readiness /><span><b>05</b><strong>安全上线</strong><small>威胁模型、分级授权、监控与回滚</small></span></label>
+              <label data-next="把项目压缩成带量化结果的 2 分钟真实故事"><input id="evidence-story" type="checkbox" data-readiness /><span><b>06</b><strong>面试表达</strong><small>2 分钟故事，包含个人贡献和量化结果</small></span></label>
+            </fieldset>
+            <aside class="readiness-next" aria-live="polite"><span>NEXT BEST EVIDENCE</span><strong id="readiness-next-title">完成一个生产式 API</strong><p id="readiness-next-copy">先补能够运行和测试的工程证据，再叠加模型能力。</p><button class="text-button" id="readiness-reset" type="button">重置本机进度</button></aside>
+          </form>
+
+          <div class="memory-card reveal">
+            <div><p class="kicker"><span>15 MIN</span> / 下次快速恢复</p><h3>只记住这一条主线</h3></div>
+            <p class="memory-flow"><span>问题</span><i>→</i><span>边界</span><i>→</i><span>最简架构</span><i>→</i><span>工具</span><i>→</i><span>Evals</span><i>→</i><span>分级上线</span><i>→</i><span>产品复用</span></p>
+            <p>如果一个回答跳过了其中两三个环节，它大概率还停留在 Demo，而不是 FDE 交付。</p>
+          </div>
+
+          <div class="next-reading reveal">
+            <h3>继续深入原始研究</h3>
+            <div>
+              <a href="https://github.com/yydshly/0830_codex_project/blob/main/projects/anthropic-fde-interview-guide-research/docs/01-fde-concept-and-role.md" target="_blank" rel="noreferrer">FDE 概念与边界 <span>↗</span></a>
+              <a href="https://github.com/yydshly/0830_codex_project/blob/main/projects/anthropic-fde-interview-guide-research/docs/02-guide-deep-reading.md" target="_blank" rel="noreferrer">网页逐节解析 <span>↗</span></a>
+              <a href="https://github.com/yydshly/0830_codex_project/blob/main/projects/anthropic-fde-interview-guide-research/docs/03-enterprise-agent-principles.md" target="_blank" rel="noreferrer">企业 Agent 原理 <span>↗</span></a>
+              <a href="https://github.com/yydshly/0830_codex_project/blob/main/projects/anthropic-fde-interview-guide-research/docs/04-interview-preparation.md" target="_blank" rel="noreferrer">面试准备路线 <span>↗</span></a>
+              <a href="https://github.com/yydshly/0830_codex_project/blob/main/projects/anthropic-fde-interview-guide-research/docs/05-portfolio-project.md" target="_blank" rel="noreferrer">作品项目规格 <span>↗</span></a>
+              <a href="https://github.com/yydshly/0830_codex_project/blob/main/projects/anthropic-fde-interview-guide-research/docs/06-sources-and-evidence.md" target="_blank" rel="noreferrer">来源与证据 <span>↗</span></a>
+              <a href="https://github.com/yydshly/0830_codex_project/blob/main/projects/anthropic-fde-interview-guide-research/docs/07-archive-summary.md" target="_blank" rel="noreferrer">归档总结与恢复入口 <span>↗</span></a>
+              <a href="https://github.com/yydshly/0830_codex_project/tree/main/projects/composable-simulation-workbench" target="_blank" rel="noreferrer">下游仿真产品探索 <span>↗</span></a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="page-shell footer-grid">
+        <div><p class="brand-footer">FDE FIELD GUIDE</p><p>研究对象是第三方公开页面；岗位事实与技术定义优先使用 Anthropic 官方资料核验。</p></div>
+        <div><p class="footer-label">PRIMARY SOURCES</p><a href="https://job-boards.greenhouse.io/anthropic/jobs/5302966008" target="_blank" rel="noreferrer">Anthropic FDE 职位 ↗</a><a href="https://www.anthropic.com/engineering/building-effective-agents" target="_blank" rel="noreferrer">Building Effective Agents ↗</a><a href="https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents" target="_blank" rel="noreferrer">Agent Evals ↗</a></div>
+        <div><p class="footer-label">RESEARCH BOUNDARY</p><p>事实截止 2026-08-30；研究于 2026-08-31 归档。付费墙后的正文没有读取，也没有被重构为隐藏内容。</p></div>
+      </div>
+    </footer>
+
+    <script src="app.js" defer></script>
+  </body>
+</html>
