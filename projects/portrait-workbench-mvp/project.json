@@ -1,0 +1,19 @@
+{
+  "slug": "portrait-workbench-mvp",
+  "title": "Rembrandt 肖像能力工作台",
+  "summary": "用产品、探索与架构三种模式完整展示 Rembrandt Portrait Lighting 的操作闭环、研究证据、场景方向和系统边界。",
+  "status": "complete",
+  "tags": [
+    "ai-skill",
+    "portrait-workflow",
+    "product-prototype",
+    "quality-review",
+    "research-evidence",
+    "knowledge-workbench",
+    "frontend"
+  ],
+  "started_at": "2026-08-30",
+  "updated_at": "2026-08-30",
+  "upstream_url": "https://github.com/okooo5km/rembrandt-portrait-lighting",
+  "demo_url": "https://yydshly.github.io/0830_codex_project/demos/portrait-workbench-mvp/"
+}

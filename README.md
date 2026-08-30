@@ -5,6 +5,19 @@
 
 这是一个面向长期探索的研究型 monorepo。根 README 是所有研究的总入口；每个子项目独立记录问题、方法、实验、结论与展示地址；[GitHub Pages 门户](https://yydshly.github.io/0830_codex_project/)负责汇总可浏览成果。
 
+## 最新能力项目：Rembrandt 肖像能力工作台
+
+这是对上游 [`okooo5km/rembrandt-portrait-lighting`](https://github.com/okooo5km/rembrandt-portrait-lighting) 的可运行产品化研究：它不是新的修图模型或单图滤镜，而是把**主体诊断、伦勃朗布光约束、身份与关系锁定、多画幅规划、失败判定和定向重试**编译成可审查的肖像生产任务。
+
+- **产品模式**：操作家庭多人肖像与个人品牌套图的输入 → 计划 → 规则 → 质检 → 交付闭环。
+- **探索模式**：查看 8 个研究阶段、人物/宠物/多人真实证据、9 个场景与 7 个产品方向。
+- **架构模式**：区分上游 Skill、宿主图像模型和我们系统的职责，并展示检测、生成、自动 QA 与产品基础设施的扩展路线。
+- **对我们的价值**：把一次性的提示词经验沉淀为模型可替换、结果可拒收、任务可回放、团队可复用的生产中间层。
+
+[打开在线工作台](https://yydshly.github.io/0830_codex_project/demos/portrait-workbench-mvp/) · [查看完整研究与验证记录](projects/portrait-workbench-mvp/README.md) · [查看上游固定提交](https://github.com/okooo5km/rembrandt-portrait-lighting/tree/28fc5e579142a37179e2443fdb17d17fb90248d6)
+
+> 能力边界：当前静态工作台不会在浏览器中执行人物检测、分割或模型推理；多人“分别制作”是建立独立生成任务，不是像素无损抠图。上游固定快照未包含独立 `LICENSE`，商用前须另行完成授权、肖像权、隐私和数据删除审查。
+
 ## 重点能力项目：replicate-video-ad
 
 本项目研究如何把优秀参考视频转成另一产品可执行的视频生产架构，而不是复制原作品或直接生成最终成片。
@@ -22,6 +35,7 @@
 | 项目 | 原项目库 | 状态 | 简介 | 标签 | 最近更新 | 展示 |
 | --- | --- | --- | --- | --- | --- | --- |
 | [replicate-video-ad 能力研究与热门广告结构迁移实验](projects/replicate-video-ad-demo/README.md) | [查看原库](https://github.com/Jingyi-Wu-Richael/replicate-video-ad) | 已完成 | 验证 replicate-video-ad 如何完成视频证据抽取、广告机制迁移与生成约束，输出可脱离原片执行的新产品视频生产架构；它本身不直接生成视频。 | `ai-skill`、`video-analysis`、`prompt-engineering`、`ecommerce-ad`、`real-world-case`、`creative-strategy` | 2026-08-30 | [在线查看](https://yydshly.github.io/0830_codex_project/demos/replicate-video-ad-demo/) |
+| [Rembrandt 肖像能力工作台](projects/portrait-workbench-mvp/README.md) | [查看原库](https://github.com/okooo5km/rembrandt-portrait-lighting) | 已完成 | 用产品、探索与架构三种模式完整展示 Rembrandt Portrait Lighting 的操作闭环、研究证据、场景方向和系统边界。 | `ai-skill`、`portrait-workflow`、`product-prototype`、`quality-review`、`research-evidence`、`knowledge-workbench`、`frontend` | 2026-08-30 | [在线查看](https://yydshly.github.io/0830_codex_project/demos/portrait-workbench-mvp/) |
 | [Kid Papercraft 情绪价值内容方法研究](projects/kid-papercraft-demo/README.md) | [查看原库](https://github.com/kaomei/kid-papercraft) | 已完成 | 从儿童纸艺 Prompt Skill 出发，验证人物一致性与图生视频边界，并沉淀为面向亲子、伴侣、长辈、宠物与自我的个性化情绪价值内容方法。 | `ai-skill`、`emotional-value`、`relationship-content`、`personalized-media`、`prompt-engineering`、`creative-method` | 2026-08-30 | [在线查看](https://yydshly.github.io/0830_codex_project/demos/kid-papercraft-demo/) |
 | [汉字拆字视频能力演示](projects/hanzi-chaizi-video-demo/README.md) | [查看原库](https://github.com/Mr-funny/hbg-hanzi-chaizi-video) | 已完成 | 用七条真实视频、六场景、配置工作台、姓名祝福 MVP，以及同一对 AI 虚构人物贯穿请帖、大屏和迎宾海报的婚礼完整样例，说明笔画底座如何扩展为诚实标注、可替换的视觉交付产品。 | `remotion`、`hanzi`、`video-generation`、`tts`、`product-research` | 2026-08-30 | [在线查看](https://yydshly.github.io/0830_codex_project/demos/hanzi-chaizi-video-demo/) |
 <!-- PROJECTS:END -->

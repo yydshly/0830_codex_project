@@ -1,0 +1,24 @@
+{
+  "revision": 1,
+  "upstream": "https://github.com/okooo5km/rembrandt-portrait-lighting",
+  "upstreamCommit": "28fc5e579142a37179e2443fdb17d17fb90248d6",
+  "licenseNote": "The fixed upstream snapshot contains no standalone LICENSE. These assets are research evidence; commercial reuse requires a separate rights review.",
+  "assets": {
+    "assets/brand-avatar-1x1.jpg": "d5506ffc501a6aefa6d7d61d531d86ae9c6174e6fc7fb0065fe1c5b943ff5ac0",
+    "assets/brand-cover-16x9.jpg": "61c90db9f7963b5d14cbfdc68842510fa730aef49c8550b673dff2d1c1bb4cc6",
+    "assets/brand-editorial-3x4.jpg": "d8677fe8b8b67793bee4f6da95f2da10198ca9eb6273e4de0b9dce8de250555b",
+    "assets/brand-rejected-retry.jpg": "b03e19ddb19a4f7bee3c16ad6bab4e678e9dafd010c821088d423d2fa20184d9",
+    "assets/brand-social-4x5.jpg": "4166cbf0feb5cbe99d5c558d97526dad0df989e0722f233b750e012f89d4db38",
+    "assets/brand-source.jpg": "93ea5f2a855c5cfe937df662452802cf981e2fa40af72541dcf356f284d544d5",
+    "assets/family-grandma.jpg": "48d4fd0162ba444f217d8a4b3ce179bfca5f584ac93fd17a320cf98c3e6e06e1",
+    "assets/family-grandpa.jpg": "5925a9eb1a28e08637c9400fe97660694e1f75910427661221edaca47832666e",
+    "assets/family-group-4x3.jpg": "6ad5fdac8eaf3791639c310c41fd1d7b0dadb93095d171a9dc20e14d5af8be9c",
+    "assets/family-source.jpg": "baa023a942b035c69ca7059066f58c1b52656e29b9708b7d6104df382077e4e1",
+    "assets/human-baseline.jpg": "47972bbecd1e5a2337224abcaa8fd458838847290c6414c4e57556ef0a874f6a",
+    "assets/human-skill-guided.jpg": "2eeb154e902ecca1d08ea6988b8957d4df0c5212fbe9d4a96bbe4a807be0c298",
+    "assets/pet-avatar-1x1.jpg": "4f3cdaa4fbd773d39d8b3664d17f1d396c46555095fd73ba473ad37a670fba7f",
+    "assets/pet-baseline.jpg": "ed74f272ac62bb8d9a5c27dcca34e3ca894ea788698c95fabab9772862dae093",
+    "assets/pet-skill-guided.jpg": "caee92297f45edfc6828c2a5118a4f00614c80ad57b09b46444429a56e5b9710",
+    "assets/pet-source.jpg": "a511f399b84359a9a73685f2e6da2ebe7acb4e8e7fe431cbdb7d9ae8bde11ebc"
+  }
+}

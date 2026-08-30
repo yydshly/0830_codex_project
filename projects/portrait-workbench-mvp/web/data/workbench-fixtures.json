@@ -1,0 +1,162 @@
+{
+  "revision": 1,
+  "product": "portrait-workbench-mvp",
+  "sourceSkill": {
+    "name": "rembrandt-portrait-lighting",
+    "upstream": "https://github.com/okooo5km/rembrandt-portrait-lighting",
+    "upstreamCommit": "28fc5e579142a37179e2443fdb17d17fb90248d6",
+    "responsibility": [
+      "diagnose subject geometry",
+      "lock identity, relationships and visible anatomy",
+      "choose a subject-specific lighting branch",
+      "adapt framing to the delivery use",
+      "name failures and permit one targeted retry"
+    ],
+    "notIncluded": [
+      "runtime subject detection or segmentation",
+      "pixel rendering or image-model weights",
+      "automatic identity similarity scoring",
+      "task queues, storage, accounts or rights management"
+    ]
+  },
+  "fixtures": [
+    {
+      "id": "family",
+      "label": "家庭肖像",
+      "eyebrow": "2 人 · 真实案例",
+      "description": "同一张双人生活照可以保留关系同框，也可以拆成两个独立生成任务；不是像素无损抠图。",
+      "source": {
+        "asset": "assets/family-source.jpg",
+        "alt": "两位年长家庭成员的原始合照",
+        "provenance": "rembrandt-portrait-lighting upstream example"
+      },
+      "subjects": [
+        {
+          "id": "grandma",
+          "label": "主体 A · 奶奶",
+          "bounds": {"x": 4, "y": 7, "width": 45, "height": 86},
+          "locks": ["身份与年龄", "帽子与围巾", "表情", "可见手部"]
+        },
+        {
+          "id": "grandpa",
+          "label": "主体 B · 爷爷",
+          "bounds": {"x": 49, "y": 6, "width": 47, "height": 87},
+          "locks": ["身份与年龄", "帽子与眼镜", "服装", "可见手部"]
+        }
+      ],
+      "plans": [
+        {
+          "id": "preserve",
+          "label": "保留同画面",
+          "description": "一个任务保留两人、左右顺序、互动和手部关系。",
+          "format": "4:3",
+          "tasks": 1,
+          "lightingBranch": "Multiple subjects · one coherent image-space key vector",
+          "keyDirection": "image-left",
+          "rules": [
+            {"origin": "Skill", "label": "关系锁", "value": "保留 2 人、左右顺序、帽子、衣着、互动和可见手部"},
+            {"origin": "Diagnostics", "label": "布光分支", "value": "所有主体、投影与背景衰减共享 image-left 主光向量"},
+            {"origin": "Format", "label": "构图", "value": "4:3；裁切会破坏关系时扩展深炭色影棚，不删除任何主体"},
+            {"origin": "Final check", "label": "拒收条件", "value": "人物数变化、左右顺序改变、双重光向、手部破损或抠图边缘"}
+          ],
+          "outputs": [
+            {"id": "family-group", "label": "同画面 4:3", "asset": "assets/family-group-4x3.jpg", "alt": "两位家庭成员保留同画面的伦勃朗光影棚肖像", "dimensions": "1448×1086"}
+          ],
+          "qa": [
+            {"id": "count", "label": "主体数量与左右顺序", "status": "pass", "note": "两人均保留，左右顺序一致"},
+            {"id": "relation", "label": "关系与关键服饰", "status": "pass", "note": "互动、帽子和衣着可读"},
+            {"id": "key", "label": "共享主光向量", "status": "pass", "note": "同一 image-left 主光组织两人和背景"},
+            {"id": "identity", "label": "身份微细节", "status": "partial", "note": "需人工逐脸复核；生成式编辑不是无损复制"},
+            {"id": "anatomy", "label": "手部与材质细节", "status": "partial", "note": "整体关系通过，局部细节仍需人工放大检查"}
+          ]
+        },
+        {
+          "id": "split",
+          "label": "分别制作",
+          "description": "为每位主体创建独立身份锁和独立候选，不声称从原图无损提取像素。",
+          "format": "source-adaptive portrait",
+          "tasks": 2,
+          "lightingBranch": "Per-subject geometry, identity-preserve plus lighting-weather",
+          "keyDirection": "source-adaptive",
+          "rules": [
+            {"origin": "Skill", "label": "任务拆分", "value": "2 个独立编辑任务；每次重述该主体的身份、年龄、服饰和可见解剖"},
+            {"origin": "Diagnostics", "label": "布光选择", "value": "每个任务按可见人脸几何选择最严格且不扭曲五官的分支"},
+            {"origin": "Format", "label": "构图", "value": "优先保留源比例；裁切触及帽子、下巴或手部时扩展影棚"},
+            {"origin": "Final check", "label": "拒收条件", "value": "身份、年龄、表情、服饰或手部被改变；背景与主光方向冲突"}
+          ],
+          "outputs": [
+            {"id": "grandma", "label": "主体 A · 独立肖像", "asset": "assets/family-grandma.jpg", "alt": "奶奶的独立伦勃朗光肖像", "dimensions": "example output"},
+            {"id": "grandpa", "label": "主体 B · 独立肖像", "asset": "assets/family-grandpa.jpg", "alt": "爷爷的独立伦勃朗光肖像", "dimensions": "example output"}
+          ],
+          "qa": [
+            {"id": "tasks", "label": "独立任务数量", "status": "pass", "note": "两位主体对应两个独立结果"},
+            {"id": "wardrobe", "label": "年龄、服饰与配件", "status": "pass", "note": "帽子、眼镜、围巾和整体年龄特征可读"},
+            {"id": "studio", "label": "影棚与主体分离", "status": "pass", "note": "深炭到墨黑背景与主体形成低调分离"},
+            {"id": "identity", "label": "跨结果身份一致性", "status": "partial", "note": "当前只有人工视觉证据，没有自动相似度"},
+            {"id": "extraction", "label": "像素无损提取", "status": "not-applicable", "note": "这不是该流程目标；结果由生成式编辑重建"}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "brand",
+      "label": "个人品牌",
+      "eyebrow": "1 人 · 4 个交付面",
+      "description": "同一人物身份锁编译成头像、社交、编辑和封面四个格式任务；每个结果都需要身份复核。",
+      "source": {
+        "asset": "assets/brand-source.jpg",
+        "alt": "人物现场照片原始输入",
+        "provenance": "Danni Koenig source fixture used in controlled case study"
+      },
+      "subjects": [
+        {
+          "id": "primary-person",
+          "label": "主体 A · 人物",
+          "bounds": {"x": 18, "y": 3, "width": 64, "height": 93},
+          "locks": ["身份与脸部比例", "棕色卷发", "黑色服装", "表情与视线"]
+        }
+      ],
+      "plans": [
+        {
+          "id": "kit",
+          "label": "多画幅套图",
+          "description": "共享一个身份和光型基准，为每种用途单独生成，不用一张图机械裁出所有比例。",
+          "format": "1:1 + 4:5 + 3:4 + 16:9",
+          "tasks": 4,
+          "lightingBranch": "Human three-quarter · short-light closed-loop Rembrandt target",
+          "keyDirection": "image-left",
+          "rules": [
+            {"origin": "Skill", "label": "身份锁", "value": "每个格式重述身份、脸部比例、卷发、黑色服装、表情和视线"},
+            {"origin": "Diagnostics", "label": "布光分支", "value": "三分之四且双眼可见：以短光闭环 Rembrandt 为目标；不能自然闭环就拒绝伪造鼻影"},
+            {"origin": "Format", "label": "用途适配", "value": "1:1 中央 80% 安全区；4:5 社交；3:4 编辑；16:9 沿视线方向留负空间"},
+            {"origin": "Final check", "label": "拒收条件", "value": "身份漂移、皮肤纹理夸张、头发/下巴裁切、背景噪声或伪造光斑"}
+          ],
+          "outputs": [
+            {"id": "avatar", "label": "头像 · 1:1", "asset": "assets/brand-avatar-1x1.jpg", "alt": "人物方形头像输出", "ratio": "1:1", "dimensions": "1254×1254", "use": "头像"},
+            {"id": "social", "label": "社交 · 4:5", "asset": "assets/brand-social-4x5.jpg", "alt": "人物四比五社交肖像输出", "ratio": "4:5", "dimensions": "1122×1402", "use": "社交帖子"},
+            {"id": "editorial", "label": "编辑 · 3:4", "asset": "assets/brand-editorial-3x4.jpg", "alt": "人物三比四编辑肖像输出", "ratio": "3:4", "dimensions": "1086×1448", "use": "专访与人物页"},
+            {"id": "cover", "label": "封面 · 16:9", "asset": "assets/brand-cover-16x9.jpg", "alt": "人物十六比九横版封面输出", "ratio": "16:9", "dimensions": "1672×941", "use": "横版封面"}
+          ],
+          "rejectedOutput": {
+            "asset": "assets/brand-rejected-retry.jpg",
+            "alt": "因皮肤纹理夸张和闭环光型未通过而拒收的人物重试结果",
+            "reason": "一次定向重试仍未形成可验收的鼻影—颊影闭环，并命中皮肤纹理夸张失败项。"
+          },
+          "qa": [
+            {"id": "formats", "label": "四种目标画幅", "status": "pass", "note": "1:1、4:5、3:4、16:9 均有独立真实输出"},
+            {"id": "framing", "label": "完整头发、下巴与负空间", "status": "pass", "note": "各格式的用途性构图通过人工检查"},
+            {"id": "studio", "label": "连续中性影棚", "status": "pass", "note": "背景与 image-left 主光形成一致的低调曝光"},
+            {"id": "identity", "label": "身份微细节", "status": "partial", "note": "局部脸部比例和皮肤微纹理有再生成，必须人工复核"},
+            {"id": "signature", "label": "闭环 Rembrandt 签名", "status": "partial", "note": "目标明确，但当前证据没有稳定形成可验收闭环"}
+          ]
+        }
+      ]
+    }
+  ],
+  "statusVocabulary": {
+    "pass": "已通过人工证据检查",
+    "partial": "部分通过，必须人工复核",
+    "fail": "拒收并仅允许缺陷驱动重试",
+    "not-applicable": "不属于该流程的能力"
+  }
+}
