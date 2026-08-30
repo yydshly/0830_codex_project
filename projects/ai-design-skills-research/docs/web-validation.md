@@ -47,7 +47,7 @@ User phase: 多角度能力演示
 Coverage item: 能力样例、使用场景、扩展方向、多角度演示和跨表面验收
 User goal: 通过样例理解库的能力、场景和扩展方向
 Browser environment: Playwright Chromium，http://127.0.0.1:4178/
-Observed evidence: 29 项浏览器检查通过，控制台无错误，1440/768/390 无横向溢出
+Observed evidence: 36 项浏览器检查通过，控制台无错误，1440/768/390 无横向溢出
 Problem category: Closed
 Root cause: 不适用
 Minimal intervention: 原生 HTML/CSS/JS 的编辑型能力观察台
@@ -69,9 +69,25 @@ New authority required: no
 | 响应式 | 1440×1000、768×1024、390×844 均无横向溢出 |
 | 主题 | light → dark 切换和持久化生效 |
 | reduced-motion | 骨架动画被压缩到 `1e-05s`，内容保持可见 |
-| 自动检查 | 29 pass，0 fail |
+| 自动检查 | 36 pass，0 fail |
 
 特色场景单独执行 `node tests\showcase-smoke.cjs`：36 pass，0 fail。
+
+## Repair 3：场景演示入口发现性
+
+```text
+Current stage: Stage 9 complete
+User phase: 修复“看不到场景演示关联入口”
+Browser environment: Playwright Chromium；1440×1000、768×1024、390×844；亮/暗主题
+Observed evidence: 原桌面入口混在普通 Hero 操作中，移动端顶部导航被隐藏；修复后 Header 高对比“场景演示”入口始终可见，Hero 主按钮明确标注“进入场景演示：上线哨兵”
+Minimal intervention: 保留原信息架构，把入口提升为 Sticky Header 主控制并强化 Hero CTA
+Adjacent regression surfaces: Header、Hero、主题切换、键盘焦点、滚动、横向溢出、showcase 跳转
+Observed result: 能力观察台 36/36、场景页 36/36；滚动后入口仍可见；GitHub Validate 与 Deploy Pages 成功
+Deployment evidence: 实现提交 ed95316；线上首页和 showcase.html 均 HTTP 200，线上 DOM 包含 demo-header-link、明确标签与正确 href
+Decision: pass
+Next executable action: none
+New authority required: no
+```
 
 ## 保留证据
 
@@ -80,6 +96,8 @@ New authority required: no
 - [`tablet-light.png`](evidence/tablet-light.png)
 - [`mobile-light.png`](evidence/mobile-light.png)
 - [`mobile-reduced-motion.png`](evidence/mobile-reduced-motion.png)
+- [`entry-desktop.png`](evidence/entry-desktop.png)
+- [`entry-mobile.png`](evidence/entry-mobile.png)
 - [`showcase-hero.png`](evidence/showcase-hero.png)
 - [`showcase-menu.png`](evidence/showcase-menu.png)
 - [`showcase-tagline.png`](evidence/showcase-tagline.png)
@@ -92,5 +110,5 @@ New authority required: no
 1. 项目是什么：`ai-design-skills` 的交互式能力研究与样例观察台，Stage 9 已闭环。
 2. 完成了什么：能力对照、状态模拟、场景适配、扩展路线，以及“上线哨兵”特色实际场景、主题和响应式演示。
 3. 剩余什么：本轮没有未完成项；真实模型三组盲测属于独立后续研究，不是本轮延期。
-4. 有什么证据：基础观察台 29 项、特色场景 36 项 Chromium 检查，11 张截图、JavaScript 语法检查、研究门户测试与构建。
+4. 有什么证据：基础观察台 36 项、特色场景 36 项 Chromium 检查，13 张截图、JavaScript 语法检查、研究门户测试、GitHub Validate 与 Pages 部署。
 5. 下一会话先做什么：只有用户决定开展真实盲测时，才先固定同一 Brief 和评分量表。

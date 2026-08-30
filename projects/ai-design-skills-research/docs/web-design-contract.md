@@ -83,4 +83,4 @@ Autonomy authorization: 用户报告已部署页面缺少关联入口，可直�
 | 持久场景入口 | 1440/768/390，亮暗主题 | 可见性、标签、截图 | 2–7 | pass | `entry-desktop.png`、`entry-mobile.png`；滚动后仍可见 |
 | 主旅程 | 鼠标与键盘 | 点击 URL、Tab 焦点 | 4–7 | pass | Header/Hero 入口明确，键盘焦点与 showcase 跳转通过 |
 | 邻接回归 | Header、Hero、主题按钮 | 无溢出、无遮挡、主题切换 | 7 | pass | 能力观察台 36/36、场景页 36/36 通过 |
-| 交付 | GitHub Pages | Actions 与线上 DOM | 9 | continue | 提交、部署并验证线上入口 |
+| 交付 | GitHub Pages | Actions 与线上 DOM | 9 | pass | `ed95316` 已部署；首页与 showcase 均 HTTP 200，线上 DOM 含两处明确入口 |
