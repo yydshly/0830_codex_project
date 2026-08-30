@@ -84,7 +84,7 @@ Observable completion criteria: 页面在真实浏览器加载；首屏与前两
 | 真实测试复盘 | 用既有奥特曼与身份参考资产说明关系、身份、动作和视频交付是不同门槛 | 图片默认态、边界声明 | 页面正文、图片状态、截图 | 2–3 | pass | 4 项资产全部加载；“身份未通过”“不可作为最终首帧”“虚构儿童”均清楚可见 |
 | 最终生产路径 | 清楚回答“照片如何到最终效果”并给出真人视频优先、照片多视角备选 | 两条路线默认态 | 页面正文、DOM | 3 | pass | 视频入口和照片入口均含输入、审批、生成/合成与复核；必要非充分结论可见 |
 | 独立 README 与索引 | 离开网页仍能理解价值目标、示例特点、沟通演进、实测边界与全部关联资料 | Markdown / GitHub | 链接检查、项目元数据与根索引 | 3、9 | pass | README、research-synthesis、project.json 和根索引已使用同一标题、摘要、标签与在线地址 |
-| 第十一次修订闭环 | 新增长内容不破坏原交互和跨视口体验，并完成 Pages 发布 | 1440/768/390px、reduced-motion、线上地址 | 浏览器、自动测试、构建、GitHub Actions 与线上访问 | 7–9 | pending | 源码页与最终构建已通过；待 GitHub 提交、推送和线上地址复核后关闭 |
+| 第十一次修订闭环 | 新增长内容不破坏原交互和跨视口体验，并完成 Pages 发布 | 1440/768/390px、reduced-motion、线上地址 | 浏览器、自动测试、构建、GitHub Actions 与线上访问 | 7–9 | pass | 提交 `3d0a9bf` 已推送；Actions 运行 `33302278486` 成功；线上页面与关键资源均为 200 并通过完整浏览器复核 |
 
 ## 浏览器运行环境
 
@@ -119,6 +119,10 @@ Observable completion criteria: 页面在真实浏览器加载；首屏与前两
 - 交互：Clip 2、异地星图效果面板、图片 Prompt 复制（1,186 字符）、视频 Prompt 复制（800 字符）、“父母长辈 × 时间回信”组合与简报复制（321 字符）全部通过。
 - 结构与响应式：三个视口 `horizontalOverflow=0`；13 个页内锚点无缺失；无错误覆盖层、控制台错误或页面异常；reduced-motion 的转换时长为 `1e-05s`。
 - 视觉复核：桌面首屏以价值结论为唯一主标题，同时保留上游三幕原型作为对照；价值卡、失败证据、黄色视频审计卡和两条生产路线层级分明；手机改为单列且未出现卡片裁切。
+- Git 提交：`3d0a9bf9f2010d03ee12e285c88310f7dee24dd4`（`feat: publish emotional value content research`）已推送至 `origin/main`。
+- GitHub Actions：`Deploy Pages` 运行 `33302278486`，结论 `success`。
+- 线上 URL：`https://yydshly.github.io/0830_codex_project/demos/kid-papercraft-demo/` 返回 `200`；页面标题、`#value-system`、`#real-test` 与研究汇总链接均匹配本次提交；线上 CSS 和多视角身份测试 PNG 均返回 `200`。
+- 线上浏览器复核：再次执行 1440/768/390px 与 reduced-motion 检查；全页 28 张图片最终无缺失，所有关键交互、上游视频和锚点仍通过，无控制台错误或横向溢出。
 
 ## 精炼记录
 
