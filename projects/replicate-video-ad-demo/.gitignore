@@ -1,0 +1,7 @@
+# Upstream source is fetched locally because the upstream repository has no explicit license.
+upstream/
+
+# Local replays and authorized reference inputs must not be committed.
+artifacts/replay-output/
+artifacts/replay-output-*/
+artifacts/authorized-reference.*

@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="用真实热门广告展示 replicate-video-ad 的视频证据抽取、广告机制迁移与生成约束；输出新产品视频生产架构，不直接复制作品或生成最终成片。" />
+    <title>热门广告结构迁移实验 · Replicate Video Ad</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script src="app.js" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">跳到主要内容</a>
+
+    <header class="site-header" aria-label="页面导航">
+      <a class="brand" href="#top" aria-label="回到页面顶部"><span class="brand-mark" aria-hidden="true">R/VA</span><span>热门广告结构迁移实验</span></a>
+      <nav aria-label="章节"><a href="#operating-model">如何使用</a><a href="#compare">结构对照</a><a href="#storyboards">分镜结果</a><a href="#delta">Skill 增量</a></nav>
+      <a class="header-cta" href="downloads/real-case-replication-pack.md" download>下载生产包</a>
+    </header>
+
+    <main id="main">
+      <section class="hero shell" id="top">
+        <div class="hero-copy">
+          <p class="eyebrow"><span class="live-dot"></span> REAL-WORLD REPLICATION TEST · 2026-08-30</p>
+          <h1>把一条 <em>630 万播放</em>的产品广告，拆成另一产品的视频架构。</h1>
+          <p class="hero-lede">输入是 Apple 官方 35 秒 AirPods Pro 3 广告；输出是虚构概念“Relay Arc · AI 实时翻译运动耳机”的生产架构与分镜方案。结构复刻不等于作品复刻：我们保留因果、节奏与证明方式，不复制人物、品牌、造型或宣称。</p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="#compare">看六段结构怎么迁移 <span aria-hidden="true">↓</span></a>
+            <a class="button button-ghost" href="https://www.youtube.com/watch?v=wDgH0FECdJs" target="_blank" rel="noreferrer">打开官方原片 <span aria-hidden="true">↗</span></a>
+          </div>
+          <dl class="metrics" aria-label="案例指标">
+            <div><dt>6.30M</dt><dd>播放量快照</dd></div><div><dt>35s</dt><dd>原片时长</dd></div><div><dt>70</dt><dd>2 fps 证据帧</dd></div><div><dt>06</dt><dd>可迁移节拍</dd></div>
+          </dl>
+          <p class="metric-note">播放量为 2026-08-30 抓取快照，会随时间变化。</p>
+        </div>
+
+        <aside class="source-console" aria-labelledby="source-title">
+          <div class="console-topline"><span class="status-pill">REFERENCE / OFFICIAL</span><span>APPLE · YOUTUBE</span></div>
+          <div class="video-frame">
+            <iframe src="https://www.youtube-nocookie.com/embed/wDgH0FECdJs?rel=0" title="Apple 官方 AirPods Pro 3 广告" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+          </div>
+          <div class="source-meta">
+            <div><p class="meta-label">SOURCE FILM</p><h2 id="source-title">AirPods Pro 3 starring Vini Jr.</h2></div>
+            <a href="https://www.youtube.com/watch?v=wDgH0FECdJs" target="_blank" rel="noreferrer">无法播放？打开官方页面 ↗</a>
+          </div>
+          <p class="source-boundary">完整原片由官方播放器提供；仓库只保存用于评论和研究的低清关键帧。</p>
+        </aside>
+      </section>
+
+      <section class="thesis-bar" aria-label="能力边界">
+        <div class="shell thesis-grid">
+          <p><strong>它不是视频生成模型。</strong>原片是一次性研究输入，真正留下的是可复用的生产架构。</p>
+          <div class="pipeline" aria-label="工作流"><span>参考片</span><i aria-hidden="true">→</i><b>证据抽取 + 结构约束</b><i aria-hidden="true">→</i><span>生成模型 / 剪辑</span></div>
+        </div>
+      </section>
+
+      <section class="section operating-section" id="operating-model">
+        <div class="shell">
+          <div class="section-heading split-heading">
+            <div><p class="eyebrow">00 / SHARED UNDERSTANDING</p><h2>拆完以后，原片可以退出生成流程。</h2></div>
+            <p>这个案例的最终资产不是“像 AirPods 的画面”，而是一套新产品可以独立执行的镜头规格。原片留在研究端，结构进入生产端。</p>
+          </div>
+
+          <div class="operating-flow" aria-label="从参考片到最终成片的三层模型">
+            <article class="layer-card">
+              <div class="layer-index"><span>01</span><small>ONE-TIME</small></div>
+              <p class="layer-kicker">一次性拆解层</p>
+              <h3>参考片 → 可复核证据</h3>
+              <p>探测、抽帧、故事板、时间戳和镜头功能。把“感觉很好”转换成有位置的观察事实。</p>
+              <dl><div><dt>需要</dt><dd>参考视频</dd></div><div><dt>留下</dt><dd>证据与结构</dd></div></dl>
+            </article>
+            <span class="flow-arrow" aria-hidden="true">→</span>
+            <article class="layer-card layer-core">
+              <div class="layer-index"><span>02</span><small>REUSABLE</small></div>
+              <p class="layer-kicker">可复用架构层</p>
+              <h3>机制 + 新产品 → 生产架构</h3>
+              <p>六段节拍、因果链、连续性锚点、主张状态、分段 Prompt 和后期位置。这才是 Skill 的主要交付。</p>
+              <dl><div><dt>需要</dt><dd>新产品事实</dd></div><div><dt>输出</dt><dd>独立生产包</dd></div></dl>
+            </article>
+            <span class="flow-arrow" aria-hidden="true">→</span>
+            <article class="layer-card">
+              <div class="layer-index"><span>03</span><small>EXECUTION</small></div>
+              <p class="layer-kicker">生成执行层</p>
+              <h3>生产架构 → 最终 MP4</h3>
+              <p>用产品参考图分段生成，再完成剪辑、调色、声音、字幕、Logo、商品脚注和交付编码。</p>
+              <dl><div><dt>默认不需要</dt><dd>原片输入</dd></div><div><dt>仍然需要</dt><dd>模型与后期</dd></div></dl>
+            </article>
+          </div>
+
+          <div class="construction-answer">
+            <div class="answer-lead"><span>直接回答</span><h3>只用拆解后的能力构造视频？</h3><p><strong>结构上：可以。</strong>生产架构冻结后，可以不再把原片发送给视频模型，评价标准也从“像不像”改为“因果是否完整、产品是否真实、素材是否可剪辑”。</p></div>
+            <div class="answer-needs">
+              <p>但最终成片还需要四类输入</p>
+              <ol><li><b>01</b><span>真实产品事实</span></li><li><b>02</b><span>产品与品牌资产</span></li><li><b>03</b><span>视频生成模型</span></li><li><b>04</b><span>剪辑、声音与法务</span></li></ol>
+            </div>
+            <div class="answer-exit"><span>原片的新角色</span><strong>只做研究证据与结构 QA</strong><p>不再作为复制人物、构图或画面的生成条件。</p><div class="answer-links"><a href="downloads/understanding-and-methodology.md" download>下载完整方法论 ↓</a><a href="downloads/capability-reuse-guide.md" download>以后如何复用这套能力 ↓</a></div></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section shell" id="compare">
+        <div class="section-heading split-heading">
+          <div><p class="eyebrow">01 / STRUCTURE TRANSFER</p><h2>复刻的到底是什么？</h2></div>
+          <p>点击六个节拍，同时查看原片证据、Skill 提取出的叙事机制，以及迁移后的新镜头。方向键也可切换。</p>
+        </div>
+
+        <div class="beat-nav" role="tablist" aria-label="选择结构节拍">
+          <button class="beat-tab is-active" type="button" role="tab" aria-selected="true" aria-controls="beat-panel" id="tab-beat-1" data-beat="0"><span>01</span><strong>佩戴触发</strong><small>00:00–00:03</small></button>
+          <button class="beat-tab" type="button" role="tab" aria-selected="false" aria-controls="beat-panel" id="tab-beat-2" data-beat="1" tabindex="-1"><span>02</span><strong>状态释放</strong><small>00:03–00:08</small></button>
+          <button class="beat-tab" type="button" role="tab" aria-selected="false" aria-controls="beat-panel" id="tab-beat-3" data-beat="2" tabindex="-1"><span>03</span><strong>空间推进</strong><small>00:08–00:15</small></button>
+          <button class="beat-tab" type="button" role="tab" aria-selected="false" aria-controls="beat-panel" id="tab-beat-4" data-beat="3" tabindex="-1"><span>04</span><strong>难度加压</strong><small>00:15–00:22</small></button>
+          <button class="beat-tab" type="button" role="tab" aria-selected="false" aria-controls="beat-panel" id="tab-beat-5" data-beat="4" tabindex="-1"><span>05</span><strong>结果证明</strong><small>00:22–00:29</small></button>
+          <button class="beat-tab" type="button" role="tab" aria-selected="false" aria-controls="beat-panel" id="tab-beat-6" data-beat="5" tabindex="-1"><span>06</span><strong>主张收口</strong><small>00:29–00:35</small></button>
+        </div>
+
+        <article class="comparison-stage" id="beat-panel" role="tabpanel" aria-labelledby="tab-beat-1" tabindex="0">
+          <div class="compare-column source-column">
+            <div class="column-label"><span>A</span> 原片证据</div>
+            <figure class="evidence-frame"><img id="source-image" src="assets/source/beat-01.jpg" alt="原片 1.5 秒关键帧，人物佩戴耳机看向侧面" /><figcaption id="source-time">取样帧 · 00:01.500</figcaption></figure>
+            <h3 id="source-title-beat">先让产品进入画面，不急着解释</h3><p id="source-copy">人物转头，耳机轮廓清晰出现；还没有文案，观众先看到“触发物”。</p>
+          </div>
+
+          <div class="compare-column mechanism-column">
+            <div class="column-label"><span>B</span> Skill 提取机制</div>
+            <div class="mechanism-orbit" aria-hidden="true"><i></i><i></i><b>01</b></div>
+            <p class="mechanism-kicker" id="mechanism-function">HOOK / PRODUCT TRIGGER</p><h3 id="mechanism-title">用一个动作建立状态切换</h3><p id="mechanism-copy">开场不是罗列参数，而是先建立“使用前 → 触发 → 使用后”的因果入口。</p>
+            <div class="preserve-change"><p><span>保留</span><b id="preserve-copy">佩戴动作 + 即时感知变化</b></p><p><span>替换</span><b id="change-copy">明星 / 酒店 → 虚构球员 / 球员通道</b></p></div>
+          </div>
+
+          <div class="compare-column adaptation-column">
+            <div class="column-label"><span>C</span> 目标片分镜方案</div>
+            <figure class="evidence-frame"><img id="adaptation-image" src="assets/adaptation/beat-01.jpg" alt="原创分镜，球员在多语言交流压力中佩戴黑色翻译耳机" /><figcaption>原创概念分镜 · RELAY ARC</figcaption></figure>
+            <h3 id="adaptation-title">多种语言同时压向球员</h3><p id="adaptation-copy">赛前通道里，教练与队友的声音化成暖色声波；他还没能跟上节奏。</p>
+          </div>
+        </article>
+
+        <div class="truth-strip" role="note"><span>CLAIM CONTROL</span><p id="claim-copy"><strong>本节无性能宣称。</strong>只建立问题与触发动作，不凭空补充翻译准确率、延迟或支持语言数。</p></div>
+
+        <details class="all-beats">
+          <summary>查看六段完整文字时间线（无 JavaScript 也可读）</summary>
+          <ol>
+            <li><b>00:00–00:03 · 佩戴触发</b>：原片用耳机出现建立状态切换；新片改为球员在多语言压力中触碰黑色挂耳设备。</li>
+            <li><b>00:03–00:08 · 状态释放</b>：原片用起身舞动表达降噪后的身体感；新片用混乱声波收束成单一翻译声道。</li>
+            <li><b>00:08–00:15 · 空间推进</b>：原片用走廊连续运动延长体验；新片用球员通道把理解能力带向比赛任务。</li>
+            <li><b>00:15–00:22 · 难度加压</b>：原片持续扩大空间与干扰；新片进入球场，让多人协作与速度增加验证压力。</li>
+            <li><b>00:22–00:29 · 结果证明</b>：原片在人群和车辆中保持自己的节奏；新片以理解战术后的同步传跑与进球作可见结果。</li>
+            <li><b>00:29–00:35 · 主张收口</b>：原片给出 ANC 主张和产品定格；新片只保留待核验参数占位符，核验后再于后期加入。</li>
+          </ol>
+        </details>
+      </section>
+
+      <section class="section storyboard-section" id="storyboards">
+        <div class="shell">
+          <div class="section-heading split-heading"><div><p class="eyebrow">02 / EVIDENCE → CONCEPT</p><h2>从抽帧证据，到原创发布片分镜。</h2></div><p>左侧来自上游抽帧器的 12 帧时间样本；右侧是依据六段约束生成的概念分镜。它展示“怎么拍”，不是冒充已经生成的视频。</p></div>
+          <div class="storyboard-grid">
+            <figure class="story-card source-story"><div class="story-card-top"><span>INPUT EVIDENCE</span><b>上游脚本真实输出</b></div><img src="assets/source/sampled-storyboard.jpg" alt="Apple 官方参考广告经上游脚本抽取的 12 帧故事板" loading="lazy" /><figcaption><span>35.061s · 1280×720 · 2 fps · 70 帧</span><a href="downloads/source-frame-manifest.json" download>下载 Manifest ↓</a></figcaption></figure>
+            <figure class="story-card adaptation-story"><div class="story-card-top"><span>ORIGINAL ADAPTATION</span><b>AI 翻译运动耳机</b></div><img src="assets/adaptation/translation-earbuds-storyboard.jpg" alt="原创 AI 翻译运动耳机发布片的六镜头概念分镜" loading="lazy" /><figcaption><span>原创人物 · 原创产品 · 6 个连续镜头</span><a href="assets/adaptation/translation-earbuds-storyboard.jpg" download>下载分镜 ↓</a></figcaption></figure>
+          </div>
+          <div class="adaptation-brief"><div><p class="eyebrow">TARGET FILM</p><h3>Relay Arc / “Hear the play.”</h3></div><p>赛前听不懂 → 轻触设备 → 混乱收束 → 理解战术 → 团队同步 → 产品定格。视觉连续性锚点是同一球员、石墨训练服、电光青缝线与黑色挂耳设备。</p><a class="button button-primary" href="downloads/real-case-replication-pack.md" download>下载完整 Prompt + 分段计划</a></div>
+        </div>
+      </section>
+
+      <section class="section shell" id="delta">
+        <div class="section-heading split-heading"><div><p class="eyebrow">03 / ABLATION</p><h2>有它和没它，差别在哪里？</h2></div><p>多模态分析模型本来就能理解视频，视频生成模型也能根据提示词出镜头。Skill 的研究价值不是替代任何模型，而是固定两者之间的证据、结构、商品事实与交付格式。</p></div>
+        <div class="ablation-grid">
+          <article class="ablation-card without-card"><div class="ablation-title"><span>WITHOUT SKILL</span><b>一句泛化模仿</b></div><blockquote>“做一条像 AirPods 广告一样酷的运动耳机视频：运动员戴耳机、炫酷转场、最后展示产品。”</blockquote><ul><li><span>结构</span><b>只有风格词，没有镜头因果</b></li><li><span>证据</span><b>无法回到具体时间点复核</b></li><li><span>主张</span><b>容易继承原广告的性能结论</b></li><li><span>生产</span><b>人物与产品连续性未定义</b></li></ul></article>
+          <article class="ablation-card with-card"><div class="ablation-title"><span>WITH SKILL</span><b>可执行生产约束</b></div><div class="constraint-score"><div><b>06</b><span>镜头节拍</span></div><div><b>04</b><span>连续性锚点</span></div><div><b>03</b><span>宣称状态</span></div></div><ul><li><span>结构</span><b>每一拍都有功能、时段与下一拍</b></li><li><span>证据</span><b>帧号、时间戳与观察事实可追溯</b></li><li><span>主张</span><b>observed / adaptation / placeholder 分开</b></li><li><span>生产</span><b>主提示词、负面约束、四段生成计划</b></li></ul></article>
+        </div>
+        <div class="prompt-preview"><div class="prompt-line-numbers" aria-hidden="true">01<br />02<br />03<br />04<br />05<br />06</div><pre><code><span>FORMAT</span> 35 秒，16:9，电影级运动科技广告；画面内不生成文字。
+<span>ANCHOR</span> 同一虚构球员；石墨训练服；青色缝线；黑色挂耳设备。
+<span>CAUSE</span> 多语言压力 → 触碰耳机 → 单一清晰语义流 → 协作恢复。
+<span>PROOF</span> 用跑位、传球与团队同步表现理解结果，不用 UI 代替故事。
+<span>CLAIM</span> 【经法务确认的翻译延迟】/【支持语言数】只在后期叠字。
+<span>AVOID</span> Apple 标识、白色耳机柄、名人肖像、虚构性能与乱码。</code></pre></div>
+      </section>
+
+      <section class="section method-section"><div class="shell method-grid"><div class="method-intro"><p class="eyebrow">04 / WHAT ACTUALLY RAN</p><h2>这不是概念图堆砌。媒体处理链真实运行过。</h2><p>上游仓库固定在提交 <code>e143d2a</code>。本次把完整原片仅放在临时研究目录，调用其抽帧脚本得到可追溯证据，再由 Skill 规则完成语义迁移。</p></div><ol class="method-steps"><li><span>01</span><div><b>Probe</b><p>识别 35.061 秒、1280×720、23.976 fps。</p></div></li><li><span>02</span><div><b>Extract</b><p>以 2 fps 采样 70 帧，并导出音轨。</p></div></li><li><span>03</span><div><b>Inspect</b><p>生成 12 帧故事板、接触表与时间戳 Manifest。</p></div></li><li><span>04</span><div><b>Constrain</b><p>标注剧情功能、保留机制、替换元素和宣称状态。</p></div></li><li><span>05</span><div><b>Handoff</b><p>交付主提示词、分段生成计划和后期文案。</p></div></li></ol></div></section>
+
+      <section class="section shell boundary-section" id="boundary"><div class="boundary-card"><p class="eyebrow">RESEARCH & RIGHTS BOUNDARY</p><h2>能复刻机制，不等于可以复制作品。</h2><div class="boundary-grid"><p><b>本页保留</b>镜头功能、节奏关系、因果链和证明方式。</p><p><b>本页替换</b>人物、场景、产品造型、品牌系统、音乐与文案。</p><p><b>研究前提</b>Relay Arc 及其实时翻译能力均为虚构概念；迁移到真实产品时，核心功能、触发行为、适用环境和全部参数都必须核验。</p><p><b>交付边界</b>当前是生产架构与概念分镜，不是最终 MP4，也没有调用付费视频生成 API。</p></div><div class="source-links"><a href="https://github.com/yydshly/0830_codex_project/tree/main/projects/replicate-video-ad-demo" target="_blank" rel="noreferrer">项目能力与研究记录 ↗</a><a href="https://yydshly.github.io/0830_codex_project/" target="_blank" rel="noreferrer">研究门户 ↗</a><a href="https://www.youtube.com/watch?v=wDgH0FECdJs" target="_blank" rel="noreferrer">官方参考视频 ↗</a><a href="https://github.com/Jingyi-Wu-Richael/replicate-video-ad" target="_blank" rel="noreferrer">上游仓库 ↗</a><a href="downloads/real-case-source.json" download>来源快照 JSON ↓</a></div></div></section>
+    </main>
+
+    <footer class="site-footer shell"><p>REPLICATE VIDEO AD · STRUCTURE TRANSFER CASE</p><p>研究样例，不隶属于或代表 Apple。</p></footer>
+  </body>
+</html>

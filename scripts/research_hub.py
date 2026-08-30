@@ -236,6 +236,19 @@ def render_project_card(project: Project, repository_url: str) -> str:
       </article>""".strip()
 
 
+def copy_project_demos(
+    projects: list[Project], output: Path, projects_dir: Path = PROJECTS_DIR
+) -> None:
+    """Copy optional static project demos into the generated Pages artifact."""
+    for project in projects:
+        source = projects_dir / project.slug / "web"
+        if not source.is_dir():
+            continue
+        target = output / "demos" / project.slug
+        target.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copytree(source, target)
+
+
 def build_site(projects: list[Project], config: dict[str, str], output: Path) -> None:
     output = output.resolve()
     try:
@@ -247,6 +260,7 @@ def build_site(projects: list[Project], config: dict[str, str], output: Path) ->
     if output.exists():
         shutil.rmtree(output)
     shutil.copytree(SITE_DIR, output)
+    copy_project_demos(projects, output)
 
     template_path = output / "index.html"
     template = template_path.read_text(encoding="utf-8")

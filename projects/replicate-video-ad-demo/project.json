@@ -1,0 +1,17 @@
+{
+  "slug": "replicate-video-ad-demo",
+  "title": "replicate-video-ad 能力研究与热门广告结构迁移实验",
+  "summary": "验证 replicate-video-ad 如何完成视频证据抽取、广告机制迁移与生成约束，输出可脱离原片执行的新产品视频生产架构；它本身不直接生成视频。",
+  "status": "complete",
+  "tags": [
+    "ai-skill",
+    "video-analysis",
+    "prompt-engineering",
+    "ecommerce-ad",
+    "real-world-case",
+    "creative-strategy"
+  ],
+  "started_at": "2026-08-30",
+  "updated_at": "2026-08-30",
+  "demo_url": "https://yydshly.github.io/0830_codex_project/demos/replicate-video-ad-demo/"
+}

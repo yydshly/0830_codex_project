@@ -5,10 +5,23 @@
 
 这是一个面向长期探索的研究型 monorepo。根 README 是所有研究的总入口；每个子项目独立记录问题、方法、实验、结论与展示地址；[GitHub Pages 门户](https://yydshly.github.io/0830_codex_project/)负责汇总可浏览成果。
 
+## 重点能力项目：replicate-video-ad
+
+本项目研究如何把优秀参考视频转成另一产品可执行的视频生产架构，而不是复制原作品或直接生成最终成片。
+
+- **项目能力**：抽取视频证据，拆解广告机制，迁移镜头因果，并输出分段 Prompt、连续性约束和 A/B 评估基线。
+- **技术原理**：参考片先进入一次性分析层；证据与真实产品事实进入可复用架构层；最终由视频模型和后期流程执行，生成阶段默认不再输入原片。
+- **使用场景**：产品发布片、电商功能广告、系列化内容、创意提案与供应商交接、模型或工作流评测。
+- **后期价值**：形成模型无关的生产中间层、参考片模式库、自动化脚手架和团队质量标准。
+
+[查看完整研究记录](projects/replicate-video-ad-demo/README.md) · [打开在线交互案例](https://yydshly.github.io/0830_codex_project/demos/replicate-video-ad-demo/) · [查看上游仓库](https://github.com/Jingyi-Wu-Richael/replicate-video-ad)
+
 ## 研究项目索引
 
 <!-- PROJECTS:START -->
-_尚未创建研究项目。复制 `templates/research-project/` 即可开始第一个实验。_
+| 项目 | 状态 | 简介 | 标签 | 最近更新 | 展示 |
+| --- | --- | --- | --- | --- | --- |
+| [replicate-video-ad 能力研究与热门广告结构迁移实验](projects/replicate-video-ad-demo/README.md) | 已完成 | 验证 replicate-video-ad 如何完成视频证据抽取、广告机制迁移与生成约束，输出可脱离原片执行的新产品视频生产架构；它本身不直接生成视频。 | `ai-skill`、`video-analysis`、`prompt-engineering`、`ecommerce-ad`、`real-world-case`、`creative-strategy` | 2026-08-30 | [在线查看](https://yydshly.github.io/0830_codex_project/demos/replicate-video-ad-demo/) |
 <!-- PROJECTS:END -->
 
 ## 仓库结构
@@ -49,5 +62,4 @@ _尚未创建研究项目。复制 `templates/research-project/` 即可开始第
 
 ## GitHub Pages
 
-仓库已包含 Pages 部署工作流。首次推送后，请在仓库 **Settings → Pages → Build and deployment** 中将 Source 设为 **GitHub Actions**。之后每次修改 `main` 上的项目、站点或索引脚本都会自动部署。
-
+仓库已包含 Pages 部署工作流，并使用 GitHub Actions 作为发布源。每次修改 `main` 上的项目、站点或索引脚本都会自动部署。

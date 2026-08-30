@@ -1,0 +1,208 @@
+{
+  "source": "artifacts/synthetic-reference.mp4",
+  "local_source": "artifacts/synthetic-reference.mp4",
+  "duration_seconds": 15.0,
+  "width": 540,
+  "height": 960,
+  "native_fps": 24.0,
+  "sample_fps": 2.0,
+  "sample_interval_seconds": 0.5,
+  "frame_count": 30,
+  "storyboard_frame_numbers": [
+    1,
+    4,
+    6,
+    9,
+    12,
+    14,
+    17,
+    19,
+    22,
+    25,
+    27,
+    30
+  ],
+  "frames": [
+    {
+      "number": 1,
+      "file": "frames/frame_0001.jpg",
+      "timestamp_seconds": 0.0,
+      "timestamp": "00:00.000"
+    },
+    {
+      "number": 2,
+      "file": "frames/frame_0002.jpg",
+      "timestamp_seconds": 0.5,
+      "timestamp": "00:00.500"
+    },
+    {
+      "number": 3,
+      "file": "frames/frame_0003.jpg",
+      "timestamp_seconds": 1.0,
+      "timestamp": "00:01.000"
+    },
+    {
+      "number": 4,
+      "file": "frames/frame_0004.jpg",
+      "timestamp_seconds": 1.5,
+      "timestamp": "00:01.500"
+    },
+    {
+      "number": 5,
+      "file": "frames/frame_0005.jpg",
+      "timestamp_seconds": 2.0,
+      "timestamp": "00:02.000"
+    },
+    {
+      "number": 6,
+      "file": "frames/frame_0006.jpg",
+      "timestamp_seconds": 2.5,
+      "timestamp": "00:02.500"
+    },
+    {
+      "number": 7,
+      "file": "frames/frame_0007.jpg",
+      "timestamp_seconds": 3.0,
+      "timestamp": "00:03.000"
+    },
+    {
+      "number": 8,
+      "file": "frames/frame_0008.jpg",
+      "timestamp_seconds": 3.5,
+      "timestamp": "00:03.500"
+    },
+    {
+      "number": 9,
+      "file": "frames/frame_0009.jpg",
+      "timestamp_seconds": 4.0,
+      "timestamp": "00:04.000"
+    },
+    {
+      "number": 10,
+      "file": "frames/frame_0010.jpg",
+      "timestamp_seconds": 4.5,
+      "timestamp": "00:04.500"
+    },
+    {
+      "number": 11,
+      "file": "frames/frame_0011.jpg",
+      "timestamp_seconds": 5.0,
+      "timestamp": "00:05.000"
+    },
+    {
+      "number": 12,
+      "file": "frames/frame_0012.jpg",
+      "timestamp_seconds": 5.5,
+      "timestamp": "00:05.500"
+    },
+    {
+      "number": 13,
+      "file": "frames/frame_0013.jpg",
+      "timestamp_seconds": 6.0,
+      "timestamp": "00:06.000"
+    },
+    {
+      "number": 14,
+      "file": "frames/frame_0014.jpg",
+      "timestamp_seconds": 6.5,
+      "timestamp": "00:06.500"
+    },
+    {
+      "number": 15,
+      "file": "frames/frame_0015.jpg",
+      "timestamp_seconds": 7.0,
+      "timestamp": "00:07.000"
+    },
+    {
+      "number": 16,
+      "file": "frames/frame_0016.jpg",
+      "timestamp_seconds": 7.5,
+      "timestamp": "00:07.500"
+    },
+    {
+      "number": 17,
+      "file": "frames/frame_0017.jpg",
+      "timestamp_seconds": 8.0,
+      "timestamp": "00:08.000"
+    },
+    {
+      "number": 18,
+      "file": "frames/frame_0018.jpg",
+      "timestamp_seconds": 8.5,
+      "timestamp": "00:08.500"
+    },
+    {
+      "number": 19,
+      "file": "frames/frame_0019.jpg",
+      "timestamp_seconds": 9.0,
+      "timestamp": "00:09.000"
+    },
+    {
+      "number": 20,
+      "file": "frames/frame_0020.jpg",
+      "timestamp_seconds": 9.5,
+      "timestamp": "00:09.500"
+    },
+    {
+      "number": 21,
+      "file": "frames/frame_0021.jpg",
+      "timestamp_seconds": 10.0,
+      "timestamp": "00:10.000"
+    },
+    {
+      "number": 22,
+      "file": "frames/frame_0022.jpg",
+      "timestamp_seconds": 10.5,
+      "timestamp": "00:10.500"
+    },
+    {
+      "number": 23,
+      "file": "frames/frame_0023.jpg",
+      "timestamp_seconds": 11.0,
+      "timestamp": "00:11.000"
+    },
+    {
+      "number": 24,
+      "file": "frames/frame_0024.jpg",
+      "timestamp_seconds": 11.5,
+      "timestamp": "00:11.500"
+    },
+    {
+      "number": 25,
+      "file": "frames/frame_0025.jpg",
+      "timestamp_seconds": 12.0,
+      "timestamp": "00:12.000"
+    },
+    {
+      "number": 26,
+      "file": "frames/frame_0026.jpg",
+      "timestamp_seconds": 12.5,
+      "timestamp": "00:12.500"
+    },
+    {
+      "number": 27,
+      "file": "frames/frame_0027.jpg",
+      "timestamp_seconds": 13.0,
+      "timestamp": "00:13.000"
+    },
+    {
+      "number": 28,
+      "file": "frames/frame_0028.jpg",
+      "timestamp_seconds": 13.5,
+      "timestamp": "00:13.500"
+    },
+    {
+      "number": 29,
+      "file": "frames/frame_0029.jpg",
+      "timestamp_seconds": 14.0,
+      "timestamp": "00:14.000"
+    },
+    {
+      "number": 30,
+      "file": "frames/frame_0030.jpg",
+      "timestamp_seconds": 14.5,
+      "timestamp": "00:14.500"
+    }
+  ],
+  "note": "Timestamps are sampling estimates; verify exact cuts against adjacent frames."
+}

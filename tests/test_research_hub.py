@@ -67,6 +67,25 @@ class ResearchHubTests(unittest.TestCase):
             with self.assertRaisesRegex(research_hub.HubError, "必须位于当前仓库内"):
                 research_hub.build_site([], config, Path(outside) / "site")
 
+    def test_copy_project_demos_copies_optional_static_site(self) -> None:
+        temp_root = Path(tempfile.mkdtemp(dir=research_hub.ROOT / ".tmp"))
+        self.addCleanup(lambda: __import__("shutil").rmtree(temp_root, ignore_errors=True))
+        projects_dir = temp_root / "projects"
+        output = temp_root / "output"
+        project_dir = self.make_project(slug="demo-study")
+        demo_dir = project_dir / "web"
+        demo_dir.mkdir()
+        (demo_dir / "index.html").write_text("<h1>Demo</h1>", encoding="utf-8")
+        output.mkdir()
+
+        project = research_hub.load_project(project_dir)
+        research_hub.copy_project_demos(
+            [project], output, projects_dir=project_dir.parent
+        )
+
+        copied = output / "demos" / "demo-study" / "index.html"
+        self.assertEqual(copied.read_text(encoding="utf-8"), "<h1>Demo</h1>")
+
 
 if __name__ == "__main__":
     unittest.main()

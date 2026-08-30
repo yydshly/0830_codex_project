@@ -1,0 +1,23 @@
+{
+  "source_title": "AirPods Pro 3 starring Vini Jr. with the world's best in-ear Active Noise Cancellation",
+  "source_url": "https://www.youtube.com/watch?v=wDgH0FECdJs",
+  "source_channel": "Apple",
+  "source_duration_seconds": 35.061,
+  "source_width": 1280,
+  "source_height": 720,
+  "source_native_fps": 23.976023976,
+  "sample_fps": 2.0,
+  "sample_interval_seconds": 0.5,
+  "sampled_frame_count": 70,
+  "storyboard_frame_count": 12,
+  "extractor_commit": "e143d2a7bc0d7c684b8164291799fe1ff48ed7dc",
+  "selected_evidence": [
+    {"beat": 1, "frame": 4, "timestamp": "00:01.500", "file": "assets/source/beat-01.jpg"},
+    {"beat": 2, "frame": 13, "timestamp": "00:06.000", "file": "assets/source/beat-02.jpg"},
+    {"beat": 3, "frame": 25, "timestamp": "00:12.000", "file": "assets/source/beat-03.jpg"},
+    {"beat": 4, "frame": 40, "timestamp": "00:19.500", "file": "assets/source/beat-04.jpg"},
+    {"beat": 5, "frame": 54, "timestamp": "00:26.500", "file": "assets/source/beat-05.jpg"},
+    {"beat": 6, "frame": 58, "timestamp": "00:28.500", "file": "assets/source/beat-06.jpg"}
+  ],
+  "rights_note": "The complete source video is not redistributed. The project retains only limited low-resolution evidence frames for criticism, commentary, and research."
+}
